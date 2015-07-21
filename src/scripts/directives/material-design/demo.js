@@ -246,7 +246,7 @@ angular.module('app')
         }
     })
 
-    .directive('moneystyle',function ($filter) {
+    .directive('moneystyle',['$filter', function ($filter) {
         return {
             restrict: 'A',
             require: '?ngModel',
@@ -263,9 +263,9 @@ angular.module('app')
                 });
             }
         }
-    })
+    }])
     
-
+;
 
 
 
