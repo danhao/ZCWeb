@@ -31,8 +31,8 @@
                         <label class="col-sm-3 control-label">提现金额<span class="inputflag">*</span></label>
                         <div class="col-sm-6">
                             <div class="fg-line" >
-                                <input type="number"   class="form-control" ng-model="ctrl.cash.amount" name="amount"
-                                       placeholder="输入提现金额" min="0.01" ng-required="money!=0">
+                                <input type="text" moneystyle  class="form-control" ng-model="ctrl.cash.amount" name="amount"
+                                       placeholder="输入提现金额(单位：元)" min="0.01" ng-required="money!=0">
                             </div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-3">
                             <!--<button type="buttom" w5c-form-submit="ctrl.addcash(ctrl.cash)"  class="btn btn-primary"  > 申请提现 </button>-->
-                            <button type="buttom" w5c-form-submit="ctrl.addcash(ctrl.cash)"  class="btn btn-primary" ng-disabled="ctrl.cash.amount >  money/100 || money ==0"> {{ctrl.cash.amount >  money/100 || money ==0 ? "可用余额不够，不能申请提现" :"申请提现"}} </button>
+                            <button type="buttom" w5c-form-submit="ctrl.addcash(ctrl.cash)"  class="btn btn-primary  btn-lg" ng-disabled="ctrl.cash.amount >  money/100 || money ==0"> {{ctrl.cash.amount >  money/100 || money ==0 ? "可用余额不够，不能申请提现" :"申请提现"}} </button>
                         </div>
 
                     </div>

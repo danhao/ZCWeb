@@ -3,8 +3,16 @@ class DebtController
 		@debt =
 			city: [ '广东', '深圳市', '南山区' ]
 
+		$scope.step1 = true
+		$scope.step2 = false
+
 		$scope.validateOptions =
 			blurTrig: true
+
+
+		$scope.goto = ()->
+			$scope.step1 = !$scope.step1
+			$scope.step2 = !$scope.step2
 
 		@saveEntity = (@debt)->
 			if debt.creditorIdFile is undefined
@@ -30,6 +38,7 @@ class DebtController
 				debt.files = splitfiles(debt.files)
 
 			$log.log debt
+#			return
 			@ajaxService.post actionCode.CREATE_DEBT, debt
 			.success (results) ->
 				growlService.growl('委托发布成功，请等待后台审核！', 'success')

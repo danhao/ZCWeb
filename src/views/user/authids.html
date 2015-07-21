@@ -31,7 +31,8 @@
                     </div>
 
                     <div class="card-body card-padding">
-                        <a href="{{ctrl.userinfo.noneCrimeFile.url}}" target="_blank" class="thumbnail"><img src="{{ctrl.userinfo.noneCrimeFile.url}}" alt=""></a>
+                        <a href="{{ctrl.userinfo.noneCrimeFile.url}}" target="_blank" class="thumbnail" ><img src="{{ctrl.userinfo.noneCrimeFile.url==undefined?'../images/nopic.jpg':ctrl.userinfo.noneCrimeFile.url}}" alt=""></a>
+
                     </div>
                 </div>
             </div>
@@ -44,7 +45,7 @@
                     </div>
 
                     <div class="card-body card-padding">
-                        <a href="{{ctrl.userinfo.creditFile.url}}" target="_blank" class="thumbnail"><img src="{{ctrl.userinfo.creditFile.url}}" alt=""></a>
+                        <a href="{{ctrl.userinfo.creditFile.url}}" target="_blank" class="thumbnail"><img src="{{ctrl.userinfo.creditFile.url==undefined?'../images/nopic.jpg':'ctrl.userinfo.creditFile.url'}}" alt=""></a>
                     </div>
                 </div>
             </div>

@@ -18,8 +18,10 @@ class AuthidController
 		@verify = (@authid)->
 			return if validate(authid)==false
 			authid.idFile = splitfiles(authid.idFile,"身份证号")
-			authid.noneCrimeFile= splitfiles(authid.noneCrimeFile,"无犯罪记录证明")
-			authid.creditFile= splitfiles(authid.creditFile,"个人征信报告")
+			if authid.noneCrimeFile isnt undefined
+				authid.noneCrimeFile= splitfiles(authid.noneCrimeFile,"无犯罪记录证明")
+			if authid.creditFile isnt undefined
+				authid.creditFile= splitfiles(authid.creditFile,"个人征信报告")
 
 			$log.log authid
 			@ajaxService.post actionCode.ACTION_UPDATE_USER, authid
@@ -49,13 +51,13 @@ class AuthidController
 				growlService.growl("请上传身份证照片，参考拍照攻略！", 'danger')
 				result = false
 
-			if auth.noneCrimeFile == '' or auth.noneCrimeFile == undefined
-				growlService.growl("请上传无犯罪记录证明！", 'danger')
-				result = false
-
-			if auth.creditFile == '' or auth.creditFile == undefined
-				growlService.growl("请上传个人征信报告！", 'danger')
-				result = false
+#			if auth.noneCrimeFile == '' or auth.noneCrimeFile == undefined
+#				growlService.growl("请上传无犯罪记录证明！", 'danger')
+#				result = false
+#
+#			if auth.creditFile == '' or auth.creditFile == undefined
+#				growlService.growl("请上传个人征信报告！", 'danger')
+#				result = false
 			result
 
 

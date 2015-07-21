@@ -5,7 +5,6 @@
                 <h2><span class="glyphicon glyphicon-usd" ></span> 我要充值</h2>
             </header>
             <div  class="card-body card-padding">
-                <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
                 <form  class="form-horizontal w5c-form" role="form"
                        w5c-form-validate="validateOptions" novalidate name="validateForm" >
                     <div class="form-group">
@@ -23,15 +22,16 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">充值金额<span class="inputflag">*</span></label>
                         <div class="col-sm-6">
-                            <div class="fg-line" >
-                                <input type="number"   class="form-control" ng-model="ctrl.orderAmount" name="orderAmount"
-                                       placeholder="输入充值金额" min="1" required>
+                            <div class="fg-line">
+                                <input type="text" moneystyle  class="form-control" ng-model="ctrl.orderAmount" name="orderAmount"
+                                       placeholder="输入充值金额(单位：元)"  required>
                             </div>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-10">
-                            <button type="buttom" w5c-form-submit="ctrl.pay(ctrl.orderAmount)"  class="btn btn-primary" >去充值 </button>
+                            <button type="buttom" w5c-form-submit="ctrl.pay(ctrl.orderAmount)"  class="btn btn-primary btn-lg" >去充值 </button>
                         </div>
                     </div>
                 </form>

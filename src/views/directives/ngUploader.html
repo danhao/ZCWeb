@@ -1,6 +1,6 @@
 
 <div class="upload well">
-    <span>{{title}}</span>
+    <div>{{title}}<span style='color:red' ng-show="require">*</span></div>
     <br>
     <input class="btn btn-default btn-block" type="file" name="{{parameter}}"/>
     <ul class="list-group upload-list" >
