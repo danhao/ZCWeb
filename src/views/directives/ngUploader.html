@@ -1,0 +1,15 @@
+
+<div class="upload well">
+    <span>{{title}}</span>
+    <br>
+    <input class="btn btn-default btn-block" type="file" name="{{parameter}}"/>
+    <ul class="list-group upload-list" >
+        <li ng-repeat="file in fileList" class="list-group-item">
+            {{file.filename}}
+            <span class="pull-right">
+                <i class="fa fa-check-circle text-success"></i>
+                <a href="javascript:;" class="text-muted" ng-click="erase(this)"><i class="fa fa-minus-circle"></i></a>
+            </span>
+        </li>
+    </ul>
+</div>

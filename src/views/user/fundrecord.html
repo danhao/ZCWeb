@@ -1,0 +1,93 @@
+<section  class="page-view ng-scope" data-ui-view="">
+    <div class="container ng-scope">
+        <div class="card" ng-controller="fundrecordController as ctrl">
+            <header class="card-header">
+                <h2><span class="glyphicon glyphicon-list" ></span> 资金记录</h2>
+            </header>
+            <div  class="card-body card-padding">
+                <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+                    <div class="row qc-area">
+                        <div class="col-xs-12" >
+                            <div class="col-sm-5">
+                            状态:&nbsp;&nbsp;
+                            <div class="btn-group">
+                                <div class="btn-group" ng-init="ctrl.q.type=0" data-toggle="buttons">
+                                    <label class="btn btn-default active" ng-click="ctrl.q.type=0">
+                                        <input type="radio" name="type" ng-model="ctrl.q.type" autocomplete="off" value="0" checked/>
+                                        <i class="fa fa-user"></i> 收支明细
+                                    </label>
+                                    <label class="btn btn-default" ng-click="ctrl.q.type=1">
+                                        <input type="radio" name="type" ng-model="ctrl.q.type" autocomplete="off" value="1" checked/>
+                                        <i class="fa fa-user"></i> 充值记录
+                                    </label>
+                                    <label class="btn btn-default" ng-click="ctrl.q.type=4">
+                                        <input type="radio" name="type" ng-model="ctrl.q.type" autocomplete="off" value="4" checked/>
+                                        <i class="fa fa-user"></i> 提现记录
+                                    </label>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <input data-dt-picker type="text" name="timeFrom" class="form-control"  ng-model="ctrl.q.timeFrom"
+                                       data-format="YYYY/MM/DD" close-text="Close" placeholder="开始时间" />
+                            </div>
+                            <div class="col-sm-3">
+                                    <input data-dt-picker type="text" name="timeTo" class="form-control"  ng-model="ctrl.q.timeTo"
+                                           data-format="YYYY/MM/DD" close-text="Close" placeholder="结束时间" />
+                            </div>
+                        </div>
+                    </div>
+                <div class="card-body table-responsive">
+                <table class="table table-hover" ng-show="fundrecordList.length>0">
+                    <thead>
+                    <tr>
+                        <th width="120px">
+                            流水号
+                        </th>
+                        <th width="100px">
+                            类别
+                        </th>
+                        <th width="150px">
+                            操作金额（元）
+                        </th>
+                        <th width="120px">
+                            操作时间
+                        </th>
+                        <th width="100px">
+                            状态
+                        </th>
+                        <th >
+                            备注
+                        </th>
+                    </tr></thead>
+                    <tbody >
+                    <tr ng-repeat="fund in fundrecordList">
+                        <td >
+                            {{fund.id}}
+                        </td>
+                        <td>
+                            {{fund.type | moneyHistoryType}}
+                        </td>
+                        <td>
+                            {{ fund.money | ccurrency}}
+                        </td>
+                        <td >
+                            {{fund.time | idate }}
+                        </td>
+                        <td>
+                            {{fund.state | moneyHistoryState}}
+                        </td>
+                        <td>
+                            {{fund.descript}}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                    <ul class="list-group">
+                        <li class="list-group-item text-center" ng-hide="fundrecordList.length">暂无记录</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

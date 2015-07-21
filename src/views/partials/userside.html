@@ -1,0 +1,40 @@
+<aside>
+    <nav class="nav--sidebar" id="settings_nav" role="navigation">
+        <div ng-controller="memberIndexController as ctrl">
+        <div class="nav-group">
+            <h4>会员中心</h4>
+            <ul class="collapse in" >
+                <li ui-sref-active="active"><a ui-sref="site.member.index"><span class="glyphicon glyphicon-home" ></span> 会员首页</a></li>
+            </ul>
+        </div>
+        <div class="nav-group">
+            <h4>我的债权</h4>
+             <ul class="collapse in" >
+                 <li ui-sref-active="active"><a ui-sref="site.member.issued"><span class="glyphicon glyphicon-list-alt" ></span> 我的委托</a></li>
+                 <li ui-sref-active="active"><a ui-sref="site.member.participant"><span class="glyphicon glyphicon-list-alt" ></span> 我的竟标</a></li>
+                 <li ui-sref-active="active"><a ui-sref="site.member.wonbid"><span class="glyphicon glyphicon-list-alt" ></span> 我的中标</a></li>
+            </ul>
+        </div>
+        <div class="nav-group">
+            <h4>信息设置</h4>
+            <ul class="collapse in" >
+                <li ui-sref-active="active"><a ui-sref="site.member.userinfo"><span class="glyphicon glyphicon-user" ></span> 基本信息</a></li>
+                <li ui-sref-active="active"><a ui-sref="site.member.userpwd"><span class="glyphicon glyphicon-wrench" ></span> 修改密码</a></li>
+                <li ui-sref-active="active"><a ui-sref="site.member.authemail"><span class="glyphicon glyphicon-envelope" ></span> 邮箱验证</a></li>
+                <li ui-sref-active="active"><a ui-sref="site.member.authmobile"><span class="glyphicon glyphicon-phone" ></span> 手机验证</a></li>
+                <li ui-sref-active="active" ng-show="ctrl.user.type==0"><a ui-sref="site.member.authid"><span class="glyphicon glyphicon-briefcase" ></span> 个人认证</a></li>
+                <li ui-sref-active="active" ng-show="ctrl.user.type==1"><a ui-sref="site.member.authcompany"><span class="glyphicon glyphicon-briefcase" ></span> 企业认证</a></li>
+            </ul>
+        </div>
+        <div class="nav-group">
+            <h4>财务管理</h4>
+            <ul class="collapse in" >
+                <li ui-sref-active="active"><a ui-sref="site.member.pay"><span class="glyphicon glyphicon-usd"></span> 我要充值</a></li>
+                <li ui-sref-active="active"><a ui-sref="site.member.balance"><span class="glyphicon glyphicon-search" ></span> 余额查询</a></li>
+                <li ui-sref-active="active"><a ui-sref="site.member.cash"><span class="glyphicon glyphicon-credit-card"></span> 我要提现</a></li>
+                <li ui-sref-active="active"><a ui-sref="site.member.fundrecord"><span class="glyphicon glyphicon-list" ></span> 资金记录</a></li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+</aside>

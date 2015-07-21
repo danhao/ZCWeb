@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" xmlns:ng="http://angularjs.org" xmlns:app="ignored" ng-controller="materialadminCtrl as mactrl"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" xmlns:ng="http://angularjs.org" xmlns:app="ignored" ng-controller="materialadminCtrl as mactrl"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9" xmlns:ng="http://angularjs.org" xmlns:app="ignored" ng-controller="materialadminCtrl as mactrl"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" xmlns:ng="http://angularjs.org" xmlns:app="ignored" ng-controller="materialadminCtrl as mactrl"> <!--<![endif]-->
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>点点债</title>
+		<meta name="description" content="AngularJS Reference Architecture" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!--[if lte IE 8]> <script src="/scripts/libs/json3.min.js"></script> <script src="/scripts/libs/html5shiv-printshiv.min.js"></script> <![endif]-->
+
+		<% if (config.environment && config.environment === 'prod') { %>
+			<link rel="stylesheet" href="<%= config.getHashedFile('./.temp/styles/styles.min.css', {trim: './.temp'}) %>" />
+		<% } else { %>
+			<link rel="stylesheet" href="/styles/styles.css" />
+		<% } %>
+
+		<!-- ClickJacking Defense begin (https://www.owasp.org/index.php/Clickjacking_Defense_Cheat_Sheet) -->
+		<style id="antiClickjack">
+			body {
+				display: none !important;
+			}
+		</style>
+
+		<script>
+			(function (w) {
+				if (w.top === w.self) {
+					var a = w.document.getElementById('antiClickjack');
+
+					a.parentNode.removeChild(a);
+				} else {
+					w.top.location = w.self.location;
+				}
+			}(window));
+		</script>
+		<!-- ClickJacking Defense end -->
+
+		<!-- When you load angular at the bottom, you need to create the "ng-cloak" rules yourself -->
+		<style>
+			[ng\:cloak],
+			[ng-cloak],
+			[data-ng-cloak],
+			[x-ng-cloak],
+			.ng-cloak,
+			.x-ng-cloak {
+				display: none;
+			}
+
+			ng\:form {
+				display: block;
+			}
+		</style>
+	</head>
+	<body ng-cloak class="ng-cloak" ng-class="{ 'sw-toggled': mactrl.layoutType === '1' }">
+		<ui-view></ui-view>
+		<!-- <ng:include src="'/views/site.html'"></ng:include> -->
+
+
+		<% if (config.environment && config.environment === 'prod') { %>
+			<script src="/scripts/vendors.min.js"></script>
+			<script src="<%= config.getHashedFile('./.temp/scripts/scripts.min.js', {trim: './.temp'}) %>"></script>
+		<% } else { %>
+			<script src="/scripts/vendors.min.js"></script>
+			<script data-main="/scripts/main.js" src="/scripts/libs/require.js"></script>
+		<% } %>
+	</body>
+</html>

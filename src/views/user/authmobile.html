@@ -1,0 +1,38 @@
+<section  class="page-view ng-scope" data-ui-view="">
+    <div class="container ng-scope">
+        <div class="card" ng-controller="authmobileController as ctrl">
+            <header class="card-header">
+                <h2><span class="glyphicon glyphicon-phone" ></span> 手机验证</h2>
+            </header>
+            <div  class="card-body card-padding">
+                <form  class="form-horizontal w5c-form" role="form"
+                       w5c-form-validate="validateOptions" novalidate name="validateForm">
+                    <div class="form-group"  >
+                        <label  class="col-sm-3 control-label">手机号</label>
+                        <div class="col-sm-4">
+                            <div class="fg-line" >
+                                <input type="text"   class="form-control" ng-model="ctrl.mobile" name="mobile" readonly required>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="buttom" class="btn btn-primary" ng-click="ctrl.sendcode(ctrl.mobile)"  ng-disabled="showbntsendcode"> {{bntvalue}} </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-3 control-label">验证码</label>
+                        <div class="col-sm-4">
+                            <div class="fg-line" >
+                                <input type="number" minlength="4"   class="form-control" ng-model="ctrl.code" name="verifycode" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-10">
+                            <button type="buttom" w5c-form-submit="ctrl.verify(ctrl.code)"  class="btn btn-primary" > 验证手机 </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

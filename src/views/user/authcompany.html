@@ -1,0 +1,436 @@
+<section  class="page-view ng-scope" data-ui-view="">
+    <div class="container ng-scope">
+        <div class="card" ng-controller="authcompanyController as ctrl">
+            <header class="card-header">
+                <h2><span class="glyphicon glyphicon-briefcase" ></span> 企业资料验证</h2>
+            </header>
+            <div class="card-body card-padding">
+                <div class="row">
+                    <form  class="form-horizontal w5c-form" role="form"
+                           w5c-form-validate="validateOptions" novalidate name="validateForm">
+                        <div class="col-sm-6 ">
+                            <div class="card">
+                                <div class="card-header ch-alt">
+                                    <h2>企业基本信息</h2>
+                                </div>
+                                <div class="card-body card-padding">
+                                    <div class="form-group fg-float">
+                                        <!--<label class="col-sm-3 control-label">企业名称<span class="inputflag">*</span></label>-->
+
+                                        <!--<div class="col-sm-12">-->
+                                            <div class="fg-line" >
+                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.companyName" name="companyName"
+                                                      required>
+                                            </div>
+                                            <label class="fg-label">企业名称</label>
+
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="form-group fg-float">
+                                        <!--<label class="col-sm-3 control-label">法人代表<span class="inputflag">*</span></label>-->
+
+                                        <!--<div class="col-sm-12">-->
+                                            <div class="fg-line" >
+                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.artificialPerson" name="artificialPerson"
+                                                        required>
+                                            </div>
+                                        <label class="fg-label">法人代表</label>
+                                        <!--</div>-->
+                                    </div>
+
+                                    <div class="form-group fg-float">
+                                        <!--<label class="col-sm-3 control-label">组织机构代码<span class="inputflag">*</span></label>-->
+
+                                        <!--<div class="col-sm-12">-->
+                                            <div class="fg-line" >
+                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.userId" name="userId"
+                                                       required>
+                                            </div>
+                                        <label class="fg-label">组织机构代码</label>
+                                        <!--</div>-->
+                                    </div>
+
+                                    <div class="form-group fg-float">
+                                        <!--<label class="col-sm-3 control-label">公司执照注册号<span class="inputflag">*</span></label>-->
+                                        <!--<div class="col-sm-12">-->
+                                            <div class="fg-line" >
+                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.businessLicence" name="businessLicence"
+                                                        required>
+                                            </div>
+                                        <label class="fg-label">公司执照注册号</label>
+                                        <!--</div>-->
+                                    </div>
+
+                                    <div class="form-group fg-float">
+                                        <!--<label class="col-sm-3 control-label">税务登记号<span class="inputflag">*</span></label>-->
+
+                                        <!--<div class="col-sm-12">-->
+                                            <div class="fg-line" >
+                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.taxNumber" name="taxNumber"
+                                                        required>
+                                            </div>
+                                        <label class="fg-label">税务登记号</label>
+                                        <!--</div>-->
+                                    </div>
+
+                                    <div class="form-group fg-float">
+                                        <!--<label class="col-sm-3 control-label">开户许可证核准号<span class="inputflag">*</span></label>-->
+
+                                        <!--<div class="col-sm-12">-->
+                                            <div class="fg-line" >
+                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.accountPermit" name="accountPermit"
+                                                       required>
+                                            </div>
+                                        <label class="fg-label">开户许可证核准号</label>
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="form-group fg-float">
+                                        <!--<label class="col-sm-3 control-label">注册资金<span class="inputflag">*</span></label>-->
+
+                                        <!--<div class="col-sm-12">-->
+                                            <div class="fg-line" >
+                                                <input type="number"   class="form-control" ng-model="ctrl.authcompany.registeredCapital" name="registeredCapital"
+                                                        required>
+                                            </div>
+                                        <label class="fg-label">注册资金,以'万'为单位</label>
+                                        <!--</div>-->
+                                    </div>
+
+                                    <div class="form-group fg-float">
+                                        <!--<label class="col-sm-3 control-label">成立时间<span class="inputflag">*</span></label>-->
+
+                                        <!--<div class="col-sm-12">-->
+                                            <div class="fg-line" >
+                                                <input data-dt-picker type="text" name="foundtime" class="form-control"  ng-model="ctrl.authcompany.foundTime"
+                                                       data-format="YYYY/MM/DD"  required/>
+                                            </div>
+                                        <label class="fg-label">成立时间</label>
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="form-group fg-float">
+                                        <!--<label class="col-sm-3 control-label">经营范围<span class="inputflag">*</span></label>-->
+
+                                        <!--<div class="col-sm-12">-->
+                                            <div class="fg-line" >
+                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.businessScope" name="businessScope"
+                                                       multiple required>
+                                            </div>
+                                        <label class="fg-label">经营范围</label>
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="form-group fg-float">
+                                        <!--<label class="col-sm-3 control-label">企业注册地址<span class="inputflag">*</span></label>-->
+                                        <!--<div class="col-sm-12">-->
+                                            <div class="fg-line" >
+                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.companyAddress" name="companyAddress"
+                                                       required>
+                                            </div>
+                                        <label class="fg-label">企业注册地址</label>
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="form-group fg-float">
+                                        <!--<label class="col-sm-3 control-label">企业经营地址<span class="inputflag">*</span></label>-->
+                                        <!--<div class="col-sm-12">-->
+                                            <div class="fg-line" >
+                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.businessAddress" name="businessAddress"
+                                                       required>
+                                            </div>
+                                        <label class="fg-label">企业经营地址</label>
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">注册类型</label>
+                                        <div class="col-sm-9" >
+                                            <div class="radio" ng-init="ctrl.authcompany.reqisteredType=1">
+                                                <label class="m-r-25">
+                                                    <input type="radio" name="rate" ng-model="ctrl.authcompany.reqisteredType" value="1" ng-checked="true">
+                                                    <i class="input-helper"></i>
+                                                    P2P公司&nbsp;
+                                                </label>
+                                                <label class="m-r-0">
+                                                    <input type="radio" name="rate" ng-model="ctrl.authcompany.reqisteredType" value="3">
+                                                    <i class="input-helper"></i>
+                                                    消费金融公司
+                                                </label>
+                                                <br/>
+                                                <br/>
+                                                <label class="m-r-25">
+                                                    <input type="radio" name="rate" ng-model="ctrl.authcompany.reqisteredType" value="2">
+                                                    <i class="input-helper"></i>
+                                                    小贷公司
+                                                </label>
+                                                <label class="m-r-0">
+                                                    <input type="radio" name="rate" ng-model="ctrl.authcompany.reqisteredType" value="4">
+                                                    <i class="input-helper"></i>
+                                                    专业催收公司
+                                                </label>
+                                                <br/><br/>
+                                                <label class="m-r-0">
+                                                    <input type="radio" name="rate" ng-model="ctrl.authcompany.reqisteredType" value="5">
+                                                    <i class="input-helper"></i>
+                                                    律师事务所
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 ">
+                            <div class="card">
+                                <div class="card-header ch-alt">
+                                    <h2>企业证件图片</h2>
+                                </div>
+                                <div class="card-body card-padding">
+                                    <div class="form-group">
+                                        <!--<label class="col-sm-3 control-label">法定代表人身份证照片<span class="inputflag">*</span></label>-->
+
+                                        <!--<div class="col-sm-12">-->
+                                            <div ng-uploader data-form-field="idFile"  data-model-field="ctrl.authcompany.idFile" dat-form-title="法定代表人身份证照片"></div>
+                                            <input type="hidden" id="idFile"  />
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="form-group">
+                                        <!--<label class="col-sm-3 control-label">开户许可证<span class="inputflag">*</span></label>-->
+
+                                        <!--<div class="col-sm-9">-->
+                                            <div ng-uploader data-form-field="accountPermitFile"  data-model-field="ctrl.authcompany.accountPermitFile" dat-form-title="开户许可证"></div>
+                                            <input type="hidden" id="accountPermitFile" />
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="form-group">
+                                        <!--<label class="col-sm-3 control-label">组织机构代码证<span class="inputflag">*</span></label>-->
+                                        <!--<div class="col-sm-9">-->
+                                            <div ng-uploader data-form-field="organizationCodeFile" data-model-field="ctrl.authcompany.organizationCodeFile" dat-form-title="组织机构代码证"></div>
+                                            <input type="hidden" id="organizationCodeFile"  />
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="form-group">
+                                        <!--<label class="col-sm-3 control-label">工商营业执照<span class="inputflag">*</span></label>-->
+                                        <!--<div class="col-sm-9">-->
+                                            <div ng-uploader data-form-field="businessLicenceFile" data-model-field="ctrl.authcompany.businessLicenceFile" dat-form-title="工商营业执照"></div>
+                                            <input type="hidden" id="businessLicenceFile"  />
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="form-group">
+                                        <!--<label class="col-sm-3 control-label">税务登记证<span class="inputflag">*</span></label>-->
+                                        <!--<div class="col-sm-9">-->
+                                            <div ng-uploader data-form-field="taxNumberFile" data-model-field="ctrl.authcompany.taxNumberFile" dat-form-title="税务登记证"></div>
+                                            <input type="hidden" id="taxNumberFile" />
+                                            <span style="color: red">注: 建议尺寸360x420像素，每张大小不要超过2M</span>
+                                        <!--</div>-->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button type="buttom" w5c-form-submit="ctrl.verifycompany(ctrl.authcompany)"  class="btn btn-primary" > 确认提交信息 </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--<form  class="form-horizontal w5c-form" role="form"-->
+                       <!--w5c-form-validate="validateOptions" novalidate name="validateForm">-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">企业名称<span class="inputflag">*</span></label>-->
+
+                        <!--<div class="col-sm-6">-->
+                            <!--<div class="fg-line" >-->
+                                <!--<input type="text"   class="form-control" ng-model="ctrl.authcompany.userName" name="userName"-->
+                                       <!--placeholder="输入企业名称" required>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">法人代表<span class="inputflag">*</span></label>-->
+
+                        <!--<div class="col-sm-6">-->
+                            <!--<div class="fg-line" >-->
+                                <!--<input type="text"   class="form-control" ng-model="ctrl.authcompany.artificialPerson" name="artificialPerson"-->
+                                       <!--placeholder="输入法定代表人" required>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">组织机构代码<span class="inputflag">*</span></label>-->
+
+                        <!--<div class="col-sm-6">-->
+                            <!--<div class="fg-line" >-->
+                                <!--<input type="text"   class="form-control" ng-model="ctrl.authcompany.userId" name="userId"-->
+                                       <!--placeholder="输入组织机构代码" required>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">公司执照注册号<span class="inputflag">*</span></label>-->
+                        <!--<div class="col-sm-6">-->
+                            <!--<div class="fg-line" >-->
+                                <!--<input type="text"   class="form-control" ng-model="ctrl.authcompany.businessLicence" name="businessLicence"-->
+                                       <!--placeholder="输入公司执照注册号" required>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">税务登记号<span class="inputflag">*</span></label>-->
+
+                        <!--<div class="col-sm-6">-->
+                            <!--<div class="fg-line" >-->
+                                <!--<input type="text"   class="form-control" ng-model="ctrl.authcompany.taxNumber" name="taxNumber"-->
+                                       <!--placeholder="输入税务登记号" required>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">开户许可证核准号<span class="inputflag">*</span></label>-->
+
+                        <!--<div class="col-sm-6">-->
+                            <!--<div class="fg-line" >-->
+                                <!--<input type="text"   class="form-control" ng-model="ctrl.authcompany.accountPermit" name="accountPermit"-->
+                                       <!--placeholder="输入开户许可证核准号" required>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">注册资金(单位：万)<span class="inputflag">*</span></label>-->
+
+                        <!--<div class="col-sm-6">-->
+                            <!--<div class="fg-line" >-->
+                                <!--<input type="number"   class="form-control" ng-model="ctrl.authcompany.registeredCapital" name="registeredCapital"-->
+                                       <!--placeholder="输入注册资金,以'万'为单位" required>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">注册类型<span class="inputflag">*</span></label>-->
+                            <!--<div class="col-sm-6" >-->
+                                <!--<div class="radio" ng-init="ctrl.authcompany.reqisteredType=1">-->
+                                    <!--<label class="m-r-25">-->
+                                        <!--<input type="radio" name="rate" ng-model="ctrl.authcompany.reqisteredType" value="1" ng-checked="true">-->
+                                        <!--<i class="input-helper"></i>-->
+                                        <!--P2P公司-->
+                                    <!--</label>-->
+                                    <!--<label class="m-r-25">-->
+                                        <!--<input type="radio" name="rate" ng-model="ctrl.authcompany.reqisteredType" value="2">-->
+                                        <!--<i class="input-helper"></i>-->
+                                        <!--小贷公司-->
+                                    <!--</label>-->
+                                    <!--<label class="m-r-0">-->
+                                        <!--<input type="radio" name="rate" ng-model="ctrl.authcompany.reqisteredType" value="3">-->
+                                        <!--<i class="input-helper"></i>-->
+                                        <!--消费金融公司-->
+                                    <!--</label>-->
+                                    <!--<br/>-->
+                                    <!--<br/>-->
+                                    <!--<label class="m-r-0">-->
+                                        <!--<input type="radio" name="rate" ng-model="ctrl.authcompany.reqisteredType" value="4">-->
+                                        <!--<i class="input-helper"></i>-->
+                                        <!--专业催收公司-->
+                                    <!--</label>-->
+                                    <!--<label class="m-r-0">-->
+                                        <!--<input type="radio" name="rate" ng-model="ctrl.authcompany.reqisteredType" value="5">-->
+                                        <!--<i class="input-helper"></i>-->
+                                        <!--律师事务所-->
+                                    <!--</label>-->
+                                    <!--&lt;!&ndash;<label><input type="radio" name="rate" ng-model="ctrl.authcompany.reqisteredType" value="1" ng-checked="true"> P2P公司</label>&nbsp;&nbsp;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<label><input type="radio" name="rate" ng-model="ctrl.authcompany.reqisteredType" value="2"> 小贷公司</label>&nbsp;&nbsp;&nbsp;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<label><input type="radio" name="rate" ng-model="ctrl.authcompany.reqisteredType" value="3"> 消费金融公司</label>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<label><input type="radio" name="rate" ng-model="ctrl.authcompany.reqisteredType" value="4"> 专业催收公司</label>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<label><input type="radio" name="rate" ng-model="ctrl.authcompany.reqisteredType" value="5"> 律师事务所</label>&ndash;&gt;-->
+                                <!--</div>-->
+                            <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">成立时间<span class="inputflag">*</span></label>-->
+
+                        <!--<div class="col-sm-6">-->
+                            <!--<div class="fg-line" >-->
+                                <!--<input data-dt-picker type="text" name="foundtime" class="form-control"  ng-model="ctrl.authcompany.foundTime"-->
+                                       <!--data-format="YYYY/MM/DD"   placeholder="输入成立时间" required/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">经营范围<span class="inputflag">*</span></label>-->
+
+                        <!--<div class="col-sm-6">-->
+                            <!--<div class="fg-line" >-->
+                                <!--<input type="text"   class="form-control" ng-model="ctrl.authcompany.businessScope" name="businessScope"-->
+                                       <!--placeholder="输入经营范围" multiple required>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">企业注册地址<span class="inputflag">*</span></label>-->
+                        <!--<div class="col-sm-6">-->
+                            <!--<div class="fg-line" >-->
+                                <!--<input type="text"   class="form-control" ng-model="ctrl.authcompany.address" name="address"-->
+                                       <!--placeholder="输入企业注册地址" required>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">企业经营地址<span class="inputflag">*</span></label>-->
+                        <!--<div class="col-sm-6">-->
+                            <!--<div class="fg-line" >-->
+                                <!--<input type="text"   class="form-control" ng-model="ctrl.authcompany.businessAddress" name="businessAddress"-->
+                                       <!--placeholder="输入企业经营地址" required>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">法定代表人身份证照片<span class="inputflag">*</span></label>-->
+
+                        <!--<div class="col-sm-6">-->
+                            <!--<div ng-uploader data-form-field="idFile" data-model-field="ctrl.authcompany.idFile"></div>-->
+                            <!--<input type="hidden" id="idFile"  />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">开户许可证<span class="inputflag">*</span></label>-->
+
+                        <!--<div class="col-sm-6">-->
+                            <!--<div ng-uploader data-form-field="accountPermitFile"  data-model-field="ctrl.authcompany.accountPermitFile"></div>-->
+                            <!--<input type="hidden" id="accountPermitFile" />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">组织机构代码证<span class="inputflag">*</span></label>-->
+                        <!--<div class="col-sm-6">-->
+                            <!--<div ng-uploader data-form-field="organizationCodeFile" data-model-field="ctrl.authcompany.organizationCodeFile"></div>-->
+                            <!--<input type="hidden" id="organizationCodeFile"  />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">工商营业执照<span class="inputflag">*</span></label>-->
+                        <!--<div class="col-sm-6">-->
+                            <!--<div ng-uploader data-form-field="businessLicenceFile" data-model-field="ctrl.authcompany.businessLicenceFile"></div>-->
+                            <!--<input type="hidden" id="businessLicenceFile"  />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">税务登记证<span class="inputflag">*</span></label>-->
+                        <!--<div class="col-sm-6">-->
+                            <!--<div ng-uploader data-form-field="taxNumberFile" data-model-field="ctrl.authcompany.taxNumberFile" ></div>-->
+                            <!--<input type="hidden" id="taxNumberFile" />-->
+                            <!--<span style="color: red">注: 建议尺寸360x420像素，每张大小不要超过2M</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="form-group">-->
+                        <!--<div class="col-sm-offset-3 col-sm-10">-->
+                            <!--<button type="buttom" w5c-form-submit="ctrl.verifycompany(ctrl.authcompany)"  class="btn btn-primary" > 确认提交信息 </button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</form>-->
+            </div>
+        </div>
+    </div>
+</section>

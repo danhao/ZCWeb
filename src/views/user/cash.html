@@ -1,0 +1,136 @@
+<section  class="page-view ng-scope" data-ui-view="">
+    <div class="container ng-scope">
+        <div class="card" ng-controller="cashController as ctrl">
+            <header class="card-header">
+                <h2><span class="glyphicon glyphicon-credit-card" ></span> 我要提现</h2>
+            </header>
+            <div  class="card-body card-padding">
+
+                <div class="alert alert-warning" >警告：禁止信用卡套现、虚假交易等行为，一经确认，将终止该账户的使用。</div>
+                <form  class="form-horizontal w5c-form" role="form"
+                       w5c-form-validate="validateOptions" novalidate name="validateForm">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">总金额</label>
+                        <div class="col-sm-6">
+                            <label class="radio"> <span class="money">{{money | ccurrency}}</span></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">冻结金额</label>
+                        <div class="col-sm-6">
+                            <label class="radio"> <span class="money">{{frozen |ccurrency}}</span></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">可用金额</label>
+                        <div class="col-sm-6">
+                            <label class="radio"> <span class="money">{{overplus |ccurrency}}</span></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">提现金额<span class="inputflag">*</span></label>
+                        <div class="col-sm-6">
+                            <div class="fg-line" >
+                                <input type="number"   class="form-control" ng-model="ctrl.cash.amount" name="amount"
+                                       placeholder="输入提现金额" min="0.01" ng-required="money!=0">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">开户名<span class="inputflag">*</span></label>
+                        <div class="col-sm-6">
+                            <div class="fg-line" >
+                                <input type="text"   class="form-control" ng-model="ctrl.cash.kfname"  name="kfname"
+                                       placeholder="输入开户名" ng-required="money!=0">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">帐户类型<span class="inputflag">*</span></label>
+                        <div class="col-sm-6 radio">
+                            <label class="m-r-20">
+                                <input type="radio" name="counttype" ng-model="ctrl.cash.counttype" value="1"  ng-init="ctrl.cash.counttype='1'" checked>
+                                <i class="input-helper"></i>
+                                借记卡
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">选择银行<span class="inputflag">*</span></label>
+                        <div class="col-sm-6">
+                            <select  data-select-picker data-live-search="true" ng-model="ctrl.cash.bankName" >
+                                <option>中国银行</option>
+                                <option>中国工商银行</option>
+                                <option>中国农业银行</option>
+                                <option>中国建设银行</option>
+                                <option>中国邮政储蓄银行</option>
+                                <option>民生银行</option>
+                                <option>招商银行</option>
+                                <option>交通银行</option>
+                                <option>浦发银行</option>
+                                <option>兴业银行</option>
+                                <option>中信银行</option>
+                                <option>平安银行</option>
+                                <option>广发银行</option>
+                                <option>光大银行</option>
+                                <option>华夏银行</option>
+                                <option>上海银行</option>
+                                <option>宁波银行</option>
+                                <option>南京银行</option>
+                                <option>浙商银行</option>
+                                <option>深发展银行</option>
+                                <option>江苏银行</option>
+                                <option>东亚银行</option>
+                                <option>东莞银行</option>
+                                <option>恒丰银行</option>
+                                <option>北京银行</option>
+                            </select>
+                            
+                            <!--<input type="text" ng-model="ctrl.cash.bankName" typeahead="bank for bank in banklist | filter:$viewValue | limitTo:8" class="form-control" ng-required="money!=0">-->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">开户行所在地<span class="inputflag">*</span></label>
+                        <div class="col-sm-6">
+                            <city-select ng-model="ctrl.cash.city" name="city" required></city-select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">开户行网点<span class="inputflag">*</span></label>
+                        <div class="col-sm-6">
+                            <div class="fg-line" >
+                                <input type="text"   class="form-control" ng-model="ctrl.cash.bankBranch" name="bankbranch"
+                                       placeholder="输入开户行网点" ng-required="money!=0">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">银行卡号<span class="inputflag">*</span></label>
+                        <div class="col-sm-6">
+                            <div class="fg-line" >
+                            <input type="text"   class="form-control" ng-model="ctrl.cash.cardNo" name="cardno"
+                                   placeholder="输入银行卡号" ng-required="money!=0" onkeyup="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">确认银行卡号<span class="inputflag">*</span></label>
+                        <div class="col-sm-6">
+                            <div class="fg-line" >
+                                <input type="text"   class="form-control" name="recardno" ng-model="ctrl.cash.recardNo" w5c-repeat="cardno"
+                                       placeholder="输入确认银行卡号" ng-required="money!=0">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-3">
+                            <!--<button type="buttom" w5c-form-submit="ctrl.addcash(ctrl.cash)"  class="btn btn-primary"  > 申请提现 </button>-->
+                            <button type="buttom" w5c-form-submit="ctrl.addcash(ctrl.cash)"  class="btn btn-primary" ng-disabled="ctrl.cash.amount >  money/100 || money ==0"> {{ctrl.cash.amount >  money/100 || money ==0 ? "可用余额不够，不能申请提现" :"申请提现"}} </button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

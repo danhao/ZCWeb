@@ -1,0 +1,94 @@
+<section  class="page-view ng-scope" data-ui-view="">
+    <div class="container ng-scope">
+        <div class="card" ng-controller="authidController as ctrl">
+            <header class="card-header">
+                <h2><span class="glyphicon glyphicon-briefcase" ></span> 个人身份验证</h2>
+            </header>
+            <div  class="card-body card-padding">
+                <form  class="form-horizontal w5c-form" role="form"
+                       w5c-form-validate="validateOptions" novalidate name="validateForm" id="auidform">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">身份证号码<span class="inputflag">*</span></label>
+                        <div class="col-sm-6">
+                            <div class="fg-line" >
+                                <input type="text"   class="form-control" ng-model="ctrl.authid.userId" name="idcard" ng-pattern="/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/"
+                                       placeholder="输入身份证号码" maxlength="18" required>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">身份证照片<span class="inputflag">*</span></label>
+                            <div class="col-sm-6">
+                                    <div>
+                                        <div ng-uploader data-form-field="idFile" data-model-field="ctrl.authid.idFile"></div>
+                                        <input type="hidden" id="idFile" />
+                                    </div>
+                                <span style="color: red">注: 建议尺寸360x420像素，每张大小不要超过2M <a data-toggle="modal" href="" data-target="#modalDefault" > 拍照攻略 </a></span>
+                                </div>
+                        </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">无犯罪记录证明<span class="inputflag">*</span></label>
+                        <div class="col-sm-6">
+                            <div ng-uploader data-form-field="noneCrimeFile"  data-model-field="ctrl.authid.noneCrimeFile"></div>
+                            <input type="hidden" id="noneCrimeFile" />
+                            <span style="color: red">注: 请到当地或户口所在地公安局开设无犯罪证明</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">个人征信报告<span class="inputflag">*</span></label>
+                        <div class="col-sm-6">
+                                <div>
+                                    <div ng-uploader data-form-field="creditFile" data-model-field="ctrl.authid.creditFile"></div>
+                                    <input type="hidden" id="creditFile" />
+                                </div>
+                            <span style="color: red">注: 请到中国人民银行网站开具<a href="http://www.pbccrc.org.cn/" target="_blank"> 个人征信报告</a></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-10">
+                            <button type="buttom" w5c-form-submit="ctrl.verify(ctrl.authid)"  class="btn btn-primary" > 确认提交信息 </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--photo modal -->
+            <div class="modal fade in" id="modalDefault" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">拍照攻略</h4>
+                        </div>
+                        <div class="modal-body">
+                            <P> 1、拍照设备：用像素500万以上的手机或相机，对焦在身份证上进行拍照，如用触屏的手机或相机，可在拍照时先点击屏幕中的身份证再按拍照键（避免相机自动人脸识别对焦在脸部而造成身份证模糊）；</P>
+                            <P> 2、拍照环境：在光线充足的地方进行拍照，但避免光线直射，防止拍照时身份证反光；</P>
+                            <P> 3、拍照技巧：拍照时尽量固定相机，用一只手扶稳相机，身体依靠在固定的支撑物上，避免相机抖动造成照片模糊；</P>
+                            <P> 4、拍照姿势：必须面对镜头，但姿势不限，手持身份证并尽可能保持静止（建议将身份证放在相机与身体的中间位置），脸部不能被遮挡，完整露出持身份证的手臂，并尽量把人拍得大一点；</P>
+                            <P> 5、照片检查：拍照后请放大照片进行查看，确保能清晰看见身份证上的全部信息；</P>
+                            <P> 6、照片上传：不能对照片做任何形式的修改或处理，必须上传原始照片。</P>
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6">
+                                    <a href="#" class="thumbnail">
+                                        <img src="../images/right.JPEG" alt="">
+                                    </a>
+                                </div>
+                                <div class="col-xs-6 col-md-6">
+                                    <a href="#" class="thumbnail">
+                                        <img src="../images/error.JPEG" alt="">
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

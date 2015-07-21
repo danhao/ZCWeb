@@ -1,0 +1,26 @@
+<section  class="page-view ng-scope" data-ui-view="">
+    <div class="container ng-scope">
+        <div class="card" ng-controller="authemailController as ctrl">
+            <header class="card-header">
+                <h2><span class="glyphicon glyphicon-envelope" ></span> 邮箱验证</h2>
+            </header>
+            <div class="card-body card-padding">
+                <form  class="form-horizontal ng-pristine ng-valid" novalidate name="authemailform">
+                    <div class="form-group"  >
+                        <label  class="col-sm-3 control-label">邮箱地址</label>
+                        <div class="col-sm-6">
+                            <div class="fg-line" >
+                                <input type="email"   class="form-control" ng-model="ctrl.email" name="email" readonly required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-10">
+                            <button type="buttom" ng-click="ctrl.verify(ctrl.email)"  class="btn btn-primary" ng-disabled="showbntsendemail"> {{bntvalue}} </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

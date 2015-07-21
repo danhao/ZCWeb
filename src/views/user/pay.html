@@ -1,0 +1,74 @@
+<section  class="page-view ng-scope" data-ui-view="">
+    <div class="container ng-scope">
+        <div class="card" ng-controller="payController as ctrl">
+            <header class="card-header">
+                <h2><span class="glyphicon glyphicon-usd" ></span> 我要充值</h2>
+            </header>
+            <div  class="card-body card-padding">
+                <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+                <form  class="form-horizontal w5c-form" role="form"
+                       w5c-form-validate="validateOptions" novalidate name="validateForm" >
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">充值方式 {{ctrl.pay.orderAmount}}</label>
+                        <div class="col-sm-6">
+                            <div class="radio" >
+                                <label class="m-r-20">
+                                    <input type="radio" name="paytype" ng-model="paytype" value="1"  ng-init="paytype='1'">
+                                    <i class="input-helper"></i>
+                                    通联支付
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">充值金额<span class="inputflag">*</span></label>
+                        <div class="col-sm-6">
+                            <div class="fg-line" >
+                                <input type="number"   class="form-control" ng-model="ctrl.orderAmount" name="orderAmount"
+                                       placeholder="输入充值金额" min="1" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-10">
+                            <button type="buttom" w5c-form-submit="ctrl.pay(ctrl.orderAmount)"  class="btn btn-primary" >去充值 </button>
+                        </div>
+                    </div>
+                </form>
+                <div >
+                <form name="payform" id="payform" action="http://ceshi.allinpay.com/gateway/index.do" method="post">
+                    <input type="hidden" name="inputCharset"  ng-value="pay.inputCharset"/>
+                    <input type="hidden" name="pickupUrl" ng-value="pay.pickupUrl"/>
+                    <input type="hidden" name="receiveUrl" ng-value="pay.receiveUrl" />
+                    <input type="hidden" name="version" ng-value="pay.version" />
+                    <input type="hidden" name="language" ng-value="pay.language" />
+                    <input type="hidden" name="signType" ng-value="pay.signType" />
+                    <input type="hidden" name="merchantId" ng-value="pay.merchantId" />
+                    <input type="hidden" name="payerName" ng-value="pay.payerName" />
+                    <input type="hidden" name="payerEmail" ng-value="pay.payerEmail" />
+                    <input type="hidden" name="payerTelephone" ng-value="pay.payerTelephone" />
+                    <input type="hidden" name="payerIDCard" ng-value="pay.payerIDCard" />
+                    <input type="hidden" name="pid" ng-value="pay.pid" />
+                    <input type="hidden" name="orderNo" ng-value="pay.orderNo" />
+                    <input type="hidden" name="orderAmount" ng-value="pay.orderAmount" />
+                    <input type="hidden" name="orderCurrency" ng-value="pay.orderCurrency" />
+                    <input type="hidden" name="orderDatetime" ng-value="pay.orderDatetime" />
+                    <input type="hidden" name="orderExpireDatetime" ng-value="pay.orderExpireDatetime" />
+                    <input type="hidden" name="productName" ng-value="pay.productName"/>
+                    <input type="hidden" name="productPrice" ng-value="pay.productPrice"/>
+                    <input type="hidden" name="productNum" ng-value="pay.productNum" />
+                    <input type="hidden" name="productId" ng-value="pay.productId"/>
+                    <input type="hidden" name="productDesc" ng-value="pay.productDesc"/>
+                    <input type="hidden" name="ext1" ng-value="pay.ext1"/>
+                    <input type="hidden" name="ext2" ng-value="pay.ext2" />
+                    <input type="hidden" name="payType" ng-value="pay.payType" />
+                    <input type="hidden" name="issuerId" ng-value="pay.issuerId" />
+                    <input type="hidden" name="pan" ng-value="pay.pan" />
+                    <input type="hidden" name="tradeNature" ng-value="pay.tradeNature"/>
+                    <input type="hidden" name="signMsg" ng-value="pay.signMsg" />
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

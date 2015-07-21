@@ -1,0 +1,27 @@
+<section  class="page-view ng-scope" data-ui-view="">
+    <div class="container ng-scope">
+        <div class="card"  ng-controller="memberIndexController as ctrl">
+            <header class="card-header">
+                <h2><span class="glyphicon glyphicon-search" ></span> 余额查询</h2>
+            </header>
+            <div  class="card-body card-padding">
+                <form  class="form-horizontal w5c-form" role="form"
+                       w5c-form-validate="validateOptions" novalidate name="validateForm">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">可用金额：</label>
+                        <div class="col-sm-6">
+                               <label class="radio"> <span class="money">{{ctrl.user.money | ccurrency }}</span></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">冻结金额：</label>
+                        <div class="col-sm-6">
+                            <label class="radio"> <span class="money">{{ctrl.user.frozen | ccurrency }}</span>(冻结资金为竞价时交纳的保证金)</label>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,113 @@
+<section  class="page-view ng-scope" data-ui-view="">
+    <div class="container ng-scope">
+        <div class="card">
+            <header class="card-header">
+                <h2><span class="glyphicon glyphicon-list" ></span> 我的委托</h2>
+            </header>
+            <div class="panel-body" ng-controller="issuedController as ctrl">
+
+                <div class="row qc-area">
+                    <div class="col-xs-12" >
+                        类型:&nbsp;&nbsp;
+                        <!--<div class="btn-group">-->
+                            <!--<label class="btn btn-default" ng-model="ctrl.q.type" btn-radio="'1'">{{1 | debtType}}</label>-->
+                            <!--<label class="btn btn-default" ng-model="ctrl.q.type" btn-radio="'2'">{{2 | debtType}}</label>-->
+                        <!--</div>-->
+                        <div class="btn-group">
+                            <div class="btn-group" ng-init="ctrl.q.type='1'" data-toggle="buttons">
+                                <label class="btn btn-default active" ng-click="ctrl.q.type='1'">
+                                    <input type="radio" name="type" ng-model="ctrl.q.type" autocomplete="off" value="'1'" checked/>
+                                    <i class="fa fa-user"></i> {{1 | debtType}}
+                                </label>
+                                <label class="btn btn-default" ng-click="ctrl.q.type='2'">
+                                    <input type="radio" name="type" ng-model="ctrl.q.type" autocomplete="off" value="'2'" checked/>
+                                    <i class="fa fa-user"></i> {{2 | debtType}}
+                                </label>
+                            </div>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        状态:&nbsp;&nbsp;
+                        <div class="btn-group">
+                            <!--<label class="btn btn-default" ng-model="ctrl.q.state" btn-radio="'-1'">全部</label>-->
+                            <!--<label class="btn btn-default" ng-model="ctrl.q.state" btn-radio="'0'">审核中</label>-->
+                            <!--<label class="btn btn-default" ng-model="ctrl.q.state" btn-radio="'1'">已通过</label>-->
+                            <!--<label class="btn btn-default" ng-model="ctrl.q.state" btn-radio="'2'">未通过</label>-->
+                            <!--<label class="btn btn-default" ng-model="ctrl.q.state" btn-radio="'3'">已成交</label>-->
+                            <!--<label class="btn btn-default" ng-model="ctrl.q.state" btn-radio="'4'">已结束</label>-->
+                            <div class="btn-group" ng-init="ctrl.q.state='-1'" data-toggle="buttons">
+                                <label class="btn btn-default active" ng-click="ctrl.q.type='-1'">
+                                    <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'-1'" checked/>
+                                    <i class="fa fa-user"></i> 全部
+                                </label>
+                                <label class="btn btn-default" ng-click="ctrl.q.state='0'">
+                                    <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'0'" checked/>
+                                    <i class="fa fa-user"></i> 审核中
+                                </label>
+                                <label class="btn btn-default " ng-click="ctrl.q.state='1'">
+                                    <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'1'" checked/>
+                                    <i class="fa fa-user"></i> 已通过
+                                </label>
+                                <label class="btn btn-default" ng-click="ctrl.q.state='2'">
+                                    <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'2'" checked/>
+                                    <i class="fa fa-user"></i> 未通过
+                                </label>
+                                <label class="btn btn-default " ng-click="ctrl.q.state='3'">
+                                    <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'3'" checked/>
+                                    <i class="fa fa-user"></i> 已成交
+                                </label>
+                                <label class="btn btn-default" ng-click="ctrl.q.state='4'">
+                                    <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'4'" checked/>
+                                    <i class="fa fa-user"></i> 已结束
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<ul class="list-group">-->
+                    <!--<li class="list-group-item" ng-repeat="debt in ctrl.debtList">-->
+                        <!--<div class="row debt-list-item">-->
+                            <!--<div class="col-sm-6 col-md-9">-->
+                                <!--<div class="row">-->
+                                    <!--<div class="col-md-6">-->
+                                        <!--<a href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})"><span class="debtmoney">  {{debt.money | ccurrency}}</span> </a>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-6">-->
+                                        <!--<div style="margin-bottom:5px;">{{debt.debtorLocation}}</div>-->
+                                        <!--<div>费率: {{debt.rate}}%  &nbsp;&nbsp;&nbsp;&nbsp; 期限: {{debt.duration}}天</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-sm-6 col-md-3">-->
+                                <!--<div class="text-muted pull-right">发布于: {{debt.publishTime | idate }} </div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li class="list-group-item text-center" ng-hide="ctrl.debtList.length">暂无记录</li>-->
+                <!--</ul>-->
+                <div class="row">&nbsp;</div>
+                <div class="row">
+                    <div ng-repeat="debt in ctrl.debtList">
+                        <div class="col-sm-4">
+                            <div class="card">
+                                <div class="card-header bgm-bluegray m-b-20">
+                                    <h2>{{debt.money | ccurrency}} <small>发布于: {{debt.createTime | idate }}  </small></h2>
+                                    <a class="btn bgm-blue btn-float waves-effect waves-effect" href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})">
+                                        <i class="zmdi zmdi-mail-send zmdi-hc-fw"></i>
+                                    </a>
+                                </div>
+                                <div class="card-body card-padding">
+                                    <p ng-show="debt.type==1"> 代理费率：{{debt.rate}}% </p>
+                                    <p ng-show="debt.type==2"> 起拍价格：{{debt.price | ccurrency}}</p>
+                                    <p ng-show="debt.type==1">代理期限：{{debt.duration}}天</p>
+                                    <p ng-show="debt.type==2">逾期时间：{{debt.debtExpireTime | upToNow }}</p>
+                                    <p>所在地区：{{debt.debtorLocation}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

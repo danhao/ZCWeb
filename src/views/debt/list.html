@@ -1,0 +1,321 @@
+<section  class="page-view ng-scope" data-ui-view ng-controller="debtListController as ctrl">
+    <div class="container ng-scope">
+        <div class="card">
+            <header class="card-header">
+                <h2><span class="glyphicon glyphicon-list" ></span> 债权列表</h2>
+            </header>
+            <div class="card-body card-padding">
+                <div class="row" style="padding: 5px">
+                    发布时间:&nbsp;&nbsp;
+                    <div class="btn-group">
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.fbdate" btn-radio="'0'">全部</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.fbdate" btn-radio="'1'">今天</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.fbdate" btn-radio="'7'">最近7天</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.fbdate" btn-radio="'30'">最近1月</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.fbdate" btn-radio="'365'">最近1年</label>-->
+                        <div class="btn-group" ng-init="ctrl.q.fbdate='0'" data-toggle="buttons">
+                            <label class="btn btn-default active" ng-click="ctrl.q.fbdate='0'">
+                                <input type="radio" name="fbdate" ng-model="ctrl.q.fbdate" autocomplete="off" value="'0'" checked/>
+                                <i class="fa fa-user"></i> 全部
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.fbdate='1'">
+                                <input type="radio" name="fbdate" ng-model="ctrl.q.fbdate" autocomplete="off" value="'1'" checked/>
+                                <i class="fa fa-user"></i> 今天
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.fbdate='7'">
+                                <input type="radio" name="fbdate" ng-model="ctrl.q.fbdate" autocomplete="off" value="'7'" checked/>
+                                <i class="fa fa-user"></i> 最近7天
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.fbdate='30'">
+                                <input type="radio" name="fbdate" ng-model="ctrl.q.fbdate" autocomplete="off" value="'30'" checked/>
+                                <i class="fa fa-user"></i> 最近1月
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.fbdate='365'">
+                                <input type="radio" name="fbdate" ng-model="ctrl.q.fbdate" autocomplete="off" value="'365'" checked/>
+                                <i class="fa fa-user"></i> 最近1年
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding: 5px">
+                    资产金额:&nbsp;&nbsp;
+                    <!--<div class="btn-group">-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'0'">全部</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'1'">1万以下</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'2'">1-10万</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'3'">10-50万</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'4'">50-100万</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'5'">100万以上</label>-->
+                    <!--</div>-->
+                    <div class="btn-group" ng-init="ctrl.q.money='0'" data-toggle="buttons">
+                        <label class="btn btn-default active" ng-click="ctrl.q.money='0'">
+                            <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'0'" checked/>
+                            <i class="fa fa-user"></i> 全部
+                        </label>
+                        <label class="btn btn-default" ng-click="ctrl.q.money='1'">
+                            <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'1'" checked/>
+                            <i class="fa fa-user"></i> 1万以下
+                        </label>
+                        <label class="btn btn-default" ng-click="ctrl.q.money='2'">
+                            <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'2'" checked/>
+                            <i class="fa fa-user"></i> 1-10万
+                        </label>
+                        <label class="btn btn-default" ng-click="ctrl.q.money='3'">
+                            <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'3'" checked/>
+                            <i class="fa fa-user"></i> 10-50万
+                        </label>
+                        <label class="btn btn-default" ng-click="ctrl.q.money='4'">
+                            <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'4'" checked/>
+                            <i class="fa fa-user"></i> 50-100万
+                        </label>
+                        <label class="btn btn-default" ng-click="ctrl.q.money='5'">
+                            <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'5'" checked/>
+                            <i class="fa fa-user"></i> 100万以上
+                        </label>
+                    </div>
+                </div>
+                <div class="row" style="padding: 5px">
+                    所属地区:&nbsp;&nbsp;
+                    <!--<div class="btn-group">-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="''">全部</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'北京'">北京</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'上海'">上海</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'广州'">广州</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'深圳'">深圳</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'重庆'">重庆</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'天津'">天津</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'武汉'">武汉</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'东莞'">东莞</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'南京'">南京</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'苏州'">苏州</label>-->
+                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'沈阳'">沈阳</label>-->
+                    <!--</div>-->
+                    <div class="btn-group" ng-init="ctrl.q.city=''" data-toggle="buttons">
+                        <label class="btn btn-default active" ng-click="ctrl.q.city=''">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="" checked/>
+                            <i class="fa fa-user"></i> 全部
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='北京'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="北京" checked/>
+                            <i class="fa fa-user"></i> 北京
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='上海'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="上海" checked/>
+                            <i class="fa fa-user"></i> 上海
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='广州'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="广州" checked/>
+                            <i class="fa fa-user"></i> 广州
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='深圳'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="深圳" checked/>
+                            <i class="fa fa-user"></i> 深圳
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='重庆'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="重庆" checked/>
+                            <i class="fa fa-user"></i> 重庆
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='天津'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="天津" checked/>
+                            <i class="fa fa-user"></i> 天津
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='武汉'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="武汉" checked/>
+                            <i class="fa fa-user"></i> 武汉
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='东莞'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="东莞" checked/>
+                            <i class="fa fa-user"></i> 东莞
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='南京'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="南京" checked/>
+                            <i class="fa fa-user"></i> 南京
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='南京'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="苏州" checked/>
+                            <i class="fa fa-user"></i> 苏州
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='沈阳'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="沈阳" checked/>
+                            <i class="fa fa-user"></i> 沈阳
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pm-body clearfix">
+                    <ul class="tab-nav " role="tablist">
+                        <li class="btn-wave active" role="presentation"><a href="#agentlist" aria-controls="alldebt" role="tab" data-toggle="tab">债权代理</a></li>
+                        <li class="btn-wave" role="presentation"><a href="#transferlist" aria-controls="alldebt" role="tab" data-toggle="tab">债权转让</a></li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="agentlist">
+                        <div class="pmb-block">
+                            <div class="pmbb-body">
+                                <div class="row">
+                                    <div ng-repeat="debt in agentlist">
+                                        <div class="col-sm-3">
+                                            <div class="card">
+                                                <div class="card-header bgm-bluegray m-b-20">
+                                                    <h2>{{debt.money | ccurrency}} <small>发布于: {{debt.createTime | idate }}  </small></h2>
+                                                    <a class="btn bgm-blue btn-float waves-effect waves-effect" href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})">
+                                                        <i class="zmdi zmdi-mail-send zmdi-hc-fw"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="card-body card-padding">
+                                                    <p > 代理费率：{{debt.rate}}% </p>
+                                                    <p>代理期限：{{debt.duration}}天</p>
+                                                    <p>所在地区：{{debt.debtorLocation}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="transferlist">
+                        <div class="pmb-block">
+                            <div class="pmbb-body">
+                                <div class="row">
+                                    <div ng-repeat="debt in transferlist">
+                                        <div class="col-sm-3">
+                                            <div class="card">
+                                                <div class="card-header bgm-bluegray m-b-20">
+                                                    <h2>{{debt.money | ccurrency}} <small>发布于: {{debt.createTime | idate }}  </small></h2>
+                                                    <a class="btn bgm-blue btn-float waves-effect waves-effect" href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})">
+                                                        <i class="zmdi zmdi-mail-send zmdi-hc-fw"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="card-body card-padding">
+                                                    <p>起拍价格：{{debt.price | ccurrency}}</p>
+                                                    <p>逾期时间：{{debt.debtExpireTime | upToNow }}</p>
+                                                    <p>所在地区：{{debt.debtorLocation}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+            <!--<div class="row">-->
+
+                <!--<div class="col-md-6 col-sm-6">-->
+                    <!--<div class="card animation-demo">-->
+                        <!--<div class="card-header">-->
+                            <!--<h2>债权代理</h2>-->
+                        <!--</div>-->
+                        <!--<div class="card-body table-responsive">-->
+                            <!--<table class="table table-hover">-->
+                                <!--<thead>-->
+                                <!--<tr><th >-->
+                                    <!--资产总额-->
+                                <!--</th>-->
+                                    <!--<th>-->
+                                        <!--发布时间-->
+                                    <!--</th>-->
+                                    <!--&lt;!&ndash;<th>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;逾期时间&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</th>&ndash;&gt;-->
+                                    <!--<th >-->
+                                        <!--所在地-->
+                                    <!--</th>-->
+                                    <!--<th>-->
+                                        <!--代理费率-->
+                                    <!--</th>-->
+                                    <!--<th>-->
+                                        <!--代理期限-->
+                                    <!--</th>-->
+                                <!--</tr></thead>-->
+                                <!--<tbody >-->
+                                <!--<tr ng-repeat="debt in agentlist">-->
+                                    <!--<td >-->
+                                        <!--<a href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})">{{debt.money | ccurrency}}</a>-->
+                                    <!--</td>-->
+
+                                    <!--<td>-->
+                                        <!--{{debt.publishTime | idate }}-->
+                                    <!--</td>-->
+                                    <!--&lt;!&ndash;<td>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;{{debt.debtExpireTime | upToNow }}&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                                    <!--<td >-->
+                                        <!--{{debt.debtorLocation}}-->
+                                    <!--</td>-->
+                                    <!--<td>-->
+                                        <!--{{debt.rate}}%-->
+                                    <!--</td>-->
+                                    <!--<td>-->
+                                        <!--{{debt.duration}}天-->
+                                    <!--</td>-->
+                                <!--</tr>-->
+
+                                <!--</tbody>-->
+                            <!--</table>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+
+                <!--<div class="col-md-6 col-sm-6">-->
+                    <!--<div class="card animation-demo">-->
+                        <!--<div class="card-header">-->
+                            <!--<h2>转让债权</h2>-->
+                        <!--</div>-->
+
+                        <!--<div class="card-body table-responsive">-->
+                            <!--<table class="table table-hover">-->
+                                <!--<thead>-->
+                                <!--<tr><th>-->
+                                    <!--资产总额-->
+                                <!--</th>-->
+                                    <!--<th>-->
+                                        <!--起拍价-->
+                                    <!--</th>-->
+                                    <!--<th>-->
+                                        <!--发布时间-->
+                                    <!--</th>-->
+                                    <!--<th >-->
+                                        <!--逾期时间-->
+                                    <!--</th>-->
+                                    <!--<th>-->
+                                        <!--所在地-->
+                                    <!--</th>-->
+                                <!--</tr></thead>-->
+                                <!--<tbody >-->
+                                <!--<tr ng-repeat="debt in transferlist">-->
+                                    <!--<td >-->
+                                        <!--<a href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})">{{debt.money | ccurrency}}</a>-->
+                                    <!--</td>-->
+                                    <!--<td>-->
+                                        <!--{{debt.price| ccurrency}}-->
+                                    <!--</td>-->
+                                    <!--<td>-->
+                                        <!--{{debt.publishTime | idate }}-->
+                                    <!--</td>-->
+                                    <!--<td >-->
+                                        <!--{{debt.debtExpireTime | upToNow }}-->
+                                    <!--</td>-->
+                                    <!--<td>-->
+                                        <!--{{debt.debtorLocation}}-->
+                                    <!--</td>-->
+                                <!--</tr>-->
+
+                                <!--</tbody>-->
+                            <!--</table>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+                        <!--<div class="btn btn-lg btn-default-outline btn-block">-->
+                            <!--加载更多-->
+                        <!--</div>-->
+        </div>
+    </div>
+</section>

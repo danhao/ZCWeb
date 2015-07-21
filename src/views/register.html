@@ -1,0 +1,92 @@
+
+<div class="container" ng-controller="registerController as controller">
+
+    <header class="block-header">
+        <h2>现在就加入点点债</h2>
+    </header>
+
+    <div class="card">
+        <div class="card-body card-padding">
+
+            <form name="registerForm" class="registerform" ng-submit="controller.register(controller.user)" novalidate >
+                <input type="hidden" name="type" ng-model="controller.user.type" />
+                <!-- 
+                     <div class="form-group text-center">
+                     <div class="btn-group" ng-init="controller.user.type=0">
+                     <label class="btn btn-primary" ng-model="controller.user.type" btn-radio="0"><i class="fa fa-user"></i> 个人用户</label>
+                     <label class="btn btn-primary" ng-model="controller.user.type" btn-radio="1"><i class="fa fa-university"></i> 企业用户</label>
+                     </div>
+                     </div>
+                -->
+                
+                <div class="form-group text-center">
+                    <div class="btn-group" ng-init="controller.user.type=0" data-toggle="buttons">
+                        <label class="btn btn-info active" ng-click="controller.user.type=0">
+                            <input type="radio" name="type" ng-model="controller.user.type" autocomplete="off" value="0" checked/>
+                            <i class="fa fa-user"></i> 个人用户
+                        </label>
+                        <label class="btn btn-info" ng-click="controller.user.type=1">
+                            <input type="radio" name="type" ng-model="controller.user.type" autocomplete="off" value="1"/>
+                            <i class="fa fa-university"></i> 企业用户
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group fg-float" show-errors>
+                    <div class="fg-line">
+                        <input type="text" name="username" ng-model="controller.user.name" class="form-control" required maxLength="20"/>
+                    </div>
+                    <label class="fg-label">用户名</label>
+                    <small class="help-block" ng-show="registerForm.username.$error.required && registerForm.username.$dirty">需要必填</small>
+                    <small class="help-block" ng-show="registerForm.username.$error.maxlength && registerForm.username.$dirty">用户名长度不允许超过20位</small>
+                </div>
+                <div class="form-group fg-float" show-errors>
+                    <div class="fg-line">
+                        <input type="text" name="account" ng-model="controller.user.account" class="form-control" 
+                               ui-validate="{account: 'controller.validateAccount($value)', exist: 'controller.mobileEmailExist($value)'}" required />
+                    </div>
+                    <label class="fg-label">邮箱/手机</label>
+                    <small class="help-block" ng-show="registerForm.account.$error.required && registerForm.account.$dirty">需要必填</small>
+                    <small class="help-block" ng-show="registerForm.account.$error.account && registerForm.account.$dirty">格式不正确. 请输入正确的手机或邮箱地址</small>
+                    <small class="help-block" ng-show="registerForm.account.$error.exist && registerForm.account.$dirty">该手机/邮箱已经被注册</small>
+                </div>
+                <div class="form-group fg-float" show-errors>
+                    <div class="fg-line">
+                        <input type="password" name="password" ng-model="controller.user.passwd" class="form-control" placeholder="" required minLength="6" maxLength="20"/>
+                    </div>
+                    <label class="fg-label"> 密码 </label>
+                    <small class="help-block" ng-show="registerForm.password.$error.required && registerForm.password.$dirty">需要必填</small>
+                    <small class="help-block" ng-show="(registerForm.password.$error.minlength || registerForm.password.$error.maxlength) && registerForm.password.$dirty">密码长度必须为6-20位</small>
+                </div>
+                <div class="form-group fg-float" show-errors>
+                    <div class="fg-line">
+                        <input type="password" name="confirmPassword" ng-model="controller.user.confirmPasswd" class="form-control" 
+                               ui-validate=" '$value==controller.user.passwd' " ui-validate-watch=" 'controller.user.passwd' " required />
+                    </div>
+                    <label class="fg-label">重复密码</label>
+                    <small class="help-block" ng-show="registerForm.confirmPassword.$error.validator && registerForm.confirmPassword.$dirty">与前面输入的密码不一致</small>
+                </div>
+                <div class="form-group radio">
+                    <label class="m-r-20">
+                        <input type="radio" name="userRole" ng-model="controller.user.role" value="1" required /> <i class="input-helper"></i>我有债务
+                    </label>
+                    <label>
+                        <input type="radio" name="userRole" ng-model="controller.user.role" value="2" required /> <i class="input-helper"></i>我能追债
+                    </label>
+                </div>
+                <div class="form-group text-center clearfix">
+                    <button class="btn btn-primary col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4" type="submit" ng-disabled="registerForm.$invalid">注册</button>
+                    <span class="text-danger" ng-show="error">{{error}}</span>
+                </div>
+                <div class="form-group text-muted">
+                    注册即表示, 你同意<a href="#"><ins>服务条款</ins></a>以及<a href="#"><ins>隐私条款</ins></a>
+                </div>
+            </form>
+
+            
+        </div>
+    </div>
+    
+
+
+</div>
+

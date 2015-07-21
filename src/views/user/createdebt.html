@@ -1,0 +1,464 @@
+<section  class="page-view ng-scope" data-ui-view="">
+    <div class="container ng-scope">
+        <div class="card">
+            <header class="card-header">
+                <h2><span class="glyphicon glyphicon-pencil" ></span> 发布债券</h2>
+            </header>
+            <div ng-controller="debtController as controller" class="card-body card-padding">
+                <div class="row">
+                    <form  class="form-horizontal w5c-form" role="form"
+                           w5c-form-validate="validateOptions" novalidate name="validateForm">
+                           <div class="col-sm-6 ">
+                            <div class="card">
+                                <div class="card-header ch-alt">
+                                    <h2>债权基本信息</h2>
+                                </div>
+                                <div class="card-body card-padding">
+                                    <div class="form-group  fg-float">
+                                        <div class="fg-line" >
+                                            <input type="number" name="money" ng-model="controller.debt.money"  class="form-control"
+                                                   max="10000000" min="1" required>
+                                        </div>
+                                        <label class="fg-label">债务总金额</label>
+                                    </div>
+                                    <div class="form-group fg-float" ng-show="controller.debt.type ==2">
+                                        <div class="fg-line" >
+                                            <input type="number" name="price" ng-model="controller.debt.price"  class="form-control"
+                                                   max="10000000" min="1" ng-required="controller.debt.type==2">
+                                        </div>
+                                        <label class="fg-label">起拍价格</label>
+                                    </div>
+                                    <div class="form-group fg-float" ng-show="controller.debt.type ==2">
+                                        <div class="fg-line" >
+                                            <input type="number" name="bidIncrease"  ng-model="controller.debt.bidIncrease"  class="form-control"
+                                                   max="10000000" min="100" ng-required="controller.debt.type==2">
+                                        </div>
+                                        <label class="fg-label">加价幅度</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">债权类型</label>
+
+                                        <div class="col-sm-9 radio" ng-init="controller.debt.type=1" >
+                                            <label class="m-r-10">
+                                                <input type="radio" name="debttype" ng-model="controller.debt.type" value="1" required /> <i class="input-helper"></i>债权代理
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="debttype" ng-model="controller.debt.type" value="2" required /> <i class="input-helper"></i>债权转让
+                                            </label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group" ng-show="controller.debt.type ==1">
+                                        <label class="col-sm-3 control-label">代理费率</label>
+                                        <div class="col-sm-9 radio" ng-init="controller.debt.rate='10'">
+                                            <label class="m-r-10">
+                                                <input type="radio" name="rate" ng-model="controller.debt.rate" value="10" required /> <i class="input-helper"></i>10 %
+                                            </label>
+                                            <label class="m-r-10">
+                                                <input type="radio" name="rate" ng-model="controller.debt.rate" value="20" required /> <i class="input-helper"></i>20 %
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="rate" ng-model="controller.debt.rate" value="30" required /> <i class="input-helper"></i>30 %
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="controller.debt.type ==1">
+                                        <label class="col-sm-3 control-label">代理期限</label>
+
+                                        <div class="col-sm-9 radio" ng-init="controller.debt.duration=30">
+                                            <label class="m-r-10">
+                                                <input type="radio" name="duration" ng-model="controller.debt.duration" value="30" required /> <i class="input-helper"></i>30天
+                                            </label>
+                                            <label class="m-r-10">
+                                                <input type="radio" name="duration" ng-model="controller.debt.duration" value="60" required /> <i class="input-helper"></i>60天
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="duration" ng-model="controller.debt.duration" value="90" required /> <i class="input-helper"></i>90天
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">竞标到期时间</label>
+
+                                        <div class="col-sm-9 radio" ng-init="controller.debt.expireDays=30">
+                                            <label class="m-r-10">
+                                                <input type="radio" name="expireDays" ng-model="controller.debt.expireDays" value="30" required /> <i class="input-helper"></i>30天
+                                            </label>
+                                            <label class="m-r-10">
+                                                <input type="radio" name="expireDays" ng-model="controller.debt.expireDays" value="60" required /> <i class="input-helper"></i>60天
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="expireDays" ng-model="controller.debt.expireDays" value="90" required /> <i class="input-helper"></i>90天
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group fg-float">
+                                        <div class="fg-line" >
+                                            <input type="text" name="creditorName"  ng-model="controller.debt.creditorName"  class="form-control"
+                                                   maxlength="10"  required>
+                                        </div>
+                                        <label class="fg-label">债权人姓名</label>
+                                    </div>
+                                    <div class="form-group" >
+                                        <div ng-uploader data-form-field="creditorIdFile" data-model-field="controller.debt.creditorIdFile" dat-form-title="债权人身份证照片"></div>
+                                        <input type="hidden" id="creditorIdFile"  />
+                                    </div>
+
+                                </div>
+                            </div>
+                           </div>
+                            <div class="col-sm-6 ">
+                            <div class="card">
+                                <div class="card-header ch-alt">
+                                    <h2>债务人信息</h2>
+                                </div>
+                                <div class="card-body card-padding">
+                                    <div class="form-group  fg-float">
+                                        <!--<label class="col-sm-3 control-label">债务人姓名<span class="inputflag">*</span></label>-->
+                                        <!--<div class="col-sm-9">-->
+                                            <div class="fg-line" >
+                                                <input type="text" name="name"  ng-model="controller.debt.debtorName" class="form-control"
+                                                      maxlength="20" required>
+                                            </div>
+                                        <label class="fg-label">债务人姓名</label>
+                                        <!--</div>-->
+                                    </div>
+
+                                    <div class="form-group  fg-float">
+                                        <!--<label class="col-sm-3 control-label">债务人电话<span class="inputflag">*</span></label>-->
+
+                                        <!--<div class="col-sm-9">-->
+                                            <div class="fg-line" >
+                                                <input type="text" name="phone" ng-model="controller.debt.debtorPhone"  class="form-control"
+                                                      required>
+                                            </div>
+                                        <label class="fg-label">债务人电话</label>
+                                        <!--</div>-->
+                                    </div>
+
+                                    <div class="form-group  fg-float">
+                                        <!--<label class="col-sm-3 control-label">债务人身份证<span class="inputflag">*</span></label>-->
+
+                                        <!--<div class="col-sm-9">-->
+                                            <div class="fg-line" >
+                                                <input type="text" name="idcard" ng-model="controller.debt.debtorId" ng-pattern="/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/" class="form-control"
+                                                       maxlength="18" required>
+                                            </div>
+                                        <label class="fg-label">债务人身份证号码</label>
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="form-group  fg-float">
+                                        <!--<label class="col-sm-3 control-label">所在地区</label>-->
+
+                                        <!--<div class="col-sm-12">-->
+                                        <div class="fg-line" >
+                                            <city-select ng-model="controller.debt.city" name="city" required></city-select>
+                                            <input type="hidden" name="city" ng-model="controller.debt.debtorLocation" value="">
+                                        </div>
+                                        <!--<label class="fg-label">所在地区</label>-->
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="form-group  fg-float">
+                                        <div class="fg-line" >
+                                            <input type="text" name="address" ng-model="controller.debt.debtorAddr"  class="form-control"
+                                                   maxlength="50" required>
+                                        </div>
+                                        <label class="fg-label">详细地址</label>
+                                    </div>
+                                    <div class="form-group  fg-float">
+                                        <div class="fg-line" >
+                                            <input data-dt-picker type="text" name="judgementtime" id="judgementtime"  class="form-control"  ng-model="controller.debt.judgementTime"
+                                                   data-format="YYYY/MM/DD" ng-change="removeerror(controller.debt.judgementTime,'judgementtime')"    required/>
+                                        </div>
+                                        <label class="fg-label">判决时间</label>
+                                    </div>
+                                    <div class="form-group  fg-float">
+                                        <div class="fg-line" >
+                                            <input data-dt-picker type="text" name="expiretime" id="expiretime" class="form-control"  ng-model="controller.debt.debtExpireTime"
+                                                   data-format="YYYY/MM/DD" ng-change="removeerror(controller.debt.debtExpireTime,'expiretime')"    required/>
+                                        </div>
+                                        <label class="fg-label">应归还时间</label>
+
+                                    </div>
+                                    <div class="form-group  fg-float" >
+                                        <!--<label class="col-sm-3 control-label">抵押物</label>-->
+
+                                        <!--<div class="col-sm-9">-->
+                                            <div class="fg-line" >
+                                                <input type="text" ng-model="controller.debt.mortgage" class="form-control"
+                                                      max="10" min="1">
+                                            </div>
+                                        <label class="fg-label">抵押物</label>
+                                        <!--</div>-->
+                                    </div>
+
+                                    <div class="form-group  fg-float">
+                                        <!--<label class="col-sm-3 control-label">债务成因<span class="inputflag">*</span></label>-->
+
+                                        <!--<div class="col-sm-9">-->
+                                            <div class="fg-line" >
+                                                <textarea  rows="3" name="reason" class="form-control"  ng-model="controller.debt.reason" required></textarea>
+                                            </div>
+                                        <label class="fg-label">债务成因</label>
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="form-group  fg-float">
+                                        <!--<label class="col-sm-3 control-label">其他</label>-->
+
+                                        <!--<div class="col-sm-9">-->
+                                            <div class="fg-line" >
+                                                <textarea rows="3" class="form-control" ng-model="controller.debt.descript"></textarea>
+                                            </div>
+                                        <label class="fg-label">其他</label>
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="form-group">
+                                        <!--<label class="col-sm-3 control-label">相关附件</label>-->
+
+                                        <!--<div class="col-sm-9">-->
+                                            <div ng-uploader data-form-field="files" data-model-field="controller.debt.files" dat-form-title="相关附件"></div>
+                                            <input type="hidden" id="files"  />
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button ype="buttom" w5c-form-submit="controller.saveEntity(controller.debt)"  class="btn btn-primary" > 确认发布信息 </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </form>
+                </div>
+                    <!--<form  class="form-horizontal w5c-form" role="form"-->
+                           <!--w5c-form-validate="validateOptions" novalidate name="validateForm">-->
+                        <!--<p class="c-black f-500">债权基本信息</p>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">债务总金额<span class="inputflag">*</span></label>-->
+
+                            <!--<div class="col-sm-6">-->
+                                <!--<div class="fg-line" >-->
+                                    <!--<input type="number" name="money" ng-model="controller.debt.money"  class="form-control"-->
+                                           <!--placeholder="输入数字金额,单位“元”" max="10000000" min="1" required>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">类型</label>-->
+
+                            <!--<div class="col-sm-6 radio" ng-init="controller.debt.type=1" >-->
+                                <!--<label class="m-r-10">-->
+                                    <!--<input type="radio" name="debttype" ng-model="controller.debt.type" value="1" required /> <i class="input-helper"></i>债权代理-->
+                                <!--</label>-->
+                                <!--<label>-->
+                                    <!--<input type="radio" name="debttype" ng-model="controller.debt.type" value="2" required /> <i class="input-helper"></i>债权转让-->
+                                <!--</label>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group" ng-show="controller.debt.type ==2">-->
+                            <!--<label class="col-sm-3 control-label">起拍价格<span class="inputflag">*</span></label>-->
+
+                            <!--<div class="col-sm-6">-->
+                                <!--<div class="fg-line" >-->
+                                    <!--<input type="number" name="price" ng-model="controller.debt.price"  class="form-control"-->
+                                           <!--placeholder="输入数字金额,单位“元”"  max="10000000" min="1" ng-required="controller.debt.type==2">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group" ng-show="controller.debt.type ==2">-->
+                            <!--<label class="col-sm-3 control-label">加价幅度<span class="inputflag">*</span></label>-->
+
+                            <!--<div class="col-sm-6">-->
+                                <!--<div class="fg-line" >-->
+                                    <!--<input type="number" name="bidIncrease"  ng-model="controller.debt.bidIncrease"  class="form-control"-->
+                                           <!--placeholder="输入数字金额,单位“元”"  max="10000000" min="100" ng-required="controller.debt.type==2">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group" ng-show="controller.debt.type ==1">-->
+                            <!--<label class="col-sm-3 control-label">代理费率</label>-->
+
+                            <!--<div class="col-sm-6 radio" ng-init="controller.debt.rate='10'">-->
+                                <!--<label class="m-r-25">-->
+                                    <!--<input type="radio" name="rate" ng-model="controller.debt.rate" value="10" required /> <i class="input-helper"></i>10 %-->
+                                <!--</label>-->
+                                <!--<label class="m-r-25">-->
+                                    <!--<input type="radio" name="rate" ng-model="controller.debt.rate" value="20" required /> <i class="input-helper"></i>20 %-->
+                                <!--</label>-->
+                                <!--<label>-->
+                                    <!--<input type="radio" name="rate" ng-model="controller.debt.rate" value="30" required /> <i class="input-helper"></i>30 %-->
+                                <!--</label>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group" ng-show="controller.debt.type ==1">-->
+                            <!--<label class="col-sm-3 control-label">代理期限</label>-->
+
+                            <!--<div class="col-sm-6 radio" ng-init="controller.debt.duration=30">-->
+                                <!--<label class="m-r-25">-->
+                                    <!--<input type="radio" name="duration" ng-model="controller.debt.duration" value="30" required /> <i class="input-helper"></i>30天-->
+                                <!--</label>-->
+                                <!--<label class="m-r-25">-->
+                                    <!--<input type="radio" name="duration" ng-model="controller.debt.duration" value="60" required /> <i class="input-helper"></i>60天-->
+                                <!--</label>-->
+                                <!--<label>-->
+                                    <!--<input type="radio" name="duration" ng-model="controller.debt.duration" value="90" required /> <i class="input-helper"></i>90天-->
+                                <!--</label>-->
+                            <!--</div>-->
+
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">竞标到期时间</label>-->
+
+                            <!--<div class="col-sm-6 radio" ng-init="controller.debt.expireDays=30">-->
+                                <!--<label class="m-r-25">-->
+                                    <!--<input type="radio" name="expireDays" ng-model="controller.debt.expireDays" value="30" required /> <i class="input-helper"></i>30天-->
+                                <!--</label>-->
+                                <!--<label class="m-r-25">-->
+                                    <!--<input type="radio" name="expireDays" ng-model="controller.debt.expireDays" value="60" required /> <i class="input-helper"></i>60天-->
+                                <!--</label>-->
+                                <!--<label>-->
+                                    <!--<input type="radio" name="expireDays" ng-model="controller.debt.expireDays" value="90" required /> <i class="input-helper"></i>90天-->
+                                <!--</label>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">债权人姓名<span class="inputflag">*</span></label>-->
+
+                            <!--<div class="col-sm-6">-->
+                                <!--<div class="fg-line" >-->
+                                    <!--<input type="text" name="creditorName"  ng-model="controller.debt.creditorName"  class="form-control"-->
+                                           <!--placeholder="输入债权人姓名"   maxlength="10"  required>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group" >-->
+                            <!--<label class="col-sm-3 control-label">债权人身份证号<span class="inputflag">*</span></label>-->
+
+                            <!--<div class="col-sm-6">-->
+                                <!--<div ng-uploader data-form-field="creditorIdFile" data-model-field="controller.debt.creditorIdFile"></div>-->
+                                <!--<input type="hidden" id="creditorIdFile"  />-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<p class="c-black f-500">债务人信息</p>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">债务人姓名<span class="inputflag">*</span></label>-->
+
+                            <!--<div class="col-sm-6">-->
+                                <!--<div class="fg-line" >-->
+                                    <!--<input type="text" name="name"  ng-model="controller.debt.debtorName" class="form-control"-->
+                                           <!--placeholder="输入债务人名称" maxlength="20" required>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">债务人电话<span class="inputflag">*</span></label>-->
+
+                            <!--<div class="col-sm-6">-->
+                                <!--<div class="fg-line" >-->
+                                    <!--<input type="text" name="phone" ng-model="controller.debt.debtorPhone"  class="form-control"-->
+                                           <!--placeholder="输入债务人电话" required>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">债务人身份证<span class="inputflag">*</span></label>-->
+
+                            <!--<div class="col-sm-6">-->
+                                <!--<div class="fg-line" >-->
+                                    <!--<input type="text" name="idcard" ng-model="controller.debt.debtorId" ng-pattern="/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/" class="form-control"-->
+                                           <!--placeholder="输入债务人身份证" maxlength="18" required>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">所在地区<span class="inputflag">*</span></label>-->
+
+                            <!--<div class="col-sm-6">-->
+                                <!--<city-select ng-model="controller.debt.city" name="city" required></city-select>-->
+                                <!--<input type="hidden" name="city" ng-model="controller.debt.debtorLocation" value="">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">详细地址<span class="inputflag">*</span></label>-->
+
+                            <!--<div class="col-sm-6">-->
+                                <!--<div class="fg-line" >-->
+                                    <!--<input type="text" name="address" ng-model="controller.debt.debtorAddr"  class="form-control"-->
+                                           <!--placeholder="如街道名称，门牌号码，楼层和房间号等信息" maxlength="50" required>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">判决时间<span class="inputflag">*</span></label>-->
+
+                            <!--<div class="col-sm-6">-->
+                                <!--<div class="fg-line" >-->
+                                    <!--<input data-dt-picker type="text" name="judgementtime" id="judgementtime"  class="form-control"  ng-model="controller.debt.judgementTime"-->
+                                           <!--data-format="YYYY/MM/DD" ng-change="removeerror(controller.debt.judgementTime,'judgementtime')"   placeholder="选择判决时间" required/>-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash;<input dtPicker data-ng-model="controller.debt.dtDate" type="text" class="form-control ng-valid ng-isolate-scope ng-dirty ng-valid-parse ng-touched" data-dt-picker="" data-format="DD/MM/YYYY" data-toggle="dropdown" placeholder="Click here..." aria-expanded="true">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" data-ng-model="controller.debt.dtBasic" class="form-control ng-valid ng-isolate-scope ng-dirty ng-valid-parse ng-touched" data-dt-picker="" data-toggle="dropdown" placeholder="Click here..." aria-expanded="false">&ndash;&gt;-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">应归还时间<span class="inputflag">*</span></label>-->
+
+                            <!--<div class="col-sm-6">-->
+                                <!--<div class="fg-line" >-->
+                                    <!--<input data-dt-picker type="text" name="expiretime" id="expiretime" class="form-control"  ng-model="controller.debt.debtExpireTime"-->
+                                           <!--data-format="YYYY/MM/DD" ng-change="removeerror(controller.debt.debtExpireTime,'expiretime')"   placeholder="应归还时间" required/>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">抵押物</label>-->
+
+                            <!--<div class="col-sm-6">-->
+                                <!--<div class="fg-line" >-->
+                                    <!--<input type="text" ng-model="controller.debt.mortgage" class="form-control"-->
+                                           <!--placeholder="输入抵押物" max="10" min="1">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">债务成因<span class="inputflag">*</span></label>-->
+
+                            <!--<div class="col-sm-6">-->
+                                <!--<div class="fg-line" >-->
+                                    <!--<textarea  rows="3" name="reason" class="form-control" placeholder="输入债务成因" ng-model="controller.debt.reason" required></textarea>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">其他</label>-->
+
+                            <!--<div class="col-sm-6">-->
+                                <!--<div class="fg-line" >-->
+                                    <!--<textarea rows="3" class="form-control" ng-model="controller.debt.descript"></textarea>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">相关附件</label>-->
+
+                            <!--<div class="col-sm-6">-->
+                                <!--<div ng-uploader data-form-field="files" data-model-field="controller.debt.files"></div>-->
+                                <!--<input type="hidden" id="files"  />-->
+                            <!--</div>-->
+                         <!--</div>-->
+
+                        <!--<div class="form-group">-->
+                            <!--<div class="col-sm-offset-3 col-sm-10">-->
+                                <!--<button ype="buttom" w5c-form-submit="controller.saveEntity(controller.debt)"  class="btn btn-primary" > 确认发布信息 </button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</form>-->
+            </div>
+        </div>
+    </div>
+</section>

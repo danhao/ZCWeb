@@ -1,0 +1,197 @@
+<section  class="page-view ng-scope" data-ui-view="">
+    <div class="container ng-scope">
+        <div class="card" ng-controller="memberIndexController as ctrl">
+            <header class="card-header">
+                <h2><span class="glyphicon glyphicon-home" ></span> 会员首页</h2>
+            </header>
+            <div class="card-body card-padding">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="card animation-demo">
+                            <div class="card profile-view">
+                                <div class="pv-header">
+                                    <img src="../images/profile-pics/1.jpg"  width="80" class="pv-main" alt="">
+                                </div>
+                                <div class="pv-body">
+                                    <h2>欢迎 {{ctrl.user.name}}</h2>
+                                    <br/>
+                                        <div class="col-xm-6">
+                                            <div ng-show="ctrl.user.mobile"><span class="btn bgm-deeporange waves-effect"><i class="zmdi zmdi-smartphone-android"></i> {{ctrl.user.mobile}}</span> </div>
+                                        </div>
+                                    <br/>
+                                        <div class="col-xm-6">
+                                            <div ng-show="ctrl.user.email"> <span class="btn bgm-deeporange waves-effect"><i class="zmdi zmdi-email"></i> {{ctrl.user.email}}</span> </div>
+                                        </div>
+
+                                    <ul class="pv-follow">
+                                        <li><i class="zmdi zmdi-smartphone-android"></i>
+                                            <a ui-sref="site.member.authmobile" ng-show="!isverifymobile">手机未验证</a>
+                                            <span ng-show="isverifymobile">手机已验证</span>
+                                        </li>
+                                        <li>
+                                            <i class="zmdi zmdi-email"></i>
+                                            <a ui-sref="site.member.authemail" ng-show="!isverifyemail" >邮箱未验证 </a>
+                                            <span ng-show="isverifyemail">邮箱已验证</span>
+                                        </li>
+                                        <li>
+                                            <i class="zmdi zmdi-account-calendar"></i>
+                                            <a href="#" ui-sref="site.member.auth" ng-show="ctrl.user.type==0 && !isverifyinfo">身份未验证 </a>
+                                            <a href="#" ui-sref="site.member.auth" ng-show="ctrl.user.type==1 && !isverifyinfo">企业未验证 </a>
+                                            <span ng-show="isverifyinfo">{{ctrl.user.type==0?"身份":"企业"}}已验证</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="card">
+                                    <div class="card-header bgm-orange" style="padding: 15px">
+                                        <h2>帐户余额 </h2>
+                                    </div>
+                                    <div class="card-body card-padding">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <span class="money">{{ctrl.user.money | ccurrency }}</span>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <a ui-sref="site.member.pay" class="btn btn-default">充值</a> &nbsp;
+                                                <a ui-sref="site.member.cash"  class="btn btn-default">提现</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="card">
+                                    <div class="card-header bgm-orange" style="padding: 15px">
+                                        <h2>冻结资金 </h2>
+                                    </div>
+                                    <div class="card-body card-padding">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <span class="money">{{ctrl.user.frozen | ccurrency }}</span>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <a ui-sref="site.member.fundrecord" class="btn btn-default">资金明细</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card">
+                                    <div class="card-header bgm-lime" style="padding: 15px">
+                                        <h2>最新动态 </h2>
+                                    </div>
+                                    <div class="card-body card-padding" style="padding: 5px">
+                                        <ul class="list-group" >
+                                            <div ng-repeat="situation in situationlist">
+                                                <li class="list-group-item">
+                                                    <span class="badge">{{situation.time | idate}}</span>
+                                                    {{situation.content}}
+                                                </li>
+                                            </div>
+                                        </ul>
+                                        <ul class="list-group" ng-show="situationlist.length==0">
+                                            <li class="list-group-item text-center" ng-hide="fundrecordList.length">暂无动态</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-header bgm-cyan" style="padding: 15px">
+                                    <h2>债务代理流程 </h2>
+                                </div>
+                                <div class="card-body card-padding" style="padding: 5px">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <span class="badge">1</span>
+                                            发布债权信息
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge">2</span>
+                                            通过平台审核
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge">3</span>
+                                            进入网上拍卖环节
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge">4</span>
+                                            债权人选标
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge">5</span>
+                                            催收员电话催收、外访催收
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge">6</span>
+                                            催收进度反馈
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge">7</span>
+                                            实时回款结算
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-header bgm-cyan" style="padding: 15px">
+                                    <h2>债务转让流程 </h2>
+                                </div>
+                                <div class="card-body card-padding" style="padding: 5px">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <span class="badge">1</span>
+                                            发布债权信息
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge">2</span>
+                                            通过平台审核
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge">3</span>
+                                            进入网上拍卖环节
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge">4</span>
+                                            价高者中标
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge">5</span>
+                                            平台通知转让方和受让方
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge">6</span>
+                                            公证处公证
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge">7</span>
+                                            转让成功，债权变现
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-float btn-danger btn-corner waves-effect" ui-sref="site.member.createdebt" alert="添加债券" title="添加债券">
+        <i class="zmdi zmdi-plus"></i>
+    </a>
+</section>
+

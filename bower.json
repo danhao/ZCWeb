@@ -1,0 +1,159 @@
+{
+  "name": "diandianzhai",
+  "version": "2.3.0",
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-animate": "~1.4.0",
+    "angular-resource": "~1.4.1",
+    "angular-mocks": "~1.4.0",
+    "angular-cookies": "~1.4.0",
+    "angular-ui-router": "0.2.15",
+    "angular-ui-utils": "bower",
+    "angular-loading-bar": "~0.8.0",
+    "angular-city-select": "*",
+    "angular-bootstrap-show-errors": "~2.3.0",
+    "angular-w5c-validator": "2.3.9",
+    "angular-md5": "~0.1.7",
+    "bootstrap": "3.3.5",
+    "remarkable-bootstrap-notify": "~3.1.3",
+    "bootstrap-select": "~1.7.3",
+    "moment": "~2.10.3",
+    "eonasdan-bootstrap-datetimepicker": "~4.14.30",
+    "jquery.nicescroll": "~3.6.0",
+    "jquery.maskedinput": "~1.4.1",
+    "lightgallery": "~1.1.5",
+    "chosen": "~1.4.2",
+    "sweetalert": "~1.0.1",
+    "waves": "~0.7.2",
+    "vegas": "~2.1.3",
+    "wow": "~1.1.2",
+    "underscore": "~1.8.3",
+    "animate.css": "~3.3.0",
+    "material-design-iconic-font": "~2.0.2",
+    "material-shadows": "~2.0.1",
+    "html5shiv": "3.7.2",
+    "json3": "3.3.2",
+    "requirejs": "2.1.15"
+  },
+  "exportsOverride": {
+    "angular": {
+      "scripts/libs": "angular.min.js{,.map}"
+    },
+    "angular-animate": {
+      "scripts/libs": "angular-animate.min.js{,.map}"
+    },
+    "angular-resource": {
+      "scripts/libs": "angular-resource.min.js{,.map}"
+    },
+    "angular-mocks": {
+      "scripts/libs": "angular-mocks.js"
+    },
+    "angular-cookies": {
+      "scripts/libs": "angular-cookies.min.js{,.map}"
+    },
+    "angular-ui-router": {
+      "scripts/libs": "release/angular-ui-router.min.js"
+    },
+    "angular-ui-utils": {
+      "scripts/libs": "ui-utils.min.js"
+    },
+    "angular-loading-bar": {
+      "styles": "build/loading-bar.min.css",
+      "scripts/libs": "build/loading-bar.min.js"
+    },
+    "angular-city-select": {
+      "scripts/libs": "dist/angular-city-select.js",
+      "styles": "dist/angular-city-select.css"
+    },
+    "angular-w5c-validator": {
+      "scripts/libs": "w5cValidator.min.js",
+      "styles": "style.css"
+    },
+    "angular-bootstrap-show-errors": {
+      "scripts/libs": "src/showErrors.min.js"
+    },
+    "angular-md5": {
+      "scripts/libs": "angular-md5.min.js{,.map}"
+    },
+    "jquery": {
+      "scripts/libs": "dist/jquery.min.{js,map}"
+    },
+    "bootstrap": {
+      "scripts/libs": "dist/js/bootstrap.min.js",
+      "fonts": "dist/fonts/*.{eot,svg,ttf,woff}",
+      "styles": "less/*.less",
+      "styles/mixins": "less/mixins/*.less"
+    },
+    "remarkable-bootstrap-notify": {
+      "scripts/libs": "bootstrap-notify.min.js"
+    },
+    "bootstrap-select": {
+      "scripts/libs": "dist/js/bootstrap-select.js{,.map}",
+      "styles": "dist/css/bootstrap-select.css"
+    },
+    "moment": {
+      "scripts/libs": "moment.js"
+    },
+    "eonasdan-bootstrap-datetimepicker": {
+      "scripts/libs": "build/js/bootstrap-datetimepicker.min.js",
+      "styles": "build/css/bootstrap-datetimepicker.min.css"
+    },
+    "jquery.nicescroll": {
+      "scripts/libs": "dist/jquery.nicescroll.min.js"
+    },
+    "jquery.maskedinput": {
+      "scripts/libs": "dist/jquery.maskedinput.min.js"
+    },
+    "lightgallery": {
+      "scripts/libs": "light-gallery/js/lightGallery.min.js",
+      "styles": "light-gallery/css/lightGallery.css",
+      "fonts": "light-gallery/fonts/*.{eot,svg,ttf,woff}",
+      "images": "light-gallery/img/*"
+    },
+    "chosen": {
+      "styles": [
+        "chosen.min.css",
+        "chosen-sprite.png",
+        "chosen-sprite@2x.png"
+      ],
+      "scripts/libs": "chosen.jquery.min.js"
+    },
+    "sweetalert": {
+      "styles": "dist/sweetalert.css",
+      "scripts/libs": "dist/sweetalert-dev.js"
+    },
+    "waves": {
+      "styles": "dist/waves.min.css",
+      "scripts/libs": "dist/waves.min.js{,.map}"
+    },
+    "vegas": {
+      "styles": "dist/vegas.min.css",
+      "scripts/libs": "dist/vegas.min.js"
+    },
+    "wow": {
+      "scripts/libs": "dist/wow.min.js"
+    },
+    "underscore": {
+      "scripts/libs": "underscore-min.js"
+    },
+    "animate.css": {
+      "styles": "animate.min.css"
+    },
+    "material-design-iconic-font": {
+      "fonts": "dist/font/*.{ttf,woff}",
+      "styles/mdf": "less/*.less"
+    },
+    "material-shadows": {
+      "styles": "material-shadows.less"
+    },
+    "html5shiv": {
+      "scripts/libs": "dist/html5shiv-printshiv.min.js"
+    },
+    "json3": {
+      "scripts/libs": "lib/json3.min.js"
+    },
+    "requirejs": {
+      "scripts/libs": "require.js"
+    }
+  }
+}

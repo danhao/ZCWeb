@@ -1,0 +1,460 @@
+
+<header id="header" data-ng-include src="'includes/header-nologin.html'"></header>
+
+<div ng-controller="indexController2 as ctrl" >
+
+
+<!-- background -->
+<div id="wrapper" style="position:relative; "></div>    
+
+
+<!-- =========================
+   HOME SECTION       
+============================== -->
+
+<!-- BIG HEADING WITH CALL TO ACTION BUTTONS AND SHORT MESSAGES -->
+<div class="header">
+<div class="container">
+	
+	<!-- HEADING -->
+	<h1 class="intro">国内首家p2p不良资产催收平台</h1>
+	
+	<!-- CALL TO ACTION BUTTONS -->
+	<div class="buttons">
+		<a ui-sref="site.login({type:1})" class="btn btn-primary custom-button bgm-red">登陆</a>
+		<a ui-sref="site.login({type:2})" class="btn btn-primary custom-button bgm-green">注册</a>
+	</div>
+	
+	<!-- 3 SHORT MESSAGE ABOUT COMPANY -->
+    <div class="row bottom-message-section">
+		<div class="col-lg-4 col-sm-4">
+			<div class="short-text">
+				<i class="zmdi zmdi-view-list"></i> 免费 &nbsp; 零佣金
+			</div>
+		</div>
+		<div class="col-lg-4 col-sm-4">
+			<div class="short-text">
+				<i class="zmdi zmdi-time"></i> 高效 &nbsp; 回款快
+			</div>
+		</div>
+		<div class="col-lg-4 col-sm-4">
+			<div class="short-text">
+				<i class="zmdi zmdi-check"></i> 安全 &nbsp; 无风险
+			</div>
+		</div>
+	</div>
+</div> <!-- / END BIG HEADING WITH CALL TO ACTION BUTTONS AND SHORT MESSAGES  -->
+</div>
+
+<!-- =========================
+   FOCUS SECTION      
+============================== -->
+
+<section class="focus" id="focus">
+<div class="container">
+	
+	<!-- SECTION HEADER -->
+	<div class="section-header">
+		
+		<!-- SECTION TITLE -->
+		<h2 class="dark-text">我们专注于</h2>
+		
+		<!-- SHORT DESCRIPTION ABOUT THE SECTION -->
+		<h6>
+			国内个人P2P不良资产
+		</h6>
+	</div>
+	<!-- / END SECTION HEADER -->
+	
+	<!-- 4 FOCUS BOXES -->
+	<div class="row">
+		
+		<!-- FIRST FOCUS BOXES -->
+		<div class="col-lg-3 col-sm-3 focus-box red wow fadeInLeft animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+			<div class="service-icon">
+				<i class="pixeden pd-icon-monitor"></i> <!-- FOCUS ICON-->
+			</div>
+			<h5 class="red-border-bottom">跨地域</h5> <!-- FOCUS HEADING -->
+			<p> <!-- FOCUS DESCRIPTION -->
+				覆盖全国36个省2000多个市
+			</p>
+		</div>
+		<!-- / END FIRST FOCUS BOX. Other boxes has same format -->
+		
+		<div class="col-lg-3 col-sm-3 focus-box green wow fadeInLeft animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+			<div class="service-icon">
+				<span class="pixeden pd-icon-camera"></span>
+			</div>
+			<h5 class="green-border-bottom">债权代理</h5>
+			<p>
+				健全的信用评估体系<br>
+                全国催收资源参与债权处置
+			</p>
+		</div>
+		
+		<div class="col-lg-3 col-sm-3 focus-box blue wow fadeInRight animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+			<div class="service-icon">
+				<i class="pixeden pd-icon-email-marketing"></i>
+			</div>
+			<h5 class="blue-border-bottom">债权转让</h5>
+			<p>
+				快捷、高效 <br>
+                一站式服务
+			</p>
+		</div>
+		
+		<div class="col-lg-3 col-sm-3 focus-box yellow wow fadeInRight animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+			<div class="service-icon">
+				<i class="pixeden pd-icon-check"></i>
+			</div>
+			<h5 class="yellow-border-bottom">零风险</h5>
+			<p>
+				第三方平台资金监管
+			</p>
+		</div>
+	</div>
+	<!-- / END 4 FOCUS BOXES -->
+
+
+</div> <!-- / END CONTAINER -->
+</section>  <!-- / END FOCUS SECTION -->
+
+
+<!-- =========================
+   SEPARATOR ONE      
+============================== -->
+
+<section class="separator-one">
+<div class="color-overlay">
+	<h3 class="container text wow fadeInLeft animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+        点点债致力于搭建跨地域的个人互联网不良资产处置平台，<br />
+        构建健康的金融生态圈，<br />
+        通过共享全国不良资产处置资源提高不良资产处置效率和成功率，<br />
+        最终形成个人以及企业信用大数据的一个源头，<br />
+        让不良资产处置更加便捷，高效。
+    </h3>
+</div>
+</section>  <!-- / END SEPARATOR -->
+
+
+
+<!-- =========================
+   WORKS SECTION      
+============================== -->
+
+<section class="works" id="works">
+<div class="container">
+	
+	<!-- SECTION HEADER -->
+	<div class="section-header">
+		
+		<!-- SECTION TITLE -->
+		<h2 class="dark-text">最新不良资产列表</h2>
+		
+		<!-- SHORT DESCRIPTION ABOUT THE SECTION -->
+		<h6>
+			每天在我们的平台上都有上百条最新发布的不良资产，您在这里看到的只是一小部分
+		</h6>
+	</div>
+	<!-- / END SECTION HEADER -->
+	<div class="row projects">
+	<div id="loader">
+	    <div class="loader-icon"></div>
+	</div>
+
+    <div class="col-sm-3" ng-repeat="debt in ctrl.debtList">
+        <div class="card wow animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s"
+             ng-class="['fadeInLeft','','','fadeInRight'][$index % 4]">
+            <div class="card-header "
+                 ng-class="['bgm-cyan','bgm-red','bgm-orange','bgm-green','bgm-purple','bgm-grey','bgm-teal','bgm-yellow'][$index % 8]">
+                <h2>{{debt.money | ccurrency}} </h2>
+                <small>发布于: {{debt.publishTime | idate}}</small>
+            </div>
+            <div class="card-body card-padding">            
+                <p><i class="zmdi zmdi-time"></i>&nbsp;&nbsp;{{debt.duration}}天</p>
+                <p><i class="zmdi zmdi-pin"></i>&nbsp;&nbsp;{{debt.debtorLocation}}</p>
+                <p ng-show="debt.type==1"><i class="zmdi zmdi-card"></i>&nbsp;&nbsp;{{debt.type | debtType}} &nbsp; 费率 {{debt.rate}}%</p>
+                <p ng-show="debt.type==2"><i class="zmdi zmdi-card"></i>&nbsp;&nbsp;{{debt.type | debtType}} &nbsp; {{debt.price | ccurrency}}起拍</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+    <div class="col-sm-3">
+        <div class="card wow fadeInLeft animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+            <div class="card-header bgm-cyan">
+                <h2>￥10万元 </h2>
+                <small>发布于: 2015-06-29 </small>
+            </div>
+            <div class="card-body card-padding">            
+                <p>代理费率：20%</p>
+                <p>代理期限：30天</p>
+                <p>所在地区：广东/深圳市/南山区</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card wow fadeInDown animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+            <div class="card-header bgm-red">
+                <h2>￥10万元 </h2>
+                <small>发布于: 2015-06-29 </small>
+            </div>
+            <div class="card-body card-padding">            
+                <p>代理费率：20%</p>
+                <p>代理期限：30天</p>
+                <p>所在地区：广东/深圳市/南山区</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card wow fadeInDown animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+            <div class="card-header bgm-orange">
+                <h2>￥10万元 </h2>
+                <small>发布于: 2015-06-29 </small>
+            </div>
+            <div class="card-body card-padding">            
+                <p>代理费率：20%</p>
+                <p>代理期限：30天</p>
+                <p>所在地区：广东/深圳市/南山区</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card wow fadeInRight animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+            <div class="card-header bgm-green">
+                <h2>￥10万元 </h2>
+                <small>发布于: 2015-06-29 </small>
+            </div>
+            <div class="card-body card-padding">            
+                <p>代理费率：20%</p>
+                <p>代理期限：30天</p>
+                <p>所在地区：广东/深圳市/南山区</p>
+            </div>
+        </div>
+    </div>    
+     -->
+	
+	</div>
+	<!-- END OF PORTFOLIO ITEMS-->
+
+	
+
+	
+</div> <!-- / END CONTAINER -->
+</section> <!-- / END WORKS SECTION -->
+
+
+
+<!-- =========================
+   STATS              
+============================== -->
+
+<section class="stats">
+	<div class="container">
+        
+	    <!-- STATS -->
+	    <div class="row">
+	        
+	        <!-- START COLUMN -->
+	        <div class="col-lg-3 col-sm-3">
+	            <div class="stat wow fadeInUp animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+	                <div class="icon-top red-text">
+                        <i class="zmdi zmdi-money"></i>
+	                </div>
+	                <div class="stat-text">
+	                <h3 class="white-text red-border-bottom">36,435,965</h3>
+	                <h6>累计交易金额</h6>
+	                </div>
+	            </div>
+	        </div> <!-- / END COLUMN -->
+	        
+	        <!-- START COLUMN -->
+	        <div class="col-lg-3 col-sm-3">
+	            <div class="stat wow fadeInUp animated" data-wow-offset="30" data-wow-duration="1.75s" data-wow-delay="0.30s">
+	                <div class="icon-top green-text">
+                        <i class="zmdi zmdi-account"></i>
+	                </div>
+	                <div class="stat-text">
+	                <h3 class="white-text green-border-bottom">196</h3>
+	                <h6>催收团队</h6>
+	                </div>
+	            </div>
+	        </div> <!-- / END COLUMN -->
+	        
+	        <!-- START COLUMN -->
+	        <div class="col-lg-3 col-sm-3">
+	            <div class="stat wow fadeInUp animated" data-wow-offset="30" data-wow-duration="2s" data-wow-delay="0.45s">
+	                <div class="icon-top blue-text">
+                        <i class="zmdi zmdi-balance"></i>
+	                </div>
+	                <div class="stat-text">
+	                <h3 class="white-text blue-border-bottom">25</h3>
+	                <h6>合作机构</h6>
+	                </div>
+	            </div>
+	        </div> <!-- / END COLUMN -->
+	        
+	        <!-- START COLUMN -->
+	        <div class="col-lg-3 col-sm-3">
+	            <div class="stat wow fadeInUp animated" data-wow-offset="30" data-wow-duration="2.25s" data-wow-delay="1s">
+	                <div class="icon-top yellow-text">
+                        <i class="zmdi zmdi-time-restore"></i>
+	                </div>
+	                <div class="stat-text">
+	                <h3 class="white-text yellow-border-bottom">98%</h3>
+	                <h6>交易达成率</h6>
+	                </div>
+	            </div>
+	        </div> <!-- / END COLUMN -->
+	    </div>
+</div>
+</section>  <!-- / END STATS -->
+
+
+
+
+
+<!-- =========================
+   OUR TEAM SECTION   
+============================== -->
+
+<section class="our-team" id="team">
+<div class="container">
+	
+	<!-- SECTION HEADER -->
+	<div class="section-header">
+		
+		<!-- SECTION TITLE -->
+		<h2 class="dark-text">精英催收团队</h2>
+		
+		<!-- SHORT DESCRIPTION ABOUT THE SECTION -->
+		<h6>
+			点点债平台聚焦着一大批精英催收团队
+		</h6>
+	</div>
+	<!-- / END SECTION HEADER -->
+	
+	<!-- TEAM MEMBERS -->
+	<div class="row wow fadeInRight animated" data-wow-offset="40" data-wow-duration="3s" data-wow-delay="0.15s">
+		<!-- MEMBER -->
+		<div class="col-lg-3 col-sm-3">
+			<div class="team-member">
+				<figure class="profile-pic"> 
+				<img src="images/team/pic1.jpg" alt=""> <!-- MEMBER PROFILE PIC -->
+				</figure>
+				<div class="member-details">
+					<h5 class="dark-text red-border-bottom">Jason Daniels</h5>
+					<div class="position">
+						<rating ng-model="ctrl.rating" readonly="true"></rating>
+					</div>
+				</div>
+				<div class="social-icons">
+					<ul>
+						<li><a href=""><i class="icon-facebook"></i></a></li>
+						<li><a href=""><i class="icon-twitter-alt"></i></a></li>
+						<li><a href=""><i class="icon-behance"></i></a></li>
+						<li><a href=""><i class="icon-dribbble"></i></a></li>
+					</ul>
+				</div>
+				<div class="details">
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium sapiente voluptate nostrum ipsa tempora optio facilis beatae quo aut error corrupti officiis dolore accusantium rem rerum illum nulla sed quisquam.
+					</p>
+				</div>
+			</div>
+		</div>
+		<!-- / END MEMBER -->
+		
+		<div class="col-lg-3 col-sm-3">
+			<div class="team-member">
+				<figure class="profile-pic">
+				<img src="images/team/pic2.jpg" alt="">
+				</figure>
+				<div class="member-details">
+					<h5 class="dark-text green-border-bottom">Patricia Medina</h5>
+					<div class="position">
+						<rating ng-model="ctrl.rating" readonly="true"></rating>
+					</div>
+				</div>
+				<div class="social-icons">
+					<ul>
+						<li><a href=""><i class="icon-facebook"></i></a></li>
+						<li><a href=""><i class="icon-twitter-alt"></i></a></li>
+						<li><a href=""><i class="icon-behance"></i></a></li>
+						<li><a href=""><i class="icon-linkedin"></i></a></li>
+					</ul>
+				</div>
+				<div class="details">
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium sapiente voluptate nostrum ipsa tempora optio facilis beatae quo aut error corrupti officiis dolore accusantium rem rerum illum nulla sed quisquam.
+					</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-lg-3 col-sm-3">
+			<div class="team-member">
+				<figure class="profile-pic">
+				<img src="images/team/pic3.jpg" alt="">
+				</figure>
+				<div class="member-details">
+					<h5 class="dark-text blue-border-bottom">Eugene Lane</h5>
+					<div class="position">
+						<rating ng-model="ctrl.rating" readonly="true"></rating>
+					</div>
+				</div>
+				<div class="social-icons">
+					<ul>
+						<li><a href=""><i class="icon-facebook"></i></a></li>
+						<li><a href=""><i class="icon-twitter-alt"></i></a></li>
+						<li><a href=""><i class="icon-behance"></i></a></li>
+						<li><a href=""><i class="icon-linkedin"></i></a></li>
+					</ul>
+				</div>
+				<div class="details">
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium sapiente voluptate nostrum ipsa tempora optio facilis beatae quo aut error corrupti officiis dolore accusantium rem rerum illum nulla sed quisquam.
+					</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-lg-3 col-sm-3">
+			<div class="team-member">
+				<figure class="profile-pic">
+				<img src="images/team/pic8.jpg" alt="">
+				</figure>
+				<div class="member-details">
+					<h5 class="dark-text yellow-border-bottom">Rachel Rogers</h5>
+					<div class="position">
+						<rating ng-model="ctrl.rating" readonly="true"></rating>
+					</div>
+				</div>
+				<div class="social-icons">
+					<ul>
+						<li><a href=""><i class="icon-facebook"></i></a></li>
+						<li><a href=""><i class="icon-twitter-alt"></i></a></li>
+						<li><a href=""><i class="icon-behance"></i></a></li>
+						<li><a href=""><i class="icon-linkedin"></i></a></li>
+					</ul>
+				</div>
+				<div class="details">
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium sapiente voluptate nostrum ipsa tempora optio facilis beatae quo aut error corrupti officiis dolore accusantium rem rerum illum nulla sed quisquam.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div> <!-- / END TEAM MEMBER LIST -->
+	
+</div> <!-- / END CONTAINER -->
+</section> <!-- / END OUR TEAM SECTION -->
+
+
+
+
+</div>
+<!-- / END CONTROLLER -->
+
+<!-- footer -->
+<footer id="footer" data-ng-include src="'includes/footer.html'"></footer>

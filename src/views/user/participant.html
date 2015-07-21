@@ -1,0 +1,70 @@
+<section  class="page-view ng-scope" data-ui-view="" ng-controller="participantController as ctrl">
+    <div class="container ng-scope">
+        <div class="card">
+            <header class="card-header">
+                <h2><span class="glyphicon glyphicon-list" ></span> 我的竞标</h2>
+            </header>
+            <div class="panel-body" >
+
+                <div class="row qc-area">
+                    <div class="col-xs-12" >
+                        类型:&nbsp;&nbsp;
+                        <!--<div class="btn-group">-->
+                            <!--<label class="btn btn-default" ng-model="ctrl.q.type" btn-radio="'1'">{{1 | debtType}}</label>-->
+                            <!--<label class="btn btn-default" ng-model="ctrl.q.type" btn-radio="'2'">{{2 | debtType}}</label>-->
+                        <!--</div>-->
+                        <div class="btn-group" ng-init="ctrl.q.type='1'" data-toggle="buttons">
+                            <label class="btn btn-default active" ng-click="ctrl.q.type='1'">
+                                <input type="radio" name="type" ng-model="ctrl.q.type" autocomplete="off" value="'1'" checked/>
+                                <i class="fa fa-user"></i> {{1 | debtType}}
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.type='2'">
+                                <input type="radio" name="type" ng-model="ctrl.q.type" autocomplete="off" value="'2'" checked/>
+                                <i class="fa fa-user"></i> {{2 | debtType}}
+                            </label>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        状态:&nbsp;&nbsp;
+                        <div class="btn-group" ng-init="ctrl.q.state='1'" data-toggle="buttons">
+                            <!--<label class="btn btn-default" ng-model="ctrl.q.state" btn-radio="'1'">进行中</label>-->
+                            <!--<label class="btn btn-default" ng-model="ctrl.q.state" btn-radio="'2'">已结束</label>-->
+                            <label class="btn btn-default active" ng-click="ctrl.q.state='1'">
+                                <input type="radio" name="state" ng-model="ctrl.q.state" autocomplete="off" value="'1'" checked/>
+                                <i class="fa fa-user"></i> 进行中
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.state='2'">
+                                <input type="radio" name="state" ng-model="ctrl.q.state" autocomplete="off" value="'2'" checked/>
+                                <i class="fa fa-user"></i> 已结束
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">&nbsp;</div>
+                <div class="row">
+                    <div ng-repeat="debt in ctrl.debtList">
+                        <div class="col-sm-4">
+                            <div class="card">
+                                <div class="card-header bgm-bluegray m-b-20">
+                                    <h2>{{debt.money | ccurrency}} <small>发布于: {{debt.publishTime | idate }} </small></h2>
+                                    <a class="btn bgm-blue btn-float waves-effect waves-effect" href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})">
+                                        <i class="zmdi zmdi-mail-send zmdi-hc-fw"></i>
+                                    </a>
+                                </div>
+                                <div class="card-body card-padding">
+                                    <p> 代理费率：{{debt.rate}}% </p>
+                                    <p>代理期限：{{debt.duration}}天</p>
+                                    <p>所在地区：{{debt.debtorLocation}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                    <li class="list-group-item text-center" ng-hide="ctrl.debtList.length">暂无记录</li>
+
+
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,61 @@
+<section  class="page-view ng-scope" data-ui-view="" >
+    <div class="container ng-scope">
+        <div class="card">
+            <header class="card-header">
+                <h2><span class="glyphicon glyphicon-list" ></span> 我的中标</h2>
+            </header>
+            <div class="panel-body" ng-controller="wonbidController as ctrl">
+
+                <div class="row qc-area">
+                    <div class="col-xs-12">
+                        状态:
+                        <button class="btn btn-link">进行中</button>
+                        <button class="btn btn-link">已结束</button>
+                    </div>
+                </div>
+
+                <!--<ul class="list-group">-->
+                    <!--<li class="list-group-item" ng-repeat="debt in ctrl.debtList">-->
+                        <!--<div class="row debt-list-item">-->
+                            <!--<div class="col-sm-6 col-md-9">-->
+                                <!--<div class="row">-->
+                                    <!--<div class="col-md-6">-->
+                                        <!--<h2><a href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})"> <span class="debtmoney">{{debt.money | ccurrency}}</span> </a></h2>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-6">-->
+                                        <!--<div style="margin-bottom:5px;">{{debt.debtorLocation}}</div>-->
+                                        <!--<div>费率: {{debt.rate}}%  &nbsp;&nbsp;&nbsp;&nbsp; 期限: {{debt.duration}}天</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-sm-6 col-md-3">-->
+                                <!--<div class="text-muted pull-right">发布于: {{debt.publishTime | idate }} </div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li class="list-group-item text-center" ng-hide="ctrl.debtList.length">暂无记录</li>-->
+                <!--</ul>-->
+                <div class="row">&nbsp;</div>
+                <div class="row">
+                    <div ng-repeat="debt in ctrl.debtList">
+                        <div class="col-sm-4">
+                            <div class="card">
+                                <div class="card-header bgm-bluegray m-b-20">
+                                    <h2>{{debt.money | ccurrency}} <small>发布于: {{debt.publishTime | idate }} </small></h2>
+                                    <a class="btn bgm-blue btn-float waves-effect waves-effect" href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})">
+                                        <i class="zmdi zmdi-mail-send zmdi-hc-fw"></i>
+                                    </a>
+                                </div>
+                                <div class="card-body card-padding">
+                                    <p> 代理费率：{{debt.rate}}% </p>
+                                    <p>代理期限：{{debt.duration}}天</p>
+                                    <p>所在地区：{{debt.debtorLocation}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

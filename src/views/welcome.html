@@ -1,0 +1,122 @@
+
+<div class="container">
+
+    <!-- test
+    <div class="row">
+        <col-sm-12>
+            <input class="form-control" type="text" placeholder="eg: 23/05/2014" data-input-mask="{mask: '99/99/9999'}" maxlength="10" autocomplete="off"/>
+            <input class="form-control" type="text" placeholder="eg: 00/00/0000 00:00:00" data-input-mask="{mask: '99/99/999 99:99:99'}" maxlength="19" autocomplete="off"/>
+        </col-sm-12>
+    </div>
+     -->
+    
+	<div class="row">
+        
+        <div class="col-sm-7" ng-controller="indexController as controller">
+
+            <div class="row">
+                <h1>欢迎使用点点债</h1>
+                <p>如果你有尚未收回的债务, </p>
+                <p>我们有专业的催收团队帮您解决问题</p>
+                <p>如果您是催收精英, </p>
+            </div>
+            <div class="row">
+                <h1>最近发布的资产</h1>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th> 金额 </th>
+                            <th> 类型 </th>
+                            <th> 地区 </th>
+                            <th> 配资状态</th>
+                        </tr>
+                    </thead>
+                    <!-- 
+                    <tbody>
+                        <tr>
+                            <td> 200万元 </td>
+                            <td> 债权转让 </td>
+                            <td> 山东 </td>
+                            <td> 待应标 </td>
+                        </tr>
+                    </tbody>
+                    -->
+                    <tbody>
+                        <tr ng-repeat="debt in controller.debtList">
+                            <td>{{debt.money | ccurrency }}</td>
+                            <td>{{debt.type | debtType }}</td>
+                            <td>{{debt.debtorLocation}}</td>
+                            <td>待应标</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-1"> </div>
+        <div class="col-sm-4" >
+
+            <div ng-controller="loginController as controller" class="card">
+                <div class="card-body card-padding">
+                    <form name="loginForm" ng-submit="controller.login()" novalidate >
+                        <div class="form-group fg-float" show-errors>
+                            <div class="fg-line">
+                                <input type="text" class="form-control col-xs-12" name="identity"  ng-model="controller.identity" required />
+                            </div>
+                            <label class="fg-label">手机 或 邮箱地址</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8 ">
+                                <div class="form-group fg-float">
+                                    <div class="fg-line">
+                                        <input type="password" class="form-control col-xs-8" name="password" ng-model="controller.password" required/>
+                                    </div>
+                                    <label class="fg-label">密码</label>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <button type="submit" class="btn btn-primary col-xs-12" >登录</button>
+                            </div>
+                        </div>
+
+                        <div class="row checkbox">
+                            <div class="col-xs-12">
+                                <label class="m-r-20">
+                                    <input type="checkbox" ng-model="controller.remember" />
+                                    <i class="input-helper"></i>记住我
+                                </label>
+                                <a ui-sref="site.forgetpwd"><u>忘记密码?</u></a>
+                            </div>
+                        </div>
+
+                        
+                        <p class="text-danger" ng-show="controller.error">
+                            用户不存在
+                        </p>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header bgm-teal">
+                    <h2>
+                        第一次来点点债?
+                        <small>点击下面立即注册</small>
+                    </h2>
+                </div>
+                <div class="card-body card-padding">
+                    <div class="row text-center">
+                        <div class="col-xs-6">
+                            <a class="btn btn-primary" ui-sref="site.register({type:1})">我有债务</a>
+                        </div>
+                        <div class="col-xs-6">
+                            <button class="btn btn-primary" ui-sref="site.register({type:2})">我能追债</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+
+	</div>
+</div>
