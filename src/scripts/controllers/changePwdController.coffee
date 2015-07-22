@@ -23,10 +23,8 @@ class ChangePwdController
 				$scope.changepwdstep3=false
 				$log.log $scope.type
 				if $scope.type==1
-#					alert('success','验证已发送到手机，请查收!')
 					growlService.growl('验证已发送到手机，请查收!', 'success')
 				else
-#					alert('success','验证已发送到邮箱，请查收!')
 					growlService.growl('验证已发送到邮箱，请查收!', 'success')
 					url="http://mail."+forgetpwd.email.split('@')[1]
 					$window.open url
@@ -63,7 +61,9 @@ class ChangePwdController
 
 		@changePwd = (@newPasswd)->
 			passwd = @md5.createHash newPasswd
-			if $scope.type=2
+#			$log.log $scope.type
+#			$log.log $scope.type==2
+			if $scope.type==2
 				data =
 					email:$scope.email
 					code:$scope.code
@@ -80,21 +80,11 @@ class ChangePwdController
 			.success (results) ->
 				$log.log results
 				growlService.growl('密码修改成功!', 'success')
-				$state.go 'site.member.index'
+#				$state.go "site.login({type:1})"
 			.error (error) ->
 				growlService.growl(error.desc, 'danger')
 
-#		alert = (type,msg,url) ->
-#			$scope.alerts=[
-#				type :type
-#				msg: msg
-#			]
-#			$timeout ()=>
-#				$scope.closeAlert 0
-#				if url!=""
-#					$state.go url
-#			,2*1000
-#			$log.log type
+
 
 
 angular.module("app")
