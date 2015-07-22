@@ -126,15 +126,109 @@
     <!-- Forgot Password -->
     <div class="lc-block" id="l-forget-password" data-ng-if="ctrl.showForgot === 1">
         <p class="text-left">忘记密码? </p>
+        <br/>
+        <div ng-controller="changePwdController as ctrl">
+            <!--<span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>-->
+            <!--<div class="fg-line">-->
+                <!--<input type="text" class="form-control" placeholder="邮箱地址"/>-->
+            <!--</div>-->
+            <div  ng-show="changepwdstep1">
+                <form  name="emailForm"  class="form-horizontal w5c-form" role="form"
+                       w5c-form-validate="validateOptions" novalidate name="validateForm">
+                    <div class="form-group">
+                        <!--<label class="col-sm-3 control-label">找回方式</label>-->
 
-        <div class="input-group m-b-20">
-            <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
-            <div class="fg-line">
-                <input type="text" class="form-control" placeholder="邮箱地址"/>
+                        <div class="col-sm-12 radio text-left"  ng-init="ctrl.forgetpwd.type=1" >
+                            <!--<input type="radio" name="type" ng-model="ctrl.forgetpwd.type"  value="1" ng-checked="true" checked>手机短信&nbsp;&nbsp;-->
+                            <!--<input type="radio" name="type" ng-model="ctrl.forgetpwd.type"  value="2">电子邮箱-->
+                            <label class="m-r-20">
+                                <input type="radio" name="sex" ng-model="ctrl.forgetpwd.type" value="1" required /> <i class="input-helper"></i>手机短信
+                            </label>
+                            <label>
+                                <input type="radio" name="sex" ng-model="ctrl.forgetpwd.type" value="2" required /> <i class="input-helper"></i>电子邮箱
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="ctrl.forgetpwd.type==1" >
+                        <!--<label class="col-sm-3 control-label">手机号码</label>-->
+
+                        <div class="col-sm-12">
+                            <div class="fg-line" >
+                                <input type="text" name="mobile" ng-model="ctrl.forgetpwd.mobile"  class="form-control"
+                                       placeholder="输入手机电话"  ng-required="ctrl.forgetpwd.type==1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="ctrl.forgetpwd.type==2">
+                        <!--<label class="col-sm-3 control-label">邮箱地址</label>-->
+
+                        <div class="col-sm-12">
+                            <div class="fg-line" >
+                                <input type="email" name="email" ng-model="ctrl.forgetpwd.email"  class="form-control"
+                                       placeholder="输入电子邮箱" ng-required="ctrl.forgetpwd.type==2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group  text-left" >
+                        <div class="col-sm-12">
+                            <button type="buttom" w5c-form-submit="ctrl.sendcode(ctrl.forgetpwd)"  class="btn btn-primary " > 发送验证码 </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div ng-show="changepwdstep2">
+                <form  name="verifycodeForm"  class="form-horizontal w5c-form" role="form"
+                       w5c-form-validate="validateOptions" novalidate name="validateForm">
+                    <div class="form-group">
+                        <!--<label class="col-sm-3 control-label">验证码</label>-->
+                        <div class="col-sm-12">
+                            <div class="fg-line" >
+                                <input type="number" name="verifycode" ng-model="ctrl.code"  class="form-control"
+                                       placeholder="输入验证码" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12 text-left">
+                            <button type="buttom" w5c-form-submit="ctrl.verifycode(ctrl.code)"  class="btn btn-primary"  ng-disabled="ctrl.code==undefined"> 验 证 </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div ng-show="changepwdstep3">
+                <form name="changpwdForm"   class="form-horizontal w5c-form" role="form"
+                      w5c-form-validate="validateOptions" novalidate name="validateForm">
+                    <div class="form-group">
+                        <!--<label class="col-sm-3 control-label">新密码</label>-->
+
+                        <div class="col-sm-12">
+                            <div class="fg-line" >
+                                <input type="password"   class="form-control" ng-model="ctrl.newPasswd" name="newpassword"
+                                       placeholder="输入新密码" ng-minlength="6" ng-maxlength="20" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!--<label class="col-sm-3 control-label">确认密码</label>-->
+
+                        <div class="col-sm-12">
+                            <div class="fg-line" >
+                                <input type="password"   class="form-control" w5c-repeat="newpassword" ng-model="ctrl.repeatPassword" name="repeatPassword"
+                                       placeholder="确认新密码" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12 text-left">
+                            <button type="buttom" w5c-form-submit="ctrl.changePwd(ctrl.newPasswd)"  class="btn btn-primary" > 确认提交 </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 
-        <a href="" class="btn btn-login btn-danger btn-float"><i class="zmdi zmdi-arrow-forward"></i></a>
+        <!--<a href="" class="btn btn-login btn-danger btn-float"><i class="zmdi zmdi-arrow-forward"></i></a>-->
         
         <ul class="login-navigation">
             <li data-block="#l-login" class="bgm-green" data-ng-click="ctrl.showForgot = 0; ctrl.showLogin = 1">登陆</li>
