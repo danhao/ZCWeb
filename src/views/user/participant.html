@@ -9,31 +9,25 @@
                 <div class="row qc-area">
                     <div class="col-xs-12" >
                         类型:&nbsp;&nbsp;
-                        <!--<div class="btn-group">-->
-                            <!--<label class="btn btn-default" ng-model="ctrl.q.type" btn-radio="'1'">{{1 | debtType}}</label>-->
-                            <!--<label class="btn btn-default" ng-model="ctrl.q.type" btn-radio="'2'">{{2 | debtType}}</label>-->
-                        <!--</div>-->
-                        <div class="btn-group" ng-init="ctrl.q.type='1'" data-toggle="buttons">
-                            <label class="btn btn-default active" ng-click="ctrl.q.type='1'">
-                                <input type="radio" name="type" ng-model="ctrl.q.type" autocomplete="off" value="'1'" checked/>
+                        <div class="btn-group" ng-init="ctrl.q.type=1" data-toggle="buttons">
+                            <label class="btn btn-default active" ng-click="ctrl.q.type=1">
+                                <input type="radio" name="type" ng-model="ctrl.q.type" autocomplete="off" value="1" checked/>
                                 <i class="fa fa-user"></i> {{1 | debtType}}
                             </label>
-                            <label class="btn btn-default" ng-click="ctrl.q.type='2'">
-                                <input type="radio" name="type" ng-model="ctrl.q.type" autocomplete="off" value="'2'" checked/>
+                            <label class="btn btn-default" ng-click="ctrl.q.type=2">
+                                <input type="radio" name="type" ng-model="ctrl.q.type" autocomplete="off" value="2" checked/>
                                 <i class="fa fa-user"></i> {{2 | debtType}}
                             </label>
                         </div>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         状态:&nbsp;&nbsp;
-                        <div class="btn-group" ng-init="ctrl.q.state='1'" data-toggle="buttons">
-                            <!--<label class="btn btn-default" ng-model="ctrl.q.state" btn-radio="'1'">进行中</label>-->
-                            <!--<label class="btn btn-default" ng-model="ctrl.q.state" btn-radio="'2'">已结束</label>-->
-                            <label class="btn btn-default active" ng-click="ctrl.q.state='1'">
-                                <input type="radio" name="state" ng-model="ctrl.q.state" autocomplete="off" value="'1'" checked/>
+                        <div class="btn-group" ng-init="ctrl.q.stateDesc='1'" data-toggle="buttons">
+                            <label class="btn btn-default active" ng-click="ctrl.q.stateDesc='1'">
+                                <input type="radio" name="state" ng-model="ctrl.q.stateDesc" autocomplete="off" value="'1'" checked/>
                                 <i class="fa fa-user"></i> 进行中
                             </label>
-                            <label class="btn btn-default" ng-click="ctrl.q.state='2'">
-                                <input type="radio" name="state" ng-model="ctrl.q.state" autocomplete="off" value="'2'" checked/>
+                            <label class="btn btn-default" ng-click="ctrl.q.stateDesc='2'">
+                                <input type="radio" name="state" ng-model="ctrl.q.stateDesc" autocomplete="off" value="'2'" checked/>
                                 <i class="fa fa-user"></i> 已结束
                             </label>
                         </div>
@@ -42,7 +36,7 @@
 
                 <div class="row">&nbsp;</div>
                 <div class="row">
-                    <div ng-repeat="debt in ctrl.debtList">
+                    <div ng-repeat="debt in filteredDebts = (ctrl.debtList | filter:ctrl.debtFilter)">
                         <div class="col-sm-4">
                             <div class="card">
                                 <div class="card-header bgm-bluegray m-b-20">
@@ -58,10 +52,13 @@
                                 </div>
                             </div>
                         </div>
-                        </div>
                     </div>
+
+                    <div class="text-center" ng-hide="filteredDebts.length">暂无记录</div>
                 </div>
-                    <li class="list-group-item text-center" ng-hide="ctrl.debtList.length">暂无记录</li>
+            </div>
+            
+                
 
 
             </div>
