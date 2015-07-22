@@ -9,36 +9,22 @@
                 <div class="row qc-area">
                     <div class="col-xs-12">
                         状态:
-                        <button class="btn btn-link" ng-click="ctrl.stateDesc=1">进行中</button>
-                        <button class="btn btn-link" ng-click="ctrl.stateDesc=2">已结束</button>
+                        <div class="btn-group" ng-init="q.stateDesc='1'" data-toggle="buttons">
+                            <label class="btn btn-default active" ng-click="q.stateDesc='1'">
+                                <input type="radio" name="type" ng-model="q.stateDesc" autocomplete="off" value="'1'" checked/>
+                                <i class="fa fa-user"></i> 进行中
+                            </label>
+                            <label class="btn btn-default" ng-click="q.stateDesc='2'">
+                                <input type="radio" name="type" ng-model="q.stateDesc" autocomplete="off" value="'2'" checked/>
+                                <i class="fa fa-user"></i> 已结束
+                            </label>
+                         </div>
                     </div>
                 </div>
 
-                <!--<ul class="list-group">-->
-                    <!--<li class="list-group-item" ng-repeat="debt in ctrl.debtList">-->
-                        <!--<div class="row debt-list-item">-->
-                            <!--<div class="col-sm-6 col-md-9">-->
-                                <!--<div class="row">-->
-                                    <!--<div class="col-md-6">-->
-                                        <!--<h2><a href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})"> <span class="debtmoney">{{debt.money | ccurrency}}</span> </a></h2>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-md-6">-->
-                                        <!--<div style="margin-bottom:5px;">{{debt.debtorLocation}}</div>-->
-                                        <!--<div>费率: {{debt.rate}}%  &nbsp;&nbsp;&nbsp;&nbsp; 期限: {{debt.duration}}天</div>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="col-sm-6 col-md-3">-->
-                                <!--<div class="text-muted pull-right">发布于: {{debt.publishTime | idate }} </div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</li>-->
-                    <!--<li class="list-group-item text-center" ng-hide="ctrl.debtList.length">暂无记录</li>-->
-                <!--</ul>-->
-
                 <div class="row">&nbsp;</div>
                 <div class="row">
-                    <div ng-repeat="debt in ctrl.debtList">
+                    <div ng-repeat="debt in filteredDebts = (ctrl.debtList | filter:ctrl.stateFilter)">
                         <div class="col-sm-4">
                             <div class="card">
                                 <div class="card-header bgm-bluegray m-b-20">
@@ -55,6 +41,9 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-sm-12 text-center" ng-hide="filteredDebts.length">暂无记录</div>
+                    
                 </div>
                 
             </div>
