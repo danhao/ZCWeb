@@ -2,25 +2,23 @@
     <div class="profile-menu">
         <a href="" toggle-submenu>
             <div class="profile-pic">
-                <img src="images/profile-pics/1.jpg" alt="">
+                <img src="images/profile-pics/1.jpg" alt=""/>
             </div>
 
             <div class="profile-info">
-                Malinda Hollaway
-
+                {{sbctrl.user.name}}
                 <i class="zmdi zmdi-arrow-drop-down"></i>
             </div>
         </a>
 
+        <!-- 
         <ul class="main-menu">
-            <!-- 
             <li>
                 <a href="profile-about.html"><i class="zmdi zmdi-person"></i> View Profile</a>
             </li>
             <li>
                 <a href=""><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
             </li>
-             -->
             <li>
                 <a href=""><i class="zmdi zmdi-settings"></i> Settings</a>
             </li>
@@ -28,13 +26,14 @@
                 <a href="javascript:;" ng-click="sbctrl.logout();mactrl.sidebarStat($event);"><i class="zmdi zmdi-time-restore"></i> Logout</a>
             </li>
         </ul>
+        -->
     </div>
 
     <ul class="main-menu">
         <li data-ui-sref-active="active">
             <a data-ui-sref="site.member.index" data-ng-click="mactrl.sidebarStat($event)"><i class="zmdi zmdi-home"></i> 个人中心</a>
-
         </li>
+        
         <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('widgets') }">
             <a href="" toggle-submenu><i class="zmdi zmdi-book"></i> 基本设置</a>
             <ul>
@@ -46,12 +45,12 @@
         <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('widgets') }">
             <a href="" toggle-submenu><i class="zmdi zmdi-book"></i> 我的债权</a>
             <ul>
+                <li><a data-ui-sref-active="active" data-ui-sref="site.member.createdebt" data-ng-click="mactrl.sidebarStat($event)">新建债务</a></li>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.issued" data-ng-click="mactrl.sidebarStat($event)">我的委托</a></li>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.participant" data-ng-click="mactrl.sidebarStat($event)">我的竞标</a></li>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.wonbid" data-ng-click="mactrl.sidebarStat($event)">我的中标</a></li>
             </ul>
         </li>
-
         <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('tables') }">
             <a href="" toggle-submenu><i class="zmdi zmdi-card"></i> 财务管理</a>
             <ul>
@@ -62,6 +61,9 @@
         </li>
         <li data-ui-sref-active="active">
             <a data-ui-sref="typography" data-ng-click="mactrl.sidebarStat($event)"><i class="zmdi zmdi-format-underlined"></i>关于我们</a>
+        </li>
+        <li>
+            <a href="javascript:;" ng-click="sbctrl.logout();mactrl.sidebarStat($event);"><i class="zmdi zmdi-time-restore"></i> 退出登陆</a>
         </li>
     </ul>
 </div>
