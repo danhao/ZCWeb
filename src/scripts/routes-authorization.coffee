@@ -153,7 +153,7 @@ class Authorization
 		@requireCreateDebtValidateRedirect = () =>
 			result = ""
 			if (!@user.email or !@user.mobile)
-				result = @gotoUserinfo("您需要先完善基本信息,再进行实名认证,才有权限查看此页面！","site.member.userinfo")
+				result = @gotoUserinfo("您需要先完善基本信息,再验证(手机,邮箱,身份)其中之一,才能发布债权信息！","site.member.userinfo")
 			else if((@user.status&userStatus.EMAIL_VALIDATE)==0 and  (@user.status&userStatus.MOBILE_VALIDATE)==0 and (@user.status&userStatus.IDENTITY_VALIDATE)==0 and (@user.status&userStatus.FIRM_VALIDATE)==0)
 				result = @gotoUserinfo("您需要先验证(手机,邮箱,身份)其中之一,才能发布债权信息！","site.member.index")
 			else
