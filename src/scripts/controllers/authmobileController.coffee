@@ -46,9 +46,11 @@ class AuthmobileController
 				$log.log results
 #				alert('success','手机验证成功！')
 				growlService.growl('手机验证成功!', 'success')
-				initverifymobile()
+				$state.go 'site.member.index'
+#				initverifymobile()
 			.error (error) ->
-				growlService.growl(error, 'danger')
+				$log.log error
+				growlService.growl(error.desc, 'danger')
 
 
 angular.module("app")
