@@ -27,9 +27,9 @@
                     <div ng-repeat="debt in filteredDebts = (ctrl.debtList | filter:ctrl.stateFilter)">
                         <div class="col-sm-4">
                             <div class="card">
-                                <div class="card-header bgm-bluegray m-b-20">
+                                <div class="card-header bgm-lightblue m-b-20">
                                     <h2>{{debt.money | ccurrency}} <small>发布于: {{debt.publishTime | idate }} </small></h2>
-                                    <a class="btn bgm-blue btn-float waves-effect waves-effect" href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})">
+                                    <a class="btn bgm-orange btn-float waves-effect waves-effect" href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})">
                                         <i class="zmdi zmdi-mail-send zmdi-hc-fw"></i>
                                     </a>
                                 </div>
