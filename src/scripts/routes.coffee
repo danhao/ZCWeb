@@ -170,6 +170,10 @@ class Config
 			.state 'typography',
 				url: '/typography',
 				templateUrl: 'views/typography.html'
+
+			.state 'site.test',
+				url: 'test',
+				templateUrl: 'views/test.html'
 				
 
 		$urlRouterProvider.otherwise '/'

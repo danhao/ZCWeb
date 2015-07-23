@@ -1,0 +1,67 @@
+
+<div class="container">
+    <div class="block-header">
+        <h2>Form Components</h2>
+
+        <ul class="actions">
+            <li>
+                <a href="">
+                    <i class="zmdi zmdi-trending-up"></i>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="zmdi zmdi-check-all"></i>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="" data-toggle="dropdown">
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a href="">Refresh</a>
+                    </li>
+                    <li>
+                        <a href="">Manage Widgets</a>
+                    </li>
+                    <li>
+                        <a href="">Widgets Settings</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+
+
+    <div class="card">
+        <div class="card-header">
+            <h2>Input Slider <small>noUiSlider is a range slider without bloat. It offers a ton off features, and it is as small, lightweight and minimal as possible, which is great for mobile use on the many supported devices.</small></h2>
+        </div>
+
+        <div class="card-body card-padding">
+            
+            <p class="f-500 c-black m-b-20">Slide Example</p>
+            
+            <div slider class="input-slider m-b-25" ng-model="test.single" start=1 end=10></div>
+            <p>
+                Data: <input type="number" ng-init="test.single=1" ng-model="test.single"/>
+            </p>
+            
+            <br />
+
+            <p ng-init="test.from=5; test.to=40" class="input-slider-range">Range example</p>
+            <div slider class="input-slider-range m-b-25" ng-from="test.from" ng-to="test.to" start=0 end=100 step=5 data-is-color="red"></div>
+            <p>
+                from: <input type="number" ng-model="test.from" />
+            </p>
+            <p>
+                to: <input type="number" ng-model="test.to" />
+            </p>
+            
+        </div>
+    </div>
+    
+</div>
