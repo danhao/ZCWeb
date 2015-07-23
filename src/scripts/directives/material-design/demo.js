@@ -254,8 +254,11 @@ angular.module('app')
                 if (!ctrl) return;
                 ctrl.$parsers.unshift(function (viewValue) {
                     var plainNumber = viewValue.replace(/[^\d|\-+|\.+]/g, '');
+                    debugger;
                     if(plainNumber!='')
                         elem.val($filter('number')(plainNumber));
+                    else
+                        elem.val("");
                     return plainNumber;
                 });
             }
