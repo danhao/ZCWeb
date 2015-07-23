@@ -21,6 +21,7 @@
     "eonasdan-bootstrap-datetimepicker": "~4.14.30",
     "jquery.nicescroll": "~3.6.0",
     "jquery.maskedinput": "~1.4.1",
+    "nouislider": "7.0.10",
     "lightgallery": "~1.1.5",
     "chosen": "~1.4.2",
     "sweetalert": "~1.0.1",
@@ -103,6 +104,10 @@
     },
     "jquery.maskedinput": {
       "scripts/libs": "dist/jquery.maskedinput.min.js"
+    },
+    "nouislider": {
+      "styles": "distribute/jquery.nouislider.min.css",
+      "scripts/libs": "distribute/jquery.nouislider.all.min.js"
     },
     "lightgallery": {
       "scripts/libs": "light-gallery/js/lightGallery.min.js",

@@ -372,6 +372,7 @@ module.exports = (grunt) ->
    					'!libs/bootstrap-select.js'
 					'!libs/vegas.min.js'
 					'!libs/lightGallery.min.js'
+					'!libs/jquery.nouislider.all.min.js'
 				]
 				order: [
 					'libs/angular.min.js'
@@ -419,6 +420,7 @@ module.exports = (grunt) ->
    					'!libs/bootstrap-select.js'
 					'!libs/vegas.min.js'
 					'!libs/lightGallery.min.js'
+					'!libs/jquery.nouislider.all.min.js'
 				]
 				order: [
 					'libs/angular.min.js'
@@ -483,6 +485,7 @@ module.exports = (grunt) ->
 						'.temp/scripts/libs/bootstrap-select.js'
 						'.temp/scripts/libs/vegas.min.js'
 						'.temp/scripts/libs/lightGallery.min.js'
+						'.temp/scripts/libs/jquery.nouislider.all.min.js'
 					]
 
 		# Configration for enviroment
