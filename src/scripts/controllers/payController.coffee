@@ -1,10 +1,8 @@
 class PayController
-	constructor: (@$log,@$scope,@$state, @$stateParams,@ajaxService, @actionCode,@w5cValidator,@userSession,@$timeout,@utilService) ->
+	constructor: (@$log,@$scope,@$state, @$stateParams,@ajaxService, @actionCode,@w5cValidator,@userSession,@$timeout,@utilService,@growlService) ->
 		$scope.validateOptions =
 			blurTrig: true
 
-		$scope.closeAlert = (index)->
-			$scope.alerts.splice(index, 1)
 
 		payinfo =
 			version:"v1.0"
@@ -34,13 +32,16 @@ class PayController
 
 
 		@pay=(money)->
+			if money>10000000
+				growlService.growl("充值金额不能大于1000万元！", 'danger')
+				return
 			payinfo.orderAmount = (money*100).toString()
 			@ajaxService.post @actionCode.ACTION_CREATE_ORDER, payinfo
 			.success (result) =>
 				$log.log result
 				submit(result)
 			.error (error) =>
-				alert('danger',error)
+				growlService.growl(error.desc, 'danger')
 
 		submit =(payrsp) ->
 			$scope.pay =
@@ -80,19 +81,7 @@ class PayController
 
 
 
-#			return
-#			@payService.submit(@pay)
-
-		alert = (type,msg) ->
-			$scope.alerts=[
-				type :type
-				msg: msg
-			]
-			$timeout ()=>
-				$scope.closeAlert 0
-			,2*1000
-			$log.log type
 
 
 
-angular.module("app") .controller 'payController', ['$log','$scope','$state','$stateParams','ajaxService', 'actionCode','w5cValidator','userSession','$timeout','utilService', PayController]
+angular.module("app") .controller 'payController', ['$log','$scope','$state','$stateParams','ajaxService', 'actionCode','w5cValidator','userSession','$timeout','utilService','growlService', PayController]
