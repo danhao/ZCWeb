@@ -2,7 +2,7 @@
     <div class="container ng-scope">
         <div class="card">
             <header class="card-header">
-                <h2><span class="glyphicon glyphicon-pencil" ></span> 发布债券</h2>
+                <h2><span class="glyphicon glyphicon-pencil" ></span> 发布债权</h2>
             </header>
             <div ng-controller="debtController as controller" class="card-body card-padding">
                 <form class="form-horizontal w5c-form" role="form"
@@ -119,7 +119,7 @@
 
                                     <div class="form-group  fg-float">
                                         <div class="fg-line" >
-                                            <input type="text" name="phone" ng-model="controller.debt.debtorPhone"  class="form-control"
+                                            <input type="text" name="phone" maxlength="15" ng-model="controller.debt.debtorPhone"  class="form-control"
                                                   required>
                                         </div>
                                         <label class="fg-label">债务人电话<span class="inputflag">*</span></label>
