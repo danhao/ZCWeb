@@ -51,47 +51,33 @@
 
                                             <div class="form-group" ng-show="controller.debt.type ==1">
                                                 <label class="col-sm-2 control-label">代理费率</label>
-                                                <div class="col-sm-9 radio" ng-init="controller.debt.rate='10'">
-                                                    <label class="m-r-10">
-                                                        <input type="radio" name="rate" ng-model="controller.debt.rate" value="10" required /> <i class="input-helper"></i>10 %
-                                                    </label>
-                                                    <label class="m-r-10">
-                                                        <input type="radio" name="rate" ng-model="controller.debt.rate" value="20" required /> <i class="input-helper"></i>20 %
-                                                    </label>
-                                                    <label>
-                                                        <input type="radio" name="rate" ng-model="controller.debt.rate" value="30" required /> <i class="input-helper"></i>30 %
-                                                    </label>
+                                                <div class="col-sm-1" style="padding-top: 5px" ng-init="controller.debt.rate=10">
+                                                    <span>{{controller.debt.rate}}%</span>
+
+                                                </div>
+                                                <div class="col-sm-9" style="padding-top: 15px">
+                                                    <div slider class="input-slider m-b-25"  ng-model="controller.debt.rate" start=10 end=100></div>
                                                 </div>
                                             </div>
                                             <div class="form-group" ng-show="controller.debt.type ==1">
                                                 <label class="col-sm-2 control-label">代理期限</label>
 
-                                                <div class="col-sm-9 radio" ng-init="controller.debt.duration=30">
-                                                    <label class="m-r-10">
-                                                        <input type="radio" name="duration" ng-model="controller.debt.duration" value="30" required /> <i class="input-helper"></i>30天
-                                                    </label>
-                                                    <label class="m-r-10">
-                                                        <input type="radio" name="duration" ng-model="controller.debt.duration" value="60" required /> <i class="input-helper"></i>60天
-                                                    </label>
-                                                    <label>
-                                                        <input type="radio" name="duration" ng-model="controller.debt.duration" value="90" required /> <i class="input-helper"></i>90天
-                                                    </label>
+                                                <div class="col-sm-1" style="padding-top: 5px" ng-init="controller.debt.duration=30">
+                                                    <span>{{controller.debt.duration}}天</span>
+                                                </div>
+                                                <div class="col-sm-9" style="padding-top: 15px">
+                                                    <div slider class="input-slider m-b-25" ng-model="controller.debt.duration" start=30 end=90></div>
                                                 </div>
 
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">竞标到期时间</label>
 
-                                                <div class="col-sm-9 radio" ng-init="controller.debt.expireDays=30">
-                                                    <label class="m-r-10">
-                                                        <input type="radio" name="expireDays" ng-model="controller.debt.expireDays" value="30" required /> <i class="input-helper"></i>30天
-                                                    </label>
-                                                    <label class="m-r-10">
-                                                        <input type="radio" name="expireDays" ng-model="controller.debt.expireDays" value="60" required /> <i class="input-helper"></i>60天
-                                                    </label>
-                                                    <label>
-                                                        <input type="radio" name="expireDays" ng-model="controller.debt.expireDays" value="90" required /> <i class="input-helper"></i>90天
-                                                    </label>
+                                                <div class="col-sm-1" style="padding-top: 5px" ng-init="controller.debt.expireDays=7">
+                                                    <span>{{controller.debt.expireDays}}天</span>
+                                                </div>
+                                                <div class="col-sm-9" style="padding-top: 15px;">
+                                                    <div slider class="input-slider m-b-25" ng-model="controller.debt.expireDays" start=1 end=15></div>
                                                 </div>
                                             </div>
 
@@ -212,6 +198,7 @@
                             <!--</div>-->
                 </div>
                 </form>
+
             </div>
         </div>
     </div>
