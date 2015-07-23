@@ -97,7 +97,7 @@
                                     </a>
                                 </div>
                                 <div class="card-body card-padding">
-                                    <p> 债权状态：{{debt.state | debtRate}} </p>
+                                    <p> 债权状态：{{debt.state | debtState}} </p>
                                     <p ng-show="debt.type==1"> 代理费率：{{debt.rate}}% </p>
                                     <p ng-show="debt.type==2"> 起拍价格：{{debt.price | ccurrency}}</p>
                                     <p ng-show="debt.type==1">代理期限：{{debt.duration}}天</p>
