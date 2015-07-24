@@ -24,6 +24,17 @@ class DebtController
 			if debt.money*100>2147483648
 				growlService.growl("金额超出范围，不能大于21474836.48,请返回上一步修改！", 'danger')
 				return
+			date = new Date()
+			currentdate = (Date.parse  date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate())
+
+			if (Date.parse debt.judgementTime)>currentdate
+				growlService.growl("法院判决时间应小于当前时间，请重新选择判决时间！", 'danger')
+				return
+
+			if (Date.parse debt.judgementTime)>(Date.parse debt.debtExpireTime)
+				growlService.growl("应归还时间应大于法院判决日期，请重新选择应归还时间！", 'danger')
+				return
+
 			sheng = debt.city.cn[0]
 			city= debt.city.cn[1]
 			area= debt.city.cn[2]
@@ -39,7 +50,7 @@ class DebtController
 
 			debt.debtExpireTime = (Date.parse debt.debtExpireTime) / 1000
 			debt.judgementTime  = (Date.parse debt.judgementTime)  / 1000
-			$log.log typeof debt.files
+
 			if debt.files isnt undefined && (typeof debt.files)=='string'
 				debt.files = splitfiles(debt.files)
 
