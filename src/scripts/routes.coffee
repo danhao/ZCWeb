@@ -113,6 +113,10 @@ class Config
 						redirectTo: "site.member.userinfo"
 						msg: "你需要先完善个人信息,再进行手机验证"
 
+			.state 'site.member.notifySetting',
+				url: 'notify'
+				templateUrl: 'views/user/notifySetting.html'
+
 			.state 'site.member.auth',
 				data:
 					precondition: "requireAuthValidate"

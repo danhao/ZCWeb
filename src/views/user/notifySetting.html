@@ -1,0 +1,39 @@
+<section  class="page-view ng-scope">
+    <div class="container ng-scope">
+        <div class="card" ng-controller="notifySettingController as ctrl">
+            <header class="card-header">
+                <h2><span class="glyphicon glyphicon-bullhorn" ></span> 消息推送设置
+                <small>这里可以设置APP是否为您推送定制的债务信息</small>
+                </h2>
+            </header>
+            <div class="card-body card-padding">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="toggle-switch">
+                            <label class="ts-label" for="ts1">是否允许系统为您推送信息?</label>
+                            <input id="ts1" type="checkbox" hidden="hidden"/>
+                            <label class="ts-helper" for="ts1"></label>
+                        </div>
+                    </div>
+                </div>
+                <p class="m-t-20 f-700">推送消息定制</p>
+                <small>只为我推送满足以下条件的债务信息</small>
+                <form name="customSettingForm" class="form-horizontal m-t-20" >
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="inputEmail3">金额</label>
+                        <div class="col-sm-10 control-slider" ng-init="ctrl.setting.money.from=5; ctrl.setting.money.to=40">
+                            <input type="text" class="slider-addon left form-control" ng-model="ctrl.setting.money.from"/>
+                            <input type="text" class="slider-addon right form-control" ng-model="ctrl.setting.money.to"/>
+                            <div slider class="input-slider-range" ng-from="ctrl.setting.money.from" ng-to="ctrl.setting.money.to" start=0 end=100 step=5 ></div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        xxx
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

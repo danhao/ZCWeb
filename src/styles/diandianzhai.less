@@ -158,3 +158,32 @@ body.sw-toggled #footer {
 .debtcollection {
     min-height: 380px;
 }
+
+// slider
+@slider-addon-width: 30px;
+.slider-addon {
+    width: @slider-addon-width;
+
+    &.left {
+        float: left;
+    }
+    
+    &.right {
+        float: right;
+    }
+}
+
+.slider-addon.left ~ .input-slider-range {
+    margin-left: (@slider-addon-width+5);
+}
+
+.slider-addon.right ~ .input-slider-range {
+    margin-right: (@slider-addon-width+5);
+}
+
+.control-slider {
+    .input-slider-range {
+        margin-top: 15px;
+    }
+}
+
