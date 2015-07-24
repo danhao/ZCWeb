@@ -18,21 +18,21 @@
                                             <div class="form-group  fg-float">
                                                 <div class="fg-line" >
                                                     <input type="text" moneystyle name="money" ng-model="controller.debt.money"  class="form-control"
-                                                           maxlength="15"  required>
+                                                           maxlength="10"  required>
                                                 </div>
                                                 <label class="fg-label">债务总金额(单位:元)<span class  ="inputflag">*</span> </label>
                                             </div>
                                             <div class="form-group fg-float" moneystyle ng-show="controller.debt.type ==2">
                                                 <div class="fg-line" >
                                                     <input type="text" moneystyle name="price" ng-model="controller.debt.price"  class="form-control"
-                                                           maxlength="15" ng-required="controller.debt.type==2">
+                                                           maxlength="9" ng-required="controller.debt.type==2">
                                                 </div>
                                                 <label class="fg-label">起拍价格(单位:元)<span class="inputflag">*</span></label>
                                             </div>
                                             <div class="form-group fg-float" moneystyle ng-show="controller.debt.type ==2">
                                                 <div class="fg-line" >
                                                     <input type="text" moneystyle name="bidIncrease"  ng-model="controller.debt.bidIncrease"  class="form-control"
-                                                           maxlength="15"  ng-required="controller.debt.type==2">
+                                                           maxlength="9"  ng-required="controller.debt.type==2">
                                                 </div>
                                                 <label class="fg-label">加价幅度(单位:元)<span class="inputflag">*</span></label>
                                             </div>
