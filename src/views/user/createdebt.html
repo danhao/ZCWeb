@@ -119,7 +119,7 @@
 
                                     <div class="form-group  fg-float">
                                         <div class="fg-line" >
-                                            <input type="text" name="phone" maxlength="15" ng-model="controller.debt.debtorPhone"  class="form-control"
+                                            <input type="text" name="phone" maxlength="18" ng-model="controller.debt.debtorPhone" ng-pattern="/((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/"  class="form-control"
                                                   required>
                                         </div>
                                         <label class="fg-label">债务人电话<span class="inputflag">*</span></label>
@@ -148,14 +148,14 @@
                                     <div class="form-group  fg-float">
                                         <div class="fg-line" >
                                             <input data-dt-picker type="text" name="judgementtime" id="judgementtime"  class="form-control"  ng-model="controller.debt.judgementTime"
-                                                   data-format="YYYY/MM/DD" ng-change="removeerror(controller.debt.judgementTime,'judgementtime')"    required/>
+                                                   data-format="YYYY/MM/DD" ng-change="removeerror(controller.debt.judgementTime,'judgementtime')" maxlength="10"    required/>
                                         </div>
                                         <label class="fg-label">判决时间<span class="inputflag">*</span></label>
                                     </div>
                                     <div class="form-group  fg-float">
                                         <div class="fg-line" >
                                             <input data-dt-picker type="text" name="expiretime" id="expiretime" class="form-control"  ng-model="controller.debt.debtExpireTime"
-                                                   data-format="YYYY/MM/DD" ng-change="removeerror(controller.debt.debtExpireTime,'expiretime')"    required/>
+                                                   data-format="YYYY/MM/DD" ng-change="removeerror(controller.debt.debtExpireTime,'expiretime')" maxlength="10"    required/>
                                         </div>
                                         <label class="fg-label">应归还时间<span class="inputflag">*</span></label>
 
@@ -163,20 +163,20 @@
                                     <div class="form-group  fg-float" >
                                         <div class="fg-line" >
                                             <input type="text" ng-model="controller.debt.mortgage" class="form-control"
-                                                  max="10" min="1">
+                                                   maxlength="50">
                                         </div>
                                         <label class="fg-label">抵押物</label>
                                     </div>
 
                                     <div class="form-group  fg-float">
                                         <div class="fg-line" >
-                                            <textarea  rows="3" name="reason" class="form-control"  ng-model="controller.debt.reason" required></textarea>
+                                            <textarea  rows="3" name="reason" class="form-control"  maxlength="100"  ng-model="controller.debt.reason" required></textarea>
                                         </div>
                                         <label class="fg-label">债务成因<span class="inputflag">*</span></label>
                                     </div>
                                     <div class="form-group  fg-float">
                                         <div class="fg-line" >
-                                            <textarea rows="3" class="form-control" ng-model="controller.debt.descript"></textarea>
+                                            <textarea rows="3" class="form-control" ng-model="controller.debt.descript" maxlength="100"></textarea>
                                         </div>
                                         <label class="fg-label">其他</label>
                                     </div>
