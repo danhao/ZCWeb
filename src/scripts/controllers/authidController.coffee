@@ -8,7 +8,7 @@ class AuthidController
 			@ajaxService.post @actionCode.GET_USER, {id: pid}
 			.success (result) =>
 				if result.type==0
-					$scope.issubmit = (result.status&4)==4 or result.userId!=''
+					$scope.issubmit = (result.status&4)==4 or result.idValidating==1
 					$scope.isverifypass = (result.status&4)==4
 				@userinfo = result
 			.error (error) =>

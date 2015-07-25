@@ -8,7 +8,7 @@ class AuthcompanyController
 			@ajaxService.post @actionCode.GET_USER, {id: pid}
 			.success (result) =>
 				if result.type==1
-					$scope.issubmit = (result.status&8)==8 or result.userId!=''
+					$scope.issubmit = (result.status&8)==8 or result.coValidating==1
 					$scope.isverifypass = (result.status&8)==8
 
 				$log.log result
