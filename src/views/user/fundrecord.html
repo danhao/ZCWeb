@@ -47,10 +47,13 @@
                         <th width="100px">
                             类别
                         </th>
-                        <th width="150px">
+                        <th width="120px">
                             操作金额（元）
                         </th>
-                        <th width="120px">
+                        <th width="150px">
+                            余额（元）
+                        </th>
+                        <th width="150px">
                             操作时间
                         </th>
                         <th width="100px">
@@ -71,8 +74,11 @@
                         <td>
                             {{ fund.money | ccurrency}}
                         </td>
+                        <td>
+                            {{ fund.balance | ccurrency}}
+                        </td>
                         <td >
-                            {{fund.time | idate }}
+                            {{fund.time | iwholedate }}
                         </td>
                         <td>
                             {{fund.state | moneyHistoryState}}
