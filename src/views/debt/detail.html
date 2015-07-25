@@ -151,7 +151,9 @@
                             <div class="lv-item text-center" ng-hide="ctrl.debt.bidders.length"> 暂无记录 </div>
                             <div class="lv-item media" ng-repeat="bidder in ctrl.debt.bidders">
                                 <div class="pull-left">
-                                    <img class="lv-img-sm" alt="" src="images/profile-pics/1.jpg"/>
+                                    <a  href="javascript:;" ui-sref="site.profile.profile({Id: '{{bidder.id}}'})">
+                                         <img class="lv-img-sm" alt="" src="images/profile-pics/1.jpg"/>
+                                    </a>
                                 </div>
                                 <div class="media-body">
                                     <div class="lv-title">{{ bidder.name }} <span class="m-l-10 c-gray"><i class="zmdi zmdi-time"></i>&nbsp; {{bidder.createTime | idate}}</span> </div>
