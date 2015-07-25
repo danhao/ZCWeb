@@ -3,13 +3,13 @@ class UserController
 
 		@ajaxService.post actionCode.GET_USER,null
 		.success (result)->
-			$log.log result
+#			$log.log result
 			setInputValue(result)
 			$scope.ismobile=result.mobile!='' ? true:false
 			$scope.isemail=result.email!='' ? true:false
 		.error (error)->
-			growlService.growl(error, 'danger')
-			$log.log error
+			growlService.growl(error.desc, 'danger')
+#			$log.log error
 
 		setInputValue=(userinfo)=>
 			@user=userinfo
@@ -43,7 +43,7 @@ class UserController
 				$scope.isemail=true
 				growlService.growl('用户信息更新成功!', 'success')
 			.error (error) ->
-				$log.log error
+#				$log.log error
 				msg = utilService.geterrormsg(error)
 				growlService.growl(msg, 'danger')
 

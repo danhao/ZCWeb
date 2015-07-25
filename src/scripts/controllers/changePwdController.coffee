@@ -73,12 +73,12 @@ class ChangePwdController
 					mobile:$scope.mobile
 					code:$scope.code
 					passwd:passwd
-			$log.log data
+#			$log.log data
 			@newPasswd=angular.copy(null)
 			@repeatPassword=angular.copy(null)
 			@ajaxService.post actionCode.ACTION_CHANGE_PWD_THREE, data
 			.success (results) ->
-				$log.log results
+#				$log.log results
 				growlService.growl('密码修改成功!', 'success')
 #				$state.go "site.login({type:1})"
 			.error (error) ->

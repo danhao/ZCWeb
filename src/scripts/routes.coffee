@@ -51,6 +51,16 @@ class Config
 				url: ''
 				templateUrl: 'views/user/index.html'
 
+
+			.state 'site.profile',
+				url: ''
+				abstract: true
+				templateUrl: 'views/member.base.html'
+
+			.state 'site.profile.profile',
+				url: 'profile/:Id'
+				templateUrl: 'views/user/profile.html'
+
 			# 我的发布
 			.state 'site.member.issued',
 				url: 'issued'

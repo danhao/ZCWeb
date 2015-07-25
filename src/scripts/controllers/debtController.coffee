@@ -54,7 +54,7 @@ class DebtController
 			if debt.files isnt undefined && (typeof debt.files)=='string'
 				debt.files = splitfiles(debt.files)
 
-			$log.log debt
+#			$log.log debt
 #			return
 			@ajaxService.post actionCode.CREATE_DEBT, debt
 			.success (results) ->
