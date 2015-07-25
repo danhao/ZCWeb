@@ -24,14 +24,14 @@
                                             </div>
                                             <div class="form-group fg-float" moneystyle ng-show="controller.debt.type ==2">
                                                 <div class="fg-line" >
-                                                    <input type="text" moneystyle name="price" ng-model="controller.debt.price"  class="form-control"
+                                                    <input type="text" moneystyle name="price" ng-model="controller.debt.price"  class="form-control" ng-blur="controller.checkprice(controller.debt.money,controller.debt.price)"
                                                            maxlength="9" ng-required="controller.debt.type==2">
                                                 </div>
                                                 <label class="fg-label">起拍价格(单位:元)<span class="inputflag">*</span></label>
                                             </div>
                                             <div class="form-group fg-float" moneystyle ng-show="controller.debt.type ==2">
                                                 <div class="fg-line" >
-                                                    <input type="text" moneystyle name="bidIncrease"  ng-model="controller.debt.bidIncrease"  class="form-control"
+                                                    <input type="text" moneystyle name="bidIncrease"  ng-model="controller.debt.bidIncrease"  class="form-control" ng-blur="controller.checkbidIncrease(controller.debt.money,controller.debt.price,controller.debt.bidIncrease)"
                                                            maxlength="9"  ng-required="controller.debt.type==2">
                                                 </div>
                                                 <label class="fg-label">加价幅度(单位:元)<span class="inputflag">*</span></label>

@@ -14,6 +14,18 @@ class DebtController
 			$scope.step1 = !$scope.step1
 			$scope.step2 = !$scope.step2
 
+		@checkprice =(money,price)->
+			if money!=undefined  and price!=undefined and parseInt(price)>=parseInt(money)
+				@debt.price=""
+				growlService.growl("起拍价格应小于债务总金额！", 'warning')
+
+		@checkbidIncrease =(money,price,bidIncrease)->
+			$log.log money
+			$log.log price
+			if money!=undefined  and price!=undefined and bidIncrease!=undefined and  parseInt(price)+parseInt(bidIncrease)>=parseInt(money)
+				@debt.bidIncrease=""
+				growlService.growl("加价幅度+起拍价格应小于债务总金额！", 'warning')
+
 		@saveEntity = (@debt)->
 			if debt.creditorIdFile is undefined
 				growlService.growl("请上传债权人身份证图片！", 'danger')
