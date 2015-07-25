@@ -14,7 +14,8 @@ var uploader=angular.module('app')
                 restrict: 'AEC',
                 scope: {
                     modelField: '=',
-                    formField: '@formField'
+                    formField: '@formField',
+                    amount: '='
                 }, 
 	            templateUrl:'/views/directives/ngUploader.html',
 	            link: function($scope, element, attrs) {
@@ -35,6 +36,7 @@ var uploader=angular.module('app')
 
                     var pid = uploaderFactory.pid;
                     var input = element.find("input");
+                    
 	                element.bind("change", function(e) {
                         var target = e.target;
                         if(target.tagName == "INPUT" && target.type == "file") {
@@ -52,11 +54,18 @@ var uploader=angular.module('app')
 				                    total:$scope.getSize(files[i].size)
 			                    });
 		                    }
+
 		                    $scope.$apply();
-                            
 			                $scope.startUpload();
                         }
 	                });
+
+                    element.bind("click", function(e) {
+                        if($scope.amount && $scope.amount != -1 && $scope.fileList.length >= $scope.amount) {
+                            e.preventDefault();
+                        }
+                    });
+                    
 	                $scope.erase=function(ele){
 		                // $log.info("file erased=");
 		                $scope.fileList.splice( $scope.fileList.indexOf(ele), 1 );
