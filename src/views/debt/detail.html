@@ -56,7 +56,7 @@
     <div class="pm-overview c-overflow" style="overflow: hidden;" tabindex="26">
         <div class="debt-overview ">
             <div class="debt-price bgm-orange">
-                <h1>{{ctrl.debt.money | ccurrency}} </h1>
+                <h1>{{ctrl.debt.money | ccurrency}} </h1> <!--{{ctrl.debt.money | ccurrency}}-->
                 <div class="dropdown pmop-message" ng-show="showBidButton">
                     <button class="btn bgm-white btn-float z-depth-1 waves-effect" ng-click="ctrl.bid()" aria-expanded="false">
                         <i class="zmdi zmdi-mail-send"></i>
@@ -72,7 +72,6 @@
             <ul>
                 <li> <i class="zmdi zmdi-label"></i>{{ctrl.debt.id}} </li>
                 <li> <i class="zmdi zmdi-time"></i>发布于{{ctrl.debt.publishTime | idate }} </li>
-                <li> <i class="zmdi zmdi-pin"></i>{{ctrl.user.address}} </li>
                 <li> <i class="zmdi zmdi-time-countdown"></i>期限{{ctrl.debt.duration}}天  逾期{{ctrl.debt.debtExpireTime | upToNow}}</li>
                 <li> <i class="zmdi zmdi-file-text"></i>{{ctrl.debt.type | debtType}}</li>
                 <li ng-show="ctrl.debt.type==2"> <i class="zmdi zmdi-card" ></i>{{ctrl.debt.price | ccurrency}}起拍 每次加价{{ctrl.debt.bidIncrease | ccurrency}}</li>
@@ -118,6 +117,7 @@
                     
                     <div class="lightbox row c-item">
                         
+                        <!-- 
                         <div class="col-md-3 col-sm-4 col-xs-6" data-src="{{ctrl.debt.creditorIdFile.url | trustUrl}}" ng-show="ctrl.debt.creditorIdFile.url">
                             <div class="lightbox-item p-item">
                                 <img alt="" ng-src="{{ctrl.debt.creditorIdFile.url}}"/>
@@ -126,17 +126,17 @@
                                 <strong>债务人身份证</strong>
                             </div>
                         </div>
+                        -->
 
-                        <!-- 
-                        <div class="col-md-3 col-sm-4 col-xs-6" data-src="{{file.url | trustUrl}}" ng-repeat="file in ctrl.debt.files">
+                        <div class="col-md-3 col-sm-4 col-xs-6" ng-repeat="file in ctrl.debt.files" data-src="{{file.url | trustUrl}}" >
                             <div class="lightbox-item p-item">
-                                <img alt="" src="{{file.url}}"/>
+                                <img alt="" ng-src="{{file.url}}"/>
                             </div>
                             <div class="c-info text-center">
                                 <strong>{{file.name}}</strong>
                             </div>
                         </div>
-                         -->
+                        
                     </div>
                     
                 </div>
@@ -356,7 +356,7 @@
                             </div>
                             <span class="help-block" ng-show="bidForm.price.$error.required && bidForm.price.$dirty">需要必填</span>
                             <span class="help-block" ng-show="bidForm.price.$error.number && bidForm.price.$dirty">请输入合法的数字</span>
-                            <span class="help-block" ng-show="bidForm.price.$error.agent && bidForm.price.$dirty"> 代理费率必须为0-100之间 </span>
+                            <span class="help-block" ng-show="bidForm.price.$error.agent && bidForm.price.$dirty"> 代理费率必须为10-100之间 </span>
                             <span class="help-block" ng-show="bidForm.price.$error.assign && bidForm.price.$dirty">价格必须高出最高价或起拍价加上加价幅度 </span>
                             <span class="help-block error" ng-show="error" >{{error}}</span>
                         </div>

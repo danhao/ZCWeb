@@ -52,7 +52,7 @@ class DebtDetailController
 		# 代理, 费率
 		@$scope.agentLegalCheck = (price) =>
 			if @debt.type == 1	# 费率
-				0 <= price <= 100
+				10 <= price <= 100
 			else
 				true
 
@@ -103,7 +103,6 @@ class DebtDetailController
 		@ajaxService.post @actionCode.VIEW_DEBT, {param: @$stateParams.debtId}
 			.success (result) =>
 				@debt = result
-				# @$log.log 'debtDetailController: debt.type='+@debt.type
 				@init_page_var()
 				@init_dialog()
 			.error (error) ->
