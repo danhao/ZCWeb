@@ -1,7 +1,7 @@
 
 <header id="header" data-ng-include src="'includes/header-nologin.html'"></header>
 
-<div class="container m-t-30">
+<div class="container m-t-30" ng-controller="registerSuccessController as ctrl">
     <div class="block-header">
         <h2>注册成功</h2>
     </div>
@@ -11,10 +11,20 @@
         </div>
         <div class="card-body card-padding">
             <p>注册已完成。</p>
-            <p>你尚未通过身份认证，你需要进行<a ui-sref="site.member.auth"><u>身份认证</u></a>才可以发布委
-            托需求 <br />
-            你也可以到<a ui-sref="site.debt.list"><u>大厅</u></a>查看委托需求和催收精英团队。<br />
-            你也可以到<a ui-sref="site.member.index"><u>个人中心</u></a>完善你的个人详细资料。
+            <p ng-hide="ctrl.user.email">
+                你尚未通过身份认证，你需要进行<a ui-sref="site.member.auth"><u>身份认证</u></a>才可以发布委 托需求 
+            </p>
+            <p ng-show="ctrl.user.email">
+                我们已经向您的邮箱发送了一封确认邮件，您可以到您的邮箱进行确认，完成身份认证。
+            </p>
+            <p>
+                你也可以到<a ui-sref="site.debt.list"><u>大厅</u></a>查看委托需求和催收精英团队。
+            </p>
+            <p>
+                你也可以到<a ui-sref="site.member.index"><u>个人中心</u></a>完善你的个人详细资料。
+            </p>
+            <p>
+                <span>{{ctrl.countdown}}</span>秒后，将自动跳转到个人中心。
             </p>
         </div>
     </div>

@@ -58,7 +58,7 @@ ErrorCode =
 	103:
 		code: 103
 		name: "ERR_NO_PLAYER"
-		desc: "不存在"
+		desc: "用户不存在或密码错误"
 	104:
 		code: 104
 		name: "ERR_EMAIL_EXIST"
