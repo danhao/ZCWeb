@@ -11,7 +11,7 @@ class AuthcompanyController
 					$scope.issubmit = (result.status&8)==8 or result.coValidating==1
 					$scope.isverifypass = (result.status&8)==8
 
-				$log.log result
+#				$log.log result
 				@user = result
 			.error (error) =>
 				growlService.growl(error, 'danger')
@@ -27,7 +27,7 @@ class AuthcompanyController
 			authcompany.businessLicenceFile = splitfiles(authcompany.businessLicenceFile,"工商营业执照")
 			authcompany.taxNumberFile= splitfiles(authcompany.taxNumberFile,"税务登记证")
 			authcompany.coValidating=1
-			$log.log authcompany
+#			$log.log authcompany
 #			return
 			@ajaxService.post actionCode.ACTION_UPDATE_USER, authcompany
 			.success (results) ->
