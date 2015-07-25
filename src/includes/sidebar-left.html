@@ -38,7 +38,7 @@
         <li>
             <a data-ui-sref="site.debt.list" data-ng-click="mactrl.sidebarStat($event)"><i class="zmdi zmdi-view-list"></i> 债务列表</a>
         </li>
-        
+        <!-- 
         <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('widgets') }">
             <a href="" toggle-submenu><i class="zmdi zmdi-settings"></i> 基本设置</a>
             <ul>
@@ -48,6 +48,7 @@
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.notifySetting" data-ng-click="mactrl.sidebarStat($event)">消息推送</a></li>
             </ul>
         </li>
+         -->
         <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('widgets') }">
             <a href="" toggle-submenu><i class="zmdi zmdi-book"></i> 我的债权</a>
             <ul>
@@ -68,8 +69,10 @@
         <li data-ui-sref-active="active">
             <a data-ui-sref="typography" data-ng-click="mactrl.sidebarStat($event)"><i class="zmdi zmdi-format-underlined"></i>关于我们</a>
         </li>
+        <!-- 
         <li>
             <a href="javascript:;" ng-click="sbctrl.logout();mactrl.sidebarStat($event);"><i class="zmdi zmdi-time-restore"></i> 退出登陆</a>
         </li>
+         -->
     </ul>
 </div>

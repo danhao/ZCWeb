@@ -46,8 +46,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="money">金额</label>
-                        <div class="col-sm-10 control-slider" ng-init="ctrl.setting.money.from=5; ctrl.setting.money.to=40">
+                        <label class="col-sm-2 control-label" for="money">金额(万元)</label>
+                        <div class="col-sm-10 control-slider" ng-init="ctrl.setting.money.from=0; ctrl.setting.money.to=10">
                             <input type="text" class="slider-addon left form-control" ng-model="ctrl.setting.money.from"/>
                             <input type="text" class="slider-addon right form-control" ng-model="ctrl.setting.money.to"/>
                             <div slider class="input-slider-range" ng-from="ctrl.setting.money.from" ng-to="ctrl.setting.money.to" start=0 end=100 step=5 ></div>

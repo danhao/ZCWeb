@@ -146,11 +146,21 @@
                 </div>
             </li>
              -->
-            <li class="dropdown">
+            <li class="dropdown" ng-controller="headerController as hectrl">
                 <a data-toggle="dropdown" class="tm-settings" href=""></a>
                 <ul class="dropdown-menu dm-icon pull-right">
+                    
+                    <li><a data-ui-sref="site.member.userinfo"><i class="zmdi zmdi-account"></i> 个人信息</a></li>
+                    <li><a data-ui-sref="site.member.userpwd"><i class="zmdi zmdi-male"></i> 修改密码</a></li>
+                    <li><a data-ui-sref="site.member.auth"><i class="zmdi zmdi-shield-security"></i> 身份验证</a></li>
+                    <li><a data-ui-sref="site.member.notifySetting"><i class="zmdi zmdi-settings"></i> 设置</a></li>
+                    
+                    <li role="separator" class="divider"></li>
                     <li>
-                        <a data-ng-click="hctrl.fullScreen()" href=""><i class="zmdi zmdi-fullscreen"></i> Toggle Fullscreen</a>
+                        <a data-ng-click="hctrl.fullScreen()" href=""><i class="zmdi zmdi-fullscreen"></i> 全屏</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="hectrl.logout()" href=""><i class="zmdi zmdi-time-restore"></i> 退出登陆</a>
                     </li>
                     <!-- 
                     <li>

@@ -352,7 +352,7 @@
                                 <div class="fg-line">
                                     <input type="number" class="form-control" id="price" name="price" ng-model="price" placeholder="" required ui-validate="{agent:'agentLegalCheck($value)', assign:'assignLegalCheck($value)'}"/>
                                 </div>
-                                <span class="input-group-addon last fg-lineheight">{{ debtType == 1? "%": "元" }}</span>
+                                <span class="input-group-addon last fg-lineheight">{{ debtType == 1? "% &nbsp;&nbsp; (代理费率应大于10%)": "元" }}</span>
                             </div>
                             <span class="help-block" ng-show="bidForm.price.$error.required && bidForm.price.$dirty">需要必填</span>
                             <span class="help-block" ng-show="bidForm.price.$error.number && bidForm.price.$dirty">请输入合法的数字</span>
