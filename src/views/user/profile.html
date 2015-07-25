@@ -10,17 +10,18 @@
                                     <img src="../images/profile-pics/1.jpg"  width="80" class="pv-main" alt="">
                                 </div>
                                 <div class="pv-body">
-                                    <h2>资深催收专员 ：test</h2><br/>
-                                    <large class="lv-small">信誉指数：<rating ng-model="ctrl.rating" readonly="true"></rating></large> &nbsp;回款率：90%<br/>
-                                    <large class="lv-small">地址：广东深圳</large><br/>
+                                    <h2>资深催收专员 ：{{ctrl.UserInfo.name}}</h2><br/>
+                                    <large class="lv-small">信誉指数：<rating ng-model="ctrl.UserInfo.rating" readonly="true"></rating></large> <br/>
+                                    <large class="lv-small">地址：{{ctrl.UserInfo.address}}</large><br/>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="card blog-post" style="text-align: left">
                                                 <div class="card-header bgm-lightblue">
-                                                        <h2>催收经历</h2>
+                                                        <h2>个人介绍</h2>
                                                 </div>
                                                 <div class="p-20">
-                                                    按照催收策略，对信用卡账户进行司法、电话和上门催收，及时回收欠款；对涉嫌欺诈的账户进行实地调查，协助卡中心及时对涉嫌欺诈的账进行判定,按照催收策略，对信用卡账户进行司法、电话和上门催收，及时回收欠款；对涉嫌欺诈的账户进行实地调查，协助卡中心及时对涉嫌欺诈的账进行判定                                        </div>
+                                                    {{ctrl.UserInfo.descript}}
+                                                 </div>
                                             </div>
                                         </div>
                                     </div>
