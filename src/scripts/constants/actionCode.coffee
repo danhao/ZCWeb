@@ -17,6 +17,7 @@ ActionCode = # do () ->
 	ACTION_CHANGE_PWD_ONE: 9    #重置密码第一步
 	ACTION_CHANGE_PWD_TWO:10		#重置密码第二步
 	ACTION_CHANGE_PWD_THREE:11 	#重置密码第三步
+	ACTION_GET_OTHER:12 #查看他人(common.SingleMsg---->player.SimplePlayerMsg)
 	ACTION_LIST_MONEY_HISTORY:13 #查看资金使用情况(player.ListMoneyHistoryReq---->player.ListMoneyHistoryRsp)
 	ACTION_LIST_SITUAION : 14 		#查看动态(null---->player.ListSituationRsp)
 	UPLOAD_PREPARE			: 51	# 准备上传文件

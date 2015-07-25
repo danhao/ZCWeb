@@ -22,7 +22,7 @@ class AuthidController
 				authid.noneCrimeFile= splitfiles(authid.noneCrimeFile,"无犯罪记录证明")
 			if authid.creditFile isnt undefined
 				authid.creditFile= splitfiles(authid.creditFile,"个人征信报告")
-
+			authid.idValidating=1
 			$log.log authid
 			@ajaxService.post actionCode.ACTION_UPDATE_USER, authid
 			.success (results) ->

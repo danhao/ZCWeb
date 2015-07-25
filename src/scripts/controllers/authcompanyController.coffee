@@ -26,6 +26,7 @@ class AuthcompanyController
 			authcompany.organizationCodeFile= splitfiles(authcompany.organizationCodeFile,"组织机构代码证")
 			authcompany.businessLicenceFile = splitfiles(authcompany.businessLicenceFile,"工商营业执照")
 			authcompany.taxNumberFile= splitfiles(authcompany.taxNumberFile,"税务登记证")
+			authid.coValidating=1
 			$log.log authcompany
 #			return
 			@ajaxService.post actionCode.ACTION_UPDATE_USER, authcompany
