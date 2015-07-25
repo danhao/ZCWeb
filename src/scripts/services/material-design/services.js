@@ -39,7 +39,7 @@ angular.module('app')
                     from: 'top',
                     align: 'right'
                 },
-                delay: 2500,
+                delay: 5000,    // delay: 2500,
                 animate: {
                         enter: 'animated bounceIn',
                         exit: 'animated bounceOut'

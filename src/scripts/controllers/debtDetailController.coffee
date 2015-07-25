@@ -46,7 +46,8 @@ class DebtDetailController
 			@$scope.datePicker.opened = true
 
 	init_dialog: ->
-		@$scope.deposit = Math.round(@debt.money * 0.1)
+		# 保证金: 10%, 500封顶
+		@$scope.deposit = Math.min(Math.round(@debt.money * 0.1), 500*100)
 		@$scope.debtType = @debt.type
 		
 		# 代理, 费率
@@ -115,7 +116,7 @@ class DebtDetailController
 	bid: ->
 		if @debt.state >= DEBT_STATE.DEAL # 只有未成交的单允许竞标
 			return
-		if @user.money < @debt.money * 0.1
+		if @user.money < @$scope.deposit
 			@openRechargeModal()
 			return
 		if @$scope.isBidded
