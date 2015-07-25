@@ -54,7 +54,7 @@ var uploader=angular.module('app')
 				                    total:$scope.getSize(files[i].size)
 			                    });
 		                    }
-
+                            
 		                    $scope.$apply();
 			                $scope.startUpload();
                         }
@@ -99,13 +99,14 @@ var uploader=angular.module('app')
 		                // $scope.concurrency=($scope.concurrency==undefined)?2:$scope.concurrency;
                         
 		                for(var i in $scope.fileList){		  
-			                if ($scope.activeUploads == $scope.concurrency) {
-                                break;
-                            }
+			                // if ($scope.activeUploads == $scope.concurrency) {
+                            //     break;
+                            // }
 			                
 			                if($scope.fileList[i].active)
 				                continue;
 			                // $scope.ajaxUpload($scope.fileList[i]);
+
                             transportFun($scope.fileList[i]);
 			                
 		                }
@@ -225,7 +226,7 @@ var uploader=angular.module('app')
                         $timeout(function() {
                             angular.element(document.getElementById(formName)).remove();
                             angular.element(document.getElementById(iframeName)).remove();
-                            $log.log("remove "+formName+", "+iframeName);
+                            // $log.log("remove "+formName+", "+iframeName);
                         }, 3000);
                     };
 
@@ -271,9 +272,9 @@ var uploader=angular.module('app')
                             enctype: 'multipart/form-data',
                             encoding: 'multipart/form-data' // old IE
                         });
-                        
+
                         iframe.on('load', function() {
-                            $log.log("iframe load");
+                            // $log.log("iframe load");
                             try {
                                 var html = iframe[0].contentDocument.body.innerHTML;
                             } catch(e) {}
@@ -297,15 +298,13 @@ var uploader=angular.module('app')
                             $scope.onCompleted(upload, response);
                         };
 
+                        /*
                         var clone = input.clone(true);
-
                         input.after(clone);
-                        
-                        // remove previous input
-                        // var inputs = form.find("input[type='file']");
-                        // if(inputs.length > 0) {
-                        //     inputs.remove();
-                        // }
+                         */
+
+                        var clone = $('<input>',{type:input.attr('type'), name:input.attr('name'), class:input.attr('class')});
+                        input.after(clone);
                         
                         form.append(input);
                         form.find("input[name='key']").val(upload.key);
@@ -313,6 +312,7 @@ var uploader=angular.module('app')
                         // angular.element(document.body).append(form).append(iframe);
                         element.append(form).append(iframe);
 
+                        input = clone;
                         
                         $scope.activeUploads+=1;
 			            upload.active=true;
@@ -322,6 +322,7 @@ var uploader=angular.module('app')
                         
                         // 回传文件名
                         $scope.updateCallbackValue();
+
                     };
 		            
 	            }
