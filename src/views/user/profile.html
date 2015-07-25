@@ -1,0 +1,35 @@
+<section  class="page-view ng-scope" data-ui-view="">
+    <div class="container ng-scope">
+        <div class="card" ng-controller="memberIndexController as ctrl">
+            <div class="card-body card-padding">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card animation-demo">
+                            <div class="card profile-view">
+                                <div class="pv-header">
+                                    <img src="../images/profile-pics/1.jpg"  width="80" class="pv-main" alt="">
+                                </div>
+                                <div class="pv-body">
+                                    <h2>资深催收专员 ：{{ctrl.user.name}}</h2><br/>
+                                    <large class="lv-small">信誉指数：<rating ng-model="ctrl.rating" readonly="true"></rating></large> &nbsp;回款率：90%<br/>
+                                    <large class="lv-small">地址：广东深圳</large><br/>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="card blog-post" style="text-align: left">
+                                                <div class="card-header bgm-lightblue">
+                                                        <h2>催收经历</h2>
+                                                </div>
+                                                <div class="p-20">
+                                                    按照催收策略，对信用卡账户进行司法、电话和上门催收，及时回收欠款；对涉嫌欺诈的账户进行实地调查，协助卡中心及时对涉嫌欺诈的账进行判定,按照催收策略，对信用卡账户进行司法、电话和上门催收，及时回收欠款；对涉嫌欺诈的账户进行实地调查，协助卡中心及时对涉嫌欺诈的账进行判定                                        </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
