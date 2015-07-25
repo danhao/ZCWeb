@@ -19,7 +19,7 @@
 
                                         <!--<div class="col-sm-12">-->
                                             <div class="fg-line" >
-                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.companyName" name="companyName"
+                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.companyName" name="companyName" maxlength="30"
                                                       required>
                                             </div>
                                             <label class="fg-label">企业名称<span class="inputflag">*</span></label>
@@ -31,7 +31,7 @@
 
                                         <!--<div class="col-sm-12">-->
                                             <div class="fg-line" >
-                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.artificialPerson" name="artificialPerson"
+                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.artificialPerson" name="artificialPerson" maxlength="20"
                                                         required>
                                             </div>
                                         <label class="fg-label">法人代表<span class="inputflag">*</span></label>
@@ -43,7 +43,7 @@
 
                                         <!--<div class="col-sm-12">-->
                                             <div class="fg-line" >
-                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.userId" name="userId"
+                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.userId" name="userId" maxlength="30"
                                                        required>
                                             </div>
                                         <label class="fg-label">组织机构代码<span class="inputflag">*</span></label>
@@ -54,7 +54,7 @@
                                         <!--<label class="col-sm-3 control-label">公司执照注册号<span class="inputflag">*</span></label>-->
                                         <!--<div class="col-sm-12">-->
                                             <div class="fg-line" >
-                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.businessLicence" name="businessLicence"
+                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.businessLicence" name="businessLicence" maxlength="30"
                                                         required>
                                             </div>
                                         <label class="fg-label">公司执照注册号<span class="inputflag">*</span></label>
@@ -66,7 +66,7 @@
 
                                         <!--<div class="col-sm-12">-->
                                             <div class="fg-line" >
-                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.taxNumber" name="taxNumber"
+                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.taxNumber" name="taxNumber" maxlength="30"
                                                         required>
                                             </div>
                                         <label class="fg-label">税务登记号<span class="inputflag">*</span></label>
@@ -78,7 +78,7 @@
 
                                         <!--<div class="col-sm-12">-->
                                             <div class="fg-line" >
-                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.accountPermit" name="accountPermit"
+                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.accountPermit" name="accountPermit" maxlength="30"
                                                        required>
                                             </div>
                                         <label class="fg-label">开户许可证核准号<span class="inputflag">*</span></label>
@@ -101,7 +101,7 @@
 
                                         <!--<div class="col-sm-12">-->
                                             <div class="fg-line" >
-                                                <input data-dt-picker type="text" name="foundtime" class="form-control"  ng-model="ctrl.authcompany.foundTime"
+                                                <input data-dt-picker type="text" name="foundtime" class="form-control"  ng-model="ctrl.authcompany.foundTime" maxlength="10"
                                                        data-format="YYYY/MM/DD"  required/>
                                             </div>
                                         <label class="fg-label">成立时间<span class="inputflag">*</span></label>
@@ -112,7 +112,7 @@
 
                                         <!--<div class="col-sm-12">-->
                                             <div class="fg-line" >
-                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.businessScope" name="businessScope"
+                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.businessScope" name="businessScope" maxlength="200"
                                                        multiple required>
                                             </div>
                                         <label class="fg-label">经营范围<span class="inputflag">*</span></label>
@@ -122,7 +122,7 @@
                                         <!--<label class="col-sm-3 control-label">企业注册地址<span class="inputflag">*</span></label>-->
                                         <!--<div class="col-sm-12">-->
                                             <div class="fg-line" >
-                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.companyAddress" name="companyAddress"
+                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.companyAddress" name="companyAddress" maxlength="100"
                                                        required>
                                             </div>
                                         <label class="fg-label">企业注册地址<span class="inputflag">*</span></label>
@@ -132,7 +132,7 @@
                                         <!--<label class="col-sm-3 control-label">企业经营地址<span class="inputflag">*</span></label>-->
                                         <!--<div class="col-sm-12">-->
                                             <div class="fg-line" >
-                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.businessAddress" name="businessAddress"
+                                                <input type="text"   class="form-control" ng-model="ctrl.authcompany.businessAddress" name="businessAddress" maxlength="100"
                                                        required>
                                             </div>
                                         <label class="fg-label">企业经营地址<span class="inputflag">*</span></label>
@@ -183,7 +183,7 @@
                                     <h2>企业证件图片</h2>
                                 </div>
                                 <div class="card-body card-padding">
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-bottom: 5px;">
                                         <!--<label class="col-sm-3 control-label">法定代表人身份证照片<span class="inputflag">*</span></label>-->
 
                                         <!--<div class="col-sm-12">-->
@@ -191,7 +191,7 @@
                                             <input type="hidden" id="idFile"  />
                                         <!--</div>-->
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-bottom: 5px;">
                                         <!--<label class="col-sm-3 control-label">开户许可证<span class="inputflag">*</span></label>-->
 
                                         <!--<div class="col-sm-9">-->
@@ -199,26 +199,26 @@
                                             <input type="hidden" id="accountPermitFile" />
                                         <!--</div>-->
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-bottom: 5px;">
                                         <!--<label class="col-sm-3 control-label">组织机构代码证<span class="inputflag">*</span></label>-->
                                         <!--<div class="col-sm-9">-->
                                             <div ng-uploader data-form-field="organizationCodeFile" data-model-field="ctrl.authcompany.organizationCodeFile" dat-form-title="组织机构代码证"></div>
                                             <input type="hidden" id="organizationCodeFile"  />
                                         <!--</div>-->
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-bottom: 5px;">
                                         <!--<label class="col-sm-3 control-label">工商营业执照<span class="inputflag">*</span></label>-->
                                         <!--<div class="col-sm-9">-->
                                             <div ng-uploader data-form-field="businessLicenceFile" data-model-field="ctrl.authcompany.businessLicenceFile" dat-form-title="工商营业执照"></div>
                                             <input type="hidden" id="businessLicenceFile"  />
                                         <!--</div>-->
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-bottom: 5px;">
                                         <!--<label class="col-sm-3 control-label">税务登记证<span class="inputflag">*</span></label>-->
                                         <!--<div class="col-sm-9">-->
                                             <div ng-uploader data-form-field="taxNumberFile" data-model-field="ctrl.authcompany.taxNumberFile" dat-form-title="税务登记证"></div>
                                             <input type="hidden" id="taxNumberFile" />
-                                            <span style="color: red">注: 建议尺寸360x420像素，每张大小不要超过2M</span>
+                                            <!--<span style="color: red">注: 建议尺寸360x420像素，每张大小不要超过2M</span>-->
                                         <!--</div>-->
                                     </div>
 
