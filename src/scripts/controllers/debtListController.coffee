@@ -15,6 +15,8 @@ class DebtListController
 
 		@page_a = 1
 		@page_t = 1
+		@loadMore_a = true
+		@loadMore_t = true
 		@$scope.agentlist = []
 		@$scope.transferlist = []
 
@@ -30,9 +32,12 @@ class DebtListController
 			datajson=angular.toJson data
 			ajaxService.post actionCode.LIST_DEBTS, data
 			.success (results) =>
-				@$scope.agentlist = @$scope.agentlist.concat results.debt
+				if results.debt?
+					@$scope.agentlist = @$scope.agentlist.concat results.debt
+				else
+					@loadMore_a = false
 			.error (error) =>
-				$log.log error
+				@$log.log error
 
 		@agentlist()
 
@@ -47,9 +52,12 @@ class DebtListController
 			data +='}'
 			ajaxService.post actionCode.LIST_DEBTS, data
 			.success (results) =>
-				@$scope.transferlist = @$scope.transferlist.concat results.debt
+				if results.debt?
+					@$scope.transferlist = @$scope.transferlist.concat results.debt
+				else
+					@loadMore_t = false
 			.error (error) =>
-				$log.log error
+				@$log.log error
 				
 		@transferlist()
 
@@ -104,10 +112,10 @@ class DebtListController
 
 	loadMore: () =>
 		# @$log.log 'load more...'
-		if @tab == 1
+		if @tab is 1 and @loadMore_a
 			@page_a++
 			@agentlist()
-		else
+		else if @tab is 2 and @loadMore_b
 			@page_t++
 			@transferlist()
 		
