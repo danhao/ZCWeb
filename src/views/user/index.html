@@ -92,7 +92,7 @@
                                             <div ng-repeat="situation in situationlist">
                                                 <li class="list-group-item">
                                                     <span class="badge">{{situation.time | idate}}</span>
-                                                    {{situation.content}}
+                                                    <a ui-sref="site.debt.detail({debtId: '{{situation.data[1]}}'})" href="javascript:;" >债务类型：{{situation.data[0] | debtType}} 总金额：{{situation.data[3]}} 元 </a>
                                                 </li>
                                             </div>
                                         </ul>
