@@ -27,7 +27,8 @@ class UserController
 				length=headimg.length
 				postf=headimg.substring(index1,length).toLocaleLowerCase()
 				if imgstring.indexOf(postf)<0
-					growlService.growl("文件格式有误，仅支持支持jpg, jepg, png, gif, bmp格式的图片文件！", 'waring')
+					growlService.growl("文件格式有误，仅支持支持jpg, jepg, png, gif, bmp格式的图片文件！", 'warning')
+					return
 			if $scope.ismobile and $scope.isemail
 				data=
 					userName:user.userName
