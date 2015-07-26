@@ -1,13 +1,21 @@
-<div class="container">
-<div class="card" >
+<div class="container" ng-controller="userController as ctrl" >
+    <div class="card" >
     <header class="card-header">
-        <h2><span class="glyphicon glyphicon-user" ></span> 基本信息</h2>
+        <h2><span class="glyphicon glyphicon-user" ></span> {{ctrl.user.type==0?"基本信息":"企业管理员信息"}}</h2>
     </header>
-    <div ng-controller="userController as ctrl" class="card-body card-padding">
+    <div class="card-body card-padding">
         <form  class="form-horizontal w5c-form" role="form"
                w5c-form-validate="validateOptions" novalidate name="validateForm" >
             <div class="form-group"  >
-                <label  class="col-sm-3 control-label">姓 名</label>
+                <label  class="col-sm-3 control-label">个人头像</label>
+                <div class="col-sm-6 ">
+                    <div ng-uploader data-form-field="head" data-model-field="ctrl.user.head" dat-form-title="个人图像"  data-amount=1></div>
+                    <input type="hidden" id="head"  />
+                    <span style="color: red">注: 支持jpg, jepg, png, gif, bmp格式的图片文件，每张大小不要超过2M</span>
+                </div>
+            </div>
+            <div class="form-group"  >
+                <label  class="col-sm-3 control-label">姓 名<span class="inputflag">*</span></label>
                 <div class="col-sm-6">
                     <!--<div class="fg-line" >-->
                         <input type="text" name="name" ng-model="ctrl.user.userName" class="form-control"
@@ -27,7 +35,7 @@
                 </div>
             </div>
             <div class="form-group"  >
-                <label  class="col-sm-3 control-label">手机号码</label>
+                <label  class="col-sm-3 control-label">手机号码<span class="inputflag">*</span></label>
                 <div class="col-sm-6">
                     <!--<div class="fg-line" >-->
                         <input type="text" name="phone" ng-model="ctrl.user.mobile"  class="form-control"
@@ -36,7 +44,7 @@
                 </div>
             </div>
             <div class="form-group"  >
-                <label  class="col-sm-3 control-label">电子邮件</label>
+                <label  class="col-sm-3 control-label">电子邮件<span class="inputflag">*</span></label>
                 <div class="col-sm-6">
                     <!--<div class="fg-line" >-->
                         <input type="email" name="email" ng-model="ctrl.user.email" class="form-control"
@@ -44,13 +52,29 @@
                     <!--</div>-->
                 </div>
             </div>
+
+            <div class="form-group"  >
+                <label  class="col-sm-3 control-label">公司名称</label>
+                <div class="col-sm-6">
+                    <!--<div class="fg-line" >-->
+                        <input type="text" name="address" ng-model="ctrl.user.companyName"  class="form-control"
+                               placeholder="输入公司名称"  maxlength="100">
+                    <!--</div>-->
+                </div>
+            </div>
             <div class="form-group"  >
                 <label  class="col-sm-3 control-label">联系地址</label>
                 <div class="col-sm-6">
                     <!--<div class="fg-line" >-->
-                        <input type="text" name="address" ng-model="ctrl.user.address"  class="form-control"
-                               placeholder="输入联系地址"  maxlength="100">
+                    <input type="text" name="address" ng-model="ctrl.user.address"  class="form-control"
+                           placeholder="输入联系地址"  maxlength="100">
                     <!--</div>-->
+                </div>
+            </div>
+            <div class="form-group"  >
+                <label  class="col-sm-3 control-label">个人描述</label>
+                <div class="col-sm-6">
+                    <textarea rows="5" class="form-control" ng-model="ctrl.user.descript" maxlength="100"></textarea>
                 </div>
             </div>
             <div class="form-group">
