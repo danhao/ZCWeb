@@ -66,12 +66,12 @@ class Authorization
 					throw new Error("only string or function supported for precondition")
 
 				# redirect function
-				redirect = () =>
+				redirect = (ret) =>
 					if precondition.redirectTo
 						redirectTo = precondition.redirectTo
-						redirectTo = redirectTo() if angular.isFunction(redirectTo)
+						redirectTo = redirectTo(ret) if angular.isFunction(redirectTo)
 					else if @[cond+'Redirect']
-						redirectTo = @[cond+'Redirect']()
+						redirectTo = @[cond+'Redirect'](ret)
 					else # send user back to the original page
 						# redirectTo = @permissionDeniedRedirect()
 						redirectTo = fromState.name
@@ -92,9 +92,9 @@ class Authorization
 							.then ()=>
 								@$rootScope.$broadcast '$stateChangeSuccess', toState, toParams, fromState, fromParams
 					else
-						redirect()
+						redirect(ret)
 				, (e)->
-					redirect()
+					redirect(e)
 
 					
 		@requireLogin = () =>
@@ -107,93 +107,50 @@ class Authorization
 		@permissionDeniedRedirect = () ->
 			"site.permission-denied"
 
-
-		@requireValidate =(type) =>
+		@getUser = (callback) =>
 			defered = @$q.defer()
-			@getUser()
-			.success (user) =>
-				@user = user
-				if type=='detail'
-					if user.type==0
-						identityValidate = (user.status & userStatus.IDENTITY_VALIDATE) > 0
-					else
-						identityValidate = (user.status & userStatus.FIRM_VALIDATE) > 0
-				else
-					identityValidate=false
-				defered.resolve identityValidate
-			.error (error) ->
-				defered.reject false
+			@ajaxService.post @actionCode.GET_USER, {id: @userSession.pid()}
+				.success (user) =>
+					@user = user
+					defered.resolve callback(user)
+				.error (error) ->
+					defered.reject false
 			defered.promise
-
-		@requireIdentityValidate = () =>
-			@requireValidate("detail")
-
-		@requireAuthValidate = () =>
-			@requireValidate()
-
-		@requireCreateDebtValidate = () =>
-			@requireValidate()
-
-		@requireIdentityValidateRedirect = () =>
-			if (!@user.email or !@user.mobile)
-				@gotoUserinfo("您需要先完善基本信息,再进行实名认证,才有权限查看此页面！","site.member.userinfo")
-			else
-				if @user.type==0
-					if @user.userId==""
-						result = @gotoUserinfo("您需要先进行身份认证,才有权限查看此页面！","site.member.authid")
-					else
-						result = @gotoUserinfo("您的认证资料正在审核中,暂时不能查看债权详细信息！","site.member.authids")
-				else
-					if @user.userId==''
-						result = @gotoUserinfo("您需要先进行企业认证,才有权限查看此页面!","site.member.authcompany")
-					else
-						result = @gotoUserinfo("您的认证资料正在审核中,暂时不能查看债权详细信息！","site.member.authcompanys")
-			result
-
-		@requireCreateDebtValidateRedirect = () =>
-			result = ""
-			if (!@user.email or !@user.mobile)
-				result = @gotoUserinfo("您需要先完善基本信息,再验证(手机,邮箱,身份)其中之一,才能发布债权信息！","site.member.userinfo")
-			else if((@user.status&userStatus.EMAIL_VALIDATE)==0 and  (@user.status&userStatus.MOBILE_VALIDATE)==0 and (@user.status&userStatus.IDENTITY_VALIDATE)==0 and (@user.status&userStatus.FIRM_VALIDATE)==0)
-				result = @gotoUserinfo("您需要先验证(手机,邮箱,身份)其中之一,才能发布债权信息！","site.member.index")
-			else
-				result= "site.member.createdebt"
-			result
-
-		@requireAuthValidateRedirect  = () =>
-			result =''
-			if (!@user.email or !@user.mobile)
-				result = @gotoUserinfo("您需要先完善基本信息,才能进行实名认证","site.member.userinfo")
-			else
-				if @user.type==0
-					result = if @user.userId=="" then "site.member.authid" else "site.member.authids"
-				else
-					result = if @user.userId=='' then "site.member.authcompany" else "site.member.authcompanys"
-			result
 
 		@gotoUserinfo = (msg ,state)=>
 			@growlService.growl(msg, 'warning')
 			state
 
+		@requireIdentityValidated = () =>
+			@getUser (user) ->
+				status = user.status
+				status&userStatus.EMAIL_VALIDATE==0 or status&userStatus.MOBILE_VALIDATE==0 or status&userStatus.IDENTITY_VALIDATE==0 or status&userStatus.FIRM_VALIDATE
+
 		@requireHasEmail = () =>
-			defered = @$q.defer()
-			@getUser().success (user) -> defered.resolve !!user.email
-				.error (error) -> defered.reject false
-			defered.promise
+			@getUser (user) ->
+				!!user.email
+			# defered = @$q.defer()
+			# @getUser().success (user) -> defered.resolve !!user.email
+			# 	.error (error) -> defered.reject false
+			# defered.promise
 
 		@requireHasMobile = () =>
-			defered = @$q.defer()
-			@getUser().success (user) -> defered.resolve !!user.mobile
-				.error (error) -> defered.reject false
-			defered.promise
+			@getUser (user) ->
+				!!user.mobile
+			# defered = @$q.defer()
+			# @getUser().success (user) -> defered.resolve !!user.mobile
+			# 	.error (error) -> defered.reject false
+			# defered.promise
 
 		@requireUserInfo = () =>
-			defered = @$q.defer()
-			@getUser().success (user) -> defered.resolve (!!user.email and !!user.mobile)
-				.error (error) -> defered.reject false
-			defered.promise
+			@getUser (user) ->
+				!!user.email and !!user.mobile
+			# defered = @$q.defer()
+			# @getUser().success (user) -> defered.resolve (!!user.email and !!user.mobile)
+			# 	.error (error) -> defered.reject false
+			# defered.promise
 
-		@getUser = ()=> @ajaxService.post @actionCode.GET_USER, {id: @userSession.pid()}
+		# @getUser = ()=> @ajaxService.post @actionCode.GET_USER, {id: @userSession.pid()}
 
 
 

@@ -88,7 +88,10 @@ class Config
 				url: 'createdebt'
 				templateUrl: 'views/user/createdebt.html'
 				data:
-					precondition: "requireCreateDebtValidate"
+					precondition:
+						require: "requireIdentityValidated"
+						redirectTo: "site.member.index"
+						msg: "您需要先验证(手机,邮箱,身份)其中之一,才能发布债权信息"
 
 			# 个人设置
 			.state 'site.member.userinfo',
@@ -135,19 +138,29 @@ class Config
 								return rsp.data.rsp
 					]
 					
-				controller: ['$log', '$state', 'user', ($log, $state, user) ->
-					$log.log user
-					# if xxx then goto xxx
-					# else goto xxx
-					$state.go 'site.member.authid'
+				controller: ['$log', '$state', 'userStatus', 'user', ($log, $state, userStatus, user) ->
+					# $log.log user
+					# status&userStatus.IDENTITY_VALIDATE==0
+					if user.type is 1
+						if user.idValidating is 1 or user.state & userStatus.IDENTITY_VALIDATE is 1 # 个人身份认证已提交
+							$state.go 'site.member.authids'
+						else
+							$state.go 'site.member.authid'
+					else
+						if user.coValidating is 1 or user.state & userStatus.FIRM_VALIDATE is 1 # 个人身份认证已提交
+							$state.go 'site.member.authcompanys'
+						else
+							$state.go 'site.member.authcompany'
 				]
-					
-				# data:
-				# 	precondition: "requireAuthValidate"
 
 			.state 'site.member.authid',
 				url: 'authid'
 				templateUrl: 'views/user/authid.html'
+				data:
+					precondition:
+						require: 'requireUserInfo'
+						redirectTo: "site.member.userinfo"
+						msg: "你需要先完善个人信息,再进行身份验证"
 
 			.state 'site.member.authids',
 				url: 'authids'
@@ -160,7 +173,11 @@ class Config
 			.state 'site.member.authcompany',
 				url: 'authcompany'
 				templateUrl: 'views/user/authcompany.html'
-
+				data:
+					precondition:
+						require: 'requireUserInfo'
+						redirectTo: "site.member.userinfo"
+						msg: "你需要先完善个人信息,再进行身份验证"
 
 			#财务管理
 			.state 'site.member.pay',
@@ -192,8 +209,6 @@ class Config
 			.state 'site.debt.detail',
 				url: ':debtId'
 				templateUrl: 'views/debt/detail.html'
-				data:
-					precondition: "requireIdentityValidate"
 
 			# demo
 			.state 'typography',
