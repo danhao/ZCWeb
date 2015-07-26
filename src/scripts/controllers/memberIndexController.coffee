@@ -12,8 +12,9 @@ class Controller
 					else
 						$scope.isverifyinfo = (result.status&8)==8
 					@user = result
+#					$log.log result
 				.error (error) =>
-					$log.log error
+					growlService.growl(error.desc, 'danger')
 		initindex()
 
 		situationlist = () =>

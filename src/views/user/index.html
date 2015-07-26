@@ -9,7 +9,7 @@
                         <div class="card animation-demo">
                             <div class="card profile-view">
                                 <div class="pv-header">
-                                    <img src="../images/profile-pics/1.jpg"  width="80" class="pv-main" alt="">
+                                    <img src="{{ctrl.user.head==''?'../images/profile-pics/1.jpg':ctrl.user.head}}"    class="pv-main" alt="">
                                 </div>
                                 <div class="pv-body">
                                     <h2>欢迎 {{ctrl.user.name}}</h2>

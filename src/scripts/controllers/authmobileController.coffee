@@ -27,29 +27,22 @@ class AuthmobileController
 
 		@sendcode =(@mobile)->
 			if mobile==''
-#				alert('danger','手机号码不能为空！')
 				growlService.growl('手机号码不能为空！', 'danger')
 				return
 			@ajaxService.post actionCode.ACTION_SEND_MOBILE_CODE, null
 			.success (results) ->
 				$scope.showbntsendcode =true
 				countUp()
-#				alert('success','验证码已发送到您的手机，请查收！')
 				growlService.growl('验证码已发送到您的手机，请查收！', 'success')
 			.error (error) ->
 				growlService.growl(error, 'danger')
 
 		@verify =(code) ->
-#			$log.log code
 			@ajaxService.post actionCode.ACTION_VALIDATE_MOBILE, {code:parseInt(code)}
 			.success (results) ->
-				$log.log results
-#				alert('success','手机验证成功！')
 				growlService.growl('手机验证成功!', 'success')
 				$state.go 'site.member.index'
-#				initverifymobile()
 			.error (error) ->
-				$log.log error
 				growlService.growl(error.desc, 'danger')
 
 
