@@ -19,14 +19,25 @@ class AuthcompanyController
 
 		@verifycompany = (@authcompany)->
 			return if validate(authcompany)==false
+
 			authcompany.reqisteredType = parseInt authcompany.reqisteredType
 			authcompany.foundTime= (Date.parse authcompany.foundTime) / 1000
-			authcompany.idFile = splitfiles(authcompany.idFile,"法定代表人身份证照片")
-			authcompany.accountPermitFile= splitfiles(authcompany.accountPermitFile,"开户许可证")
-			authcompany.organizationCodeFile= splitfiles(authcompany.organizationCodeFile,"组织机构代码证")
-			authcompany.businessLicenceFile = splitfiles(authcompany.businessLicenceFile,"工商营业执照")
-			authcompany.taxNumberFile= splitfiles(authcompany.taxNumberFile,"税务登记证")
+			if (typeof authcompany.idFile)=='string'
+				authcompany.idFile = splitfiles(authcompany.idFile)
+
+			if (typeof authcompany.accountPermitFile)=='string'
+				authcompany.accountPermitFile= splitfiles(authcompany.accountPermitFile)
+
+			if authcompany.organizationCodeFile isnt undefined and (typeof authcompany.organizationCodeFile)=='string'
+				authcompany.organizationCodeFile= splitfiles(authcompany.organizationCodeFile)
+
+			if (typeof authcompany.businessLicenceFile)=='string'
+				authcompany.businessLicenceFile = splitfiles(authcompany.businessLicenceFile)
+
+			if authcompany.taxNumberFile isnt undefined and (typeof authcompany.taxNumberFile)=='string'
+				authcompany.taxNumberFile= splitfiles(authcompany.taxNumberFile)
 			authcompany.coValidating=1
+			authcompany.fiveInOne =parseInt authcompany.fiveInOne
 #			$log.log authcompany
 #			return
 			@ajaxService.post actionCode.ACTION_UPDATE_USER, authcompany
@@ -37,41 +48,32 @@ class AuthcompanyController
 				growlService.growl(error, 'danger')
 
 
-		splitfiles = (files,type) ->
-			if files != ""
-				$log.log files.split('|').length
-				if files.split('|').length > 1
-					growlService.growl(type+"只能上传一个图片", 'danger')
-				else
-					filearray = files.split(';')
-					data =
-						id : filearray[1]
-						name : filearray[0]
+		splitfiles = (files) ->
+			filearray = files.split(';')
+			data =
+				id : filearray[1]
+				name : filearray[0]
 
 		validate = (auth) ->
+#			$log.log auth
 			result = true
 			if auth.idFile == '' or auth.idFile == undefined
-#				alert('danger',"请上传法人身份证照片，参考拍照攻略！")
 				growlService.growl("请上传身份证照片，参考拍照攻略！", 'danger')
 				result = false
 
 			if auth.accountPermitFile == '' or auth.accountPermitFile == undefined
-#				alert('danger',"请上传开户许可证！")
 				growlService.growl("请上传开户许可证！", 'danger')
 				result = false
 
-			if auth.organizationCodeFile == '' or auth.organizationCodeFile == undefined
-#				alert('danger',"请上传组织机构代码证！")
+			if (auth.organizationCodeFile == '' or auth.organizationCodeFile == undefined) and auth.fiveInOne=="0"
 				growlService.growl("请上传组织机构代码证！", 'danger')
 				result = false
 
 			if auth.businessLicenceFile == '' or auth.businessLicenceFile == undefined
-#				alert('danger',"请上传工商营业执照！")
 				growlService.growl("请上传工商营业执照！", 'danger')
 				result = false
 
-			if auth.taxNumberFile == '' or auth.taxNumberFile == undefined
-#				alert('danger',"请上传税务登记证！")
+			if (auth.taxNumberFile == '' or auth.taxNumberFile == undefined) and auth.fiveInOne=="0"
 				growlService.growl("请上传税务登记证！", 'danger')
 				result = false
 			result

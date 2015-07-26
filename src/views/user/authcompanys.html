@@ -19,9 +19,9 @@
                     <div class="card-body card-padding">
                         <p>企业名称：{{ctrl.user.companyName}}</p>
                         <p>法人代表：{{ctrl.user.artificialPerson}}</p>
-                        <p>组织机构代码：{{ctrl.user.userId}}</p>
+                        <p ng-show="ctrl.user.fiveInOne==0">组织机构代码：{{ctrl.user.userId}}</p>
                         <p>公司执照注册号：{{ctrl.user.businessLicence}}</p>
-                        <p>税务登记号：{{ctrl.user.taxNumber}}</p>
+                        <p ng-show="ctrl.user.fiveInOne==0">税务登记号：{{ctrl.user.taxNumber}}</p>
                         <p>开户许可证核准号：{{ctrl.user.accountPermit}}</p>
                         <p>注册资金(单位：万)：{{ctrl.user.registeredCapital}}</p>
                         <p>注册类型：{{ctrl.user.reqisteredType | companyType}}</p>
@@ -57,7 +57,7 @@
 
         </div>
         <div class="row">
-            <div class="col-md-4 col-sm-6">
+            <div class="col-md-4 col-sm-6" ng-show="ctrl.user.fiveInOne==0">
                 <div class="card animation-demo">
                     <div class="card-header">
                         <h2>组织机构代码证</h2>
@@ -80,7 +80,7 @@
 
             </div>
 
-            <div class="col-md-4 col-sm-6">
+            <div class="col-md-4 col-sm-6" ng-show="ctrl.user.fiveInOne==0">
                 <div class="card animation-demo">
                     <div class="card-header">
                         <h2>税务登记证</h2>
