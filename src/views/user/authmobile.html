@@ -11,7 +11,7 @@
                         <label  class="col-sm-3 control-label">手机号</label>
                         <div class="col-sm-4">
                             <div class="fg-line" >
-                                <input type="text"   class="form-control" ng-model="ctrl.mobile" name="mobile" readonly required>
+                                <input type="text"   class="form-control" ng-model="ctrl.mobile" name="mobile" readonly required >
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -22,7 +22,7 @@
                         <label  class="col-sm-3 control-label">验证码</label>
                         <div class="col-sm-4">
                             <div class="fg-line" >
-                                <input type="number" minlength="4"   class="form-control" ng-model="ctrl.code" name="verifycode" required>
+                                <input type="text" maxlength="6" class="form-control" ng-model="ctrl.code" name="verifycode" required onkeyup="value=value.replace(/[^\d]/g,'')">
                             </div>
                         </div>
                     </div>

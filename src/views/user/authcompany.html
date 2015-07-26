@@ -12,12 +12,12 @@
                             <div class="col-xs-12" >
                                 <div class="form-group"  >
                                     <label  class="col-sm-2 control-label">五证合一：</label>
-                                    <div class="col-sm-6 radio" ng-init="ctrl.authcompany.rtype=0">
+                                    <div class="col-sm-6 radio" ng-init="ctrl.authcompany.fiveInOne=0">
                                         <label class="m-r-20">
-                                            <input type="radio" name="sex" ng-model="ctrl.authcompany.rtype" value="0"  /> <i class="input-helper"></i>否
+                                            <input type="radio" name="sex" ng-model="ctrl.authcompany.fiveInOne" value="0"  /> <i class="input-helper"></i>否
                                         </label>
                                         <label>
-                                            <input type="radio" name="sex" ng-model="ctrl.authcompany.rtype" value="1"   /> <i class="input-helper"></i>是
+                                            <input type="radio" name="sex" ng-model="ctrl.authcompany.fiveInOne" value="1"   /> <i class="input-helper"></i>是
                                         </label>
                                     </div>
                                 </div>
@@ -54,13 +54,13 @@
                                             <!--</div>-->
                                         </div>
 
-                                        <div class="form-group fg-float" ng-show="ctrl.authcompany.rtype==0">
+                                        <div class="form-group fg-float" ng-show="ctrl.authcompany.fiveInOne==0">
                                             <!--<label class="col-sm-3 control-label">组织机构代码<span class="inputflag">*</span></label>-->
 
                                             <!--<div class="col-sm-12">-->
                                                 <div class="fg-line" >
                                                     <input type="text"   class="form-control" ng-model="ctrl.authcompany.userId" name="userId" maxlength="30"
-                                                           ng-required="ctrl.authcompany.rtype==0">
+                                                           ng-required="ctrl.authcompany.fiveInOne==0">
                                                 </div>
                                             <label class="fg-label">组织机构代码<span class="inputflag">*</span></label>
                                             <!--</div>-->
@@ -77,13 +77,13 @@
                                             <!--</div>-->
                                         </div>
 
-                                        <div class="form-group fg-float" ng-show="ctrl.authcompany.rtype==0">
+                                        <div class="form-group fg-float" ng-show="ctrl.authcompany.fiveInOne==0">
                                             <!--<label class="col-sm-3 control-label">税务登记号<span class="inputflag">*</span></label>-->
 
                                             <!--<div class="col-sm-12">-->
                                                 <div class="fg-line" >
                                                     <input type="text"   class="form-control" ng-model="ctrl.authcompany.taxNumber" name="taxNumber" maxlength="30"
-                                                             ng-required="ctrl.authcompany.rtype==0">
+                                                             ng-required="ctrl.authcompany.fiveInOne==0">
                                                 </div>
                                             <label class="fg-label">税务登记号<span class="inputflag">*</span></label>
                                             <!--</div>-->
@@ -203,7 +203,7 @@
                                             <!--<label class="col-sm-3 control-label">法定代表人身份证照片<span class="inputflag">*</span></label>-->
 
                                             <!--<div class="col-sm-12">-->
-                                                <div ng-uploader data-form-field="idFile"  data-model-field="ctrl.authcompany.idFile" dat-form-title="法人代表身份证照片" data-amount=1></div>
+                                                <div ng-uploader data-form-field="idFile"  data-model-field="ctrl.authcompany.idFile" dat-form-title="法人代表身份证照片" dat-form-require="true" data-amount=1></div>
                                                 <input type="hidden" id="idFile"  />
                                             <!--</div>-->
                                         </div>
@@ -211,28 +211,28 @@
                                             <!--<label class="col-sm-3 control-label">开户许可证<span class="inputflag">*</span></label>-->
 
                                             <!--<div class="col-sm-9">-->
-                                                <div ng-uploader data-form-field="accountPermitFile"  data-model-field="ctrl.authcompany.accountPermitFile" dat-form-title="开户许可证" data-amount=1></div>
+                                                <div ng-uploader data-form-field="accountPermitFile"  data-model-field="ctrl.authcompany.accountPermitFile" dat-form-title="开户许可证" dat-form-require="true" data-amount=1></div>
                                                 <input type="hidden" id="accountPermitFile" />
                                             <!--</div>-->
                                         </div>
-                                        <div class="form-group" style="margin-bottom: 5px;" ng-show="ctrl.authcompany.rtype==0">
+                                        <div class="form-group" style="margin-bottom: 5px;" ng-show="ctrl.authcompany.fiveInOne==0">
                                             <!--<label class="col-sm-3 control-label">组织机构代码证<span class="inputflag">*</span></label>-->
                                             <!--<div class="col-sm-9">-->
-                                                <div ng-uploader data-form-field="organizationCodeFile" data-model-field="ctrl.authcompany.organizationCodeFile" dat-form-title="组织机构代码证" data-amount=1></div>
+                                                <div ng-uploader data-form-field="organizationCodeFile" data-model-field="ctrl.authcompany.organizationCodeFile" dat-form-title="组织机构代码证" dat-form-require="true" data-amount=1></div>
                                                 <input type="hidden" id="organizationCodeFile"  />
                                             <!--</div>-->
                                         </div>
                                         <div class="form-group" style="margin-bottom: 5px;">
                                             <!--<label class="col-sm-3 control-label">工商营业执照<span class="inputflag">*</span></label>-->
                                             <!--<div class="col-sm-9">-->
-                                                <div ng-uploader data-form-field="businessLicenceFile" data-model-field="ctrl.authcompany.businessLicenceFile" dat-form-title="工商营业执照" data-amount=1></div>
+                                                <div ng-uploader data-form-field="businessLicenceFile" data-model-field="ctrl.authcompany.businessLicenceFile" dat-form-title="工商营业执照" dat-form-require="true" data-amount=1></div>
                                                 <input type="hidden" id="businessLicenceFile"  />
                                             <!--</div>-->
                                         </div>
-                                        <div class="form-group" style="margin-bottom: 5px;" ng-show="ctrl.authcompany.rtype==0">
+                                        <div class="form-group" style="margin-bottom: 5px;" ng-show="ctrl.authcompany.fiveInOne==0">
                                             <!--<label class="col-sm-3 control-label">税务登记证<span class="inputflag">*</span></label>-->
                                             <!--<div class="col-sm-9">-->
-                                                <div ng-uploader data-form-field="taxNumberFile" data-model-field="ctrl.authcompany.taxNumberFile" dat-form-title="税务登记证" data-amount=1></div>
+                                                <div ng-uploader data-form-field="taxNumberFile" data-model-field="ctrl.authcompany.taxNumberFile" dat-form-title="税务登记证" dat-form-require="true" data-amount=1></div>
                                                 <input type="hidden" id="taxNumberFile" />
                                                 <span style="color: red">注: 支持jpg, jepg, png, gif, bmp格式的图片文件，每张大小不要超过2M</span>
                                             <!--</div>-->

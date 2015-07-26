@@ -109,7 +109,7 @@
                         <div class="col-sm-6">
                             <!--<div class="fg-line" >-->
                             <input type="text"   class="form-control" ng-model="ctrl.cash.cardNo" name="cardno" maxlength="25"
-                                   placeholder="输入银行卡号" ng-required="money!=0" onkeyup="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value">
+                                   placeholder="输入银行卡号" ng-required="money!=0" onkeyup="value=value.replace(/[^\d]/g,'')">
                             <!--</div>-->
                         </div>
                     </div>

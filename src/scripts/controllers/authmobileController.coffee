@@ -40,8 +40,8 @@ class AuthmobileController
 				growlService.growl(error, 'danger')
 
 		@verify =(code) ->
-			$log.log code
-			@ajaxService.post actionCode.ACTION_VALIDATE_MOBILE, {code:code}
+#			$log.log code
+			@ajaxService.post actionCode.ACTION_VALIDATE_MOBILE, {code:parseInt(code)}
 			.success (results) ->
 				$log.log results
 #				alert('success','手机验证成功！')
