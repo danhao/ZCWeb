@@ -101,7 +101,7 @@ class Authorization
 			@$q.when @userSession.pid()
 
 		@requireLoginRedirect = () =>
-			@utilService.alert "您尚未登陆, 无权限查看此页面!"
+			@growlService.growl "您尚未登陆, 无权限查看此页面!", 'warning'
 			"site.index"
 
 		@permissionDeniedRedirect = () ->
@@ -124,7 +124,7 @@ class Authorization
 		@requireIdentityValidated = () =>
 			@getUser (user) ->
 				status = user.status
-				status&userStatus.EMAIL_VALIDATE==0 or status&userStatus.MOBILE_VALIDATE==0 or status&userStatus.IDENTITY_VALIDATE==0 or status&userStatus.FIRM_VALIDATE
+				status&userStatus.EMAIL_VALIDATE==1 or status&userStatus.MOBILE_VALIDATE==1 or status&userStatus.IDENTITY_VALIDATE==1 or status&userStatus.FIRM_VALIDATE==1
 
 		@requireHasEmail = () =>
 			@getUser (user) ->
