@@ -11,19 +11,41 @@ class AuthidController
 					$scope.issubmit = (result.status&4)==4 or result.idValidating==1
 					$scope.isverifypass = (result.status&4)==4
 				@userinfo = result
+				@userinfo.isshowcreditFile=true
+				$log.log result
+				if @userinfo.creditFile.url==undefined
+					@userinfo.isshowcreditFile=false
+				else
+					file ="a;"+@userinfo.creditFile.name
+					if checkfiletype(file)==false
+						@userinfo.isshowcreditFile=false
 			.error (error) =>
 				growlService.growl(error, 'danger')
 		initperson()
 
 		@verify = (@authid)->
 			return if validate(authid)==false
-			authid.idFile = splitfiles(authid.idFile,"身份证号")
+			$log.log authid.idFile
+			if checkfiletype(authid.idFile)==false
+				growlService.growl("身份证文件文件格式有误，仅支持支持jpg, jepg, png, gif, bmp格式的图片文件！", 'warning')
+				return
+			else
+				if (typeof authid.idFile)=='string'
+					authid.idFile = splitfiles(authid.idFile)
+
 			if authid.noneCrimeFile isnt undefined
-				authid.noneCrimeFile= splitfiles(authid.noneCrimeFile,"无犯罪记录证明")
+				if checkfiletype(authid.noneCrimeFile)==false
+					growlService.growl("无犯罪记录证明文件文件格式有误，仅支持支持jpg, jepg, png, gif, bmp格式的图片文件！", 'warning')
+					return
+				else
+					if (typeof authid.noneCrimeFile)=='string'
+						authid.noneCrimeFile= splitfiles(authid.noneCrimeFile)
+
 			if authid.creditFile isnt undefined
-				authid.creditFile= splitfiles(authid.creditFile,"个人征信报告")
+				authid.creditFile= splitfiles(authid.creditFile)
 			authid.idValidating=1
 #			$log.log authid
+#			return
 			@ajaxService.post actionCode.ACTION_UPDATE_USER, authid
 			.success (results) ->
 				growlService.growl('身份证信息已提交，请等待后台审核！', 'success')
@@ -31,18 +53,29 @@ class AuthidController
 			.error (error) ->
 				growlService.growl(error, 'danger')
 
+		checkfiletype =(file)->
+			if  (typeof file)!='string'
+				return
+			isimg=true
+			if file != "" and file !=undefined
+				idimg=if file=='' then '' else file.split(';')[1]
+				imgstring =".jpg.jepg.png.bmp.gif"
+				if idimg !=''and idimg !=undefined
+					index1=idimg.lastIndexOf(".")
+					length=idimg.length
+					postf=idimg.substring(index1,length).toLocaleLowerCase()
+					if imgstring.indexOf(postf)<0
+						isimg=false
+			isimg
+#						growlService.growl(typename+"文件格式有误，仅支持支持jpg, jepg, png, gif, bmp格式的图片文件！", 'warning')
+#						return
 
-
-		splitfiles = (files,type) ->
-			if files != ""
-				$log.log files.split('|').length
-				if files.split('|').length > 1
-					growlService.growl(type+"只能上传一个图片", 'danger')
-				else
-					filearray = files.split(';')
-					data =
-						id : filearray[1]
-						name : filearray[0]
+		splitfiles = (file,type) ->
+			if file != "" and file !=undefined
+				filearray = file.split(';')
+				data =
+					id : filearray[1]
+					name : filearray[0]
 
 		validate = (auth) ->
 			$log.log auth.idFile

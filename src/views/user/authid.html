@@ -9,7 +9,7 @@
                        w5c-form-validate="validateOptions" novalidate name="validateForm" id="auidform">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">身份证号码<span class="inputflag">*</span></label>
-                        <div class="col-sm-6">
+                        <div class="col-sm-7">
                             <!--<div class="fg-line" >-->
                                 <input type="text"   class="form-control" ng-model="ctrl.authid.userId" name="idcard" ng-pattern="/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/"
                                        placeholder="输入身份证号码" maxlength="18" required>
@@ -18,25 +18,25 @@
                     </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">身份证照片<span class="inputflag">*</span></label>
-                            <div class="col-sm-6">
+                            <div class="col-sm-7">
                                     <div>
                                         <div ng-uploader data-form-field="idFile" data-model-field="ctrl.authid.idFile" data-amount=1></div>
                                         <input type="hidden" id="idFile" />
                                     </div>
-                                <span style="color: red">注: 建议尺寸360x420像素，每张大小不要超过2M <a data-toggle="modal" href="" data-target="#modalDefault" > 拍照攻略 </a></span>
+                                <span style="color: red">注:支持jpg, jepg, png, gif, bmp格式的图片文件,建议尺寸360x420像素，每张大小不要超过2M <a data-toggle="modal" href="" data-target="#modalDefault" > 拍照攻略 </a></span>
                                 </div>
                         </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">无犯罪记录证明</label>
-                        <div class="col-sm-6">
+                        <div class="col-sm-7">
                             <div ng-uploader data-form-field="noneCrimeFile"  data-model-field="ctrl.authid.noneCrimeFile" data-amount=1></div>
                             <input type="hidden" id="noneCrimeFile" />
-                            <span style="color: red">注: 请到当地或户口所在地公安局开设无犯罪证明 <a data-toggle="modal" href="" data-target="#modalCrime" >格式范本</a></span>
+                            <span style="color: red">注: 支持jpg, jepg, png, gif, bmp格式的图片文件,请到当地或户口所在地公安局开设无犯罪证明 <a data-toggle="modal" href="" data-target="#modalCrime" >格式范本</a></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">个人征信报告</label>
-                        <div class="col-sm-6">
+                        <div class="col-sm-7">
                                 <div>
                                     <div ng-uploader data-form-field="creditFile" data-model-field="ctrl.authid.creditFile" data-amount=1></div>
                                     <input type="hidden" id="creditFile" />

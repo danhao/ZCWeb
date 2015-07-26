@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="card-body card-padding">
-                        <a href="{{ctrl.userinfo.creditFile.url}}" target="_blank" class="thumbnail"><img src="{{ctrl.userinfo.creditFile.url==undefined?'../images/nopic.jpg':ctrl.userinfo.creditFile.url}}" alt=""></a>
+                        <a href="{{ctrl.userinfo.creditFile.url}}" target="_blank" class="thumbnail"><img src="{{ctrl.userinfo.isshowcreditFile ?ctrl.userinfo.creditFile.url:'../images/nopic.jpg'}}" alt=""></a>
                     </div>
                 </div>
             </div>
