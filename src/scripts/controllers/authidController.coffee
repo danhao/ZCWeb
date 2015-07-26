@@ -12,8 +12,8 @@ class AuthidController
 					$scope.isverifypass = (result.status&4)==4
 				@userinfo = result
 				@userinfo.isshowcreditFile=true
-				$log.log result
-				if @userinfo.creditFile.url==undefined
+#				$log.log result
+				if @userinfo.creditFile==undefined
 					@userinfo.isshowcreditFile=false
 				else
 					file ="a;"+@userinfo.creditFile.name
