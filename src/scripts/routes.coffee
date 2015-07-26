@@ -85,12 +85,10 @@ class Config
 				templateUrl: 'views/user/addtransfer.html'
 
 			.state 'site.member.createdebt',
+				url: 'createdebt'
+				templateUrl: 'views/user/createdebt.html'
 				data:
 					precondition: "requireCreateDebtValidate"
-
-			.state 'site.member.createdebts',
-				url: 'createdebts'
-				templateUrl: 'views/user/createdebt.html'
 
 			# 个人设置
 			.state 'site.member.userinfo',

@@ -63,8 +63,10 @@
                     </button>
                 </div>
             </div>
-            <div class="debt-countdown bgm-white" ng-show="ctrl.debt.state < 3">
-                <div countdown="expireDay" class="text-center countdown"></div>
+            <div class="debt-countdown bgm-white" ng-show='ctrl.debt.state < 3'>
+                <div class="text-center countdown">
+                    <i class="zmdi zmdi-time-countdown"></i> 距结束&nbsp;&nbsp; <span countdown="expireDay" ></span>
+                </div>
                 <div ng-show="showBidStatus">你已投过标</div>
             </div>
         </div>

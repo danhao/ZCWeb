@@ -2,7 +2,7 @@ class Directive
 	constructor: ($log, $interval, $parse, utilService) ->
 		
 		getTemplate = (diff) ->
-			t = '<i class="zmdi zmdi-time-countdown"></i> 剩余 '
+			t = ''
 			t += (diff.Y + ' 年 ') if diff.Y > 0
 			t += (diff.M + ' 月 ') if diff.M > 0
 			t += (diff.d + ' 日 ') if diff.d > 0
