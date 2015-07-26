@@ -126,8 +126,24 @@ class Config
 				templateUrl: 'views/user/notifySetting.html'
 
 			.state 'site.member.auth',
-				data:
-					precondition: "requireAuthValidate"
+				url: 'auth'
+				resolve:
+					user: ['userSession', 'ajaxService', 'actionCode', '$log', (userSession, ajaxService, actionCode, $log) ->
+						pid = userSession.pid()
+						ajaxService.post actionCode.GET_USER, {id: pid}
+							.then (rsp) ->
+								return rsp.data.rsp
+					]
+					
+				controller: ['$log', '$state', 'user', ($log, $state, user) ->
+					$log.log user
+					# if xxx then goto xxx
+					# else goto xxx
+					$state.go 'site.member.authid'
+				]
+					
+				# data:
+				# 	precondition: "requireAuthValidate"
 
 			.state 'site.member.authid',
 				url: 'authid'
@@ -144,6 +160,7 @@ class Config
 			.state 'site.member.authcompany',
 				url: 'authcompany'
 				templateUrl: 'views/user/authcompany.html'
+
 
 			#财务管理
 			.state 'site.member.pay',

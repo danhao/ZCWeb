@@ -157,7 +157,7 @@ class Authorization
 			else if((@user.status&userStatus.EMAIL_VALIDATE)==0 and  (@user.status&userStatus.MOBILE_VALIDATE)==0 and (@user.status&userStatus.IDENTITY_VALIDATE)==0 and (@user.status&userStatus.FIRM_VALIDATE)==0)
 				result = @gotoUserinfo("您需要先验证(手机,邮箱,身份)其中之一,才能发布债权信息！","site.member.index")
 			else
-				result= "site.member.createdebts"
+				result= "site.member.createdebt"
 			result
 
 		@requireAuthValidateRedirect  = () =>

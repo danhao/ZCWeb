@@ -9,10 +9,6 @@
                 <div class="row qc-area">
                     <div class="col-xs-12" >
                         类型:&nbsp;&nbsp;
-                        <!--<div class="btn-group">-->
-                            <!--<label class="btn btn-default" ng-model="ctrl.q.type" btn-radio="'1'">{{1 | debtType}}</label>-->
-                            <!--<label class="btn btn-default" ng-model="ctrl.q.type" btn-radio="'2'">{{2 | debtType}}</label>-->
-                        <!--</div>-->
                         <div class="btn-group">
                             <div class="btn-group" ng-init="ctrl.q.type='1'" data-toggle="buttons">
                                 <label class="btn btn-default active" ng-click="ctrl.q.type='1'">
@@ -28,14 +24,8 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         状态:&nbsp;&nbsp;
                         <div class="btn-group">
-                            <!--<label class="btn btn-default" ng-model="ctrl.q.state" btn-radio="'-1'">全部</label>-->
-                            <!--<label class="btn btn-default" ng-model="ctrl.q.state" btn-radio="'0'">审核中</label>-->
-                            <!--<label class="btn btn-default" ng-model="ctrl.q.state" btn-radio="'1'">已通过</label>-->
-                            <!--<label class="btn btn-default" ng-model="ctrl.q.state" btn-radio="'2'">未通过</label>-->
-                            <!--<label class="btn btn-default" ng-model="ctrl.q.state" btn-radio="'3'">已成交</label>-->
-                            <!--<label class="btn btn-default" ng-model="ctrl.q.state" btn-radio="'4'">已结束</label>-->
                             <div class="btn-group" ng-init="ctrl.q.state='-1'" data-toggle="buttons">
-                                <label class="btn btn-default active" ng-click="ctrl.q.type='-1'">
+                                <label class="btn btn-default active" ng-click="ctrl.q.state='-1'">
                                     <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'-1'" checked/>
                                     <i class="fa fa-user"></i> 全部
                                 </label>
@@ -64,27 +54,7 @@
                     </div>
                 </div>
 
-                <!--<ul class="list-group">-->
-                    <!--<li class="list-group-item" ng-repeat="debt in ctrl.debtList">-->
-                        <!--<div class="row debt-list-item">-->
-                            <!--<div class="col-sm-6 col-md-9">-->
-                                <!--<div class="row">-->
-                                    <!--<div class="col-md-6">-->
-                                        <!--<a href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})"><span class="debtmoney">  {{debt.money | ccurrency}}</span> </a>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-md-6">-->
-                                        <!--<div style="margin-bottom:5px;">{{debt.debtorLocation}}</div>-->
-                                        <!--<div>费率: {{debt.rate}}%  &nbsp;&nbsp;&nbsp;&nbsp; 期限: {{debt.duration}}天</div>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="col-sm-6 col-md-3">-->
-                                <!--<div class="text-muted pull-right">发布于: {{debt.publishTime | idate }} </div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</li>-->
-                    <!--<li class="list-group-item text-center" ng-hide="ctrl.debtList.length">暂无记录</li>-->
-                <!--</ul>-->
+
                 <div class="row">&nbsp;</div>
                 <div class="row">
                     <div ng-repeat="debt in ctrl.debtList">

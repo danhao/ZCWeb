@@ -6,36 +6,45 @@ angular.module('app')
     
     //Html
 
-    .directive('html', ['nicescrollService', '$rootScope', 'eventConst', 'messageService', function(nicescrollService, $rootScope, eventConst, messageService){
+    .directive('html', ['nicescrollService', '$rootScope', 'eventConst', 'messageService', '$window', function(nicescrollService, $rootScope, eventConst, messageService, $window){
         return {
             restrict: 'E',
             link: function(scope, element) {
         
-                // if (!element.hasClass('ismobile')) {
-                //     if (!$('.login-content')[0]) {
+                if (!element.hasClass('ismobile')) {
+                    if (!$('.login-content')[0]) {
                         var nicescroll = nicescrollService.niceScroll(element, 'rgba(0,0,0,0.3)', '5px');
 
                         // infinite scroll
                         nicescroll.onscrollend = function (data) {
                             if (data.end.y >= this.page.maxh) {
-                                // console.log('scroll end '+$rootScope.infiniteScroll);
                                 if ($rootScope.infiniteScroll) {
-                                    // console.log('broadcast scroll end');
                                     messageService.publish(eventConst.SCROLL_BOTTOM);
                                 }
                             }
                             if (data.end.y <= 0) {
-                                // console.log('scroll top end '+$rootScope.infiniteScroll);
                                 if ($rootScope.infiniteScroll) {
-                                    // console.log('broadcast scroll top end');
                                     messageService.publish(eventConst.SCROLL_TOP);
                                 }
-
                             }
                         };
 
-                //     }
-                // }
+                    }
+                }
+
+                // infiniteScroll ,,
+                /*
+                $rootScope.infiniteScroll = true;
+                var e = $window.document.body,
+                    offset = 100; // px
+                $($window).bind('scroll', function() {
+                    console.log('scroll ' + $rootScope.infiniteScroll + ' ' + e.scrollTop + ' ' + e.offsetHeight + ' ' + e.scrollHeight);
+                    if ($rootScope.infiniteScroll && e.scrollTop + e.offsetHeight >= e.scrollHeight - offset) {
+                        console.log('load more');
+                        //messageService.publish(eventConst.SCROLL_BOTTOM);
+                    }
+                });
+                 */
             }
         }
     }])
