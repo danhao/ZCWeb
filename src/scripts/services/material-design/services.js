@@ -6,7 +6,7 @@ angular.module('app')
     .service('nicescrollService', function() {
         var ns = {};
         ns.niceScroll = function(selector, color, cursorWidth) {
-            $(selector).niceScroll({
+            return $(selector).niceScroll({
                 cursorcolor: color,
                 cursorborder: 0,
                 cursorborderradius: 0,

@@ -1,6 +1,6 @@
 
 class UserDebtListController
-	constructor: (@$log,@$scope, @ajaxService, @actionCode,@userSession,@$modal) ->
+	constructor: (@$log,@$scope, @ajaxService, @actionCode,@userSession,@$modal,@rootScope,@messageService,@eventConst) ->
 		$scope.agnetstatus =(type,state)->
 			agentlist(type,state)
 		$scope.transferstatus =(type,state)->
@@ -35,8 +35,11 @@ class UserDebtListController
 		transferlist()
 		#$scope.$watchGroup [@type,@status], ()->
 		#	$scope.list =	debtlist(@type,@status)
+		#
 
 
 
-angular.module("app").controller 'userdebtListController',['$log','$scope','ajaxService', 'actionCode','userSession','$modal', UserDebtListController]
+
+
+angular.module("app").controller 'userdebtListController',['$log','$scope','ajaxService', 'actionCode','userSession','$modal', '$rootScope', 'messageService', 'eventConst', UserDebtListController]
 

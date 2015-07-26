@@ -1,6 +1,6 @@
 
     <div class="container ng-scope" ng-controller="debtListController as ctrl">
-        <div class="card">
+        <div class="card" infinite-scroll="ctrl.loadMore();" threshold="100" can-load="true">
             <header class="card-header">
                 <h2><span class="glyphicon glyphicon-list" ></span> 债权列表</h2>
             </header>
@@ -143,12 +143,12 @@
                 </div>
 
                 <div class="pm-body clearfix">
-                    <ul class="tab-nav " role="tablist">
-                        <li class="btn-wave active" role="presentation"><a href="#agentlist" aria-controls="alldebt" role="tab" data-toggle="tab">债权代理</a></li>
-                        <li class="btn-wave" role="presentation"><a href="#transferlist" aria-controls="alldebt" role="tab" data-toggle="tab">债权转让</a></li>
+                    <ul class="tab-nav " role="tablist" ng-init="ctrl.tab=1">
+                        <li class="btn-wave active" role="presentation"><a href="#agentlist" aria-controls="alldebt" role="tab" data-toggle="tab" ng-click="ctrl.tab=1">债权代理</a></li>
+                        <li class="btn-wave" role="presentation"><a href="#transferlist" aria-controls="alldebt" role="tab" data-toggle="tab" ng-click="ctrl.tab=2">债权转让</a></li>
                     </ul>
                 </div>
-                <div class="tab-content">
+                <div class="tab-content" >
                     <div role="tabpanel" class="tab-pane active" id="agentlist">
                         <div class="pmb-block">
                             <div class="pmbb-body">
@@ -202,120 +202,8 @@
                 </div>
             </div>
 
-
         </div>
-            <!--<div class="row">-->
 
-                <!--<div class="col-md-6 col-sm-6">-->
-                    <!--<div class="card animation-demo">-->
-                        <!--<div class="card-header">-->
-                            <!--<h2>债权代理</h2>-->
-                        <!--</div>-->
-                        <!--<div class="card-body table-responsive">-->
-                            <!--<table class="table table-hover">-->
-                                <!--<thead>-->
-                                <!--<tr><th >-->
-                                    <!--资产总额-->
-                                <!--</th>-->
-                                    <!--<th>-->
-                                        <!--发布时间-->
-                                    <!--</th>-->
-                                    <!--&lt;!&ndash;<th>&ndash;&gt;-->
-                                        <!--&lt;!&ndash;逾期时间&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</th>&ndash;&gt;-->
-                                    <!--<th >-->
-                                        <!--所在地-->
-                                    <!--</th>-->
-                                    <!--<th>-->
-                                        <!--代理费率-->
-                                    <!--</th>-->
-                                    <!--<th>-->
-                                        <!--代理期限-->
-                                    <!--</th>-->
-                                <!--</tr></thead>-->
-                                <!--<tbody >-->
-                                <!--<tr ng-repeat="debt in agentlist">-->
-                                    <!--<td >-->
-                                        <!--<a href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})">{{debt.money | ccurrency}}</a>-->
-                                    <!--</td>-->
-
-                                    <!--<td>-->
-                                        <!--{{debt.publishTime | idate }}-->
-                                    <!--</td>-->
-                                    <!--&lt;!&ndash;<td>&ndash;&gt;-->
-                                        <!--&lt;!&ndash;{{debt.debtExpireTime | upToNow }}&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</td>&ndash;&gt;-->
-                                    <!--<td >-->
-                                        <!--{{debt.debtorLocation}}-->
-                                    <!--</td>-->
-                                    <!--<td>-->
-                                        <!--{{debt.rate}}%-->
-                                    <!--</td>-->
-                                    <!--<td>-->
-                                        <!--{{debt.duration}}天-->
-                                    <!--</td>-->
-                                <!--</tr>-->
-
-                                <!--</tbody>-->
-                            <!--</table>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
-                <!--</div>-->
-
-                <!--<div class="col-md-6 col-sm-6">-->
-                    <!--<div class="card animation-demo">-->
-                        <!--<div class="card-header">-->
-                            <!--<h2>转让债权</h2>-->
-                        <!--</div>-->
-
-                        <!--<div class="card-body table-responsive">-->
-                            <!--<table class="table table-hover">-->
-                                <!--<thead>-->
-                                <!--<tr><th>-->
-                                    <!--资产总额-->
-                                <!--</th>-->
-                                    <!--<th>-->
-                                        <!--起拍价-->
-                                    <!--</th>-->
-                                    <!--<th>-->
-                                        <!--发布时间-->
-                                    <!--</th>-->
-                                    <!--<th >-->
-                                        <!--逾期时间-->
-                                    <!--</th>-->
-                                    <!--<th>-->
-                                        <!--所在地-->
-                                    <!--</th>-->
-                                <!--</tr></thead>-->
-                                <!--<tbody >-->
-                                <!--<tr ng-repeat="debt in transferlist">-->
-                                    <!--<td >-->
-                                        <!--<a href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})">{{debt.money | ccurrency}}</a>-->
-                                    <!--</td>-->
-                                    <!--<td>-->
-                                        <!--{{debt.price| ccurrency}}-->
-                                    <!--</td>-->
-                                    <!--<td>-->
-                                        <!--{{debt.publishTime | idate }}-->
-                                    <!--</td>-->
-                                    <!--<td >-->
-                                        <!--{{debt.debtExpireTime | upToNow }}-->
-                                    <!--</td>-->
-                                    <!--<td>-->
-                                        <!--{{debt.debtorLocation}}-->
-                                    <!--</td>-->
-                                <!--</tr>-->
-
-                                <!--</tbody>-->
-                            <!--</table>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-                        <!--<div class="btn btn-lg btn-default-outline btn-block">-->
-                            <!--加载更多-->
-                        <!--</div>-->
         </div>
     </div>
 

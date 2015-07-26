@@ -1,6 +1,6 @@
 
 class DebtListController
-	constructor: (@$log,@$scope,@$rootScope,@$state, @$stateParams, @ajaxService, @actionCode) ->
+	constructor: (@$log,@$scope,@$rootScope,@$state, @$stateParams, @ajaxService, @actionCode, @messageService, @eventConst) ->
 		@q =
 			fbdate:'0'
 			money:'0'
@@ -13,37 +13,45 @@ class DebtListController
 			rate:'0'
 			city:''
 
-		agentlist = () =>
+		@page_a = 1
+		@page_t = 1
+		@$scope.agentlist = []
+		@$scope.transferlist = []
+
+		@agentlist = () =>
 			data='{type:1,state:1'
 			data += getdate(@q.fbdate) if @q.fbdate isnt '0'
 			data += getmoney(@q.money) if @q.money isnt '0'
 			data +=  ",location:'"+@q.city+"'" if @q.city isnt ''
 #			data += ",location:'"+para[2]+"'" if para[2]!=undefined
+			data += ",page:"+@page_a
 			data +='}'
-			$log.log data
+			# $log.log data
 			datajson=angular.toJson data
 			ajaxService.post actionCode.LIST_DEBTS, data
-			.success (results) ->
-				$scope.agentlist = results.debt
-			.error (error) ->
+			.success (results) =>
+				@$scope.agentlist = @$scope.agentlist.concat results.debt
+			.error (error) =>
 				$log.log error
 
-		agentlist()
+		@agentlist()
 
 
-		transferlist = (para) =>
+		@transferlist = (para) =>
 			data='{type:2,state:1'
 			data += getdate(@q.fbdate) if @q.fbdate isnt '0'
 			data += getmoney(@q.money) if @q.money isnt '0'
 			data +=  ",location:'"+@q.city+"'" if @q.city isnt ''
 			#			data += ",location:'"+para[2]+"'" if para[2]!=undefined
+			data += ",page:"+@page_t
 			data +='}'
 			ajaxService.post actionCode.LIST_DEBTS, data
-			.success (results) ->
-				$scope.transferlist = results.debt
-			.error (error) ->
+			.success (results) =>
+				@$scope.transferlist = @$scope.transferlist.concat results.debt
+			.error (error) =>
 				$log.log error
-		transferlist()
+				
+		@transferlist()
 
 		getdate=(value)->
 			date = new Date()
@@ -82,5 +90,27 @@ class DebtListController
 				transferlist()
 		, true
 
-angular.module("app").controller 'debtListController',['$log','$scope','$rootScope','$state','$stateParams','ajaxService', 'actionCode', DebtListController]
+
+
+		# infinite scroll
+		@messageService.subscribe eventConst.SCROLL_BOTTOM, ()=>
+			@loadMore()
+			
+		@$rootScope.infiniteScroll = true
+		@$scope.$on '$destroy', ()=>
+			# @$log.log 'destroy'
+			@$rootScope.infiniteScroll = false
+			
+
+	loadMore: () =>
+		# @$log.log 'load more...'
+		if @tab == 1
+			@page_a++
+			@agentlist()
+		else
+			@page_t++
+			@transferlist()
+		
+
+angular.module("app").controller 'debtListController',['$log','$scope','$rootScope','$state','$stateParams','ajaxService', 'actionCode', 'messageService', 'eventConst', DebtListController]
 

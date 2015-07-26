@@ -31,6 +31,7 @@ angular.module('app')
                 this.sidebarToggle.left = false;
             }
         }
+
     }])
 
 

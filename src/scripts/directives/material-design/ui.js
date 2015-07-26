@@ -6,16 +6,36 @@ angular.module('app')
     
     //Html
 
-    .directive('html', ['nicescrollService', function(nicescrollService){
+    .directive('html', ['nicescrollService', '$rootScope', 'eventConst', 'messageService', function(nicescrollService, $rootScope, eventConst, messageService){
         return {
             restrict: 'E',
             link: function(scope, element) {
         
-                if (!element.hasClass('ismobile')) {                    
-                    if (!$('.login-content')[0]) {
-                        nicescrollService.niceScroll(element, 'rgba(0,0,0,0.3)', '5px');
-                    }
-                }
+                // if (!element.hasClass('ismobile')) {
+                //     if (!$('.login-content')[0]) {
+                        var nicescroll = nicescrollService.niceScroll(element, 'rgba(0,0,0,0.3)', '5px');
+
+                        // infinite scroll
+                        nicescroll.onscrollend = function (data) {
+                            if (data.end.y >= this.page.maxh) {
+                                // console.log('scroll end '+$rootScope.infiniteScroll);
+                                if ($rootScope.infiniteScroll) {
+                                    // console.log('broadcast scroll end');
+                                    messageService.publish(eventConst.SCROLL_BOTTOM);
+                                }
+                            }
+                            if (data.end.y <= 0) {
+                                // console.log('scroll top end '+$rootScope.infiniteScroll);
+                                if ($rootScope.infiniteScroll) {
+                                    // console.log('broadcast scroll top end');
+                                    messageService.publish(eventConst.SCROLL_TOP);
+                                }
+
+                            }
+                        };
+
+                //     }
+                // }
             }
         }
     }])
