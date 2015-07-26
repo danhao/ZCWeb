@@ -135,13 +135,13 @@ class Config
 						pid = userSession.pid()
 						ajaxService.post actionCode.GET_USER, {id: pid}
 							.then (rsp) ->
-								return rsp.data.rsp
+								return angular.fromJson rsp.data.rsp
 					]
 					
 				controller: ['$log', '$state', 'userStatus', 'user', ($log, $state, userStatus, user) ->
-					# $log.log user
+#					 $log.log user.type
 					# status&userStatus.IDENTITY_VALIDATE==0
-					if user.type is 1
+					if user.type is 0
 						if user.idValidating is 1 or user.state & userStatus.IDENTITY_VALIDATE is 1 # 个人身份认证已提交
 							$state.go 'site.member.authids'
 						else
