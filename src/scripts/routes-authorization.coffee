@@ -124,7 +124,7 @@ class Authorization
 		@requireIdentityValidated = () =>
 			@getUser (user) ->
 				status = user.status
-				status&userStatus.EMAIL_VALIDATE==1 or status&userStatus.MOBILE_VALIDATE==1 or status&userStatus.IDENTITY_VALIDATE==1 or status&userStatus.FIRM_VALIDATE==1
+				(status&userStatus.EMAIL_VALIDATE)==1 or (status&userStatus.MOBILE_VALIDATE)==2 or (status&userStatus.IDENTITY_VALIDATE)==4 or (status&userStatus.FIRM_VALIDATE)==8
 
 		@requireHasEmail = () =>
 			@getUser (user) ->
