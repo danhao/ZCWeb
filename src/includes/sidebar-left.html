@@ -3,7 +3,7 @@
         <a href="" toggle-submenu>
             <div class="profile-pic">
                 <!--<img src="images/profile-pics/1.jpg" alt=""/>-->
-                <img src="{{ctrl.user.head==''?'../images/profile-pics/1.jpg':sbctrl.user.head}}"    alt="">
+                <img src="{{ctrl.user.head=='' || ctrl.user.head ==undefined?'../images/profile-pics/1.jpg':sbctrl.user.head}}"    alt="">
             </div>
 
             <div class="profile-info">
