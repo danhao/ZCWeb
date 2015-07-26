@@ -94,8 +94,8 @@ class DebtListController
 		,
 		(newValue, oldValue) =>
 			if newValue isnt oldValue
-				agentlist()
-				transferlist()
+				@agentlist()
+				@transferlist()
 		, true
 
 
