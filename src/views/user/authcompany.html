@@ -12,7 +12,7 @@
                             <div class="col-xs-12" >
                                 <div class="form-group"  >
                                     <label  class="col-sm-2 control-label">五证合一：</label>
-                                    <div class="col-sm-6 radio" ng-init="ctrl.authcompany.fiveInOne=0">
+                                    <div class="col-sm-6 radio" ng-init="ctrl.authcompany.fiveInOne='0'">
                                         <label class="m-r-20">
                                             <input type="radio" name="sex" ng-model="ctrl.authcompany.fiveInOne" value="0"  /> <i class="input-helper"></i>否
                                         </label>
@@ -59,10 +59,10 @@
 
                                             <!--<div class="col-sm-12">-->
                                                 <div class="fg-line" >
-                                                    <input type="text"   class="form-control" ng-model="ctrl.authcompany.userId" name="userId" maxlength="30"
+                                                    <input type="text"   class="form-control" ng-model="ctrl.authcompany.userId" ng-pattern="/^([0-9a-z]){8}-[0-9|x]$/" name="userId" maxlength="10"
                                                            ng-required="ctrl.authcompany.fiveInOne==0">
                                                 </div>
-                                            <label class="fg-label">组织机构代码<span class="inputflag">*</span></label>
+                                            <label class="fg-label">组织机构代码(格式为XXXXXXXX-X,X为字母或数字)<span class="inputflag">*</span></label>
                                             <!--</div>-->
                                         </div>
 
@@ -70,10 +70,10 @@
                                             <!--<label class="col-sm-3 control-label">公司执照注册号<span class="inputflag">*</span></label>-->
                                             <!--<div class="col-sm-12">-->
                                                 <div class="fg-line" >
-                                                    <input type="text"   class="form-control" ng-model="ctrl.authcompany.businessLicence" name="businessLicence" maxlength="30"
+                                                    <input type="text"   class="form-control" ng-model="ctrl.authcompany.businessLicence" ng-pattern="/^([0-9]){15}$/"  name="businessLicence" maxlength="15"
                                                             required>
                                                 </div>
-                                            <label class="fg-label">公司执照注册号<span class="inputflag">*</span></label>
+                                            <label class="fg-label">公司营业执照注册号(格式为15位数字编号)<span class="inputflag">*</span></label>
                                             <!--</div>-->
                                         </div>
 
@@ -82,10 +82,10 @@
 
                                             <!--<div class="col-sm-12">-->
                                                 <div class="fg-line" >
-                                                    <input type="text"   class="form-control" ng-model="ctrl.authcompany.taxNumber" name="taxNumber" maxlength="30"
+                                                    <input type="text"   class="form-control" ng-model="ctrl.authcompany.taxNumber" name="taxNumber" ng-pattern="/^([0-9]){15}$/" maxlength="15"
                                                              ng-required="ctrl.authcompany.fiveInOne==0">
                                                 </div>
-                                            <label class="fg-label">税务登记号<span class="inputflag">*</span></label>
+                                            <label class="fg-label">税务登记证号(格式为15位数字编号)<span class="inputflag">*</span></label>
                                             <!--</div>-->
                                         </div>
 
@@ -94,10 +94,10 @@
 
                                             <!--<div class="col-sm-12">-->
                                                 <div class="fg-line" >
-                                                    <input type="text"   class="form-control" ng-model="ctrl.authcompany.accountPermit" name="accountPermit" maxlength="30"
+                                                    <input type="text" class="form-control" ng-model="ctrl.authcompany.accountPermit" ng-pattern="/^(J){1}([0-9]){13}$/" name="accountPermit" maxlength="14"
                                                            required>
                                                 </div>
-                                            <label class="fg-label">开户许可证核准号<span class="inputflag">*</span></label>
+                                            <label class="fg-label">开户许可证核准号(格式为Jxxxxxxxxxxxxx,x为数字)<span class="inputflag">*</span></label>
                                             <!--</div>-->
                                         </div>
                                         <div class="form-group fg-float">
@@ -105,10 +105,10 @@
 
                                             <!--<div class="col-sm-12">-->
                                                 <div class="fg-line" >
-                                                    <input type="number"   class="form-control" ng-model="ctrl.authcompany.registeredCapital" name="registeredCapital"
+                                                    <input type="number" min="1" max="100000"  class="form-control" ng-model="ctrl.authcompany.registeredCapital" name="registeredCapital"
                                                             required>
                                                 </div>
-                                            <label class="fg-label">注册资金,以'万'为单位<span class="inputflag">*</span></label>
+                                            <label class="fg-label">注册资金(以'万'为单位)<span class="inputflag">*</span></label>
                                             <!--</div>-->
                                         </div>
 
@@ -128,7 +128,7 @@
 
                                             <!--<div class="col-sm-12">-->
                                                 <div class="fg-line" >
-                                                    <input type="text"   class="form-control" ng-model="ctrl.authcompany.businessScope" name="businessScope" maxlength="200"
+                                                    <input type="text"   class="form-control" ng-model="ctrl.authcompany.businessScope" name="businessScope" maxlength="100"
                                                            multiple required>
                                                 </div>
                                             <label class="fg-label">经营范围<span class="inputflag">*</span></label>
@@ -138,7 +138,7 @@
                                             <!--<label class="col-sm-3 control-label">企业注册地址<span class="inputflag">*</span></label>-->
                                             <!--<div class="col-sm-12">-->
                                                 <div class="fg-line" >
-                                                    <input type="text"   class="form-control" ng-model="ctrl.authcompany.companyAddress" name="companyAddress" maxlength="100"
+                                                    <input type="text"   class="form-control" ng-model="ctrl.authcompany.companyAddress" name="companyAddress" maxlength="50"
                                                            required>
                                                 </div>
                                             <label class="fg-label">企业注册地址<span class="inputflag">*</span></label>
@@ -148,7 +148,7 @@
                                             <!--<label class="col-sm-3 control-label">企业经营地址<span class="inputflag">*</span></label>-->
                                             <!--<div class="col-sm-12">-->
                                                 <div class="fg-line" >
-                                                    <input type="text"   class="form-control" ng-model="ctrl.authcompany.businessAddress" name="businessAddress" maxlength="100"
+                                                    <input type="text"   class="form-control" ng-model="ctrl.authcompany.businessAddress" name="businessAddress" maxlength="50"
                                                            required>
                                                 </div>
                                             <label class="fg-label">企业经营地址<span class="inputflag">*</span></label>
