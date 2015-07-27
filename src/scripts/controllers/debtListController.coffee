@@ -85,15 +85,20 @@ class DebtListController
 				else moneystr=''
 
 
-#		$scope.$watchGroup ["fbdate","debtmoney","city","paging"], (para)->
-#			$log.log para
-#			agentlist(para)
-#			transferlist(para)
+		@reset_var = () =>
+			@$scope.agentlist = []
+			@$scope.transferlist = []
+			@page_a = 1
+			@page_t = 1
+			@loadMore_a = true
+			@loadMore_t = true
 
 		@$scope.$watch () => @q
 		,
 		(newValue, oldValue) =>
 			if newValue isnt oldValue
+				@reset_var()
+				
 				@agentlist()
 				@transferlist()
 		, true
