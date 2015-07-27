@@ -27,7 +27,7 @@ class AuthidController
 			return if validate(authid)==false
 			$log.log authid.idFile
 			if checkfiletype(authid.idFile)==false
-				growlService.growl("身份证文件文件格式有误，仅支持支持jpg, jepg, png, gif, bmp格式的图片文件！", 'warning')
+				growlService.growl("身份证文件文件格式有误，仅支持支持jpg, jpeg, png, gif, bmp格式的图片文件！", 'warning')
 				return
 			else
 				if (typeof authid.idFile)=='string'
@@ -35,7 +35,7 @@ class AuthidController
 
 			if authid.noneCrimeFile isnt undefined
 				if checkfiletype(authid.noneCrimeFile)==false
-					growlService.growl("无犯罪记录证明文件文件格式有误，仅支持支持jpg, jepg, png, gif, bmp格式的图片文件！", 'warning')
+					growlService.growl("无犯罪记录证明文件文件格式有误，仅支持支持jpg, jpeg, png, gif, bmp格式的图片文件！", 'warning')
 					return
 				else
 					if (typeof authid.noneCrimeFile)=='string'
@@ -59,7 +59,7 @@ class AuthidController
 			isimg=true
 			if file != "" and file !=undefined
 				idimg=if file=='' then '' else file.split(';')[1]
-				imgstring =".jpg.jepg.png.bmp.gif"
+				imgstring =".jpg.jpeg.png.bmp.gif"
 				if idimg !=''and idimg !=undefined
 					index1=idimg.lastIndexOf(".")
 					length=idimg.length

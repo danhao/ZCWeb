@@ -20,14 +20,14 @@ class UserController
 		@saveEntity = (user)=>
 			user.gender= if user.gender==undefined then 0 else parseInt user.gender
 			headimg=if user.head=='' then '' else user.head.split(';')[1]
-			imgstring =".jpg.jepg.png.bmp.gif"
+			imgstring =".jpg.jpeg.png.bmp.gif"
 			if headimg !=''and headimg !=undefined
 #				$log.log headimg
 				index1=headimg.lastIndexOf(".")
 				length=headimg.length
 				postf=headimg.substring(index1,length).toLocaleLowerCase()
 				if imgstring.indexOf(postf)<0
-					growlService.growl("文件格式有误，仅支持支持jpg, jepg, png, gif, bmp格式的图片文件！", 'warning')
+					growlService.growl("文件格式有误，仅支持支持jpg, jpeg, png, gif, bmp格式的图片文件！", 'warning')
 					return
 			if $scope.ismobile and $scope.isemail
 				data=
