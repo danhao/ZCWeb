@@ -10,11 +10,27 @@
                                     <img src="../images/profile-pics/1.jpg"  width="80" class="pv-main" alt="">
                                 </div>
                                 <div class="pv-body">
-                                    <h2>资深催收专员 ：{{ctrl.UserInfo.name}}</h2><br/>
+                                    <!--<h2>资深催收专员 ：{{ctrl.UserInfo.name}}</h2><br/>-->
                                     <large class="lv-small">信誉指数：<rating ng-model="ctrl.UserInfo.rating" readonly="true"></rating></large> <br/>
-                                    <large class="lv-small">地址：{{ctrl.UserInfo.address}}</large><br/>
+                                    <!--<large class="lv-small">公司名称：深圳市中达律师事务所</large><br/>-->
+                                    <!--<large class="lv-small">地址：{{ctrl.UserInfo.address}}</large><br/>-->
                                     <div class="row">
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-6">
+                                            <div class="card blog-post" style="text-align: left">
+                                                <div class="card-header bgm-lightblue">
+                                                    <h2>基本信息</h2>
+                                                </div>
+                                                <div class="p-20">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item">姓 名：{{ctrl.UserInfo.userName}}</li>
+                                                        <li class="list-group-item">性 别：{{ctrl.UserInfo.gender | userSex}}</li>
+                                                        <li class="list-group-item">公司名称：{{ctrl.UserInfo.companyName}}</li>
+                                                        <li class="list-group-item">联系地址：{{ctrl.UserInfo.address}}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
                                             <div class="card blog-post" style="text-align: left">
                                                 <div class="card-header bgm-lightblue">
                                                         <h2>个人介绍</h2>
