@@ -56,7 +56,7 @@ class UserController
 					companyName:user.companyName
 					descript:user.descript
 					head:headimg
-#			$log.log data
+			$log.log data
 #			return
 			@ajaxService.post actionCode.ACTION_UPDATE_USER, data
 			.success (results) ->
