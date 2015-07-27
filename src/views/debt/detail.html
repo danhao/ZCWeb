@@ -130,9 +130,9 @@
                         </div>
                         -->
 
-                        <div class="col-md-3 col-sm-4 col-xs-6" ng-repeat="file in ctrl.debt.files" data-src="{{file.url | trustUrl}}" lightgallery>
+                        <div class="col-md-3 col-sm-4 col-xs-6" ng-repeat="file in ctrl.debt.files" data-src="{{file.url | imgurl | trustUrl}}" lightgallery>
                             <div class="lightbox-item p-item">
-                                <img alt="" ng-src="{{file.url}}"/>
+                                <img alt="" ng-src="{{file.url | imgurl}}"/>
                             </div>
                             <div class="c-info text-center">
                                 <strong>{{file.name}}</strong>

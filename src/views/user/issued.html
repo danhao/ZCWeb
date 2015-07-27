@@ -11,7 +11,11 @@
                         类型:&nbsp;&nbsp;
                         <div class="btn-group">
                             <div class="btn-group" ng-init="ctrl.q.type='1'" data-toggle="buttons">
-                                <label class="btn btn-default active" ng-click="ctrl.q.type='1'">
+                                <label class="btn btn-default active" ng-click="ctrl.q.type='0'">
+                                    <input type="radio" name="type" ng-model="ctrl.q.type" autocomplete="off" value="'0'" checked/>
+                                    <i class="fa fa-user"></i> 全部
+                                </label>
+                                <label class="btn btn-default" ng-click="ctrl.q.type='1'">
                                     <input type="radio" name="type" ng-model="ctrl.q.type" autocomplete="off" value="'1'" checked/>
                                     <i class="fa fa-user"></i> {{1 | debtType}}
                                 </label>
@@ -77,6 +81,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-sm-12 text-center" ng-hide="ctrl.debtList.length">暂无记录</div>
                 </div>
             </div>
         </div>

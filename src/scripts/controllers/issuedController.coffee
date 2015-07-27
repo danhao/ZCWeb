@@ -19,7 +19,7 @@ class IssuedController
 	getList: ->
 		param = _.mapObject @q, parseInt
 		param.ownerId = @pid
-		@$log.log param
+		# @$log.log param
 		@ajaxService.post @actionCode.LIST_DEBTS, param
 			.success (rets) =>
 				@debtList = rets.debt
