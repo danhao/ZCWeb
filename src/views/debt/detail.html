@@ -55,7 +55,7 @@
 
     <div class="pm-overview c-overflow" style="overflow: hidden;" tabindex="26">
         <div class="debt-overview ">
-            <div class="debt-price bgm-orange">
+            <div class="debt-price" ng-class="{'0':'bgm-orange','1':'bgm-orange','2':'bgm-grey','3':'bgm-orange','4':'bgm-grey'}[ctrl.debt.state]">
                 <h1>{{ctrl.debt.money | ccurrency}} </h1> <!--{{ctrl.debt.money | ccurrency}}-->
                 <div class="dropdown pmop-message" ng-show="showBidButton">
                     <button class="btn bgm-white btn-float z-depth-1 waves-effect" ng-click="ctrl.bid()" aria-expanded="false">
@@ -63,8 +63,8 @@
                     </button>
                 </div>
             </div>
-            <div class="debt-countdown bgm-white" ng-show='ctrl.debt.state < 3'>
-                <div class="text-center countdown">
+            <div class="debt-countdown bgm-white">
+                <div class="text-center countdown" ng-show="showCountdown">
                     <i class="zmdi zmdi-time-countdown"></i> 距结束&nbsp;&nbsp; <span countdown="expireDay" ></span>
                 </div>
                 <div ng-show="showBidStatus">你已投过标</div>

@@ -99,6 +99,7 @@ class DebtDetailController
 		
 		@$scope.showBidButton = (@debt.state < 3) and (@pid isnt @debt.ownerId) and (@pid isnt @debt.winnerId) and not isBidded
 		@$scope.showBidStatus = (@debt.state < 3) and isBidded
+		@$scope.showCountdown = (@debt.state < 3) or (@debt.state >= 3 and (@pid is @debt.ownerId or @pid is @debt.winnerId))
 
 	getDebtDetail: ->
 		@ajaxService.post @actionCode.VIEW_DEBT, {param: @$stateParams.debtId}
