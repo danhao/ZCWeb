@@ -128,8 +128,9 @@
 
                                             <!--<div class="col-sm-12">-->
                                                 <div class="fg-line" >
-                                                    <input type="text"   class="form-control" ng-model="ctrl.authcompany.businessScope" name="businessScope" maxlength="100"
-                                                           multiple required>
+                                                    <!--<input type="text"   class="form-control" ng-model="ctrl.authcompany.businessScope" name="businessScope" maxlength="100"-->
+                                                           <!--multiple required>-->
+                                                    <textarea  rows="3" name="businessScope" class="form-control"  maxlength="100"  ng-model="ctrl.authcompany.businessScope" required></textarea>
                                                 </div>
                                             <label class="fg-label">经营范围<span class="inputflag">*</span></label>
                                             <!--</div>-->
@@ -140,6 +141,7 @@
                                                 <div class="fg-line" >
                                                     <input type="text"   class="form-control" ng-model="ctrl.authcompany.companyAddress" name="companyAddress" maxlength="50"
                                                            required>
+
                                                 </div>
                                             <label class="fg-label">企业注册地址<span class="inputflag">*</span></label>
                                             <!--</div>-->
