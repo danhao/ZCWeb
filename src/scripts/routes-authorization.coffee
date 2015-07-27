@@ -45,7 +45,7 @@ class Authorization
 			# trick to workaround the infinit loop issue
 			if toState.$$finishAuthorize
 				return
-			
+
 			# track the state the user wants to go to;
 			@$rootScope.toState = toState
 			@$rootScope.fromState = fromState
@@ -55,7 +55,7 @@ class Authorization
 			if toState.data and toState.data.precondition
 				event.preventDefault()
 				toState = angular.extend {'$$finishAuthorize': true}, toState # trick to workaround the infinit loop issue
-				
+
 				precondition = toState.data.precondition
 				cond = if angular.isObject(precondition) then precondition.require else precondition
 				if angular.isString(cond)
@@ -85,8 +85,6 @@ class Authorization
 				# authorization
 				satisfiedFun.then (ret) =>
 					if ret # satisfy precondition, continue
-						# $log.log toState
-
 						# trick to workaround the infinit loop issue
 						@$state.go toState.name, toParams, {notify: false}
 							.then ()=>
