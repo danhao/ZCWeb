@@ -209,32 +209,6 @@ class Config
 			.state 'site.debt.detail',
 				url: ':debtId'
 				templateUrl: 'views/debt/detail.html'
-				###
-				resolve:
-					user: ['userSession', 'ajaxService', 'actionCode', '$log', (userSession, ajaxService, actionCode, $log) ->
-						pid = userSession.pid()
-						ajaxService.post actionCode.GET_USER, {id: pid}
-						.then (rsp) ->
-							return angular.fromJson rsp.data.rsp
-					]
-
-				controller: ['$log', '$state', 'userStatus', 'user','growlService', ($log, $state, userStatus, user,growlService) ->
-					status = user.status
-					if user.type is 0  and (status&userStatus.IDENTITY_VALIDATE) isnt 4
-						growlService.growl('您需要先验证身份信息才能查看债权详细信息！', 'warning')
-						if user.idValidating is 1 or user.state & userStatus.IDENTITY_VALIDATE is 1 # 个人身份认证已提交
-							$state.go 'site.member.authids'
-						else
-							$state.go 'site.member.authid'
-					else if user.type is 1  and (status&userStatus.FIRM_VALIDATE) isnt 8
-						growlService.growl('您需要先验证身份信息才能查看债权详细信息！', 'warning')
-						if user.coValidating is 1 or user.state & userStatus.FIRM_VALIDATE is 1 # 个人身份认证已提交
-							$state.go 'site.member.authcompanys'
-						else
-							$state.go 'site.member.authcompany'
-				]
-
-				###
 				data:
 					precondition:
 						require: 'requireIndentity'
