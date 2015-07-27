@@ -119,36 +119,32 @@ class Authorization
 			@growlService.growl(msg, 'warning')
 			state
 
-		@requireIdentityValidated = () =>
+		# 创建debt校验; 手机,邮箱,身份,3者任何1个通过验证;
+		@requireCreateDebtValidate = () =>
 			@getUser (user) ->
 				status = user.status
 				(status&userStatus.EMAIL_VALIDATE)==1 or (status&userStatus.MOBILE_VALIDATE)==2 or (status&userStatus.IDENTITY_VALIDATE)==4 or (status&userStatus.FIRM_VALIDATE)==8
 
+		# 必须通过身份认证
+		@requireIndentity = () =>
+			@getUser (user) ->
+				status = user.status
+				(status&userStatus.IDENTITY_VALIDATE)==4 or (status&userStatus.FIRM_VALIDATE)==8
+
+		# 必须有邮件
 		@requireHasEmail = () =>
 			@getUser (user) ->
 				!!user.email
-			# defered = @$q.defer()
-			# @getUser().success (user) -> defered.resolve !!user.email
-			# 	.error (error) -> defered.reject false
-			# defered.promise
-
+				
+		# 必须有手机
 		@requireHasMobile = () =>
 			@getUser (user) ->
 				!!user.mobile
-			# defered = @$q.defer()
-			# @getUser().success (user) -> defered.resolve !!user.mobile
-			# 	.error (error) -> defered.reject false
-			# defered.promise
 
+		# 必须同时有手机和邮件
 		@requireUserInfo = () =>
 			@getUser (user) ->
 				!!user.email and !!user.mobile
-			# defered = @$q.defer()
-			# @getUser().success (user) -> defered.resolve (!!user.email and !!user.mobile)
-			# 	.error (error) -> defered.reject false
-			# defered.promise
-
-		# @getUser = ()=> @ajaxService.post @actionCode.GET_USER, {id: @userSession.pid()}
 
 
 

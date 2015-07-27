@@ -89,7 +89,7 @@ class Config
 				templateUrl: 'views/user/createdebt.html'
 				data:
 					precondition:
-						require: "requireIdentityValidated"
+						require: "requireCreateDebtValidate"
 						redirectTo: "site.member.index"
 						msg: "您需要先验证(手机,邮箱,身份)其中之一,才能发布债权信息"
 
@@ -209,6 +209,7 @@ class Config
 			.state 'site.debt.detail',
 				url: ':debtId'
 				templateUrl: 'views/debt/detail.html'
+				###
 				resolve:
 					user: ['userSession', 'ajaxService', 'actionCode', '$log', (userSession, ajaxService, actionCode, $log) ->
 						pid = userSession.pid()
@@ -232,6 +233,12 @@ class Config
 						else
 							$state.go 'site.member.authcompany'
 				]
+
+				###
+				data:
+					precondition:
+						require: 'requireIndentity'
+						msg: "你需要身份认证之后,才允许查看"
 
 
 			# demo
