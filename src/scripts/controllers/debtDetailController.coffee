@@ -93,13 +93,31 @@ class DebtDetailController
 
 
 	init_page_var: ->
-		@$scope.expireDay = @debt.publishTime*1000 + @debt.expireDays*24*60*60*1000
+		# @$scope.expireDay = @debt.publishTime*1000 + @debt.expireDays*24*60*60*1000
+		# countdown time
+
+		# if @debt.state < 3
+		# 	@$scope.countdown_time = @debt.publishTime*1000 + @debt.expireDays*24*60*60*1000
+		# else
+		# 	@$scope.countdown_time = @debt.publishTime*1000 + @debt.duration*24*60*60*1000
+
+		@$scope.countdown_time = @debt.publishTime*1000 + (if @debt.state < 3 then @debt.expireDays else @debt.duration)*24*60*60*1000
+			
 		@bidderIds = _.map @debt.bidders, (bidder)-> bidder.id
 		isBidded = @debt.type is DEBT_TYPE.AGENT and @pid in @bidderIds # 是否已投票
 		
 		@$scope.showBidButton = (@debt.state < 3) and (@pid isnt @debt.ownerId) and (@pid isnt @debt.winnerId) and not isBidded
-		@$scope.showBidStatus = (@debt.state < 3) and isBidded
-		@$scope.showCountdown = (@debt.state < 3) or (@debt.state >= 3 and (@pid is @debt.ownerId or @pid is @debt.winnerId))
+		@$scope.showCountdown = (@debt.state < 3) or (@debt.state == 3 and (@pid is @debt.ownerId or @pid is @debt.winnerId))
+		# @$scope.showBidStatus = (@debt.state < 3) and isBidded
+		
+		# 投标状态
+		@$scope.bidStatus = switch
+			when @debt.state < 3 and isBidded then '你已投过标'
+			when @debt.state is 3 and (isBidded and @pid isnt @debt.winnerId) then '已结束'
+			when @debt.state > 3 then '已结束'
+			else ''
+
+		@$scope.showDebtCollection = @debt.state >= 3 and @debt.type == 1 and (@pid is @debt.ownerId or @pid is @debt.winnerId)
 
 	getDebtDetail: ->
 		@ajaxService.post @actionCode.VIEW_DEBT, {param: @$stateParams.debtId}
@@ -107,6 +125,7 @@ class DebtDetailController
 				@debt = result
 				@init_page_var()
 				@init_dialog()
+				# @$log.log @debt
 			.error (error) ->
 				@$log.log '请求远程资源失败!'
 				@$log.log error

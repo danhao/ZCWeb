@@ -55,8 +55,9 @@
 
     <div class="pm-overview c-overflow" style="overflow: hidden;" tabindex="26">
         <div class="debt-overview ">
-            <div class="debt-price" ng-class="{'0':'bgm-orange','1':'bgm-orange','2':'bgm-grey','3':'bgm-orange','4':'bgm-grey'}[ctrl.debt.state]">
-                <h1>{{ctrl.debt.money | ccurrency}} </h1> <!--{{ctrl.debt.money | ccurrency}}-->
+            <!-- <div class="debt-price" ng-class="{'0':'bgm-orange','1':'bgm-orange','2':'bgm-gray','3':'bgm-orange','4':'bgm-gray'}[ctrl.debt.state]"> -->
+            <div class="debt-price" ng-class="{'bgm-orange': bidStatus!='已结束','bgm-gray': bidStatus=='已结束'}">
+                <h1>{{ctrl.debt.money | ccurrency}} </h1>
                 <div class="dropdown pmop-message" ng-show="showBidButton">
                     <button class="btn bgm-white btn-float z-depth-1 waves-effect" ng-click="ctrl.bid()" aria-expanded="false">
                         <i class="zmdi zmdi-mail-send"></i>
@@ -65,9 +66,9 @@
             </div>
             <div class="debt-countdown bgm-white">
                 <div class="text-center countdown" ng-show="showCountdown">
-                    <i class="zmdi zmdi-time-countdown"></i> 距结束&nbsp;&nbsp; <span countdown="expireDay" ></span>
+                    <i class="zmdi zmdi-time-countdown"></i> {{ ctrl.debt.state < 3 ? "距结束" : "距催收结束" }}&nbsp;&nbsp; <span countdown="countdown_time" ></span>
                 </div>
-                <div ng-show="showBidStatus">你已投过标</div>
+                <div ng-show="bidStatus">{{bidStatus}}</div>
             </div>
         </div>
         <div class="pmo-block pmo-contact bgm-white">
@@ -89,7 +90,7 @@
             <li class="btn-wave active" role="presentation"><a href="#debtor" aria-controls="alldebt" role="tab" data-toggle="tab">债务人信息</a></li>
             <li class="btn-wave" role="presentation"><a href="#attachment" aria-controls="alldebt" role="tab" data-toggle="tab">相关附件</a></li>
             <li class="btn-wave" role="presentation"><a href="#alldebt" aria-controls="alldebt" role="tab" data-toggle="tab">所有竞标</a></li>
-            <li class="btn-wave" role="presentation" ng-show="ctrl.debt.state >= 3 && ctrl.debt.type == 1"><a href="#debtcollection" aria-controls="debtcollection" role="tab" data-toggle="tab">催收动态</a></li>
+            <li class="btn-wave" role="presentation" ng-show="showDebtCollection"><a href="#debtcollection" aria-controls="debtcollection" role="tab" data-toggle="tab">催收动态</a></li>
         </ul>
 
         <!-- Tab panes -->
@@ -209,7 +210,7 @@
             </div>
             <div role="tabpanel" class="tab-pane" id="debtcollection" style="position: relative;">
                 <!-- {{ctrl.debt.messages}} -->
-                <div class="timeline debtcollection">
+                <div class="timeline debtcollection" >
                     
                     <div class="t-view" data-tv-type="text" ng-repeat="msg in ctrl.debt.messages">
                         <div class="tv-header media">

@@ -27,6 +27,9 @@ class Directive
 				updateTime()
 			, 1000
 
+			attrs.$observe 'countdown', (val) ->
+				updateTime()
+
 
 		return {
 			link: link,
