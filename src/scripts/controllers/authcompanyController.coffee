@@ -38,7 +38,7 @@ class AuthcompanyController
 				authcompany.taxNumberFile= splitfiles(authcompany.taxNumberFile)
 			authcompany.coValidating=1
 			authcompany.fiveInOne =parseInt authcompany.fiveInOne
-			$log.log authcompany
+#			$log.log authcompany
 #			return
 			@ajaxService.post actionCode.ACTION_UPDATE_USER, authcompany
 			.success (results) ->
