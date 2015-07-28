@@ -92,7 +92,15 @@
                                             <div ng-repeat="situation in situationlist">
                                                 <li class="list-group-item">
                                                     <span class="badge">{{situation.time | idate}}</span>
-                                                    <a ui-sref="site.debt.detail({debtId: '{{situation.data[1]}}'})" href="javascript:;" >债务类型：{{situation.data[0] | debtType}} 总金额：{{situation.data[3] | ccurrency}} 元 </a>
+                                                    <div ng-show="situation.type==1">
+                                                        <a ui-sref="site.debt.detail({debtId: '{{situation.data[1]}}'})" href="javascript:;" >债务类型：{{situation.data[0] | debtType}} 总金额：{{situation.data[3] | ccurrency}} 元 </a>
+                                                    </div>
+                                                    <div ng-show="situation.type==2">
+                                                        <a ui-sref="site.member.fundrecord"  >资金类型：结单返款 金额：{{situation.data[1] | ccurrency}} 元 </a>
+                                                    </div>
+                                                    <div ng-show="situation.type==3">
+                                                        <a ui-sref="site.member.fundrecord" >资金类型：退还保证金 总金额：{{situation.data[1] | ccurrency}} 元 </a>
+                                                    </div>
                                                 </li>
                                             </div>
                                         </ul>
