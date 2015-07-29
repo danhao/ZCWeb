@@ -20,6 +20,7 @@ ActionCode = # do () ->
 	ACTION_GET_OTHER:12 #查看他人(common.SingleMsg---->player.SimplePlayerMsg)
 	ACTION_LIST_MONEY_HISTORY:13 #查看资金使用情况(player.ListMoneyHistoryReq---->player.ListMoneyHistoryRsp)
 	ACTION_LIST_SITUAION : 14 		#查看动态(null---->player.ListSituationRsp)
+	ACTION_BUY_VIP :17 #购买VIP(common.SingleMsg(VIP等级)---->null)
 	UPLOAD_PREPARE			: 51	# 准备上传文件
 	
 	CREATE_DEBT				: 100	# 创建债务

@@ -199,3 +199,19 @@ p {
     margin-left: 10px;
 }
 
+/*vip flag color*/
+.vipbadge {
+    float: right;
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1;
+    vertical-align: baseline;
+    white-space: nowrap;
+    text-align: center;
+    background-color: #f36402;
+    border-radius: 2px;
+}

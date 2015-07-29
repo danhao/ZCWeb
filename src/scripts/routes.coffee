@@ -196,6 +196,10 @@ class Config
 				url: 'fundrecord'
 				templateUrl: 'views/user/fundrecord.html'
 
+			.state 'site.member.vip',
+				url: 'vip'
+				templateUrl: 'views/user/vip.html'
+
 			# ########## debt
 			.state 'site.debt',
 				url: 'debt/'
