@@ -2,17 +2,16 @@ class AuthidController
 	constructor: (@$log,@$scope,@$state, @$stateParams,@ajaxService, @actionCode,@w5cValidator,@userSession,@$timeout,@utilService,@growlService) ->
 		$scope.validateOptions =
 			blurTrig: true
-
 		initperson=()=>
 			pid = @userSession.pid()
 			@ajaxService.post @actionCode.GET_USER, {id: pid}
 			.success (result) =>
-				if result.type==0
-					$scope.issubmit = (result.status&4)==4 or result.idValidating==1
-					$scope.isverifypass = (result.status&4)==4
+#				if result.type==0
+				$scope.issubmit = (result.status&4) is 4 or result.idValidating is 1
+				$scope.isverifypass = (result.status&4) is 4
 				@userinfo = result
+				@authid=result
 				@userinfo.isshowcreditFile=true
-#				$log.log result
 				if @userinfo.creditFile==undefined
 					@userinfo.isshowcreditFile=false
 				else
@@ -25,7 +24,7 @@ class AuthidController
 
 		@verify = (@authid)->
 			return if validate(authid)==false
-			$log.log authid.idFile
+#			$log.log authid
 			if checkfiletype(authid.idFile)==false
 				growlService.growl("身份证文件文件格式有误，仅支持支持jpg, jpeg, png, gif, bmp格式的图片文件！", 'warning')
 				return
@@ -42,16 +41,39 @@ class AuthidController
 						authid.noneCrimeFile= splitfiles(authid.noneCrimeFile)
 
 			if authid.creditFile isnt undefined
-				authid.creditFile= splitfiles(authid.creditFile)
-			authid.idValidating=1
-#			$log.log authid
-#			return
-			@ajaxService.post actionCode.ACTION_UPDATE_USER, authid
+				if (typeof authid.creditFile)=='string'
+					authid.creditFile= splitfiles(authid.creditFile)
+
+#			$log.log authid.idValidating
+
+			if (authid.status&4) is 4
+				data =
+					idValidating:1
+					creditFile:authid.creditFile if authid.creditFile.id isnt undefined
+					noneCrimeFile:authid.noneCrimeFile if authid.noneCrimeFile.id isnt undefined
+			else if authid.idValidating is 0
+				data =
+					idValidating:1
+					userId :authid.userId
+					idFile :authid.idFile
+					creditFile:authid.creditFile if authid.creditFile isnt undefined
+					noneCrimeFile:authid.noneCrimeFile if authid.noneCrimeFile isnt undefined
+			else
+#				$log.log authid.idFile.id
+				data =
+					idValidating:1
+					userId :authid.userId
+					idFile :authid.idFile if authid.idFile.id isnt undefined
+					creditFile:authid.creditFile if authid.creditFile isnt undefined and authid.creditFile.id isnt undefined
+					noneCrimeFile:authid.noneCrimeFile if authid.noneCrimeFile isnt undefined and authid.noneCrimeFile.id isnt undefined
+
+
+			@ajaxService.post actionCode.ACTION_UPDATE_USER, data
 			.success (results) ->
 				growlService.growl('身份证信息已提交，请等待后台审核！', 'success')
 				$state.go 'site.member.authids'
 			.error (error) ->
-				growlService.growl(error, 'danger')
+				growlService.growl(error.desc, 'danger')
 
 		checkfiletype =(file)->
 			if  (typeof file)!='string'

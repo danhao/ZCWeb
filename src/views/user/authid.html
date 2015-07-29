@@ -7,16 +7,16 @@
             <div  class="card-body card-padding">
                 <form  class="form-horizontal w5c-form" role="form"
                        w5c-form-validate="validateOptions" novalidate name="validateForm" id="auidform">
-                    <div class="form-group">
+                    <div class="form-group" ng-hide="isverifypass">
                         <label class="col-sm-3 control-label">身份证号码<span class="inputflag">*</span></label>
-                        <div class="col-sm-7">
+                        <div class="col-sm-7"  >
                             <!--<div class="fg-line" >-->
                                 <input type="text"   class="form-control" ng-model="ctrl.authid.userId" name="idcard" ng-pattern="/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/"
-                                       placeholder="输入身份证号码" maxlength="18" required>
+                                       placeholder="输入身份证号码" maxlength="18"  ng-required="!issubmit">
                             <!--</div>-->
                         </div>
                     </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-hide="isverifypass">
                             <label class="col-sm-3 control-label">身份证照片<span class="inputflag">*</span></label>
                             <div class="col-sm-7">
                                     <div>

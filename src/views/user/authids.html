@@ -6,7 +6,7 @@
             </header>
             <div  class="card-body card-padding">
                 身份证号码：{{ctrl.userinfo.userId}}   &nbsp;&nbsp;
-                状态：<span class="inputflag">{{isverifypass ?"已验证":"审核中"}}</span>
+                状态：<span class="inputflag">{{isverifypass ?"已验证":"审核中"}}</span> &nbsp;&nbsp;&nbsp; <a ui-sref="site.member.authid" class="btn btn-warning waves-effect">修改身份验证资料</a>
             </div>
         </div>
     </div>
