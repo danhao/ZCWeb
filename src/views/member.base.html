@@ -1,5 +1,19 @@
 <header id="header" data-ng-include src="'includes/header.html'" data-ng-controller="headerCtrl as hctrl"></header>
 
+<!-- 
+<ol class="breadcrumb m-b-5 visible-md-block visible-lg-block" >
+    <li>
+        <a href="#">Home</a>
+    </li>
+    <li>
+        <a href="#">Library</a>
+    </li>
+    <li class="active">Data</li>
+</ol>
+-->
+
+<ui-breadcrumbs displayname-property="data.displayName" template-url="includes/breadcrumbs.html" abstract-proxy-property="data.breadcrumbProxy"></ui-breadcrumbs>
+
 <section id="main">
     <aside id="sidebar" data-ng-include src="'includes/sidebar-left.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
 

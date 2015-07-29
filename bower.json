@@ -11,6 +11,7 @@
     "angular-ui-utils": "bower",
     "angular-loading-bar": "~0.8.0",
     "angular-city-select": "*",
+    "angular-utils-ui-breadcrumbs": "~0.2.1",
     "angular-bootstrap-show-errors": "~2.3.0",
     "angular-w5c-validator": "2.3.9",
     "angular-md5": "~0.1.7",
@@ -65,6 +66,9 @@
     "angular-city-select": {
       "scripts/libs": "dist/angular-city-select.js",
       "styles": "dist/angular-city-select.css"
+    },
+    "angular-utils-ui-breadcrumbs": {
+        "scripts/libs": "uiBreadcrumbs.js"
     },
     "angular-w5c-validator": {
       "scripts/libs": "w5cValidator.min.js",

@@ -46,11 +46,13 @@ class Config
 				templateUrl: 'views/member.base.html'
 				data:
 					precondition: "requireLogin"
+					breadcrumbProxy: 'site.member.index'
 				
 			.state 'site.member.index',
 				url: ''
 				templateUrl: 'views/user/index.html'
-
+				data:
+					displayName: "个人中心"
 
 			.state 'site.profile',
 				url: ''
@@ -65,16 +67,22 @@ class Config
 			.state 'site.member.issued',
 				url: 'issued'
 				templateUrl: 'views/user/issued.html'
+				data:
+					displayName: "我的委托"
 
 			# 我的竞标, 我参与的
 			.state 'site.member.participant',
 				url: 'participant'
 				templateUrl: 'views/user/participant.html'
+				data:
+					displayName: "我的竞标"
 	
 			# 我的中标
 			.state 'site.member.wonbid',
 				url: 'wonbid'
 				templateUrl: 'views/user/wonbid.html'
+				data:
+					displayName: "我的中标"
 
 			.state 'site.member.delegationlist',
 				url: 'delegationlist'
@@ -92,6 +100,7 @@ class Config
 						require: "requireCreateDebtValidate"
 						redirectTo: "site.member.index"
 						msg: "您需要先验证(手机,邮箱,身份)其中之一,才能发布债权信息"
+					displayName: "发布债权"
 
 			# 个人设置
 			.state 'site.member.userinfo',
@@ -183,6 +192,8 @@ class Config
 			.state 'site.member.pay',
 				url: 'pay'
 				templateUrl: 'views/user/pay.html'
+				data:
+					displayName: "我要充值"
 
 			.state 'site.member.balance',
 				url: 'balance'
@@ -191,24 +202,34 @@ class Config
 			.state 'site.member.cash',
 				url: 'cash'
 				templateUrl: 'views/user/cash.html'
+				data:
+					displayName: "我要提现"
 
 			.state 'site.member.fundrecord',
 				url: 'fundrecord'
 				templateUrl: 'views/user/fundrecord.html'
+				data:
+					displayName: "资金记录"
 
 			.state 'site.member.vip',
 				url: 'vip'
 				templateUrl: 'views/user/vip.html'
+				data:
+					displayName: "购买VIP"
 
 			# ########## debt
 			.state 'site.debt',
 				url: 'debt/'
 				abstract: true
 				templateUrl: 'views/member.base.html'
+				data:
+					breadcrumbProxy: 'site.debt.list'
 
 			.state 'site.debt.list',
 				url: ''
 				templateUrl: 'views/debt/list.html'
+				data:
+					displayName: '债务列表'
 
 			.state 'site.debt.detail',
 				url: ':debtId'
@@ -217,6 +238,7 @@ class Config
 					precondition:
 						require: 'requireIndentity'
 						msg: "你需要身份认证之后,才允许查看"
+					displayName: '债务明细'
 
 
 			# demo
