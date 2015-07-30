@@ -15,7 +15,7 @@ class ChangePwdController
 				data =
 					mobile:forgetpwd.mobile
 			$log.log data
-#			return
+			#			return
 			@ajaxService.post actionCode.ACTION_CHANGE_PWD_ONE, data
 			.success (results) ->
 				$scope.changepwdstep1=false
@@ -40,15 +40,15 @@ class ChangePwdController
 
 
 		@verifycode = (@code)->
-			$scope.code=code
+			$scope.code=parseInt code
 			if $scope.type==2
 				data =
 					email:$scope.email
-					code:code
+					code:$scope.code
 			else
 				data =
 					mobile:$scope.mobile
-					code:code
+					code:$scope.code
 			$log.log data
 			@ajaxService.post actionCode.ACTION_CHANGE_PWD_TWO, data
 			.success (results) ->
@@ -61,8 +61,6 @@ class ChangePwdController
 
 		@changePwd = (@newPasswd)->
 			passwd = @md5.createHash newPasswd
-#			$log.log $scope.type
-#			$log.log $scope.type==2
 			if $scope.type==2
 				data =
 					email:$scope.email
@@ -73,14 +71,13 @@ class ChangePwdController
 					mobile:$scope.mobile
 					code:$scope.code
 					passwd:passwd
-#			$log.log data
+			$log.log data
 			@newPasswd=angular.copy(null)
 			@repeatPassword=angular.copy(null)
 			@ajaxService.post actionCode.ACTION_CHANGE_PWD_THREE, data
 			.success (results) ->
-#				$log.log results
-				growlService.growl('密码修改成功!', 'success')
-#				$state.go "site.login({type:1})"
+				growlService.growl('密码重置成功!', 'success')
+				$state.go 'site.index'
 			.error (error) ->
 				growlService.growl(error.desc, 'danger')
 
