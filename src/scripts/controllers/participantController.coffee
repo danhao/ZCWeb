@@ -14,9 +14,9 @@ class ParticipantController
 		@$scope.$watch () => @q
 		,
 		(newValue, oldValue) =>
-				if newValue isnt oldValue
-					@resetVar()
-					@getList()
+			if newValue isnt oldValue
+				@resetVar()
+				@getList()
 		, true
 
 		# infinite scroll
