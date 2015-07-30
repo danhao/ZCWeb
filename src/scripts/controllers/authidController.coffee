@@ -70,7 +70,8 @@ class AuthidController
 
 			@ajaxService.post actionCode.ACTION_UPDATE_USER, data
 			.success (results) ->
-				growlService.growl('身份证信息已提交，请等待后台审核！', 'success')
+				info =if  $scope.isverifypass then '个人验证信息已提交成功！' else '个人验证信息已提交，请等待后台审核！'
+				growlService.growl(info, 'success')
 				$state.go 'site.member.authids'
 			.error (error) ->
 				growlService.growl(error.desc, 'danger')
