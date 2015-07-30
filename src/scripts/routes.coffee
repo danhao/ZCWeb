@@ -190,7 +190,7 @@ class Config
 				url: 'authids'
 				templateUrl: 'views/user/authids.html'
 				data:
-					displayName: "个人验证"
+					displayName: "个人验证资料展示"
 
 			.state 'site.member.authcompanys',
 				url: 'authcompanys'
@@ -202,7 +202,7 @@ class Config
 				url: 'authcompany'
 				templateUrl: 'views/user/authcompany.html'
 				data:
-					displayName: "企业验证"
+					displayName: "企业验证资料展示"
 					precondition:
 						require: 'requireUserInfo'
 						redirectTo: "site.member.userinfo"
@@ -235,7 +235,7 @@ class Config
 				url: 'vip'
 				templateUrl: 'views/user/vip.html'
 				data:
-					displayName: "购买VIP"
+					displayName: "购买VIP会员服务"
 
 			# ########## debt
 			.state 'site.debt',
