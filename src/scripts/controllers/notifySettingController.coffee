@@ -1,13 +1,26 @@
 class NotifySettingController
 
-	constructor: (@$log) ->
-		@$log.log 'init controller'
+	constructor: (@$log, @ajaxService, @actionCode) ->
+		# @$log.log 'init controller'
 		
-	save: (form, setting) ->
-		@$log.log setting
+		
+	saveSettings: (form, setting) ->
+		@save setting
+		
+	enableNotify: (setting) ->
+		@save setting
 
-	enableNotify: () ->
-		@$log.log @setting.enable
+	save: (setting) ->
+		data = angular.copy(setting)
+		data.on = if setting.on then 1 else 0
+		data.location = setting.city.cn.join("/")
+		# @$log.log data
+		@ajaxService.post @actionCode.ACTION_SET_ALERT, data
+			# .success (result) =>
+				# @$log.log result
+				# do nothing
+			.error (error) =>
+				@$log.log error
 
 
-angular.module("app").controller "notifySettingController", ['$log', NotifySettingController]
+angular.module("app").controller "notifySettingController", ['$log', 'ajaxService', 'actionCode', NotifySettingController]

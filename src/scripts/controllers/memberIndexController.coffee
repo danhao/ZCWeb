@@ -20,7 +20,6 @@ class Controller
 		situationlist = () =>
 			@ajaxService.post @actionCode.ACTION_LIST_SITUAION, null
 			.success (rets) ->
-				$log.log rets
 				$scope.situationlist = rets.situation
 			.error (error) ->
 				growlService.growl(error.desc, 'danger')

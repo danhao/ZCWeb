@@ -11,12 +11,12 @@
                     <div class="col-sm-12">
                         <div class="toggle-switch">
                             <label class="ts-label" for="ts1">是否允许系统为您推送信息?</label>
-                            <input id="ts1" type="checkbox" hidden="hidden" ng-model="ctrl.setting.enable" ng-change="ctrl.enableNotify()"/>
+                            <input id="ts1" type="checkbox" hidden="hidden" ng-model="ctrl.setting.on" ng-change="ctrl.enableNotify(ctrl.setting)"/>
                             <label class="ts-helper" for="ts1"></label>
                         </div>
                     </div>
                 </div>
-                <form name="customSettingForm" class="form-horizontal m-t-20" ng-submit="ctrl.save(this.customSettingForm, ctrl.setting);" ng-show="ctrl.setting.enable">
+                <form name="customSettingForm" class="form-horizontal m-t-20" ng-submit="ctrl.saveSettings(this.customSettingForm, ctrl.setting);" ng-show="ctrl.setting.on">
                     <p class="m-t-20 f-700">推送消息定制</p>
                     <small>只为我推送满足以下条件的债务信息</small>
                     <div class="form-group m-t-20">
@@ -27,19 +27,19 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <lable class="col-sm-2 control-label" for="debtType"> 代理类型 </lable>
+                        <lable class="col-sm-2 control-label" for="type"> 代理类型 </lable>
                         <div class="col-sm-10">
-                            <div class="btn-group" ng-init="ctrl.setting.debtType=0" data-toggle="buttons">
-                                <label class="btn btn-info active" ng-click="ctrl.setting.debtType=0">
-                                    <input type="radio" name="type" ng-model="ctrl.setting.debtType" autocomplete="off" value="0" checked/>
+                            <div class="btn-group" ng-init="ctrl.setting.type=0" data-toggle="buttons">
+                                <label class="btn btn-info active" ng-click="ctrl.setting.type=0">
+                                    <input type="radio" name="type" ng-model="ctrl.setting.type" autocomplete="off" value="0" checked/>
                                     全部
                                 </label>
-                                <label class="btn btn-info" ng-click="ctrl.setting.debtType=1">
-                                    <input type="radio" name="type" ng-model="ctrl.setting.debtType" autocomplete="off" value="1" checked/>
+                                <label class="btn btn-info" ng-click="ctrl.setting.type=1">
+                                    <input type="radio" name="type" ng-model="ctrl.setting.type" autocomplete="off" value="1" checked/>
                                     债权代理
                                 </label>
-                                <label class="btn btn-info" ng-click="ctrl.setting.debtType=2">
-                                    <input type="radio" name="type" ng-model="ctrl.setting.debtType" autocomplete="off" value="2"/>
+                                <label class="btn btn-info" ng-click="ctrl.setting.type=2">
+                                    <input type="radio" name="type" ng-model="ctrl.setting.type" autocomplete="off" value="2"/>
                                     债权转让
                                 </label>
                             </div>
@@ -47,26 +47,26 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="money">金额(万元)</label>
-                        <div class="col-sm-10 control-slider" ng-init="ctrl.setting.money.from=0; ctrl.setting.money.to=10">
-                            <input type="text" class="slider-addon left form-control" ng-model="ctrl.setting.money.from"/>
-                            <input type="text" class="slider-addon right form-control" ng-model="ctrl.setting.money.to"/>
-                            <div slider class="input-slider-range" ng-from="ctrl.setting.money.from" ng-to="ctrl.setting.money.to" start=0 end=100 step=5 ></div>
+                        <div class="col-sm-10 control-slider" ng-init="ctrl.setting.moneyLow=0; ctrl.setting.moneyUp=10">
+                            <input type="text" class="slider-addon left form-control" ng-model="ctrl.setting.moneyLow"/>
+                            <input type="text" class="slider-addon right form-control" ng-model="ctrl.setting.moneyUp"/>
+                            <div slider class="input-slider-range" ng-from="ctrl.setting.moneyLow" ng-to="ctrl.setting.moneyUp" start=0 end=100 step=5 ></div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="rate">代理费率 </label>
-                        <div class="col-sm-10 control-slider" ng-init="ctrl.setting.rate.from=10; ctrl.setting.rate.to=50">
-                            <input type="text" class="slider-addon left form-control" ng-model="ctrl.setting.rate.from"/>
-                            <input type="text" class="slider-addon right form-control" ng-model="ctrl.setting.rate.to"/>
-                            <div slider class="input-slider-range" ng-from="ctrl.setting.rate.from" ng-to="ctrl.setting.rate.to" start=10 end=100 step=5 ></div>
+                        <div class="col-sm-10 control-slider" ng-init="ctrl.setting.rateLow=10; ctrl.setting.rateUp=50">
+                            <input type="text" class="slider-addon left form-control" ng-model="ctrl.setting.rateLow"/>
+                            <input type="text" class="slider-addon right form-control" ng-model="ctrl.setting.rateUp"/>
+                            <div slider class="input-slider-range" ng-from="ctrl.setting.rateLow" ng-to="ctrl.setting.rateUp" start=10 end=100 step=5 ></div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="rate">代理期限 </label>
-                        <div class="col-sm-10 control-slider" ng-init="ctrl.setting.duration.from=7; ctrl.setting.duration.to=15">
-                            <input type="text" class="slider-addon left form-control" ng-model="ctrl.setting.duration.from"/>
-                            <input type="text" class="slider-addon right form-control" ng-model="ctrl.setting.duration.to"/>
-                            <div slider class="input-slider-range" ng-from="ctrl.setting.duration.from" ng-to="ctrl.setting.duration.to" start=1 end=15 step=1 ></div>
+                        <div class="col-sm-10 control-slider" ng-init="ctrl.setting.durationLow=7; ctrl.setting.durationUp=15">
+                            <input type="text" class="slider-addon left form-control" ng-model="ctrl.setting.durationLow"/>
+                            <input type="text" class="slider-addon right form-control" ng-model="ctrl.setting.durationUp"/>
+                            <div slider class="input-slider-range" ng-from="ctrl.setting.durationLow" ng-to="ctrl.setting.durationUp" start=1 end=15 step=1 ></div>
                         </div>
                     </div>
                     <div class="form-group">
