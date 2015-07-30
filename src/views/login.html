@@ -109,7 +109,7 @@
             <label>
                 <input type="checkbox" name="agreement" ng-model="ctrl.user.agreement" required />
                 <i class="input-helper"></i>
-                同意并接受服务条款
+                同意并接受<a target="_blank" ui-sref="site.agreement"><u>服务条款</u></a>
             </label>
             <small class="help-block" ng-show="registerForm.agreement.$error.required && registerForm.$submitted">必须同意服务条款</small>
         </div>

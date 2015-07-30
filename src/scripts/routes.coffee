@@ -39,6 +39,10 @@ class Config
 				url: 'permission-denied'
 				templateUrl: 'views/permission-denied.html'
 
+			.state 'site.agreement',
+				url: 'agreement'
+				templateUrl: 'views/agreement.html'
+
 			# ########## member
 			.state 'site.member',
 				url: 'member/'
