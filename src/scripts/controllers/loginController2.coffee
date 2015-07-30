@@ -45,15 +45,15 @@ class LoginController2
 
 
 		@verifycode = (@code)->
-			$scope.code=code
+			$scope.code=parseInt code
 			if $scope.type==2
 				data =
 					email:$scope.email
-					code:code
+					code:$scope.code
 			else
 				data =
 					mobile:$scope.mobile
-					code:code
+					code:$scope.code
 			$log.log data
 			@ajaxService.post actionCode.ACTION_CHANGE_PWD_TWO, data
 			.success (results) ->
@@ -87,6 +87,7 @@ class LoginController2
 				growlService.growl('密码修改成功!', 'success')
 				@showForgot = 0
 				@showLogin = 1
+				@showRegister=0
 			.error (error) ->
 				growlService.growl(error.desc, 'danger')
 		# @$log.log '@showLogin:'+@showLogin+'; @showRegister:'+@showRegister + '; @showForgot:'+@showForgot
