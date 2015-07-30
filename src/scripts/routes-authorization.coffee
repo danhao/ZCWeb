@@ -119,11 +119,11 @@ class Authorization
 			@growlService.growl(msg, 'warning')
 			state
 
-		# 创建debt校验; 手机,邮箱,身份,3者任何1个通过验证;
+		# 创建debt校验; 手机,邮箱 2者任何1个通过验证;
 		@requireCreateDebtValidate = () =>
 			@getUser (user) ->
 				status = user.status
-				(status&userStatus.EMAIL_VALIDATE)==1 or (status&userStatus.MOBILE_VALIDATE)==2 or (status&userStatus.IDENTITY_VALIDATE)==4 or (status&userStatus.FIRM_VALIDATE)==8
+				(status&userStatus.EMAIL_VALIDATE)==1 or (status&userStatus.MOBILE_VALIDATE)==2
 
 		# 必须通过身份认证
 		@requireIndentity = () =>

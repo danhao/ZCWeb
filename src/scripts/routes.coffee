@@ -105,7 +105,7 @@ class Config
 					precondition:
 						require: "requireCreateDebtValidate"
 						redirectTo: "site.member.index"
-						msg: "您需要先验证(手机,邮箱,身份)其中之一,才能发布债权信息"
+						msg: "您需要先验证(手机,邮箱)其中之一,才能发布债权信息"
 					displayName: "发布债权"
 
 			# 个人设置
