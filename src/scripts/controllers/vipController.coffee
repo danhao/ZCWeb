@@ -11,9 +11,8 @@ class VipController
 		@ok=()->
 			@ajaxService.post @actionCode.ACTION_BUY_VIP, {param: @user.type.toString()}
 			.success (result) =>
-				@hidebuyvipModal()
 				growlService.growl('VIP会员服务购买成功！', 'success')
-				$state.go 'site.member.index'
+				@hidevipToIndexModal()
 			.error (error) =>
 				@hidebuyvipModal()
 				growlService.growl(error.desc, 'danger')
@@ -50,6 +49,13 @@ class VipController
 		angular.element "#buyvipModal"
 		.one 'hidden.bs.modal', (e) =>
 			@$state.go 'site.member.vip'
+		.modal "hide"
+		true
+
+	hidevipToIndexModal:->
+		angular.element "#buyvipModal"
+		.one 'hidden.bs.modal', (e) =>
+			@$state.go 'site.member.index'
 		.modal "hide"
 		true
 
