@@ -13,6 +13,7 @@ class VipController
 			.success (result) =>
 				@hidebuyvipModal()
 				growlService.growl('VIP会员服务购买成功！', 'success')
+				$state.go 'site.member.index'
 			.error (error) =>
 				@hidebuyvipModal()
 				growlService.growl(error.desc, 'danger')

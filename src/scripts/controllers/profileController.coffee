@@ -8,7 +8,7 @@ class Controller
 		@ajaxService.post @actionCode.ACTION_GET_OTHER, {param: @$stateParams.Id}
 		.success (result) =>
 			@UserInfo = result
-			$log.log result
+#			$log.log result
 		.error (error) ->
 			@$log.log '请求远程资源失败!'
 			@$log.log error
