@@ -9,13 +9,13 @@
                 <div class="row qc-area">
                     <div class="col-xs-12">
                         状态:
-                        <div class="btn-group" ng-init="q.stateDesc='1'" data-toggle="buttons">
-                            <label class="btn btn-default active" ng-click="q.stateDesc='1'">
-                                <input type="radio" name="type" ng-model="q.stateDesc" autocomplete="off" value="'1'" checked/>
+                        <div class="btn-group" ng-init="ctrl.q.state=3" data-toggle="buttons">
+                            <label class="btn btn-default active" ng-click="ctrl.q.state=3">
+                                <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="3" checked/>
                                 <i class="fa fa-user"></i> 进行中
                             </label>
-                            <label class="btn btn-default" ng-click="q.stateDesc='2'">
-                                <input type="radio" name="type" ng-model="q.stateDesc" autocomplete="off" value="'2'" checked/>
+                            <label class="btn btn-default" ng-click="ctrl.q.state=4">
+                                <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="4" checked/>
                                 <i class="fa fa-user"></i> 已完成
                             </label>
                          </div>
