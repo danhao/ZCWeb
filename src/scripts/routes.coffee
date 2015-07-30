@@ -66,6 +66,8 @@ class Config
 			.state 'site.profile.profile',
 				url: 'profile/:Id'
 				templateUrl: 'views/user/profile.html'
+				data:
+					displayName: "个人详细信息"
 
 			# 我的发布
 			.state 'site.member.issued',
@@ -110,10 +112,14 @@ class Config
 			.state 'site.member.userinfo',
 				url: 'userinfo'
 				templateUrl: 'views/user/userinfo.html'
+				data:
+					displayName: "基本信息"
 
 			.state 'site.member.userpwd',
 				url: 'userpwd'
 				templateUrl: 'views/user/userpwd.html'
+				data:
+					displayName: "修改密码"
 
 			.state 'site.member.setting',
 				url: 'setting'
@@ -123,6 +129,7 @@ class Config
 				url: 'authemail'
 				templateUrl: 'views/user/authemail.html'
 				data:
+					displayName: "邮箱验证"
 					precondition:
 						require: 'requireHasEmail'
 						redirectTo: "site.member.userinfo"
@@ -132,6 +139,7 @@ class Config
 				url: 'authmobile'
 				templateUrl: 'views/user/authmobile.html'
 				data:
+					displayName: "手机验证"
 					precondition:
 						require: 'requireHasMobile'
 						redirectTo: "site.member.userinfo"
@@ -140,6 +148,8 @@ class Config
 			.state 'site.member.notifySetting',
 				url: 'notify'
 				templateUrl: 'views/user/notifySetting.html'
+				data:
+					displayName: "设置"
 
 			.state 'site.member.auth',
 				url: 'auth'
@@ -170,6 +180,7 @@ class Config
 				url: 'authid'
 				templateUrl: 'views/user/authid.html'
 				data:
+					displayName: "个人验证"
 					precondition:
 						require: 'requireUserInfo'
 						redirectTo: "site.member.userinfo"
@@ -178,15 +189,20 @@ class Config
 			.state 'site.member.authids',
 				url: 'authids'
 				templateUrl: 'views/user/authids.html'
+				data:
+					displayName: "个人验证"
 
 			.state 'site.member.authcompanys',
 				url: 'authcompanys'
 				templateUrl: 'views/user/authcompanys.html'
+				data:
+					displayName: "企业验证"
 
 			.state 'site.member.authcompany',
 				url: 'authcompany'
 				templateUrl: 'views/user/authcompany.html'
 				data:
+					displayName: "企业验证"
 					precondition:
 						require: 'requireUserInfo'
 						redirectTo: "site.member.userinfo"
