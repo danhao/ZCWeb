@@ -1,6 +1,6 @@
 class UserController
 	constructor: (@$log,@$scope,@$state, @$stateParams,@ajaxService, @actionCode,@utilService,@growlService) ->
-
+		$scope.isshowpic =true
 		@ajaxService.post actionCode.GET_USER,null
 		.success (result)->
 #			$log.log result

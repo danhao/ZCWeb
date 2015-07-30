@@ -8,10 +8,20 @@
                w5c-form-validate="validateOptions" novalidate name="validateForm" >
             <div class="form-group"  >
                 <label  class="col-sm-3 control-label">个人头像</label>
-                <div class="col-sm-6 ">
-                    <div ng-uploader data-form-field="head" data-model-field="ctrl.user.head" dat-form-title=""  data-amount=1></div>
-                    <input type="hidden" id="head"  />
-                    <span style="color: red">注: 支持jpg, jpeg, png, gif, bmp格式的图片文件，每张大小不要超过2M</span>
+                <div class="col-sm-{{isshowpic?3:6}}">
+                    <div class="thumbnail" ng-show="isshowpic">
+                        <img src="{{ctrl.user.head==''?'../images/profile-pics/1.jpg':ctrl.user.head}}" alt="">
+                        <div class="caption">
+                            <div class="m-b-5">
+                                <a href="#" class="btn btn-sm btn-default waves-effect" role="button" ng-click="isshowpic=false">修改</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-hide="isshowpic">
+                        <div ng-uploader data-form-field="head" data-model-field="ctrl.user.head" dat-form-title=""  data-amount=1></div>
+                        <input type="hidden" id="head"  />
+                        <span style="color: red">注: 支持jpg, jpeg, png, gif, bmp格式的图片文件，每张大小不要超过2M</span>
+                    </div>
                 </div>
             </div>
             <div class="form-group"  >
