@@ -16,6 +16,7 @@ angular.module('app')
                         var nicescroll = nicescrollService.niceScroll(element, 'rgba(0,0,0,0.3)', '5px');
 
                         // infinite scroll
+                        /*
                         nicescroll.onscrollend = function (data) {
                             if (data.end.y >= this.page.maxh) {
                                 if ($rootScope.infiniteScroll) {
@@ -28,23 +29,22 @@ angular.module('app')
                                 }
                             }
                         };
-
+                         */
                     }
                 }
 
-                // infiniteScroll ,,
-                /*
-                $rootScope.infiniteScroll = true;
-                var e = $window.document.body,
+                // infiniteScroll 
+
+                // $rootScope.infiniteScroll = true;
+                var $w = $($window),
+                    body = $window.document.body, 
                     offset = 100; // px
-                $($window).bind('scroll', function() {
-                    console.log('scroll ' + $rootScope.infiniteScroll + ' ' + e.scrollTop + ' ' + e.offsetHeight + ' ' + e.scrollHeight);
-                    if ($rootScope.infiniteScroll && e.scrollTop + e.offsetHeight >= e.scrollHeight - offset) {
-                        console.log('load more');
-                        //messageService.publish(eventConst.SCROLL_BOTTOM);
+
+                $w.scroll(function() {
+                    if ($rootScope.infiniteScroll && $w.scrollTop() + $w.height() >= body.scrollHeight - offset) {
+                        messageService.publish(eventConst.SCROLL_BOTTOM);
                     }
                 });
-                 */
             }
         }
     }])
