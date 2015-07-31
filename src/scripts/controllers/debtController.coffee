@@ -1,5 +1,5 @@
 class DebtController
-	constructor: (@$log,@$scope,@$state, @$stateParams,@ajaxService, @actionCode,@w5cValidator,@$timeout,@growlService) ->
+	constructor: (@$log,@$scope,@$state, @$stateParams,@$window,@ajaxService, @actionCode,@w5cValidator,@$timeout,@growlService) ->
 		@debt =
 			city: [ '广东', '深圳市', '南山区' ]
 
@@ -13,6 +13,7 @@ class DebtController
 		$scope.goto = ()->
 			$scope.step1 = !$scope.step1
 			$scope.step2 = !$scope.step2
+			$window.scrollTo 0,0
 
 		@checkprice =(money,price)->
 			if money!=undefined  and price!=undefined and parseInt(price)>=parseInt(money)
@@ -139,5 +140,5 @@ angular.module("app")
 #										required: "债务成因不能为空"
 #								)
 #						 ]
-	.controller 'debtController', ['$log','$scope','$state','$stateParams','ajaxService', 'actionCode','w5cValidator','$timeout','growlService', DebtController]
+	.controller 'debtController', ['$log','$scope','$state','$stateParams','$window','ajaxService', 'actionCode','w5cValidator','$timeout','growlService', DebtController]
 
