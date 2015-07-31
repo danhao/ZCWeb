@@ -155,7 +155,7 @@
                             <div class="lv-item media" ng-repeat="bidder in ctrl.debt.bidders">
                                 <div class="pull-left">
                                     <a  href="javascript:;" ui-sref="site.profile.profile({Id: '{{bidder.id}}'})">
-                                         <img class="lv-img-sm" alt="" src="images/profile-pics/1.jpg"/>
+                                         <img class="lv-img-sm" alt="" src="{{bidder.head=='' || bidder.head == undefined?'images/profile-pics/1.jpg':bidder.head}}"/>
                                     </a>
                                 </div>
                                 <div class="media-body">
@@ -214,8 +214,8 @@
                     
                     <div class="t-view" data-tv-type="text" ng-repeat="msg in ctrl.debt.messages">
                         <div class="tv-header media">
-                            <a class="tvh-user pull-left" href="">
-                                <img class="img-responsive" alt="" src="images/profile-pics/1.jpg"/>
+                            <a class="tvh-user pull-left" ui-sref="site.profile.profile({Id: '{{ctrl.debt.winnerId}}'})">
+                                <img class="img-responsive" alt="" src="{{ctrl.debt.winnerHead=='' || ctrl.debt.winnerHead == undefined?'images/profile-pics/1.jpg':ctrl.debt.winnerHead}}"/>
                             </a>
                             <div class="media-body p-t-5">
                                 <strong class="d-block">{{ctrl.debt.winnerName}}</strong>
