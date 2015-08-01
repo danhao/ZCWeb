@@ -7,11 +7,13 @@ class AuthcompanyController
 			pid = @userSession.pid()
 			@ajaxService.post @actionCode.GET_USER, {id: pid}
 			.success (result) =>
-				if result.type==1
-					$scope.issubmit = (result.status&8)==8 or result.coValidating==1
-					$scope.isverifypass = (result.status&8)==8
-
-#				$log.log result
+				$scope.issubmit = (result.status&8) is 8 or result.coValidating is 1
+				$scope.isverifypass = (result.status&8) is 8
+				$scope.isshowidFile =isshowpic(result.idFile.name)
+				$scope.isshowaccountPermitFile =isshowpic(result.accountPermitFile.name)
+				$scope.isshoworganizationCodeFile =isshowpic(result.organizationCodeFile.name)
+				$scope.isshowbusinessLicenceFile =isshowpic(result.businessLicenceFile.name)
+				$scope.isshowtaxNumberFile =isshowpic(result.taxNumberFile.name)
 				@user = result
 			.error (error) =>
 				growlService.growl(error, 'danger')
@@ -47,6 +49,17 @@ class AuthcompanyController
 			.error (error) ->
 				growlService.growl(error, 'danger')
 
+		isshowpic =(filename) ->
+			imgstring =".jpg.jpeg.png.bmp.gif"
+			index1=filename.lastIndexOf(".")
+			length=filename.length
+			postf=filename.substring(index1,length).toLocaleLowerCase()
+#			$log.log filename
+			if imgstring.indexOf(postf)<0
+				isimg=false
+			else
+				isimg =true
+			isimg
 
 		splitfiles = (files) ->
 			filearray = files.split(';')
@@ -57,6 +70,12 @@ class AuthcompanyController
 		validate = (auth) ->
 #			$log.log auth
 			result = true
+			date = new Date()
+			currentdate = (Date.parse  date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate())
+			if (Date.parse auth.foundTime)>=currentdate
+				growlService.growl("企业成立时间应小于当前时间，请重新选择企业成立时间！", 'danger')
+				result = false
+
 			if auth.idFile == '' or auth.idFile == undefined
 				growlService.growl("请上传身份证照片，参考拍照攻略！", 'danger')
 				result = false
