@@ -38,7 +38,8 @@ class CashController
 			.success (result) =>
 				$log.log result
 				initcash()
-				growlService.growl('提现申请已提交，请等待!', 'success')
+				growlService.growl('提现申请已提交，请耐心等待,我们将在5个工作日内回款到您的帐户!', 'success')
+				$state.go 'site.member.fundrecord'
 			.error (error) =>
 				cash.amount = cash.amount/100
 				growlService.growl(error, 'danger')
