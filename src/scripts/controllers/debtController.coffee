@@ -60,7 +60,7 @@ class DebtController
 			debt.rate = if debt.type==1 then parseInt debt.rate else 0
 			debt.duration = if debt.type==1 then  parseInt debt.duration else 0
 			debt.expireDays = parseInt debt.expireDays
-
+			debt.property= parseInt debt.property
 			debt.debtExpireTime = (Date.parse debt.debtExpireTime) / 1000
 			debt.judgementTime  = (Date.parse debt.judgementTime)  / 1000
 
