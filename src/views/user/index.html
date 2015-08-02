@@ -12,7 +12,7 @@
                                     <img src="{{ctrl.user.head==''?'../images/profile-pics/1.jpg':ctrl.user.head}}"    class="pv-main" alt="">
                                 </div>
                                 <div class="pv-body">
-                                    <h2>欢迎 {{ctrl.user.name}} <sup STYLE="color: red" ng-show="ctrl.user.vip==1">VIP</sup></h2>
+                                    <h2>欢迎 {{ctrl.user.name}} <sup STYLE="color: red" ng-show="ctrl.user.vip==1">{{ctrl.user.type==0?"个人":"企业"}}VIP</sup></h2>
                                     <br/>
                                         <div class="col-xm-6">
                                             <div ng-show="ctrl.user.mobile"><span class="btn btn-warning waves-effect"><i class="zmdi zmdi-smartphone-android"></i> {{ctrl.user.mobile}}</span> </div>
