@@ -22,6 +22,7 @@ ActionCode = # do () ->
 	ACTION_LIST_SITUAION : 14 		#查看动态(null---->player.ListSituationRsp)
 	ACTION_SET_ALERT: 16			# 提醒设置
 	ACTION_BUY_VIP :17 #购买VIP(common.SingleMsg(VIP等级)---->null)
+	ACTION_UPLOAD:18 #上传文件(common.FileMsg---->player.PlayerMsg)
 	UPLOAD_PREPARE			: 51	# 准备上传文件
 	
 	CREATE_DEBT				: 100	# 创建债务

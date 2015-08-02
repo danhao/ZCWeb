@@ -146,6 +146,10 @@ class Authorization
 			@getUser (user) ->
 				!!user.email and !!user.mobile
 
+		#上传债权列表不能为空
+		@requireHasUploadDebt = () =>
+			@getUser (user) ->
+				user.files isnt undefined
 
 
 authorization = ($log, $rootScope, $q, $timeout, $state, $stateParams, userSession, utilService, ajaxService, actionCode, userStatus, $location,growlService) ->

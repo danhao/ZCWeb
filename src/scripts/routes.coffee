@@ -98,6 +98,21 @@ class Config
 				url: 'addtransfer'
 				templateUrl: 'views/user/addtransfer.html'
 
+			.state 'site.member.uploaddebt',
+				url: 'uploaddebt'
+				templateUrl: 'views/user/uploaddebt.html'
+				data:
+					displayName: "上传债权信息"
+
+			.state 'site.member.uploaddebtlist',
+				url: 'uploaddebtlist'
+				templateUrl: 'views/user/uploaddebtlist.html'
+				data:
+					displayName: "上传债权列表"
+					precondition:
+						require: 'requireHasUploadDebt'
+						msg: "没有上传相关债权文档！"
+
 			.state 'site.member.createdebt',
 				url: 'createdebt'
 				templateUrl: 'views/user/createdebt.html'

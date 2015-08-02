@@ -1,0 +1,37 @@
+<section  class="page-view ng-scope" data-ui-view="">
+    <div class="container ng-scope">
+        <div class="card" ng-controller="uploaddebtController as ctrl">
+            <header class="card-header">
+                <h2><span class="zmdi zmdi-cloud-upload zmdi-hc-fw" ></span> 上传债权信息</h2>
+            </header>
+            <div  class="card-body card-padding">
+
+                <form  class="form-horizontal w5c-form" role="form"
+                       w5c-form-validate="validateOptions" novalidate name="validateForm" id="auidform">
+                    <div class="form-group" >
+                        <label class="col-sm-3 control-label">债权文档<span class="inputflag">*</span></label>
+                        <div class="col-sm-7">
+                            <div>
+                                <div ng-uploader data-form-field="debtFile" data-model-field="ctrl.debtFile" data-amount=1></div>
+                                <input type="hidden" id="debtFile" />
+                            </div>
+                            <span style="color: red">注:支持 xls ,xlsx 格式的Excel文件，文件大小不要超过2M</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-10">
+                            <button type="buttom" w5c-form-submit="ctrl.upload(ctrl.debtFile)"  class="btn btn-primary btn-lg" > 确认提交信息 </button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a ui-sref="site.member.uploaddebtlist" class="btn btn-primary btn-lg" > 上传债权列表 </a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
