@@ -63,6 +63,11 @@
                         <i class="zmdi zmdi-mail-send"></i>
                     </button>
                 </div>
+                <div class="dropdown pmop-message" ng-show="showReturnButton">
+                    <button class="btn bgm-white c-black btn-float z-depth-1 waves-effect" ng-click="ctrl.returnDebt()" aria-expanded="false">
+                        退单
+                    </button>
+                </div>
             </div>
             <div class="debt-countdown bgm-white">
                 <div class="text-center countdown" ng-show="showCountdown">
@@ -74,7 +79,7 @@
         <div class="pmo-block pmo-contact bgm-white">
             <ul>
                 <li> <i class="zmdi zmdi-label"></i>{{ctrl.debt.id}} </li>
-                <li> <i class="zmdi zmdi-time"></i>发布于{{ctrl.debt.publishTime | idate }} </li>
+                <li> <i class="zmdi zmdi-time"></i>{{ctrl.debt.state==0? "创建于": "发布于" }}{{ctrl.debt.state==0? ctrl.debt.createTime: ctrl.debt.publishTime | idate }} </li>
                 <li> <i class="zmdi zmdi-time-countdown"></i>期限{{ctrl.debt.duration}}天  逾期{{ctrl.debt.debtExpireTime | upToNow}}</li>
                 <li> <i class="zmdi zmdi-file-text"></i>{{ctrl.debt.type | debtType}}</li>
                 <li> <i class="zmdi zmdi-case zmdi-hc-fw"></i>{{ctrl.debt.property | debtProperty}}</li>

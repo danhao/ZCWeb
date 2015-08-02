@@ -106,8 +106,9 @@ class DebtDetailController
 		@bidderIds = _.map @debt.bidders, (bidder)-> bidder.id
 		isBidded = @debt.type is DEBT_TYPE.AGENT and @pid in @bidderIds # 是否已投票
 		
-		@$scope.showBidButton = (@debt.state < 3) and (@pid isnt @debt.ownerId) and (@pid isnt @debt.winnerId) and not isBidded
-		@$scope.showCountdown = (@debt.state < 3) or (@debt.state == 3 and (@pid is @debt.ownerId or @pid is @debt.winnerId))
+		@$scope.showBidButton = (@debt.state is 1) and (@pid isnt @debt.ownerId) and (@pid isnt @debt.winnerId) and not isBidded
+		@$scope.showCountdown = (@debt.state is 1) or (@debt.state == 3 and (@pid is @debt.ownerId or @pid is @debt.winnerId))
+		@$scope.showReturnButton = @debt.canReturn is 1 and @pid is @debt.winnerId
 		# @$scope.showBidStatus = (@debt.state < 3) and isBidded
 		
 		# 投标状态
@@ -117,7 +118,11 @@ class DebtDetailController
 			when @debt.state > 3 then '已结束'
 			else ''
 
-		@$scope.showDebtCollection = @debt.state >= 3 and @debt.type == 1 and (@pid is @debt.ownerId or @pid is @debt.winnerId)
+		@$scope.showDebtCollection =
+			@debt.type == 1 and	 ( # 债权代理
+				( @debt.state >= 3 and  (@pid is @debt.ownerId or @pid is @debt.winnerId) ) or # 已成交,且,为发布人或中标人
+				( @pid is @debt.ownerId and @debt.messages? and @debt.messages.length > 0 ) # 退单处理
+			)
 
 	getDebtDetail: ->
 		@ajaxService.post @actionCode.VIEW_DEBT, {param: @$stateParams.debtId}
@@ -144,6 +149,27 @@ class DebtDetailController
 			return
 		@openBidModal()
 
+	# 退单
+	returnDebt: ->
+		if @debt.state >= DEBT_STATE.DEAL and @debt.canReturn # 已成交并允许退单
+			swal {
+				title: '确定退单',
+				showCancelButton: true
+			}, () =>
+				@doReturnDebt()
+		else
+			@growlService.growl "不满足退单条件"
+
+	# 退单
+	doReturnDebt: ->
+		@ajaxService.post @actionCode.ACTION_RETURN_DEBT, {
+			param: @debt.id
+			}
+			.success (result) =>
+				@growlService.growl '退单成功'
+			.error (error) =>
+				@$log.log error
+				@growlService.growl error.desc
 
 	# 中标
 	winbid: (playerId)->

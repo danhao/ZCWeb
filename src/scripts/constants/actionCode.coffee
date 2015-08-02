@@ -23,6 +23,7 @@ ActionCode = # do () ->
 	ACTION_SET_ALERT: 16			# 提醒设置
 	ACTION_BUY_VIP :17 #购买VIP(common.SingleMsg(VIP等级)---->null)
 	ACTION_UPLOAD:18 #上传文件(common.FileMsg---->player.PlayerMsg)
+	ACTION_DEBT_COUNT : 19 		# 还能接单的数量(null---->common.SingleMsg)
 	UPLOAD_PREPARE			: 51	# 准备上传文件
 	
 	CREATE_DEBT				: 100	# 创建债务
@@ -35,6 +36,9 @@ ActionCode = # do () ->
 	ACTION_LIST_SELF_DEBTS: 107 #我相关的债务
 	ACTION_CREATE_ORDER: 200		# 创建订单(pay.CreateOrderReq---->pay.CreateOrderRsp)
 	ACTION_DRAW_CASH : 201 		# 提现申请(pay.PlayerCashMsg---->null)
+	ACTION_BATCH_BID : 108 		# 批量投标(debt.BatchBidReq---->null)
+	ACTION_RETURN_DEBT : 109 		# 退单(common.SingleMsg---->null)
+
 
 
 angular.module('app').constant 'actionCode', ActionCode

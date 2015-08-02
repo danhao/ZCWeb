@@ -1,12 +1,34 @@
 
-    <div class="container ng-scope" ng-controller="debtListController as ctrl">
-        <div class="card" infinite-scroll="ctrl.loadMore();" threshold="100" can-load="true">
-            <header class="card-header">
-                <h2><span class="glyphicon glyphicon-list" ></span> 债权列表</h2>
-            </header>
-            <div class="card-body card-padding">
-                <div class="row" style="padding: 5px">
-                    <div class="col-sm-12">
+
+
+<div class="container ng-scope" ng-controller="debtListController as ctrl">
+
+    <div class="card" infinite-scroll="ctrl.loadMore();" threshold="100" can-load="true" >
+        <header class="card-header">
+            <h2><span class="glyphicon glyphicon-list" ></span> 债权列表</h2>
+            
+            <ul class="actions" ng-show="ctrl.tab==1">
+                <li ng-click="ctrl.checkAll()">
+                    <a href="">
+                        <i class="zmdi zmdi-check" ng-class="{'0':'zmdi-check','1':'zmdi-check-all', '2':'zmdi-block-alt'}[ctrl.checkStatus]"></i>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a data-toggle="dropdown" href="">
+                        <i class="zmdi zmdi-more-vert"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li ng-click="ctrl.batchBid()">
+                            <a href="">批量应标</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </header>
+        <div class="card-body card-padding">
+            <div class="row" style="padding: 5px">
+                <div class="col-sm-12">
                     发布时间:&nbsp;&nbsp;
                     <div class="btn-group">
                         <!--<label class="btn btn-default" ng-model="ctrl.q.fbdate" btn-radio="'0'">全部</label>-->
@@ -36,19 +58,19 @@
                                 <i class="fa fa-user"></i> 最近1年
                             </label>
                         </div>
-                        </div>
                     </div>
                 </div>
-                <div class="row" style="padding: 5px">
-                    <div class="col-sm-12">
+            </div>
+            <div class="row" style="padding: 5px">
+                <div class="col-sm-12">
                     资产金额:&nbsp;&nbsp;
                     <!--<div class="btn-group">-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'0'">全部</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'1'">1万以下</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'2'">1-10万</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'3'">10-50万</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'4'">50-100万</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'5'">100万以上</label>-->
+                    <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'0'">全部</label>-->
+                    <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'1'">1万以下</label>-->
+                    <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'2'">1-10万</label>-->
+                    <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'3'">10-50万</label>-->
+                    <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'4'">50-100万</label>-->
+                    <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'5'">100万以上</label>-->
                     <!--</div>-->
                     <div class="btn-group" ng-init="ctrl.q.money='0'" data-toggle="buttons">
                         <label class="btn btn-default active" ng-click="ctrl.q.money='0'">
@@ -75,132 +97,116 @@
                             <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'5'" checked/>
                             <i class="fa fa-user"></i> 100万以上
                         </label>
-                        </div>
                     </div>
                 </div>
-                <div class="row" style="padding: 5px">
-                      <div class="col-sm-8">
-                        所属地区:&nbsp;&nbsp;
-                        <div class="btn-group" ng-init="ctrl.q.city=''" data-toggle="buttons">
-                            <label class="btn btn-default active" ng-click="ctrl.q.city=''">
-                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="" checked/>
-                                <i class="fa fa-user"></i> 全部
-                            </label>
-                            <label class="btn btn-default " ng-click="ctrl.q.city='北京'">
-                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="北京" checked/>
-                                <i class="fa fa-user"></i> 北京
-                            </label>
-                            <label class="btn btn-default " ng-click="ctrl.q.city='上海'">
-                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="上海" checked/>
-                                <i class="fa fa-user"></i> 上海
-                            </label>
-                            <label class="btn btn-default " ng-click="ctrl.q.city='广州'">
-                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="广州" checked/>
-                                <i class="fa fa-user"></i> 广州
-                            </label>
-                            <label class="btn btn-default " ng-click="ctrl.q.city='深圳'">
-                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="深圳" checked/>
-                                <i class="fa fa-user"></i> 深圳
-                            </label>
-                            <label class="btn btn-default " ng-click="ctrl.q.city='重庆'">
-                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="重庆" checked/>
-                                <i class="fa fa-user"></i> 重庆
-                            </label>
-                            <label class="btn btn-default " ng-click="ctrl.q.city='天津'">
-                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="天津" checked/>
-                                <i class="fa fa-user"></i> 天津
-                            </label>
-                            <label class="btn btn-default " ng-click="ctrl.q.city='武汉'">
-                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="武汉" checked/>
-                                <i class="fa fa-user"></i> 武汉
-                            </label>
-                            <label class="btn btn-default " ng-click="ctrl.q.city='东莞'">
-                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="东莞" checked/>
-                                <i class="fa fa-user"></i> 东莞
-                            </label>
-                            <label class="btn btn-default " ng-click="ctrl.q.city='南京'">
-                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="南京" checked/>
-                                <i class="fa fa-user"></i> 南京
-                            </label>
-                            <label class="btn btn-default " ng-click="ctrl.q.city='南京'">
-                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="苏州" checked/>
-                                <i class="fa fa-user"></i> 苏州
-                            </label>
-                            <label class="btn btn-default " ng-click="ctrl.q.city='沈阳'">
-                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="沈阳" checked/>
-                                <i class="fa fa-user"></i> 沈阳
-                            </label>
-                            <label class="btn btn-default " ng-click="ctrl.q.city='长沙'">
-                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="长沙" checked/>
-                                <i class="fa fa-user"></i> 长沙
-                            </label>
-                            </div>
-                        <!--其它城市：-->
-                        <!--<input type="text" maxlength="10"  class="form-control" ng-model="ctrl.q.city"/>-->
-                      </div>
-                    <div class="col-sm-2">
-
-                        <div class="fg-line" >
-                            <input type="text"   class="form-control" ng-model="ctrl.q.city" name="city" maxlength="20"
-                              placeholder="其它城市"  value="">
-                        </div>
-
+            </div>
+            <div class="row" style="padding: 5px">
+                <div class="col-sm-8">
+                    所属地区:&nbsp;&nbsp;
+                    <div class="btn-group" ng-init="ctrl.q.city=''" data-toggle="buttons">
+                        <label class="btn btn-default active" ng-click="ctrl.q.city=''">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="" checked/>
+                            <i class="fa fa-user"></i> 全部
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='北京'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="北京" checked/>
+                            <i class="fa fa-user"></i> 北京
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='上海'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="上海" checked/>
+                            <i class="fa fa-user"></i> 上海
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='广州'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="广州" checked/>
+                            <i class="fa fa-user"></i> 广州
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='深圳'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="深圳" checked/>
+                            <i class="fa fa-user"></i> 深圳
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='重庆'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="重庆" checked/>
+                            <i class="fa fa-user"></i> 重庆
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='天津'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="天津" checked/>
+                            <i class="fa fa-user"></i> 天津
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='武汉'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="武汉" checked/>
+                            <i class="fa fa-user"></i> 武汉
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='东莞'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="东莞" checked/>
+                            <i class="fa fa-user"></i> 东莞
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='南京'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="南京" checked/>
+                            <i class="fa fa-user"></i> 南京
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='南京'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="苏州" checked/>
+                            <i class="fa fa-user"></i> 苏州
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='沈阳'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="沈阳" checked/>
+                            <i class="fa fa-user"></i> 沈阳
+                        </label>
+                        <label class="btn btn-default " ng-click="ctrl.q.city='长沙'">
+                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="长沙" checked/>
+                            <i class="fa fa-user"></i> 长沙
+                        </label>
                     </div>
+                    <!--其它城市：-->
+                    <!--<input type="text" maxlength="10"  class="form-control" ng-model="ctrl.q.city"/>-->
                 </div>
+                <div class="col-sm-2">
+
+                    <div class="fg-line" >
+                        <input type="text"   class="form-control" ng-model="ctrl.q.city" name="city" maxlength="20"
+                               placeholder="其它城市"  value=""/>
+                    </div>
 
                 </div>
+            </div>
 
-                <div class="pm-body clearfix">
-                    <ul class="tab-nav " role="tablist" ng-init="ctrl.tab=1">
-                        <li class="btn-wave active" role="presentation"><a href="#agentlist" aria-controls="alldebt" role="tab" data-toggle="tab" ng-click="ctrl.tab=1">债权代理</a></li>
-                        <li class="btn-wave" role="presentation"><a href="#transferlist" aria-controls="alldebt" role="tab" data-toggle="tab" ng-click="ctrl.tab=2">债权转让</a></li>
-                    </ul>
-                </div>
-                <div class="tab-content" >
-                    <div role="tabpanel" class="tab-pane active" id="agentlist">
-                        <div class="pmb-block">
-                            <div class="pmbb-body">
-                                <div class="row">
-                                    <div ng-repeat="debt in agentlist">
-                                        <div class="col-sm-3">
-                                            <div class="card">
-                                                <div class="card-header bgm-bluegray m-b-20">
-                                                    <h2>{{debt.money | ccurrency}} <small>发布于: {{debt.createTime | idate }}  </small></h2>
-                                                    <a class="btn bgm-blue btn-float waves-effect waves-effect" href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})">
-                                                        <i class="zmdi zmdi-mail-send zmdi-hc-fw"></i>
-                                                    </a>
+        </div>
+
+        <div class="pm-body clearfix">
+            <ul class="tab-nav " role="tablist" ng-init="ctrl.tab=1">
+                <li class="btn-wave active" role="presentation"><a href="#agentlist" aria-controls="alldebt" role="tab" data-toggle="tab" ng-click="ctrl.tab=1">债权代理</a></li>
+                <li class="btn-wave" role="presentation"><a href="#transferlist" aria-controls="alldebt" role="tab" data-toggle="tab" ng-click="ctrl.tab=2">债权转让</a></li>
+            </ul>
+        </div>
+        <div class="tab-content" >
+            <div role="tabpanel" class="tab-pane active" id="agentlist">
+                <div class="pmb-block">
+                    <div class="pmbb-body">
+                        <div class="row">
+                            <div ng-repeat="debt in agentlist">
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        <div class="card-header bgm-bluegray m-b-20">
+                                            <h2>
+                                                <div class="checkbox pull-right m-0 orange" ng-show="ctrl.checkStatus != 0">
+                                                    <label>
+                                                        <input type="checkbox" ng-model="debt.checked" />
+                                                        <i class="input-helper"></i>
+                                                    </label>
                                                 </div>
-                                                <div class="card-body card-padding">
-                                                    <p > 代理费率：{{debt.rate}}% </p>
-                                                    <p>代理期限：{{debt.duration}}天</p>
-                                                    <p>所在地区：{{debt.debtorLocation}}</p>
-                                                </div>
-                                            </div>
+                                                
+                                                {{debt.money | ccurrency}}
+                                                <small>发布于: {{debt.createTime | idate }}  </small>
+                                            </h2>
+                                            <a class="btn bgm-blue btn-float waves-effect waves-effect" href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})">
+                                                <i class="zmdi zmdi-mail-send zmdi-hc-fw"></i>
+                                            </a>
+                                            
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="transferlist">
-                        <div class="pmb-block">
-                            <div class="pmbb-body">
-                                <div class="row">
-                                    <div ng-repeat="debt in transferlist">
-                                        <div class="col-sm-3">
-                                            <div class="card">
-                                                <div class="card-header bgm-lightblue m-b-20">
-                                                    <h2>{{debt.money | ccurrency}} <small>发布于: {{debt.createTime | idate }}  </small></h2>
-                                                    <a class="btn bgm-orange btn-float waves-effect waves-effect" href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})">
-                                                        <i class="zmdi zmdi-mail-send zmdi-hc-fw"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="card-body card-padding">
-                                                    <p>起拍价格：{{debt.price | ccurrency}}</p>
-                                                    <p>逾期时间：{{debt.debtExpireTime | upToNow }}</p>
-                                                    <p>所在地区：{{debt.debtorLocation}}</p>
-                                                </div>
-                                            </div>
+                                        <div class="card-body card-padding">
+                                            <p > 代理费率：{{debt.rate}}% </p>
+                                            <p>代理期限：{{debt.duration}}天</p>
+                                            <p>所在地区：{{debt.debtorLocation}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -209,9 +215,96 @@
                     </div>
                 </div>
             </div>
-
-        </div>
-
+            <div role="tabpanel" class="tab-pane" id="transferlist">
+                <div class="pmb-block">
+                    <div class="pmbb-body">
+                        <div class="row">
+                            <div ng-repeat="debt in transferlist">
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        <div class="card-header bgm-lightblue m-b-20">
+                                            <h2>{{debt.money | ccurrency}} <small>发布于: {{debt.createTime | idate }}  </small></h2>
+                                            <a class="btn bgm-orange btn-float waves-effect waves-effect" href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})">
+                                                <i class="zmdi zmdi-mail-send zmdi-hc-fw"></i>
+                                            </a>
+                                        </div>
+                                        <div class="card-body card-padding">
+                                            <p>起拍价格：{{debt.price | ccurrency}}</p>
+                                            <p>逾期时间：{{debt.debtExpireTime | upToNow }}</p>
+                                            <p>所在地区：{{debt.debtorLocation}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    
+    <!-- bid modal -->
+    <div id="bidModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h3 class="modal-title">我要竞价</h3>
+                </div>
+                <div class="modal-body">
+                    <form class="form form-inline bidForm" name="bidForm" ng-submit="ctrl.bidPrice(price)">
+
+                        <div class="form-group fg-line" show-errors >
+                            <label for="price" class="control-label">代理费率</label>
+                            <div class="input-group">
+                                <div class="fg-line">
+                                    <input type="number" class="form-control" id="price" name="price" ng-model="price" placeholder="" required ui-validate="{agent:'agentLegalCheck($value)'}"/>
+                                </div>
+                                <span class="input-group-addon last fg-lineheight">% &nbsp;&nbsp; (代理费率应大于10%)</span>
+                            </div>
+                            <span class="help-block" ng-show="bidForm.price.$error.required && bidForm.price.$dirty">需要必填</span>
+                            <span class="help-block" ng-show="bidForm.price.$error.number && bidForm.price.$dirty">请输入合法的数字</span>
+                            <span class="help-block" ng-show="bidForm.price.$error.agent && bidForm.price.$dirty"> 代理费率必须为10-100之间 </span>
+                            <span class="help-block error" ng-show="error" >{{error}}</span>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="m-t-10">您选择了{{selectedCount}}条记录, 共需要交保证金 <b>{{ deposit | ccurrency }}</b></div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="bidPrice()">出价</button>
+                    <button class="btn btn-warning" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- recharge modal -->
+    <div id="rechargeModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">我要竞价</h3>
+                </div>
+                <div class="modal-body">
+                    <p>您需要交保证金 <b>{{ deposit | ccurrency }}</b> </p>
+                    <p>帐户余额不足, 请<a href="javascript:;" ng-click="ctrl.recharge()" >充值</a></p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
+</div>
+
 

@@ -1,6 +1,6 @@
 
 class DebtListController
-	constructor: (@$log,@$scope,@$rootScope,@$state, @$stateParams, @ajaxService, @actionCode, @messageService, @eventConst) ->
+	constructor: (@$log,@$scope,@$rootScope,@$state, @$stateParams, @ajaxService, @actionCode, @messageService, @eventConst, @growlService, @userSession) ->
 		@q =
 			fbdate:'0'
 			money:'0'
@@ -13,12 +13,31 @@ class DebtListController
 			rate:'0'
 			city:''
 
+		@pid = @userSession.pid()
+
 		@page_a = 1
 		@page_t = 1
 		@loadMore_a = true
 		@loadMore_t = true
 		@$scope.agentlist = []
 		@$scope.transferlist = []
+
+		# @showCheck = false
+		@checkStatus = 0
+
+		# 查询还能接单的数量
+		@ajaxService.post @actionCode.ACTION_DEBT_COUNT, {}
+			.success (result) =>
+				@allowDebtCount = result.param
+			.error (error) =>
+				@$log.log error
+
+		# 查询当前用户的余额
+		@ajaxService.post @actionCode.GET_USER, {id: @pid}
+			.success (result) =>
+				@user = result
+			.error (error) ->
+				@$log.log error
 
 		@agentlist = () =>
 			data='{type:1,state:1'
@@ -103,7 +122,8 @@ class DebtListController
 				@transferlist()
 		, true
 
-
+		# init modal
+		@initDialog()
 
 		# infinite scroll
 		@messageService.subscribe eventConst.SCROLL_BOTTOM, ()=>
@@ -113,7 +133,36 @@ class DebtListController
 		@$scope.$on '$destroy', ()=>
 			# @$log.log 'destroy'
 			@$rootScope.infiniteScroll = false
-			
+		
+
+	initDialog: () ->
+		# 表单检测
+		@$scope.agentLegalCheck = (price) =>
+			10 <= price <= 100
+
+		# 提交函数
+		@$scope.bidPrice = () =>
+			if @$scope.bidForm.$valid
+				price = parseInt(@$scope.price)
+				data = {"rate": price}
+				data.id = _.map (_.filter @$scope.agentlist, (debt) -> debt.checked)
+					, (debt) -> debt.id
+				data.bond = @$scope.deposit
+				# @$log.log data
+				@ajaxService.post @actionCode.ACTION_BATCH_BID, data
+					.success (ret) =>
+						# reset form
+						@$scope.price = ""
+						@$scope.bidForm.$setPristine()
+						@$scope.$broadcast 'show-errors-reset'
+					
+						angular.element "#bidModal"
+							.modal "hide"
+						@growlService.growl "你已成功参与应标"
+					.error (error) =>
+						@$log.log error
+						# alert error.desc
+						@growlService.growl error.desc, 'warning'
 
 	loadMore: () =>
 		# @$log.log 'load more...'
@@ -123,7 +172,56 @@ class DebtListController
 		else if @tab is 2 and @loadMore_b
 			@page_t++
 			@transferlist()
+
+	checkAll: ->
+		# @showCheck = !@showCheck
+		if(@checkStatus is 1) 	# check all
+			_.each @$scope.agentlist, (debt) -> debt.checked = true
+		else if(@checkStatus is 2)
+			_.each @$scope.agentlist, (debt) -> debt.checked = false
+		# update checkStatus
+		@checkStatus = (@checkStatus+1) % 3
+
+	batchBid: ->
+		if @tab is 2
+			return
+		checkedList = _.filter @$scope.agentlist, (debt) -> debt.checked
+		if checkedList.length > @allowDebtCount
+			@growlService.growl '您最多只允许再投标'+@allowDebtCount+'单,您的选择过多,请重新选择.'
+			return
+		else if checkedList.length is 0
+			@growlService.growl '您没有选择任何记录,请先选择后再进行操作.'
+			return
+		else
+			# init dialog var
+			@$scope.selectedCount = checkedList.length
+			# sum money
+			@$scope.deposit = _.reduce _.map(checkedList, (debt) -> Math.min(Math.round(debt.money * 0.1), 500*100))
+				,
+				(memo, num) -> memo + num
+				,
+				0
+			# @$log.log @$scope.selectedCount + " -- " + @$scope.deposit
+			# @$log.log @user.money + "--" + @$scope.deposit
+			if @user.money < @$scope.deposit # 金额不足
+				angular.element "#rechargeModal"
+					.modal()
+			else
+				angular.element "#bidModal"
+					.modal()
+		true
+
+	# 充值
+	recharge: ->
+		angular.element "#rechargeModal"
+			.one 'hidden.bs.modal', (e) =>
+				@$state.go 'site.member.pay'
+			.modal "hide"
+		# return arbitary value instead of the default return value of dom element
+		# which will cause angular $parse:isecdom error
+		true
+		
 		
 
-angular.module("app").controller 'debtListController',['$log','$scope','$rootScope','$state','$stateParams','ajaxService', 'actionCode', 'messageService', 'eventConst', DebtListController]
+angular.module("app").controller 'debtListController',['$log','$scope','$rootScope','$state','$stateParams','ajaxService', 'actionCode', 'messageService', 'eventConst', 'growlService', 'userSession', DebtListController]
 

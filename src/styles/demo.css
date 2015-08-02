@@ -215,3 +215,34 @@ p {
     background-color: #f36402;
     border-radius: 2px;
 }
+
+/* override sweet-alert */
+.sweet-alert button {
+    background-color: #aedef4;
+    border: medium none;
+    border-radius: 2px;
+    box-shadow: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 300;
+    margin: 26px 5px 0;
+    padding: 6px 10px;
+    text-transform: uppercase;
+}
+
+/* checkbox helper */
+.checkbox.green .input-helper::after {
+    border-color: #4CAF50;
+}
+.checkbox.red .input-helper::after {
+    border-color: #F44336;
+}
+.checkbox.blue .input-helper::after {
+    border-color: #2196F3;
+}
+.checkbox.orange .input-helper::after {
+    border-color: #FF9800;
+}
+
+
