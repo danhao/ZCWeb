@@ -6,6 +6,7 @@
             </header>
             <div class="card-body card-padding">
                 <div class="row" style="padding: 5px">
+                    <div class="col-sm-12">
                     发布时间:&nbsp;&nbsp;
                     <div class="btn-group">
                         <!--<label class="btn btn-default" ng-model="ctrl.q.fbdate" btn-radio="'0'">全部</label>-->
@@ -35,9 +36,11 @@
                                 <i class="fa fa-user"></i> 最近1年
                             </label>
                         </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row" style="padding: 5px">
+                    <div class="col-sm-12">
                     资产金额:&nbsp;&nbsp;
                     <!--<div class="btn-group">-->
                         <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'0'">全部</label>-->
@@ -72,74 +75,79 @@
                             <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'5'" checked/>
                             <i class="fa fa-user"></i> 100万以上
                         </label>
+                        </div>
                     </div>
                 </div>
                 <div class="row" style="padding: 5px">
-                    所属地区:&nbsp;&nbsp;
-                    <!--<div class="btn-group">-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="''">全部</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'北京'">北京</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'上海'">上海</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'广州'">广州</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'深圳'">深圳</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'重庆'">重庆</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'天津'">天津</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'武汉'">武汉</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'东莞'">东莞</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'南京'">南京</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'苏州'">苏州</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.city" btn-radio="'沈阳'">沈阳</label>-->
-                    <!--</div>-->
-                    <div class="btn-group" ng-init="ctrl.q.city=''" data-toggle="buttons">
-                        <label class="btn btn-default active" ng-click="ctrl.q.city=''">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="" checked/>
-                            <i class="fa fa-user"></i> 全部
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='北京'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="北京" checked/>
-                            <i class="fa fa-user"></i> 北京
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='上海'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="上海" checked/>
-                            <i class="fa fa-user"></i> 上海
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='广州'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="广州" checked/>
-                            <i class="fa fa-user"></i> 广州
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='深圳'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="深圳" checked/>
-                            <i class="fa fa-user"></i> 深圳
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='重庆'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="重庆" checked/>
-                            <i class="fa fa-user"></i> 重庆
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='天津'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="天津" checked/>
-                            <i class="fa fa-user"></i> 天津
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='武汉'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="武汉" checked/>
-                            <i class="fa fa-user"></i> 武汉
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='东莞'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="东莞" checked/>
-                            <i class="fa fa-user"></i> 东莞
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='南京'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="南京" checked/>
-                            <i class="fa fa-user"></i> 南京
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='南京'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="苏州" checked/>
-                            <i class="fa fa-user"></i> 苏州
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='沈阳'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="沈阳" checked/>
-                            <i class="fa fa-user"></i> 沈阳
-                        </label>
+                      <div class="col-sm-8">
+                        所属地区:&nbsp;&nbsp;
+                        <div class="btn-group" ng-init="ctrl.q.city=''" data-toggle="buttons">
+                            <label class="btn btn-default active" ng-click="ctrl.q.city=''">
+                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="" checked/>
+                                <i class="fa fa-user"></i> 全部
+                            </label>
+                            <label class="btn btn-default " ng-click="ctrl.q.city='北京'">
+                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="北京" checked/>
+                                <i class="fa fa-user"></i> 北京
+                            </label>
+                            <label class="btn btn-default " ng-click="ctrl.q.city='上海'">
+                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="上海" checked/>
+                                <i class="fa fa-user"></i> 上海
+                            </label>
+                            <label class="btn btn-default " ng-click="ctrl.q.city='广州'">
+                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="广州" checked/>
+                                <i class="fa fa-user"></i> 广州
+                            </label>
+                            <label class="btn btn-default " ng-click="ctrl.q.city='深圳'">
+                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="深圳" checked/>
+                                <i class="fa fa-user"></i> 深圳
+                            </label>
+                            <label class="btn btn-default " ng-click="ctrl.q.city='重庆'">
+                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="重庆" checked/>
+                                <i class="fa fa-user"></i> 重庆
+                            </label>
+                            <label class="btn btn-default " ng-click="ctrl.q.city='天津'">
+                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="天津" checked/>
+                                <i class="fa fa-user"></i> 天津
+                            </label>
+                            <label class="btn btn-default " ng-click="ctrl.q.city='武汉'">
+                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="武汉" checked/>
+                                <i class="fa fa-user"></i> 武汉
+                            </label>
+                            <label class="btn btn-default " ng-click="ctrl.q.city='东莞'">
+                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="东莞" checked/>
+                                <i class="fa fa-user"></i> 东莞
+                            </label>
+                            <label class="btn btn-default " ng-click="ctrl.q.city='南京'">
+                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="南京" checked/>
+                                <i class="fa fa-user"></i> 南京
+                            </label>
+                            <label class="btn btn-default " ng-click="ctrl.q.city='南京'">
+                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="苏州" checked/>
+                                <i class="fa fa-user"></i> 苏州
+                            </label>
+                            <label class="btn btn-default " ng-click="ctrl.q.city='沈阳'">
+                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="沈阳" checked/>
+                                <i class="fa fa-user"></i> 沈阳
+                            </label>
+                            <label class="btn btn-default " ng-click="ctrl.q.city='长沙'">
+                                <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="长沙" checked/>
+                                <i class="fa fa-user"></i> 长沙
+                            </label>
+                            </div>
+                        <!--其它城市：-->
+                        <!--<input type="text" maxlength="10"  class="form-control" ng-model="ctrl.q.city"/>-->
+                      </div>
+                    <div class="col-sm-4">
+
+                        <div class="fg-line" >
+                            <input type="text"   class="form-control" ng-model="ctrl.q.city" name="city" maxlength="20"
+                              placeholder="其它城市"  value="">
+                        </div>
+
                     </div>
+                </div>
+
                 </div>
 
                 <div class="pm-body clearfix">
