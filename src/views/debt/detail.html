@@ -69,7 +69,7 @@
                     </button>
                 </div>
             </div>
-            <div class="debt-countdown bgm-white">
+            <div class="debt-countdown bgm-white" ng-show="showCountdown || bidStatus">
                 <div class="text-center countdown" ng-show="showCountdown">
                     <i class="zmdi zmdi-time-countdown"></i> {{ ctrl.debt.state < 3 ? "距结束" : "距催收结束" }}&nbsp;&nbsp; <span countdown="countdown_time" ></span>
                 </div>
