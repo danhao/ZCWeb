@@ -31,6 +31,7 @@ class DebtDetailController
 			{value: 2, name: '外访'},
 			{value: 3, name: '信函'},
 			{value: 4, name: '搜索'},
+			{value: 9, name: '债务人承诺还款'},
 			{value: 5, name: '其他'}
 		]
 
@@ -190,14 +191,18 @@ class DebtDetailController
 	newDebtMsg: (debtMsg)->
 		# @$log.log debtMsg
 		if not @debtMsgForm.$invalid
-			# @$log.log debtMsg.date
-			# @$log.log Date.parse debtMsg.date.replace(/-/g,   "/")+" 00:00:00"
 			t = Date.parse debtMsg.date.replace(/-/g,   "/")+" 00:00:00" # to milesecond
+			
+			files = _.map debtMsg.fileSelected.split("|"), (item) ->
+				tmp = item.split(";")
+				{id: tmp[1], name: tmp[0]}
+				
 			@ajaxService.post @actionCode.ACTION_ADD_MESSAGE, {
 				id: @debt.id
 				time: t / 1000
 				type: debtMsg.type.value
 				memo: debtMsg.msg
+				files: files
 				}
 				.success (ret) =>
 					@getDebtDetail()
@@ -209,6 +214,7 @@ class DebtDetailController
 					
 				.error (error) =>
 					@$scope.newDebtError = error.desc
+
 	
 
 	# openRechargeModal: ->

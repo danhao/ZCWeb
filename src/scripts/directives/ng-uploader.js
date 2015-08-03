@@ -65,6 +65,18 @@ var uploader=angular.module('app')
                             e.preventDefault();
                         }
                     });
+
+                    // reset
+                    $scope.$watch("modelField", function(newVal, oldVal) {
+                        if(!newVal) {
+                            $scope.fileList = [];
+                        }
+                    });
+                    $scope.$watch("formField", function(newVal, oldVal) {
+                        if(!newVal) {
+                            $scope.fileList = [];
+                        }
+                    });
                     
 	                $scope.erase=function(ele){
 		                // $log.info("file erased=");

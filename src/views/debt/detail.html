@@ -94,10 +94,11 @@
     <div class="pm-body clearfix">
         <!-- Nav tabs -->
         <ul class="tab-nav " role="tablist">
-            <li class="btn-wave active" role="presentation"><a href="#debtor" aria-controls="alldebt" role="tab" data-toggle="tab">债务人信息</a></li>
-            <li class="btn-wave" role="presentation"><a href="#attachment" aria-controls="alldebt" role="tab" data-toggle="tab">相关附件</a></li>
-            <li class="btn-wave" role="presentation"><a href="#alldebt" aria-controls="alldebt" role="tab" data-toggle="tab">所有竞标</a></li>
-            <li class="btn-wave" role="presentation" ng-show="showDebtCollection"><a href="#debtcollection" aria-controls="debtcollection" role="tab" data-toggle="tab">催收动态</a></li>
+            <li class="btn-wave active" role="presentation"><a href="#debtor" aria-controls="debtor" role="tab" data-toggle="tab">债务人<span class="hidden-xs">信息</span></a></li>
+            <li class="btn-wave" role="presentation"><a href="#attachment" aria-controls="attachment" role="tab" data-toggle="tab"><span class="hidden-xs">相关</span>附件</a></li>
+            <li class="btn-wave" role="presentation"><a href="#alldebt" aria-controls="alldebt" role="tab" data-toggle="tab">竞标<span class="hidden-xs">列表</span></a></li>
+            <li class="btn-wave" role="presentation" ng-show="showDebtCollection"><a href="#debtcollection" aria-controls="debtcollection" role="tab" data-toggle="tab"><span class="hidden-xs">催收</span>动态</a></li>
+            <li class="btn-wave" role="presentation" ng-show="showDebtCollection"><a href="#repayment" aria-controls="repayment" role="tab" data-toggle="tab">还款<span class="hidden-xs">明细</span></a></li>
         </ul>
 
         <!-- Tab panes -->
@@ -124,9 +125,7 @@
             
             <div role="tabpanel" class="tab-pane" id="attachment">
                 <div class="pmb-block clearfix photos">
-                    
                     <div class="lightbox row c-item">
-                        
                         <!-- 
                         <div class="col-md-3 col-sm-4 col-xs-6" data-src="{{ctrl.debt.creditorIdFile.url | trustUrl}}" ng-show="ctrl.debt.creditorIdFile.url">
                             <div class="lightbox-item p-item">
@@ -137,7 +136,6 @@
                             </div>
                         </div>
                         -->
-
                         <div class="col-md-3 col-sm-4 col-xs-6" ng-repeat="file in ctrl.debt.files" data-src="{{file.url | imgurl | trustUrl}}" lightgallery>
                             <div class="lightbox-item p-item">
                                 <img alt="" ng-src="{{file.url | imgurl}}"/>
@@ -146,23 +144,19 @@
                                 <strong>{{file.name}}</strong>
                             </div>
                         </div>
-                        
                     </div>
-                    
                 </div>
-            </div>
+            </div><!--/ end tabpanel-->
             
             <div role="tabpanel" class="tab-pane " id="alldebt">
-
                 <div class="pmb-alldebt">
-
                     <div class="listview lv-bordered lv-lg">
                         <div class="lv-body">
                             <div class="lv-item text-center" ng-hide="ctrl.debt.bidders.length"> 暂无记录 </div>
                             <div class="lv-item media" ng-repeat="bidder in ctrl.debt.bidders">
                                 <div class="pull-left">
                                     <a  href="javascript:;" ui-sref="site.profile.profile({Id: '{{bidder.id}}'})">
-                                         <img class="lv-img-sm" alt="" src="{{bidder.head=='' || bidder.head == undefined?'images/profile-pics/1.jpg':bidder.head}}"/>
+                                        <img class="lv-img-sm" alt="" ng-src="{{bidder.head=='' || bidder.head == undefined?'images/profile-pics/1.jpg':bidder.head}}"/>
                                     </a>
                                 </div>
                                 <div class="media-body">
@@ -172,57 +166,26 @@
                                         <span class="badge" ng-if="ctrl.debt.state >= 3 && bidder.id == ctrl.debt.winnerId">中标</span>
                                         竞标价: <b class="f-18">{{ ctrl.debt.type == 1 ? (bidder.rate + '%') : (bidder.money | ccurrency) }}</b>
                                         <a aria-expanded="false" data-toggle="dropdown" href="" ng-show="ctrl.debt.state < 3 && ctrl.pid == ctrl.debt.ownerId && ctrl.debt.type == 1">
-                                        <i class="zmdi zmdi-more-vert"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li>
-                                            <a href="" ng-click="ctrl.winbid(bidder.id)">中标</a>
-                                        </li>
-                                    </ul>
+                                        <i class="zmdi zmdi-more-vert"></i> </a>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li>
+                                                <a href="" ng-click="ctrl.winbid(bidder.id)">中标</a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
-
-                <!-- 
-                <div class="debt-media-list-container">
-                    <ul class="media-list">
-                        <li class="text-center" ng-hide="ctrl.debt.bidders.length">暂无记录</li>
-                        
-                        <li class="media" ng-repeat="bidder in ctrl.debt.bidders">
-                            <div class="media-right pull-right price">
-                                竞标价: <b>{{ ctrl.debt.type == 1 ? (bidder.rate + '%') : (bidder.money | ccurrency) }}</b>
-                                <button class="btn btn-primary" ng-click="ctrl.winbid(bidder.id)" 
-                                        ng-show="ctrl.debt.state < 3 && ctrl.pid == ctrl.debt.ownerId && ctrl.debt.type == 1" >中标</button>
-                            </div>
-                            <div class="media-left">
-                                <a href="javascript:;"><img src="images/profile-pics/1.jpg" class="img-circle" width="40"/></a>
-                            </div>
-                            <div class="media-body">
-                                <h5 class="media-heading">
-                                    {{ bidder.name }} <span class="time">{{bidder.createTime | idate}}</span>
-                                    <span class="badge" ng-if="ctrl.debt.state >= 3 && bidder.id == ctrl.debt.winnerId">中标</span>
-                                </h5>
-                                <rating ng-model="ctrl.rating" readonly="true"></rating>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                -->
-                
-            </div>
+            </div><!--/ end tabpanel-->
+            
             <div role="tabpanel" class="tab-pane" id="debtcollection" style="position: relative;">
-                <!-- {{ctrl.debt.messages}} -->
                 <div class="timeline debtcollection" >
-                    
-                    <div class="t-view" data-tv-type="text" ng-repeat="msg in ctrl.debt.messages">
+                    <div class="t-view" ng-repeat="msg in ctrl.debt.messages" data-tv-type="{{msg.files? 'image': 'text'}}" >
                         <div class="tv-header media">
                             <a class="tvh-user pull-left" ui-sref="site.profile.profile({Id: '{{ctrl.debt.winnerId}}'})">
-                                <img class="img-responsive" alt="" src="{{ctrl.debt.winnerHead=='' || ctrl.debt.winnerHead == undefined?'images/profile-pics/1.jpg':ctrl.debt.winnerHead}}"/>
+                                <img class="img-responsive" alt="" ng-src="{{ctrl.debt.winnerHead=='' || ctrl.debt.winnerHead == undefined?'images/profile-pics/1.jpg':ctrl.debt.winnerHead}}"/>
                             </a>
                             <div class="media-body p-t-5">
                                 <strong class="d-block">{{ctrl.debt.winnerName}}</strong>
@@ -230,95 +193,50 @@
                             </div>
                         </div>
                         <div class="tv-body">
-                            <p>{{msg.memo}}xxxx</p>
+                            <div class="lightbox tvb-lightbox clearfix" ng-show="msg.files">
+                                <div class="col-sm-2 col-xs-3" ng-repeat="file in msg.files" data-src="{{file.url | imgurl | trustUrl}}" lightgallery>
+                                    <div class="lightbox-item">
+                                        <img alt="{{file.name}}" ng-src="{{file.url | imgurl }}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>{{msg.memo}}</p>
                         </div>
                     </div>
-                    
                 </div>
-                
                 <div class="pmb-block debtcollection" ng-hide="ctrl.debt.messages.length">
                     <div class="pmbb-body text-center">暂无记录</div>
                 </div>
-
                 <a class="btn btn-float btn-danger btn-corner waves-effect waves-effect" title="添加催收动态" alert="添加催收动态" ng-show="ctrl.pid == ctrl.debt.winnerId"
                    data-target="#updatedMsgModal" data-toggle="modal" type="button">
                     <i class="zmdi zmdi-plus"></i>
                 </a>
+            </div><!--/ end tabpanel -->
 
-                <!-- 
-                <div class="debt-media-list-container">
-                    <ul class="media-list">
-                        <li class="media" ng-repeat="msg in ctrl.debt.messages">
-                            <div class="media-left">
-                                <a href="javascript:;"><img src="images/profile-pics/1.jpg" class="img-circle" width="40"/></a>
-                            </div>
-                            <div class="media-body">
-                                <h5 class="media-heading">{{ctrl.debt.winnerName}} <span class="time">{{msg.time | idate}}</span> </h5>
-                                <div>
-                                    {{msg.memo}}
+            <div role="tabpanel" class="tab-pane " id="repayment">
+                <div class="pmb-alldebt">
+                    <div class="listview lv-bordered lv-lg">
+                        <div class="lv-body">
+                            <div class="lv-item text-center" ng-hide="ctrl.debt.bidders.length"> 暂无记录 </div>
+                            <div class="lv-item media">
+                                <div class="pull-left">
+                                    <a  href="javascript:;" ui-sref="site.profile.profile({Id: '{{bidder.id}}'})">
+                                         <img class="lv-img-sm" alt="" ng-src="{{bidder.head=='' || bidder.head == undefined?'images/profile-pics/1.jpg':bidder.head}}"/>
+                                    </a>
+                                </div>
+                                <div class="pull-right">
+                                    <span class="hidden-xs">还款: </span><b class="f-18">100.00</b> 
+                                </div>
+                                <div class="media-body">
+                                    <div class="lv-title">张三 <span class="m-l-10 c-gray"><i class="zmdi zmdi-time"></i>&nbsp; 2015-08-02</span> </div>
+                                    <small class="lv-small">今天我先还了100块</small>
                                 </div>
                             </div>
-                        </li>
-                        <li class="text-center" ng-hide="ctrl.debt.messages.length">暂无记录</li>
-                        
-
-                        
-                        <li class="media" ng-show="ctrl.pid == ctrl.debt.winnerId">
-
-                            <div class="media-left">
-                                <a href="javascript:;"><img src="images/profile-pics/1.jpg" class="img-circle" width="40"/></a>
-                            </div>
-                            <div class="media-body fullwidth">
-                                <form method="post" name="ctrl.debtMsgForm" ng-submit="ctrl.newDebtMsg(ctrl.debtMsg)" class="form-inline row-margin" novalidate>
-                                    
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="form-group fullwidth" show-errors >
-                                                <textarea id="debtMsg" name="debtUpdate" class="form-control fullwidth" placeholder="请填写催收进度" ng-model="ctrl.debtMsg.msg" required></textarea>
-                                                <span class="help-block" ng-show="ctrl.debtMsgForm.debtUpdate.$error.required && ctrl.debtMsgForm.debtUpdate.$dirty">需要必填</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4 col-sm-3">
-                                            <div class="form-group" show-errors>
-                                                <label for="debtMsgType">催收方式:</label>
-                                                <select name="debtMsgType" id="debtMsgType" class="form-control" ng-model="ctrl.debtMsg.type" ng-options="ct.name for ct in ctrl.collectionTypes" required>
-                                                    <option value=""></option>
-                                                </select>
-                                                <span class="help-block" ng-show="ctrl.debtMsgForm.debtMsgType.$error.required && ctrl.debtMsgForm.debtMsgType.$dirty">需要必填</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <div class="form-group" show-errors>
-                                                <label for="calendar">时间:</label>
-                                                <div class="input-group">
-                                                    <input type="text" id="calendar" name="debtCalendar" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="ctrl.debtMsg.date" is-open="datePicker.opened" required />
-                                                    <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-default" ng-click="open_calendar($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <span class="help-block" ng-show="ctrl.debtMsgForm.debtCalendar.$error.required && ctrl.debtMsgForm.debtCalendar.$dirty">需要必填</span>
-                                            <span class="help-block" ng-show="ctrl.debtMsgForm.debtCalendar.$error.date && ctrl.debtMsgForm.debtCalendar.$dirty">日期格式不正确</span>
-                                        </div>
-                                        
-                                        <div class="col-md-4 col-sm-3"><button class="btn btn-default pull-right" type="submit" ng-disabled="ctrl.debtMsgForm.$invalid">提交</button></div>
-                                    </div>
-                                    <div class="row" ng-show="newDebtError">
-                                        <div class="col-sm-12 error">
-                                            {{newDebtError}}
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
-                -->
-                
-            </div>
+            </div><!--/ end tabpanel -->
+            
         </div>
     </div>
 
@@ -415,7 +333,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group" show-errors>
-                        <label for="debtMsgType" class="col-sm-2 control-label">催收方式:</label>
+                        <label for="debtMsgType" class="col-sm-2 control-label">类型:</label>
                         <div class="col-sm-10">
                             <div class="fg-line">
                                 <div class="select">
@@ -444,6 +362,13 @@
                                 <textarea id="debtMsg" name="debtUpdate" class="form-control" placeholder="请填写催收进度" ng-model="ctrl.debtMsg.msg" required></textarea>
                             </div>
                             <span class="help-block" ng-show="ctrl.debtMsgForm.debtUpdate.$error.required && ctrl.debtMsgForm.debtUpdate.$dirty">需要必填</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="files" class="col-sm-2 control-label">相关附件:</label>
+                        <div class="col-sm-10">
+                            <div ng-uploader data-form-field="fileSelected" data-model-field="ctrl.debtMsg.fileSelected" style="margin-bottom:-60px;"></div>
+                            <input type="hidden" id="files" name="debtMsgFiles" />
                         </div>
                     </div>
                 </div>

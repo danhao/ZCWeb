@@ -155,10 +155,11 @@ class DebtListController
 						@$scope.price = ""
 						@$scope.bidForm.$setPristine()
 						@$scope.$broadcast 'show-errors-reset'
-					
+						
 						angular.element "#bidModal"
 							.modal "hide"
-						@growlService.growl "你已成功参与应标"
+						@growlService.growl "批量投标成功"
+						@checkAll 2
 					.error (error) =>
 						@$log.log error
 						# alert error.desc
@@ -173,14 +174,14 @@ class DebtListController
 			@page_t++
 			@transferlist()
 
-	checkAll: ->
+	checkAll: (checkStatus)->
 		# @showCheck = !@showCheck
-		if(@checkStatus is 1) 	# check all
+		if(checkStatus is 1) 	# check all
 			_.each @$scope.agentlist, (debt) -> debt.checked = true
-		else if(@checkStatus is 2)
+		else if(checkStatus is 2)
 			_.each @$scope.agentlist, (debt) -> debt.checked = false
 		# update checkStatus
-		@checkStatus = (@checkStatus+1) % 3
+		@checkStatus = (checkStatus+1) % 3
 
 	batchBid: ->
 		if @tab is 2
