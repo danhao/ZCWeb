@@ -118,8 +118,7 @@ class Config
 				templateUrl: 'views/user/createdebt.html'
 				data:
 					precondition:
-						require: "requireCreateDebtValidate"
-						redirectTo: "site.member.index"
+						require: "requireCreateDebt"
 						msg: "您需要先验证(手机,邮箱)其中之一,才能发布债权信息"
 					displayName: "发布债权"
 

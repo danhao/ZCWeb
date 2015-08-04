@@ -84,7 +84,7 @@ class Authorization
 
 				# authorization
 				satisfiedFun.then (ret) =>
-					if ret # satisfy precondition, continue
+					if ret is true # satisfy precondition, continue
 						# trick to workaround the infinit loop issue
 						@$state.go toState.name, toParams, {notify: false}
 							.then ()=>
@@ -96,7 +96,7 @@ class Authorization
 
 					
 		@requireLogin = () =>
-			@$q.when @userSession.pid()
+			@$q.when !!@userSession.pid()
 
 		@requireLoginRedirect = () =>
 			@growlService.growl "您尚未登陆, 无权限查看此页面!", 'warning'
@@ -120,10 +120,25 @@ class Authorization
 			state
 
 		# 创建debt校验; 手机,邮箱 2者任何1个通过验证;
-		@requireCreateDebtValidate = () =>
+		@requireCreateDebt = () =>
 			@getUser (user) ->
 				status = user.status
-				(status&userStatus.EMAIL_VALIDATE)==1 or (status&userStatus.MOBILE_VALIDATE)==2
+				if (status&userStatus.EMAIL_VALIDATE)==1 or (status&userStatus.MOBILE_VALIDATE)==2
+					true
+				else
+					return {
+						email: (status&userStatus.EMAIL_VALIDATE)==1
+						mobile: (status&userStatus.MOBILE_VALIDATE)==2
+						}
+
+		@requireCreateDebtRedirect = (ret) =>
+			# @$log.log ret
+			if not ret.mobile
+				'site.member.authmobile'
+			else if ret.email
+				'site.member.authemail'
+			else
+				'site.member.index'
 
 		# 必须通过身份认证
 		@requireIndentity = () =>
