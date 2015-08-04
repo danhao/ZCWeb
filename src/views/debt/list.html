@@ -185,8 +185,8 @@
                         <div class="row">
                             <div ng-repeat="debt in agentlist">
                                 <div class="col-sm-3">
-                                    <div class="card">
-                                        <div class="card-header bgm-bluegray m-b-20">
+                                    <div class="card"> <!-- bgm-bluegray -->
+                                        <div class="card-header m-b-20 {{ debt.hasBid==1? 'bgm-green': (debt.ownerId==ctrl.pid? 'bgm-brown': 'bgm-bluegray') }}" ng-class="">
                                             <h2>
                                                 <div class="checkbox pull-right m-0 orange" ng-show="ctrl.checkStatus != 0">
                                                     <label>

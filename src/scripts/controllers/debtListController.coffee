@@ -187,11 +187,18 @@ class DebtListController
 		if @tab is 2
 			return
 		checkedList = _.filter @$scope.agentlist, (debt) -> debt.checked
-		if checkedList.length > @allowDebtCount
+		# @$log.log _.any checkedList, (debt) => debt.ownerId is @pid
+		if checkedList.length is 0
+			@growlService.growl '您没有选择任何记录,请先选择后再进行操作.'
+			return
+		else if checkedList.length > @allowDebtCount
 			@growlService.growl '您最多只允许再投标'+@allowDebtCount+'单,您的选择过多,请重新选择.'
 			return
-		else if checkedList.length is 0
-			@growlService.growl '您没有选择任何记录,请先选择后再进行操作.'
+		else if (_.any checkedList, (debt) => debt.ownerId is @pid)
+			@growlService.growl '您不允许投标自己发布的记录,请重新选择.'
+			return
+		else if (_.any checkedList, (debt) -> debt.hasBid)
+			@growlService.growl '您选择的记录中,存在已经投过的标,请重新选择.'
 			return
 		else
 			# init dialog var
