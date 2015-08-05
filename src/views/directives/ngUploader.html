@@ -12,5 +12,9 @@
             </span>
         </li>
     </ul>
-    <small ng-show="{{amount}}" class="c-grey">最多允许上传 {{amount}} 个文件</small>
+    <div>
+    <small ng-show="amount" class="c-grey">最多允许上传 {{amount}} 个文件</small>
+    <small ng-show="filesizeLimit && filesizeLimit != -1" class="c-grey m-l-10">最大只允许上传 {{getSize(filesizeLimit)}} 的文件</small>
+    </div>
+    <small class="c-red">{{error}}</small>
 </div>

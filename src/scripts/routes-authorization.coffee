@@ -115,6 +115,15 @@ class Authorization
 					defered.reject false
 			defered.promise
 
+		@getDebt = (debtId, callback) =>
+			defered = @$q.defer()
+			@ajaxService.post @actionCode.VIEW_DEBT, {param: debtId}
+				.success (result) =>
+					defered.resolve callback(result)
+				.error (error) ->
+					defered.reject false
+			defered.promise
+
 		@gotoUserinfo = (msg ,state)=>
 			@growlService.growl(msg, 'warning')
 			state
@@ -139,6 +148,17 @@ class Authorization
 				'site.member.authemail'
 			else
 				'site.member.index'
+
+		@requireViewDebt = () =>
+			# @$log.log @$rootScope.toParams
+			# $q.when true
+			debtId = @$rootScope.toParams.debtId
+			@getDebt debtId, (debt) =>
+				# @$log.log debt
+				if debt.ownerId is @userSession.pid()
+					true
+				else
+					@requireIndentity()
 
 		# 必须通过身份认证
 		@requireIndentity = () =>

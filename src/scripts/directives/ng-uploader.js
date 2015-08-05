@@ -15,9 +15,15 @@ var uploader=angular.module('app')
                 scope: {
                     modelField: '=',
                     formField: '@formField',
-                    amount: '='
+                    amount: '=',
+                    filesizeLimit: '='
                 }, 
 	            templateUrl:'/views/directives/ngUploader.html',
+                // compile: function(element, attrs) {
+                //     if (!attrs.filesizeLimit) {
+                //         attrs.filesizeLimit = 5*1024*1024;
+                //     }
+                // },
 	            link: function($scope, element, attrs) {
 	                $scope.fileList=[];	
 	                $scope.concurrency=(typeof attrs.concurrency=="undefined")?2:attrs.concurrency;
@@ -33,6 +39,7 @@ var uploader=angular.module('app')
                         return (bytes / Math.pow(1024, i)).toFixed(i ? 1 : 0) + ' ' + sizes[isNaN(bytes) ? 0 : i + 1];
                     };
                     $scope.url=(attrs.ngUploader=="")?uploaderFactory.url:attrs.ngUploader;
+                    $scope.filesizeLimit = $scope.filesizeLimit || 5*1024*1024;
 
                     var pid = uploaderFactory.pid;
                     var input = element.find("input");
@@ -40,8 +47,17 @@ var uploader=angular.module('app')
 	                element.bind("change", function(e) {
                         var target = e.target;
                         if(target.tagName == "INPUT" && target.type == "file") {
+                            $scope.error = ''; // reset error
+                            
 		                    var files=e.target.files;
 		                    for ( var i = 0; i < files.length; i++) {
+                                // $log.log(files[i].size);
+                                if($scope.filesizeLimit && $scope.filesizeLimit != -1 && files[i].size > $scope.filesizeLimit) {
+                                    $scope.error = '上传文件大小超过限制';
+                                    $scope.$apply();
+                                    return;
+                                }
+                                
                                 $scope.aliyunfile =pid+"/"+createguidfilename(files[i].name);
 			                    $scope.fileList.push({
 				                    parameter:$scope.parameter,

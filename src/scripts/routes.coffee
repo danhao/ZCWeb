@@ -270,7 +270,8 @@ class Config
 				templateUrl: 'views/debt/detail.html'
 				data:
 					precondition:
-						require: 'requireIndentity'
+						require: 'requireViewDebt'
+						redirectTo: 'site.member.auth'
 						msg: "你需要身份认证之后,才允许查看"
 					displayName: '债务明细'
 
