@@ -9,7 +9,7 @@ class Config
 				
 			.state 'site.index',
 				url: ''
-				templateUrl: 'views/welcome2.html'
+				templateUrl: 'views/welcome3.html'
 
 			.state 'site.login',
 				url: 'login/:type'

@@ -1403,7 +1403,7 @@ footer {
 
 /* customer */
 
-.header, .focus, .separator-one, .works, .stats, .our-team {
+.header, .focus, .separator-one, .works, .stats, .our-team, .about {
     position: relative;
 }
 
