@@ -1,49 +1,87 @@
 
-<header id="header" data-ng-include src="'includes/header-nologin.html'"></header>
 
 <div ng-controller="indexController2 as ctrl" >
 
 
-<!-- background -->
-<div id="wrapper" style="position:relative; "></div>    
+<!-- =========================
+   HEADER
+============================== -->
+<header id="header" >
+<div class="container">
+<ul class="header-inner">
+    <li class="logo ">
+        <a ui-sref="site.index">
+            <img src="images/logo/logo-nav.png" class="logo" alt="点点债" /> 点点债
+            {{ layoutSS }}
+        </a>
+    </li>
+    <li class="pull-right">
+        <ul class="top-menu">
+            <li>
+                <a ui-sref="site.login({type:1})" class="btn btn-primary custom-button bgm-red">登陆</a>
+            </li>
+            <li>
+                <a ui-sref="site.login({type:2})" class="btn btn-primary custom-button bgm-green">注册</a>
+            </li>
+        </ul>
+    </li>
+</ul>
+</div>
+</header>
+
+
 
 
 <!-- =========================
-   HOME SECTION       
+   BANNER SECTION       
 ============================== -->
 
 <!-- BIG HEADING WITH CALL TO ACTION BUTTONS AND SHORT MESSAGES -->
 <div class="header">
-<div class="container">
-	
-	<!-- HEADING -->
-	<h1 class="intro">国内首家p2p不良资产催收平台</h1>
-	
-	<!-- CALL TO ACTION BUTTONS -->
-	<div class="buttons">
-		<a ui-sref="site.login({type:1})" class="btn btn-primary custom-button bgm-red">登陆</a>
-		<a ui-sref="site.login({type:2})" class="btn btn-primary custom-button bgm-green">注册</a>
-	</div>
-	
-	<!-- 3 SHORT MESSAGE ABOUT COMPANY -->
-    <div class="row bottom-message-section">
-		<div class="col-lg-4 col-sm-4">
-			<div class="short-text">
-				<i class="zmdi zmdi-view-list"></i> 免费 &nbsp; 零佣金
-			</div>
-		</div>
-		<div class="col-lg-4 col-sm-4">
-			<div class="short-text">
-				<i class="zmdi zmdi-time"></i> 高效 &nbsp; 回款快
-			</div>
-		</div>
-		<div class="col-lg-4 col-sm-4">
-			<div class="short-text">
-				<i class="zmdi zmdi-check"></i> 安全 &nbsp; 无风险
-			</div>
-		</div>
-	</div>
-</div> <!-- / END BIG HEADING WITH CALL TO ACTION BUTTONS AND SHORT MESSAGES  -->
+
+
+    
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <!-- <li data-target="#carousel-example-generic" data-slide-to="2"></li> -->
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="../images/banner/0.jpg" alt="" />
+                <!-- 
+                <div class="carousel-caption">
+                    <h3>First Slide Label</h3>
+                    <p>Some sample text goes here...</p>
+                </div>
+                 -->
+            </div>
+            <div class="item">
+                <img src="../images/banner/1.jpg" alt=""/>
+            </div>
+            <!-- 
+            <div class="item">
+                <img src="media/carousel/c-3.jpg" alt=""/>
+            </div>
+             -->
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="zmdi zmdi-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="zmdi zmdi-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    
+
 </div>
 
 
@@ -114,6 +152,19 @@
 <div class="container">
 
     <div class="row">
+
+        <!-- FIRST FOCUS BOXES -->
+		<div class="col-lg-3 col-sm-3 feature-box red wow fadeInLeft animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+			<div class="feature-icon">
+				<img src="images/index/shield.png" alt="" />
+			</div>
+			<h5 >跨地域</h5> <!-- FOCUS HEADING -->
+			<p> <!-- FOCUS DESCRIPTION -->
+				覆盖全国36个省2000多个市
+			</p>
+		</div>
+		<!-- / END FIRST FOCUS BOX. Other boxes has same format -->
+
         
     </div>
     
@@ -527,10 +578,9 @@
 </section> <!-- / END OUR TEAM SECTION -->
 
 
+<!-- footer -->
+<footer id="footer" data-ng-include src="'includes/footer.html'"></footer>
 
 
 </div>
 <!-- / END CONTROLLER -->
-
-<!-- footer -->
-<footer id="footer" data-ng-include src="'includes/footer.html'"></footer>

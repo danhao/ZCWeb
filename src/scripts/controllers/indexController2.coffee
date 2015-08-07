@@ -5,7 +5,7 @@ class IndexController2
 		new WOW().init()
 
 		# vegas
-		# height = angular.element(@$window).height()
+		###
 		angular.element("#wrapper").vegas
 			delay: 7000
 			slides: [
@@ -15,6 +15,7 @@ class IndexController2
 			]
 			# walk: () ->
 			# 	angular.element(".vegas-slide").height height
+		###
 
 		@rating=4
 
