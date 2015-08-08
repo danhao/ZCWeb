@@ -132,30 +132,6 @@
                             <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="天津" checked/>
                             <i class="fa fa-user"></i> 天津
                         </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='武汉'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="武汉" checked/>
-                            <i class="fa fa-user"></i> 武汉
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='东莞'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="东莞" checked/>
-                            <i class="fa fa-user"></i> 东莞
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='南京'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="南京" checked/>
-                            <i class="fa fa-user"></i> 南京
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='南京'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="苏州" checked/>
-                            <i class="fa fa-user"></i> 苏州
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='沈阳'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="沈阳" checked/>
-                            <i class="fa fa-user"></i> 沈阳
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='长沙'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="长沙" checked/>
-                            <i class="fa fa-user"></i> 长沙
-                        </label>
                     </div>
                     <!--其它城市：-->
                     <!--<input type="text" maxlength="10"  class="form-control" ng-model="ctrl.q.city"/>-->
@@ -259,7 +235,7 @@
                             <label for="price" class="control-label">代理费率</label>
                             <div class="input-group">
                                 <div class="fg-line">
-                                    <input type="number" class="form-control" id="price" name="price" ng-model="price" placeholder="" required ui-validate="{agent:'agentLegalCheck($value)'}"/>
+                                    <input type="number" class="form-control" id="price" name="price" ng-model="price" placeholder="" value=10 required ui-validate="{agent:'agentLegalCheck($value)'}"/>
                                 </div>
                                 <span class="input-group-addon last fg-lineheight">% &nbsp;&nbsp; (代理费率应大于10%)</span>
                             </div>
