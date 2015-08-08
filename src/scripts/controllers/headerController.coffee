@@ -8,6 +8,7 @@ class Controller
 			@sid = null
 
 		@pid = @userSession.pid()
+		console.log 'header controller'
 		@ajaxService.post @actionCode.GET_USER, {id: @pid}
 		.success (result) =>
 			@user = result

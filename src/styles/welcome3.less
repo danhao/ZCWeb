@@ -1,20 +1,29 @@
 
-body {
-    color: #929292;
-}
+#index {
+
+margin-top: -65px;
+
+    
+// body {
+//     color: #929292;
+//     padding-top: 0px;
+// }
 
 h4, .h4 {
     color: #454545;
 }
 
 #header {
+    position: absolute;
     background: none;
-    border-width: 0;
+    border: none;
+    box-shadow: none;
 }
 
-.section-header2 {
-    text-align: center;
-    padding-bottom: 38px;
+
+.focus,.works,.about-us,.features,.packages,.products,.testimonial,.contact-us {
+	padding-top: 0;
+    padding-bottom: 0;
 }
 
 .about, .strength {
@@ -23,11 +32,20 @@ h4, .h4 {
     // position: relative;
 }
 
-.about {
-    background: #ffffff none repeat scroll 0 0;
+.about, .business {
+    Background: #ffffff none repeat scroll 0 0;
 }
 .strength {
     background: url(../images/index/strength-bg.jpg) no-repeat 0 0;
+}
+
+.section-header2 {
+    text-align: center;
+    padding-bottom: 38px;
+
+    h4 {
+        margin-top: 0;
+    }
 }
 
 .subject {
@@ -60,24 +78,42 @@ h4, .h4 {
     }
 }
 
+// ==================================================
+// BANNER
+// ==================================================
+
+.carousel-inner > .item {
+    height: auto;
+}
+
+
+
 
 // icon
 
 .feature-box {
+    text-align: center;
+    margin-bottom: 75px;
+    color: #fff;
     
     .feature-icon {
         height: 145px;
         margin: auto auto 20px;
         position: relative;
         width: 145px;
+
+        img {
+            position: relative;
+            top: 50%;
+        }
     }
 
     h5 {
-        color: #404040;
+        color: #fff;
         display: inline-block;
         font-size: 17px;
         font-weight: bold;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         position: relative;
         text-transform: uppercase;
     }
@@ -88,4 +124,40 @@ h4, .h4 {
 }
 
 
+.team-member {
+    
+    .profile-pic {
+        border-radius: 0;
+    }
+}
 
+.flow-title {
+    .size(250px, 50px);
+    line-height: 50px;
+    text-align: center;
+    margin: 0 auto;
+    color: #fff;
+    font-size: 16px;
+}
+
+.flow {
+    height: 800px;
+    width: 310px;
+    margin: 50px auto 30px;
+
+    &.creditor {
+        background: url(../images/index/flow-creditor.png) no-repeat 0 0;
+    }
+    &.collection {
+        width: 160px;
+        background: url(../images/index/flow-collection.png) no-repeat 0 0;
+    }
+}
+
+
+
+
+
+// end index
+// ==================================================
+}
