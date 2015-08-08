@@ -50,7 +50,8 @@ class DebtDetailController
 		# 保证金: 10%, 500封顶
 		@$scope.deposit = Math.min(Math.round(@debt.money * 0.1), 500*100)
 		@$scope.debtType = @debt.type
-		
+		@$scope.price = "10"
+
 		# 代理, 费率
 		@$scope.agentLegalCheck = (price) =>
 			if @debt.type == 1	# 费率
