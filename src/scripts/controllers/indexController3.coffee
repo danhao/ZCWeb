@@ -33,6 +33,13 @@ class IndexController2
 			dots: false,
 			margin: 60
 			})
+
+		angular.element('#banner').owlCarousel({
+			slideSpeed: 300,
+			paginationSpeed: 400,
+			singleItem: true,
+			items: 1
+			})
 		
 		
 
