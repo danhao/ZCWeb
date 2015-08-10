@@ -38,6 +38,7 @@ ActionCode = # do () ->
 	ACTION_DRAW_CASH : 201 		# 提现申请(pay.PlayerCashMsg---->null)
 	ACTION_BATCH_BID : 108 		# 批量投标(debt.BatchBidReq---->null)
 	ACTION_RETURN_DEBT : 109 		# 退单(common.SingleMsg---->null)
+	ACTION_APPLY_END_DEBT: 110		# 申请结单(common.SingleMsg---->null)
 
 
 

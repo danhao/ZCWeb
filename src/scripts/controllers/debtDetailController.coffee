@@ -50,7 +50,7 @@ class DebtDetailController
 		# 保证金: 10%, 500封顶
 		@$scope.deposit = Math.min(Math.round(@debt.money * 0.1), 500*100)
 		@$scope.debtType = @debt.type
-		@$scope.price = "10"
+		@$scope.price = 10
 
 		# 代理, 费率
 		@$scope.agentLegalCheck = (price) =>
@@ -111,7 +111,7 @@ class DebtDetailController
 		@$scope.showBidButton = (@debt.state is 1) and (@pid isnt @debt.ownerId) and (@pid isnt @debt.winnerId) and not isBidded
 		@$scope.showCountdown = (@debt.state is 1) or (@debt.state == 3 and (@pid is @debt.ownerId or @pid is @debt.winnerId))
 		@$scope.showReturnButton = @debt.canReturn is 1 and @pid is @debt.winnerId
-		# @$scope.showBidStatus = (@debt.state < 3) and isBidded
+		@$scope.showEndButton = @debt.canEnd is 1 and @pid is @debt.winnerId
 		
 		# 投标状态
 		@$scope.bidStatus = switch
@@ -156,7 +156,9 @@ class DebtDetailController
 		if @debt.state >= DEBT_STATE.DEAL and @debt.canReturn # 已成交并允许退单
 			swal {
 				title: '确定退单',
-				showCancelButton: true
+				showCancelButton: true,
+				confirmButtonText: "确定",
+				cancelButtonText: "取消"
 			}, () =>
 				@doReturnDebt()
 		else
@@ -169,6 +171,30 @@ class DebtDetailController
 			}
 			.success (result) =>
 				@growlService.growl '退单成功'
+			.error (error) =>
+				@$log.log error
+				@growlService.growl error.desc
+	
+	# 结单
+	endDebt: ->
+		if @debt.state >= DEBT_STATE.DEAL and @debt.canEnd # 已成交并且允许结单
+			swal {
+				title: '确定要申请结单',
+				showCancelButton: true,
+				confirmButtonText: "确定",
+				cancelButtonText: "取消"
+			}, () =>
+				@doEndDebt()
+		else
+			@growlService.growl "不满足结单条件"
+
+	# 结单
+	doEndDebt: ->
+		@ajaxService.post @actionCode.ACTION_APPLY_END_DEBT, {
+			param: @debt.id
+			}
+			.success (result) =>
+				@growlService.growl '申请结单成功'
 			.error (error) =>
 				@$log.log error
 				@growlService.growl error.desc

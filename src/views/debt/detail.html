@@ -68,6 +68,11 @@
                         退单
                     </button>
                 </div>
+                <div class="dropdown pmop-message" ng-show="showEndButton">
+                    <button class="btn bgm-white c-black btn-float z-depth-1 waves-effect" ng-click="ctrl.endDebt()" aria-expanded="false">
+                        结单
+                    </button>
+                </div>
             </div>
             <div class="debt-countdown bgm-white" ng-show="showCountdown || bidStatus">
                 <div class="text-center countdown" ng-show="showCountdown">
