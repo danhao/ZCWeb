@@ -31,14 +31,19 @@ class IndexController2
 			items: 3,
 			nav: true,
 			dots: false,
-			margin: 60
+			margin: 60,
+			responsive: {
+				0: { items: 1 },
+				600: { items: 3 }
+				}
 			})
 
 		angular.element('#banner').owlCarousel({
 			slideSpeed: 300,
 			paginationSpeed: 400,
 			singleItem: true,
-			items: 1
+			items: 1,
+			responsiveClass: true
 			})
 		
 		
