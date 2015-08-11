@@ -35,7 +35,8 @@ class IndexController2
 			responsive: {
 				0: { items: 1 },
 				600: { items: 3 }
-				}
+				},
+			navText: ['','']
 			})
 
 		angular.element('#banner').owlCarousel({

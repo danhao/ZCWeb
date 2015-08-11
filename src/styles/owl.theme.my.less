@@ -1,23 +1,43 @@
 /* 
- * 	Default theme - Owl Carousel CSS File
+ * 	Green theme - Owl Carousel CSS File
  */
 .owl-theme-my .owl-nav {
     margin-top: 10px;
     text-align: center;
     -webkit-tap-highlight-color: transparent; }
 .owl-theme-my .owl-nav [class*='owl-'] {
-    color: #FFF;
-    font-size: 14px;
-    margin: 5px;
-    padding: 4px 7px;
+
+    font-family: "Material Design Iconic Font";
+    font-feature-settings: normal;
+    font-kerning: auto;
+    font-language-override: normal;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-style: normal;
+    font-synthesis: weight style;
+    font-variant: normal;
+    // font-weight: normal;
+    line-height: 1;
+    text-rendering: auto;
+
+    
+    color: #333;
+    font-size: 40px;
+    margin: 1px;
+    // padding: 4px 7px;
     background: #D6D6D6;
     display: inline-block;
     cursor: pointer;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px; }
+    
+    // -webkit-border-radius: 3px;
+    // -moz-border-radius: 3px;
+    // border-radius: 3px;
+
+    .size(30px, 30px);
+    line-height: 30px;
+}
 .owl-theme-my .owl-nav [class*='owl-']:hover {
-    background: #869791;
+    background: #FF9800;
     color: #FFF;
     text-decoration: none; }
 .owl-theme-my .owl-nav .disabled {
@@ -48,4 +68,16 @@
     -moz-border-radius: 30px;
     border-radius: 30px; }
 .owl-theme-my .owl-dots .owl-dot.active span, .owl-theme-my .owl-dots .owl-dot:hover span {
-    background: #869791; }
+    background: #FF9800; }
+
+.owl-theme-my .owl-nav .owl-prev {
+    .zmdi-chevron-left()
+}
+
+.owl-theme-my .owl-nav .owl-next {
+    .zmdi-chevron-right();
+    background: #FF9800;
+    color: #fff;
+}
+
+
