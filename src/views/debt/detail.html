@@ -141,7 +141,7 @@
                             </div>
                         </div>
                         -->
-                        <div class="col-md-3 col-sm-4 col-xs-6" ng-repeat="file in ctrl.debt.files" data-src="{{file.url | imgurl | trustUrl}}" lightgallery>
+                        <div class="col-md-3 col-sm-4 col-xs-6" ng-repeat="file in ctrl.debt.files" data-src="{{file.url | trustUrl}}"  lightgallery data-filter-img="true" >
                             <div class="lightbox-item p-item">
                                 <img alt="" ng-src="{{file.url | imgurl}}"/>
                             </div>
@@ -199,7 +199,7 @@
                         </div>
                         <div class="tv-body">
                             <div class="lightbox tvb-lightbox clearfix" ng-show="msg.files">
-                                <div class="col-sm-2 col-xs-3" ng-repeat="file in msg.files" data-src="{{file.url | imgurl | trustUrl}}" lightgallery>
+                                <div class="col-sm-2 col-xs-3" ng-repeat="file in msg.files" data-src="{{file.url | trustUrl}}" lightgallery >
                                     <div class="lightbox-item">
                                         <img alt="{{file.name}}" ng-src="{{file.url | imgurl }}"/>
                                     </div>

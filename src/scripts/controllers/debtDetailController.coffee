@@ -219,17 +219,18 @@ class DebtDetailController
 		# @$log.log debtMsg
 		if not @debtMsgForm.$invalid
 			t = Date.parse debtMsg.date.replace(/-/g,   "/")+" 00:00:00" # to milesecond
-			
-			files = _.map debtMsg.fileSelected.split("|"), (item) ->
-				tmp = item.split(";")
-				{id: tmp[1], name: tmp[0]}
+
+			if debtMsg.fileSelected
+				files = _.map debtMsg.fileSelected.split("|"), (item) ->
+					tmp = item.split(";")
+					{id: tmp[1], name: tmp[0]}
 				
 			@ajaxService.post @actionCode.ACTION_ADD_MESSAGE, {
 				id: @debt.id
 				time: t / 1000
 				type: debtMsg.type.value
 				memo: debtMsg.msg
-				files: files
+				files: files || []
 				}
 				.success (ret) =>
 					@getDebtDetail()
@@ -279,8 +280,15 @@ class DebtDetailController
 		# return arbitary value instead of the default return value of dom element
 		# which will cause angular $parse:isecdom error
 		true
-		
 
+	getFileExt: (url) ->
+		u1 = url.split("?")[0]
+		u2s = u1.split(".")
+		u2s[u2s.length-1].toLowerCase()
+			
+	isImgUrl: (url) ->
+		(@getFileExt url) in ["jpg", "jpeg", "ico", "png", "bmp"]
+	
 
 
 	# openBidModal: ->

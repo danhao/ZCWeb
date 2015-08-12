@@ -1,13 +1,13 @@
-<div class="sidebar-inner c-overflow" ng-controller="sidebarController as sbctrl">
+<div class="sidebar-inner c-overflow" >
     <div class="profile-menu">
         <a href="" toggle-submenu>
             <div class="profile-pic">
                 <!--<img src="images/profile-pics/1.jpg" alt=""/>-->
-                <img src="{{sbctrl.user.head=='' || sbctrl.user.head ==undefined?'../images/profile-pics/1.jpg':sbctrl.user.head}}"    alt="">
+                <img src="{{mactrl.user.head=='' || mactrl.user.head ==undefined?'../images/profile-pics/1.jpg':mactrl.user.head}}"    alt="">
             </div>
 
             <div class="profile-info">
-                {{sbctrl.user.name}}
+                {{mactrl.user.name}}
                 <i class="zmdi zmdi-arrow-drop-down"></i>
             </div>
         </a>
@@ -24,7 +24,7 @@
                 <a href=""><i class="zmdi zmdi-settings"></i> Settings</a>
             </li>
             <li>
-                <a href="javascript:;" ng-click="sbctrl.logout();mactrl.sidebarStat($event);"><i class="zmdi zmdi-time-restore"></i> Logout</a>
+                <a href="javascript:;" ng-click="mactrl.logout();mactrl.sidebarStat($event);"><i class="zmdi zmdi-time-restore"></i> Logout</a>
             </li>
         </ul>
         -->
@@ -45,7 +45,7 @@
             <ul>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.userinfo" data-ng-click="mactrl.sidebarStat($event)">基本信息</a></li>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.userpwd" data-ng-click="mactrl.sidebarStat($event)">修改密码</a></li>
-                <li><a data-ui-sref-active="active" data-ui-sref="site.member.auth" data-ng-click="mactrl.sidebarStat($event)">{{sbctrl.user.type==0 ? "个人验证":"企业验证"}}</a></li>
+                <li><a data-ui-sref-active="active" data-ui-sref="site.member.auth" data-ng-click="mactrl.sidebarStat($event)">{{mactrl.user.type==0 ? "个人验证":"企业验证"}}</a></li>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.notifySetting" data-ng-click="mactrl.sidebarStat($event)">消息推送</a></li>
             </ul>
         </li>
@@ -54,7 +54,7 @@
             <a href="" toggle-submenu><i class="zmdi zmdi-book"></i> 我的债权</a>
             <ul>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.createdebt" data-ng-click="mactrl.sidebarStat($event)">新建债务</a></li>
-                <li ng-show="sbctrl.user.type ==1"><a data-ui-sref-active="active" data-ui-sref="site.member.uploaddebt" data-ng-click="mactrl.sidebarStat($event)">上传债权信息</a></li>
+                <li ng-show="mactrl.user.type ==1"><a data-ui-sref-active="active" data-ui-sref="site.member.uploaddebt" data-ng-click="mactrl.sidebarStat($event)">上传债权信息</a></li>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.issued" data-ng-click="mactrl.sidebarStat($event)">我的委托</a></li>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.participant" data-ng-click="mactrl.sidebarStat($event)">我的竞标</a></li>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.wonbid" data-ng-click="mactrl.sidebarStat($event)">我的中标</a></li>
@@ -76,7 +76,7 @@
         </li>
         <!-- 
         <li>
-            <a href="javascript:;" ng-click="sbctrl.logout();mactrl.sidebarStat($event);"><i class="zmdi zmdi-time-restore"></i> 退出登陆</a>
+            <a href="javascript:;" ng-click="mactrl.logout();mactrl.sidebarStat($event);"><i class="zmdi zmdi-time-restore"></i> 退出登陆</a>
         </li>
          -->
     </ul>

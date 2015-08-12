@@ -155,9 +155,29 @@ body.sw-toggled #footer {
     position: absolute;
 }
 
-.debtcollection {
-    // min-height: 380px;
+// timeline
+
+@media (min-width: @screen-sm) {
+    .debtcollection {
+        padding: 10px 30px 10px 100px;
+    }
 }
+
+.debtcollection {
+    .t-view {
+        margin-bottom: 20px;
+
+        .tv-header {
+            padding: 10px 15px;
+        }
+
+        .tv-body {
+            padding: 13px 15px;
+        }
+    }
+}
+
+
 
 // slider
 @slider-addon-width: 30px;
