@@ -1,95 +1,102 @@
-<section  class="page-view ng-scope" data-ui-view="" ng-controller="authcompanyController as ctrl">
-    <div class="container ng-scope">
-        <div class="card">
-            <header class="card-header">
-                <h2><span class="glyphicon glyphicon-briefcase" ></span> 企业验证</h2>
-            </header>
-            <div  class="card-body card-padding">
-                状态：<span class="inputflag">{{isverifypass ?"已验证":"审核中"}}</span>
-            </div>
-        </div>
-    </div>
-    <div class="container ng-scope">
-        <div class="row">
-            <div class="col-md-4 col-sm-6">
-                <div class="card animation-demo">
-                    <div class="card-header">
-                        <h2>企业基本信息</h2>
-                    </div>
-                    <div class="card-body card-padding">
-                        <p>企业名称：{{ctrl.user.companyName}}</p>
-                        <p>法人代表：{{ctrl.user.artificialPerson}}</p>
-                        <p ng-show="ctrl.user.fiveInOne==0">组织机构代码：{{ctrl.user.userId}}</p>
-                        <p>公司执照注册号：{{ctrl.user.businessLicence}}</p>
-                        <p ng-show="ctrl.user.fiveInOne==0">税务登记号：{{ctrl.user.taxNumber}}</p>
-                        <p>开户许可证核准号：{{ctrl.user.accountPermit}}</p>
-                        <p>注册资金(单位：万)：{{ctrl.user.registeredCapital}}万元</p>
-                        <p>注册类型：{{ctrl.user.reqisteredType | companyType}}</p>
-                        <p>成立时间：{{ctrl.user.foundTime | idate}}</p>
-                        <p>经营范围：{{ctrl.user.businessScope}}</p>
-                        <p>企业注册地址：{{ctrl.user.companyAddress}}</p>
-                        <p>企业经营地址：{{ctrl.user.businessAddress}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="card animation-demo">
-                    <div class="card-header">
-                        <h2>法人代表身份证照片</h2>
-                    </div>
-                    <div class="card-body card-padding">
-                        <a href="{{ctrl.user.idFile.url}}" target="_blank" class="thumbnail"><img src="{{isshowidFile ?ctrl.user.idFile.url:'../images/nopic.jpg'}}" alt=""></a>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-md-4 col-sm-6">
-                <div class="card animation-demo">
-                    <div class="card-header">
-                        <h2>开户许可证</h2>
-                    </div>
 
-                    <div class="card-body card-padding">
-                        <a href="{{ctrl.user.accountPermitFile.url}}" target="_blank" class="thumbnail"><img src="{{isshowaccountPermitFile ?ctrl.user.accountPermitFile.url:'../images/nopic.jpg'}}" alt=""></a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="row">
-            <div class="col-md-4 col-sm-6" ng-show="ctrl.user.fiveInOne==0">
-                <div class="card animation-demo">
-                    <div class="card-header">
-                        <h2>组织机构代码证</h2>
-                    </div>
-
-                    <div class="card-body card-padding">
-                        <a href="{{ctrl.user.organizationCodeFile.url}}" target="_blank" class="thumbnail"><img src="{{isshoworganizationCodeFile ?ctrl.user.organizationCodeFile.url:'../images/nopic.jpg'}}" alt=""></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="card animation-demo">
-                    <div class="card-header">
-                        <h2>工商营业执照</h2>
-                    </div>
-                    <div class="card-body card-padding">
-                        <a href="{{ctrl.user.businessLicenceFile.url}}" target="_blank" class="thumbnail"><img src="{{isshowbusinessLicenceFile ?ctrl.user.businessLicenceFile.url:'../images/nopic.jpg'}}" alt=""></a>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-4 col-sm-6" ng-show="ctrl.user.fiveInOne==0">
-                <div class="card animation-demo">
-                    <div class="card-header">
-                        <h2>税务登记证</h2>
-                    </div>
-                    <div class="card-body card-padding">
-                        <a href="{{ctrl.user.taxNumberFile.url}}" target="_blank" class="thumbnail"><img src="{{isshowtaxNumberFile ?ctrl.user.taxNumberFile.url:'../images/nopic.jpg'}}" alt=""></a>
-                    </div>
+<div class="container" ng-controller="authcompanyController as ctrl">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <header class="card-header">
+                    <h2><span class="glyphicon glyphicon-briefcase" ></span> 企业验证</h2>
+                </header>
+                <div  class="card-body card-padding">
+                    状态：<span class="inputflag">{{isverifypass ?"已验证":"审核中"}}</span>
                 </div>
             </div>
         </div>
     </div>
-</section>
+
+    
+    <div class="row">
+        <div class="col-md-4 col-sm-6">
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>企业基本信息</h2>
+                </div>
+                <div class="card-body card-padding">
+                    <p>企业名称：{{ctrl.user.companyName}}</p>
+                    <p>法人代表：{{ctrl.user.artificialPerson}}</p>
+                    <p ng-show="ctrl.user.fiveInOne==0">组织机构代码：{{ctrl.user.userId}}</p>
+                    <p>公司执照注册号：{{ctrl.user.businessLicence}}</p>
+                    <p ng-show="ctrl.user.fiveInOne==0">税务登记号：{{ctrl.user.taxNumber}}</p>
+                    <p>开户许可证核准号：{{ctrl.user.accountPermit}}</p>
+                    <p>注册资金(单位：万)：{{ctrl.user.registeredCapital}}万元</p>
+                    <p>注册类型：{{ctrl.user.reqisteredType | companyType}}</p>
+                    <p>成立时间：{{ctrl.user.foundTime | idate}}</p>
+                    <p>经营范围：{{ctrl.user.businessScope}}</p>
+                    <p>企业注册地址：{{ctrl.user.companyAddress}}</p>
+                    <p>企业经营地址：{{ctrl.user.businessAddress}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>法人代表身份证照片</h2>
+                </div>
+                <div class="card-body card-padding">
+                    <a href="{{ctrl.user.idFile.url}}" target="_blank" class="thumbnail"><img src="{{isshowidFile ?ctrl.user.idFile.url:'../images/nopic.jpg'}}" alt=""></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6">
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>开户许可证</h2>
+                </div>
+
+                <div class="card-body card-padding">
+                    <a href="{{ctrl.user.accountPermitFile.url}}" target="_blank" class="thumbnail"><img src="{{isshowaccountPermitFile ?ctrl.user.accountPermitFile.url:'../images/nopic.jpg'}}" alt=""></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6" ng-show="ctrl.user.fiveInOne==0">
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>组织机构代码证</h2>
+                </div>
+
+                <div class="card-body card-padding">
+                    <a href="{{ctrl.user.organizationCodeFile.url}}" target="_blank" class="thumbnail"><img src="{{isshoworganizationCodeFile ?ctrl.user.organizationCodeFile.url:'../images/nopic.jpg'}}" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>工商营业执照</h2>
+                </div>
+                <div class="card-body card-padding">
+                    <a href="{{ctrl.user.businessLicenceFile.url}}" target="_blank" class="thumbnail"><img src="{{isshowbusinessLicenceFile ?ctrl.user.businessLicenceFile.url:'../images/nopic.jpg'}}" alt=""></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4 col-sm-6" ng-show="ctrl.user.fiveInOne==0">
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>税务登记证</h2>
+                </div>
+                <div class="card-body card-padding">
+                    <a href="{{ctrl.user.taxNumberFile.url}}" target="_blank" class="thumbnail"><img src="{{isshowtaxNumberFile ?ctrl.user.taxNumberFile.url:'../images/nopic.jpg'}}" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

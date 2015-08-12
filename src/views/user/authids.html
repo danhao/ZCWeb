@@ -1,55 +1,59 @@
-<section  class="page-view ng-scope" data-ui-view="" ng-controller="authidController as ctrl">
-    <div class="container ng-scope">
-        <div class="card">
-            <header class="card-header">
-                <h2><span class="glyphicon glyphicon-briefcase" ></span> 个人身份验证</h2>
-            </header>
-            <div  class="card-body card-padding">
-                身份证号码：{{ctrl.userinfo.userId}}   &nbsp;&nbsp;
-                状态：<span class="inputflag">{{isverifypass ?"已验证":"审核中"}}</span> &nbsp;&nbsp;&nbsp; <a ui-sref="site.member.authid" class="btn btn-warning waves-effect">修改身份验证资料</a>
+
+<div class="container" ng-controller="authidController as ctrl">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <header class="card-header">
+                    <h2><span class="glyphicon glyphicon-briefcase" ></span> 个人身份验证</h2>
+                </header>
+                <div  class="card-body card-padding">
+                    身份证号码：{{ctrl.userinfo.userId}}   &nbsp;&nbsp;
+                    状态：<span class="inputflag">{{isverifypass ?"已验证":"审核中"}}</span> &nbsp;&nbsp;&nbsp; <a ui-sref="site.member.authid" class="btn btn-warning waves-effect">修改身份验证资料</a>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container ng-scope">
-        <div class="row">
-            <div class="col-md-4 col-sm-6">
-                <div class="card animation-demo">
-                    <div class="card-header">
-                        <h2>身份证照片</h2>
-                    </div>
-                    <div class="card-body card-padding">
-                        <a href="{{ctrl.userinfo.idFile.url}}" target="_blank" class="thumbnail"><img src="{{ctrl.userinfo.idFile.url}}" alt=""></a>
-                    </div>
+
+
+    <div class="row">
+        <div class="col-md-4 col-sm-6">
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>身份证照片</h2>
                 </div>
-
-            </div>
-
-            <div class="col-md-4 col-sm-6">
-                <div class="card animation-demo">
-                    <div class="card-header">
-                        <h2>无犯罪记录证明</h2>
-                    </div>
-
-                    <div class="card-body card-padding">
-                        <a href="{{ctrl.userinfo.noneCrimeFile.url}}" target="_blank" class="thumbnail" ><img src="{{ctrl.userinfo.noneCrimeFile.url==undefined?'../images/nopic.jpg':ctrl.userinfo.noneCrimeFile.url}}" alt=""></a>
-
-                    </div>
+                <div class="card-body card-padding">
+                    <a href="{{ctrl.userinfo.idFile.url}}" target="_blank" class="thumbnail"><img src="{{ctrl.userinfo.idFile.url}}" alt=""></a>
                 </div>
             </div>
 
+        </div>
 
-            <div class="col-md-4 col-sm-6">
-                <div class="card animation-demo">
-                    <div class="card-header">
-                        <h2>个人征信报告</h2>
-                    </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>无犯罪记录证明</h2>
+                </div>
 
-                    <div class="card-body card-padding">
-                        <a href="{{ctrl.userinfo.creditFile.url}}" target="_blank" class="thumbnail"><img src="{{ctrl.userinfo.isshowcreditFile ?ctrl.userinfo.creditFile.url:'../images/nopic.jpg'}}" alt=""></a>
-                    </div>
+                <div class="card-body card-padding">
+                    <a href="{{ctrl.userinfo.noneCrimeFile.url}}" target="_blank" class="thumbnail" ><img src="{{ctrl.userinfo.noneCrimeFile.url==undefined?'../images/nopic.jpg':ctrl.userinfo.noneCrimeFile.url}}" alt=""></a>
+
                 </div>
             </div>
         </div>
 
+
+        <div class="col-md-4 col-sm-6">
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>个人征信报告</h2>
+                </div>
+
+                <div class="card-body card-padding">
+                    <a href="{{ctrl.userinfo.creditFile.url}}" target="_blank" class="thumbnail"><img src="{{ctrl.userinfo.isshowcreditFile ?ctrl.userinfo.creditFile.url:'../images/nopic.jpg'}}" alt=""></a>
+                </div>
+            </div>
+        </div>
     </div>
-</section>
+
+</div>
+

@@ -2,7 +2,7 @@
 class IndexController3
 	constructor: (@$log, @$window, @ajaxService, @actionCode) ->
 		# wow
-		new WOW().init()
+		# new WOW().init()
 
 		# vegas
 		###

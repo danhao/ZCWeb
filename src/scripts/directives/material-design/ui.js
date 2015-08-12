@@ -12,7 +12,7 @@ angular.module('app')
             link: function(scope, element) {
         
                 if (!element.hasClass('ismobile')) {
-                    if (!$('.login-content')[0]) {
+                    if (!$('.login-content')[0] || !$("#index")[0]) {
                         var nicescroll = nicescrollService.niceScroll(element, 'rgba(0,0,0,0.3)', '5px');
 
                         // infinite scroll

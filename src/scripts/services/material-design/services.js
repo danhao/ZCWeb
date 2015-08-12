@@ -13,7 +13,8 @@ angular.module('app')
                 cursorwidth: cursorWidth,
                 bouncescroll: true,
                 mousescrollstep: 100,
-                autohidemode: false
+                autohidemode: false,
+                zindex: 10000
             });
         }
         

@@ -193,13 +193,13 @@
                                 <img class="img-responsive" alt="" ng-src="{{ctrl.debt.winnerHead=='' || ctrl.debt.winnerHead == undefined?'images/profile-pics/1.jpg':ctrl.debt.winnerHead}}"/>
                             </a>
                             <div class="media-body p-t-5">
-                                <strong class="d-block">{{ctrl.debt.winnerName}}</strong>
+                                <strong class="d-block">{{ctrl.debt.winnerName}} </strong>
                                 <small class="c-gray">{{msg.time | idate}}</small>
                             </div>
                         </div>
                         <div class="tv-body">
-                            <div class="lightbox tvb-lightbox clearfix" ng-show="msg.files" id="{{msg.time+msg.type+msg.memo}}">
-                                <div class="col-sm-2 col-xs-3" ng-repeat="file in msg.files" data-src="{{file.url | trustUrl}}" lightgallery data-root-selector="#{{msg.time+msg.type+msg.memo}}">
+                            <div class="lightbox tvb-lightbox clearfix" ng-show="msg.files" id="msg{{$index}}">
+                                <div class="col-sm-2 col-xs-3" ng-repeat="file in msg.files" data-src="{{file.url | trustUrl}}" lightgallery data-root-selector="#msg{{$parent.$index}}">
                                     <div class="lightbox-item">
                                         <img alt="{{file.name}}" ng-src="{{file.url | imgurl }}"/>
                                     </div>
@@ -241,7 +241,7 @@
                             -->
                             <div class="lv-item media" ng-repeat="repay in ctrl.debt.repayments">
                                 <div class="pull-right">
-                                    <span class="hidden-xs">还款: </span><b class="f-18">{{repay.money | ccurrency}}</b>
+                                    <span class="hidden-xs">还款: </span>¥<b class="f-18">{{repay.money | ccurrency}}</b>元
                                 </div>
                                 <div class="media-body">
                                     <div class="lv-title">{{repay.memo}} </div>
