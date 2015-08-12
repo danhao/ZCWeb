@@ -101,6 +101,9 @@
                                                     <div ng-show="situation.type==3">
                                                         <a ui-sref="site.member.fundrecord" >资金类型：退还保证金 金额：{{situation.data[1] | ccurrency}} 元 </a>
                                                     </div>
+                                                    <div ng-show="situation.type==4">
+                                                        <a ui-sref="site.debt.detail({debtId: '{{situation.data[0]}}'})" href="javascript:;" >委托单{{situation.data[0]}}已关闭 </a>
+                                                    </div>
                                                 </li>
                                             </div>
                                         </ul>

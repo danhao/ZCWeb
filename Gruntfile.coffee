@@ -110,7 +110,7 @@ module.exports = (grunt) ->
 						middlewares.unshift app
 						middlewares
 					open: false
-					port: 3000
+					port: 3001
 
 		# Copies directories and files from one location to another
 		copy:

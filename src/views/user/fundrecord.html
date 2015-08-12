@@ -47,9 +47,12 @@
                             类别
                         </th>
                         <th width="120px">
+                            委托单号
+                        </th>
+                        <th width="120px">
                             操作金额（元）
                         </th>
-                        <th width="150px">
+                        <th width="120px">
                             余额（元）
                         </th>
                         <th width="150px">
@@ -69,6 +72,9 @@
                         </td>
                         <td>
                             {{fund.type | moneyHistoryType}}
+                        </td>
+                        <td>
+                            <a ui-sref="site.debt.detail({debtId:'{{ fund.debtId }}'})">{{ fund.debtId }}</a>
                         </td>
                         <td>
                             {{ fund.money | ccurrency}}
