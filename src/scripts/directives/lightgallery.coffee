@@ -1,8 +1,8 @@
 class Directive
 	constructor: ($log, $window) ->
 
-		# selector = 'lb-img'
-		selector = 100+Math.round(Math.random()*10000).toString(16)
+		selector = 'lb-img'
+		# selector = 100+Math.round(Math.random()*10000).toString(16)
 		
 		getFileExt = (url) ->
 			u1 = url.split("?")[0]
@@ -13,7 +13,8 @@ class Directive
 			["jpg", "jpeg", "ico", "png", "bmp"]
 
 		link = ($scope, element, attrs) ->
-			if attrs.filterImg
+			rootSelector = attrs.rootSelector
+			if rootSelector
 				url = attrs.src
 				if getFileExt(url) in imgExts
 					element.addClass(selector)
@@ -23,8 +24,8 @@ class Directive
 				
 			if $scope.$last
 				$el = element.parent()
-				if attrs.filterImg
-					$el.lightGallery({selector: '.'+selector})
+				if rootSelector
+					$el.lightGallery({selector: rootSelector+' .'+selector})
 				else
 					$el.lightGallery()
 
