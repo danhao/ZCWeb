@@ -65,7 +65,10 @@
                         <div class="col-sm-4">
                             <div class="card">
                                 <div class="card-header bgm-lightblue m-b-20">
-                                    <h2>{{debt.money | ccurrency}} <small>发布于: {{debt.createTime | idate }}  </small></h2>
+                                    <h2>{{debt.money | ccurrency}} <span class="badge bgm-gray m-l-10">{{debt.bidCount}}</span>
+                                    <small>发布于: {{debt.createTime | idate }}
+                                    </small>
+                                    </h2>
                                     <a class="btn bgm-orange btn-float waves-effect waves-effect" href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})">
                                         <i class="zmdi zmdi-mail-send zmdi-hc-fw"></i>
                                     </a>
