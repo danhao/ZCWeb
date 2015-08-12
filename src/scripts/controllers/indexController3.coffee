@@ -1,5 +1,5 @@
 
-class IndexController2
+class IndexController3
 	constructor: (@$log, @$window, @ajaxService, @actionCode) ->
 		# wow
 		new WOW().init()
@@ -49,4 +49,4 @@ class IndexController2
 		
 		
 
-angular.module('app').controller 'indexController3', ['$log', '$window', 'ajaxService', 'actionCode', IndexController2]
+angular.module('app').controller 'indexController3', ['$log', '$window', 'ajaxService', 'actionCode', IndexController3]

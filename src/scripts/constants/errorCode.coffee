@@ -79,6 +79,10 @@ ErrorCode =
 		code: 108
 		name: "ERR_CODE_FAILED"
 		desc: "验证码不一致"
+	109:
+		code: 109
+		name: "ERR_AUTHORIZED_FAILED"
+		desc: "权限不足"
 
 	# 债务相关错误码
 	200:
@@ -93,6 +97,14 @@ ErrorCode =
 		code: 202
 		name: "ERR_DEBT_EXPIRED"
 		desc: "过期"
+	203:
+		code: 203
+		name: "ERR_DEBT_NO_CORP"
+		desc: "用户不能接企业单"
+	204:
+		code: 204
+		name: "ERR_DEBT_OVER_LIMIT"
+		desc: "超过单数限制"
 
 
 angular.module("app").constant 'errorCode', ErrorCode
