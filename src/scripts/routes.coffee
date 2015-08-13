@@ -284,7 +284,10 @@ class Config
 			.state 'site.test',
 				url: 'test',
 				templateUrl: 'views/test.html'
-				
+
+			.state 'recruit',
+				url: '/recruit',
+				templateUrl: 'views/recruit.html'
 
 		$urlRouterProvider.otherwise '/'
 
