@@ -44,7 +44,9 @@ class IndexController3
 			paginationSpeed: 400,
 			singleItem: true,
 			items: 1,
-			responsiveClass: true
+			responsiveClass: true,
+			autoplay: true,
+			loop: true
 			})
 		
 		
