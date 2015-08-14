@@ -1,5 +1,5 @@
 class Controller
-	constructor: (@$log,@$scope, @actionCode, @ajaxService, @userSession,@$state, @$stateParams) ->
+	constructor: (@$log,@$scope, @actionCode, @ajaxService, @userSession,@$state, @$stateParams, @growlService) ->
 		initindex = () =>
 			@pid = @userSession.pid()
 			@ajaxService.post @actionCode.GET_USER, {id: @pid}
@@ -27,4 +27,4 @@ class Controller
 		situationlist()
 
 angular.module('app')
-				.controller 'memberIndexController', ['$log','$scope', 'actionCode', 'ajaxService', 'userSession','$state','$stateParams', Controller]
+				.controller 'memberIndexController', ['$log','$scope', 'actionCode', 'ajaxService', 'userSession','$state','$stateParams', 'growlService', Controller]

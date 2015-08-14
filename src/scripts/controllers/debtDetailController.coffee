@@ -16,7 +16,7 @@ class DebtDetailController
 		ASSIGN: 2
 		
 	
-	constructor: (@$log, @$state, @$stateParams, @$scope, @$timeout, @ajaxService, @actionCode, @userSession, @growlService) ->
+	constructor: (@$log, @$state, @$stateParams, @$scope, @$rootScope, @$timeout, @ajaxService, @actionCode, @userSession, @growlService) ->
 		@getDebtDetail()
 		@pid = @userSession.pid()
 		@ajaxService.post @actionCode.GET_USER, {id: @pid}
@@ -171,6 +171,7 @@ class DebtDetailController
 			}
 			.success (result) =>
 				@growlService.growl '退单成功'
+				@back()
 			.error (error) =>
 				@$log.log error
 				@growlService.growl error.desc
@@ -243,7 +244,9 @@ class DebtDetailController
 				.error (error) =>
 					@$scope.newDebtError = error.desc
 
-	
+	back: ->
+		@$state.go @$rootScope.fromState.name, @$rootScope.toParams
+
 
 	# openRechargeModal: ->
 	# 	@modalInstance = @$modal.open
@@ -351,5 +354,5 @@ class DebtModelInstanceController
 # 	.controller 'debtModelInstanceController', ['$log', '$scope', '$modalInstance', 'actionCode', 'ajaxService', 'debt', DebtModelInstanceController]
 
 angular.module("app")
-	.controller 'debtDetailController', ['$log', '$state', '$stateParams', '$scope', '$timeout', 'ajaxService', 'actionCode', 'userSession', 'growlService', DebtDetailController]
+	.controller 'debtDetailController', ['$log', '$state', '$stateParams', '$scope', '$rootScope', '$timeout', 'ajaxService', 'actionCode', 'userSession', 'growlService', DebtDetailController]
 	# .controller 'debtModelInstanceController', ['$log', '$scope', '$modalInstance', 'actionCode', 'ajaxService', 'debt', DebtModelInstanceController]

@@ -26,10 +26,10 @@
         </a> -->
         <div class="dropdown" ng-show="mactrl.sid">
             <a data-toggle="dropdown">
-                <img ng-src="{{mactrl.user.head? mactrl.user.head: 'images/profile-pics/1.jpg'}}" class="img-circle" alt="" height="35px"/> <!--'images/profile-pics/1.jpg'-->
+                <img ng-src="{{mactrl.user.head? mactrl.user.head: 'images/profile-pics/1.jpg'}}" class="img-circle" alt="" width="35px" height="35px"/> <!--'images/profile-pics/1.jpg'-->
             </a>
             <ul class="dropdown-menu dm-icon pull-right">
-                <li><a data-ui-sref="site.member.index"><i class="zmdi zmdi-account"></i> 个人信息</a></li>
+                <li><a data-ui-sref="site.member.index"><i class="zmdi zmdi-account"></i> 个人中心</a></li>
                 <li><a data-ng-click="mactrl.logout()" href=""><i class="zmdi zmdi-time-restore"></i> 退出</a></li>
             </ul>
         </div>

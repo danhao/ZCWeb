@@ -21,8 +21,8 @@ class DebtController
 				growlService.growl("起拍价格应小于债务总金额！", 'warning')
 
 		@checkbidIncrease =(money,price,bidIncrease)->
-			$log.log money
-			$log.log price
+			# $log.log money
+			# $log.log price
 			if money!=undefined  and price!=undefined and bidIncrease!=undefined and  parseInt(price)+parseInt(bidIncrease)>=parseInt(money)
 				@debt.bidIncrease=""
 				growlService.growl("加价幅度+起拍价格应小于债务总金额！", 'warning')

@@ -14,7 +14,7 @@ angular.module('app')
                 bouncescroll: true,
                 mousescrollstep: 100,
                 autohidemode: false,
-                zindex: 10000
+                zindex: 100
             });
         }
         
@@ -48,7 +48,8 @@ angular.module('app')
                 offset: {
                     x: 20,
                     y: 85
-                }
+                },
+                z_index: 1051
             });
         }
         
