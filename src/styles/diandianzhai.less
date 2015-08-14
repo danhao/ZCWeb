@@ -4,6 +4,7 @@
 @screen-xxs: 320px;
 @screen-xxs-min: @screen-xxs;
 @screen-xxs-max: (@screen-xs-min - 1);
+@header-bgc: #3E515F;                   // #1C2932, #3E515F, 
 
 
 .ng-cloak {
@@ -225,5 +226,41 @@ body.sw-toggled #footer {
 .tooltip-inner {
     white-space:pre;
     max-width:none;
+}
+
+
+// debt list
+// ==================================================
+#list-help-ico {
+    position: absolute;
+    height: 48px;
+    line-height: 48px;
+    right: 20px;
+}
+
+.indicator {
+    display: inline-block;
+    width: 30px;
+    margin: 15px 0 0;
+    padding: 0;
+}
+
+
+// themes
+// ==================================================
+#header {
+    background-color: @header-bgc;
+}
+#top-search-wrap {
+    background-color: @header-bgc;
+
+    #top-search-close {
+        color: rgba(256,256,256,0.78);
+
+        &:hover {
+            background-color: rgba(256,256,256,0.18);
+            color: rgba(256,256,256,0.58);
+        }
+    }
 }
 

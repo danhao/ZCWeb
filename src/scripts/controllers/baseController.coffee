@@ -1,17 +1,20 @@
 
 class BaseController
 	constructor: (@$log, @$scope, @$state, @growlService, @$rootScope, @userSession, @eventConst, @ajaxService, @actionCode) ->
-		@$log.log 'base controller'
+		ismobile = false
 		
 		# Detact Mobile Browser
 		if /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 			angular.element('html').addClass('ismobile')
+			ismobile = true
+
+		@layoutType = localStorage.getItem "ma-layout-status"
+		if not ismobile and not @layoutType?
+			@layoutType = '1'
 
 		@sidebarToggle =
 			left: false
 			right: false
-
-		@layout = localStorage.getItem "ma-layout-status"
 
 		@sid = @userSession.sid()
 		@initUser()

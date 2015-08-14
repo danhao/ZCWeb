@@ -111,7 +111,7 @@ class DebtDetailController
 		@$scope.showBidButton = (@debt.state is 1) and (@pid isnt @debt.ownerId) and (@pid isnt @debt.winnerId) and not isBidded
 		@$scope.showCountdown = (@debt.state is 1) or (@debt.state == 3 and (@pid is @debt.ownerId or @pid is @debt.winnerId))
 		@$scope.showReturnButton = @debt.canReturn is 1 and @pid is @debt.winnerId
-		@$scope.showEndButton = @debt.canEnd is 1 and @pid is @debt.winnerId
+		@$scope.showEndButton = (@debt.state is 3) and @debt.canEnd is 1 and @pid is @debt.winnerId
 		
 		# 投标状态
 		@$scope.bidStatus = switch
