@@ -124,7 +124,7 @@
     </div>
 
     <!-- Forgot Password -->
-    <div class="lc-block" id="l-forget-password" data-ng-if="ctrl.showForgot === 1"  ng-controller="changePwdController as ctrl">
+    <div class="lc-block" id="l-forget-password" data-ng-if="ctrl.showForgot === 1"  ng-controller="changePwdController as fctrl">
         <p class="text-left">忘记密码? </p>
         <br/>
         <div >
@@ -138,40 +138,40 @@
                     <div class="form-group">
                         <!--<label class="col-sm-3 control-label">找回方式</label>-->
 
-                        <div class="col-sm-12 radio text-left"  ng-init="ctrl.forgetpwd.type=1" >
-                            <!--<input type="radio" name="type" ng-model="ctrl.forgetpwd.type"  value="1" ng-checked="true" checked>手机短信&nbsp;&nbsp;-->
-                            <!--<input type="radio" name="type" ng-model="ctrl.forgetpwd.type"  value="2">电子邮箱-->
+                        <div class="col-sm-12 radio text-left"  ng-init="fctrl.forgetpwd.type=1" >
+                            <!--<input type="radio" name="type" ng-model="fctrl.forgetpwd.type"  value="1" ng-checked="true" checked>手机短信&nbsp;&nbsp;-->
+                            <!--<input type="radio" name="type" ng-model="fctrl.forgetpwd.type"  value="2">电子邮箱-->
                             <label class="m-r-20">
-                                <input type="radio" name="sex" ng-model="ctrl.forgetpwd.type" value="1" required /> <i class="input-helper"></i>手机短信
+                                <input type="radio" name="sex" ng-model="fctrl.forgetpwd.type" value="1" required /> <i class="input-helper"></i>手机短信
                             </label>
                             <label>
-                                <input type="radio" name="sex" ng-model="ctrl.forgetpwd.type" value="2" required /> <i class="input-helper"></i>电子邮箱
+                                <input type="radio" name="sex" ng-model="fctrl.forgetpwd.type" value="2" required /> <i class="input-helper"></i>电子邮箱
                             </label>
                         </div>
                     </div>
-                    <div class="form-group" ng-show="ctrl.forgetpwd.type==1" >
+                    <div class="form-group" ng-show="fctrl.forgetpwd.type==1" >
                         <!--<label class="col-sm-3 control-label">手机号码</label>-->
 
                         <div class="col-sm-12 text-left">
                             <!--<div class="fg-line" >-->
-                                <input type="text" name="mobile" ng-model="ctrl.forgetpwd.mobile"  class="form-control" maxlength="11" onkeyup="value=value.replace(/[^\d]/g,'')"
-                                       placeholder="输入手机电话"  ng-required="ctrl.forgetpwd.type==1">
+                                <input type="text" name="mobile" ng-model="fctrl.forgetpwd.mobile"  class="form-control" maxlength="11" onkeyup="value=value.replace(/[^\d]/g,'')"
+                                       placeholder="输入手机电话"  ng-required="fctrl.forgetpwd.type==1">
                             <!--</div>-->
                         </div>
                     </div>
-                    <div class="form-group" ng-show="ctrl.forgetpwd.type==2">
+                    <div class="form-group" ng-show="fctrl.forgetpwd.type==2">
                         <!--<label class="col-sm-3 control-label">邮箱地址</label>-->
 
                         <div class="col-sm-12 text-left">
                             <!--<div class="fg-line" >-->
-                                <input type="email" name="email" ng-model="ctrl.forgetpwd.email"  class="form-control"
-                                       placeholder="输入电子邮箱" ng-required="ctrl.forgetpwd.type==2">
+                                <input type="email" name="email" ng-model="fctrl.forgetpwd.email"  class="form-control"
+                                       placeholder="输入电子邮箱" ng-required="fctrl.forgetpwd.type==2">
                             <!--</div>-->
                         </div>
                     </div>
                     <div class="form-group  text-left" >
                         <div class="col-sm-12">
-                                    <button type="buttom" w5c-form-submit="ctrl.sendcode(ctrl.forgetpwd)"  class="btn btn-primary " > 发送验证码 </button>
+                                    <button type="buttom" w5c-form-submit="fctrl.sendcode(fctrl.forgetpwd)"  class="btn btn-primary " > 发送验证码 </button>
                         </div>
                     </div>
                 </form>
@@ -183,14 +183,14 @@
                         <!--<label class="col-sm-3 control-label">验证码</label>-->
                         <div class="col-sm-12 text-left">
                             <!--<div class="fg-line" >-->
-                                <input type="text" name="verifycode" ng-model="ctrl.code"  class="form-control" onkeyup="value=value.replace(/[^\d]/g,'')" maxlength="6"
+                                <input type="text" name="verifycode" ng-model="fctrl.code"  class="form-control" onkeyup="value=value.replace(/[^\d]/g,'')" maxlength="6"
                                        placeholder="输入验证码" required>
                             <!--</div>-->
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12 text-left">
-                            <button type="buttom" w5c-form-submit="ctrl.verifycode(ctrl.code)"  class="btn btn-primary"  ng-disabled="ctrl.code==undefined"> 验 证 </button>
+                            <button type="buttom" w5c-form-submit="fctrl.verifycode(fctrl.code)"  class="btn btn-primary"  ng-disabled="fctrl.code==undefined"> 验 证 </button>
                         </div>
                     </div>
                 </form>
@@ -203,7 +203,7 @@
 
                         <div class="col-sm-12 text-left">
                             <div class="fg-line" >
-                                <input type="password"   class="form-control" ng-model="ctrl.newPasswd" name="newpassword"
+                                <input type="password"   class="form-control" ng-model="fctrl.newPasswd" name="newpassword"
                                        placeholder="输入新密码" ng-minlength="6" ng-maxlength="20" required>
                             </div>
                         </div>
@@ -213,7 +213,7 @@
 
                         <div class="col-sm-12 text-left">
                             <div class="fg-line" >
-                                <input type="password"   class="form-control" w5c-repeat="newpassword" ng-model="ctrl.repeatPassword" name="repeatPassword"
+                                <input type="password"   class="form-control" w5c-repeat="newpassword" ng-model="fctrl.repeatPassword" name="repeatPassword"
                                        placeholder="确认新密码" required>
                             </div>
                         </div>
@@ -221,7 +221,7 @@
 
                     <div class="form-group">
                         <div class="col-sm-12 text-left">
-                            <button type="buttom" w5c-form-submit="ctrl.changePwd(ctrl.newPasswd)"  class="btn btn-primary" > 确认提交 </button>
+                            <button type="buttom" w5c-form-submit="fctrl.changePwd(fctrl.newPasswd)"  class="btn btn-primary" > 确认提交 </button>
                         </div>
                     </div>
                 </form>
