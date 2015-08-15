@@ -356,7 +356,7 @@ module.exports = (grunt) ->
 
 					# thirdparties
 					'!libs/underscore-min.js'
-					'!libs/moment.js'
+					'!libs/moment-with-locales.min.js'
 					'!libs/waves.min.js'
 					'!libs/sweetalert.min.js'
 					'!libs/wow.min.js'
@@ -406,7 +406,7 @@ module.exports = (grunt) ->
 
 					# thirdparties
 					'!libs/underscore-min.js'
-					'!libs/moment.js'
+					'!libs/moment-with-locales.min.js'
 					'!libs/waves.min.js'
 					'!libs/sweetalert.min.js'
 					'!libs/wow.min.js'
@@ -473,7 +473,7 @@ module.exports = (grunt) ->
 					'.temp/scripts/vendors.min.js': [
 						# third parties
 						'.temp/scripts/libs/underscore-min.js'
-						'.temp/scripts/libs/moment.js'
+						'.temp/scripts/libs/moment-with-locales.min.js'
 						'.temp/scripts/libs/waves.min.js'
 						'.temp/scripts/libs/sweetalert.min.js'
 						'.temp/scripts/libs/wow.min.js'

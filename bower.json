@@ -98,7 +98,7 @@
       "styles": "dist/css/bootstrap-select.css"
     },
     "moment": {
-      "scripts/libs": "moment.js"
+      "scripts/libs": "min/moment-with-locales.min.js"
     },
     "eonasdan-bootstrap-datetimepicker": {
       "scripts/libs": "build/js/bootstrap-datetimepicker.min.js",

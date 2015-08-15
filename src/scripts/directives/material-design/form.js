@@ -190,7 +190,8 @@ angular.module('app')
             link: function(scope, element, attrs, ngModel){
                 element.datetimepicker({
                     viewMode: scope.viewMode,
-                    format: scope.format
+                    format: scope.format,
+                    locale: 'zh-cn'
                 })
                 .on('dp.change', function (e) {
                     // datepick doesn't update the value of the ng-model when the date is changed

@@ -109,6 +109,7 @@ class DebtDetailController
 		isBidded = @debt.type is DEBT_TYPE.AGENT and @pid in @bidderIds # 是否已投票
 		
 		@$scope.showBidButton = (@debt.state is 1) and (@pid isnt @debt.ownerId) and (@pid isnt @debt.winnerId) and not isBidded
+		@$scope.showCreditor = (@debt.state >= 3) and (@pid is @debt.winnerId)
 		@$scope.showCountdown = (@debt.state is 1) or (@debt.state == 3 and (@pid is @debt.ownerId or @pid is @debt.winnerId))
 		@$scope.showReturnButton = @debt.canReturn is 1 and @pid is @debt.winnerId
 		@$scope.showEndButton = (@debt.state is 3) and @debt.canEnd is 1 and @pid is @debt.winnerId
