@@ -1,0 +1,26 @@
+
+<div class="container">
+<ul class="header-inner">
+    <li class="logo ">
+        <a ui-sref="site.index.home">
+            <img src="images/logo/logo-nav.png" class="logo" alt="点点债" /> 点点债
+        </a>
+    </li>
+
+    <li class="pull-right">
+        <div ng-hide="mactrl.sid">
+            <a ui-sref="site.login({type:1})" class="btn btn-primary bgm-gray btn-index">登陆</a> 
+            <a ui-sref="site.login({type:2})" class="btn btn-primary bgm-orange btn-index">注册</a>
+        </div>
+        <div class="dropdown" ng-show="mactrl.sid">
+            <a data-toggle="dropdown">
+                <img ng-src="{{mactrl.user.head? mactrl.user.head: 'images/profile-pics/1.jpg'}}" class="img-circle" alt="" width="35px" height="35px"/>
+            </a>
+            <ul class="dropdown-menu dm-icon pull-right">
+                <li><a data-ui-sref="site.member.index"><i class="zmdi zmdi-account"></i> 个人中心</a></li>
+                <li><a data-ng-click="mactrl.logout()" href=""><i class="zmdi zmdi-time-restore"></i> 退出</a></li>
+            </ul>
+        </div>
+    </li>
+</ul>
+</div>

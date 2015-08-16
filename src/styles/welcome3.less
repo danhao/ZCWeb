@@ -1,7 +1,16 @@
 
-#index {
 
-margin-top: -65px;
+#header.index-header {
+    position: absolute;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+
+.index {
+
+margin-top: -(65px + 30px);     // header hight(65px) + padding (#content 30px)
 
     
 // body {
@@ -13,12 +22,13 @@ h4, .h4 {
     color: #454545;
 }
 
-#header {
-    position: absolute;
-    background: none;
-    border: none;
-    box-shadow: none;
-}
+// #header {
+//     position: absolute;
+//     background: none;
+//     border: none;
+//     box-shadow: none;
+// }
+
 
 
 .focus,.works,.about-us,.features,.packages,.products,.testimonial,.contact-us {
@@ -235,13 +245,18 @@ h4, .h4 {
     }
 }
 
+// end index
+// ==================================================
 
-#footer {
-    height: 340px;
-    margin-bottom: -(340px-110); //
-    padding-top: 15px;
 }
 
+
+@footer-height: 340px;
+#footer.index-footer {
+    height: @footer-height;
+    padding-top: 15px;
+    margin-bottom: -(@footer-height - 140); // 140 = 95(margin-bottom:.index) + 30(padding:#content) + 15
+}
 
 .pe-social a {
     color: #888;
@@ -265,6 +280,3 @@ h4, .h4 {
 }
 
 
-// end index
-// ==================================================
-}

@@ -7,9 +7,34 @@ class Config
 				# templateUrl: 'views/base.html'
 				template: '<ui-view/>'
 				
+			# .state 'site.index',
+			# 	url: ''
+			# 	templateUrl: 'views/welcome3.html'
+				
 			.state 'site.index',
 				url: ''
+				abstract: true
+				templateUrl: 'views/index.base.html'
+
+			.state 'site.index.home',
+				url: ''
 				templateUrl: 'views/welcome3.html'
+
+			.state 'site.index.about',
+				url: 'about'
+				templateUrl: 'views/typography.html'
+
+			.state 'site.index.contact',
+				url: 'contact'
+				templateUrl: 'views/contact.html'
+
+			.state 'site.index.news',
+				url: 'news'
+				templateUrl: 'views/news.html'
+
+			.state 'site.index.jobs',
+				url: 'jobs'
+				templateUrl: 'views/recruit.html'
 
 			.state 'site.login',
 				url: 'login/:type'
@@ -275,19 +300,19 @@ class Config
 						msg: "你需要身份认证之后,才允许查看"
 					displayName: '债务明细'
 
-
-			# demo
-			.state 'typography',
-				url: '/typography',
+			.state 'site.member.typography',
+				url: 'typography',
 				templateUrl: 'views/typography.html'
 
+			.state 'site.member.recruit',
+				url: 'recruit',
+				templateUrl: 'views/recruit.html'
+
+			# demo
 			.state 'site.test',
 				url: 'test',
 				templateUrl: 'views/test.html'
-
-			.state 'recruit',
-				url: '/recruit',
-				templateUrl: 'views/recruit.html'
+			
 
 		$urlRouterProvider.otherwise '/'
 

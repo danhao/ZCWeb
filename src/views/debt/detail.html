@@ -86,7 +86,7 @@
                 <li> <i class="zmdi zmdi-label"></i>{{ctrl.debt.id}} </li>
                 <li> <i class="zmdi zmdi-time"></i>{{ctrl.debt.state==0? "创建于": "发布于" }}{{ctrl.debt.state==0? ctrl.debt.createTime: ctrl.debt.publishTime | idate }} </li>
                 <li> <i class="zmdi zmdi-time-countdown"></i>期限{{ctrl.debt.duration}}天  逾期{{ctrl.debt.debtExpireTime | upToNow}}</li>
-                <li> <i class="zmdi zmdi-file-text"></i>{{ctrl.debt.type | debtType}}  <!-- {{ctrl.debt.property | debtProperty}} --></li>
+                <li> <i class="zmdi zmdi-file-text"></i>{{ctrl.debt.type | debtType}} {{ctrl.debt.property | debtProperty}}</li>
                 <li ng-show="showCreditor"> <i class="zmdi zmdi-account-box"></i>债权人 {{ctrl.debt.creditorName}}</li>
 
                 <li ng-show="ctrl.debt.type==2"> <i class="zmdi zmdi-card" ></i>{{ctrl.debt.price | ccurrency}}起拍 每次加价{{ctrl.debt.bidIncrease | ccurrency}}</li>

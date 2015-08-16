@@ -1,6 +1,6 @@
 
 class BaseController
-	constructor: (@$log, @$scope, @$state, @growlService, @$rootScope, @userSession, @eventConst, @ajaxService, @actionCode) ->
+	constructor: (@$log, @$scope, @$state, @growlService, @$rootScope, @$window, @userSession, @eventConst, @ajaxService, @actionCode) ->
 		ismobile = false
 		
 		# Detact Mobile Browser
@@ -38,12 +38,15 @@ class BaseController
 		unless angular.element(event.target).parent().hasClass('active')
 			@sidebarToggle.left = false
 
+	scrollTop: ->
+		@$window.scrollTo 0,0
+
 	logout: ->
 		@userSession.clear()
 		@$rootScope.$broadcast @eventConst.LOGOUT
-		@$state.go "site.index"
+		@$state.go "site.index.home"
 
 	
 
-angular.module("app") .controller 'baseController', ['$log', '$scope', '$state', 'growlService', '$rootScope', 'userSession', 'eventConst', 'ajaxService', 'actionCode', BaseController]
+angular.module("app") .controller 'baseController', ['$log', '$scope', '$state', 'growlService', '$rootScope', '$window', 'userSession', 'eventConst', 'ajaxService', 'actionCode', BaseController]
 	
