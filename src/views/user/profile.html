@@ -7,7 +7,7 @@
                         <div class="card animation-demo">
                             <div class="card profile-view">
                                 <div class="pv-header">
-                                    <img src="{{ctrl.UserInfo.head==''?'../images/profile-pics/1.jpg':ctrl.UserInfo.head}}"  width="80" class="pv-main" alt="">
+                                    <img ng-src="{{ctrl.UserInfo.head?ctrl.UserInfo.head:'../images/profile-pics/1.jpg'}}"  width="80" class="pv-main" alt="">
                                 </div>
                                 <div class="pv-body">
                                     <!--<h2>资深催收专员 ：{{ctrl.UserInfo.name}}</h2><br/>-->

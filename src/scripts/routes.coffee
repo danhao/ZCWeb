@@ -308,6 +308,12 @@ class Config
 				url: 'recruit',
 				templateUrl: 'views/recruit.html'
 
+			.state 'site.member.rating',
+				url: 'rating',
+				templateUrl: 'views/user/rating-ins.html'
+				data:
+					displayName: '信用等级'
+
 			# demo
 			.state 'site.test',
 				url: 'test',

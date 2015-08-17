@@ -8,16 +8,19 @@
                     <div class="col-sm-4">
                         <div class="card animation-demo">
                             <div class="card profile-view">
+                                <a ui-sref="site.profile.profile({Id: '{{ctrl.user.id}}'})">
                                 <div class="pv-header">
-                                    <img src="{{ctrl.user.head==''?'../images/profile-pics/1.jpg':ctrl.user.head}}"    class="pv-main" alt="">
+                                    <img ng-src="{{ctrl.user.head?ctrl.user.head:'../images/profile-pics/1.jpg'}}"    class="pv-main" alt=""/>
                                 </div>
+                                </a>
                                 <div class="pv-body">
                                     <h2>欢迎 {{ctrl.user.name}} <sup STYLE="color: red" ng-show="ctrl.user.vip==1">{{ctrl.user.type==0?"个人":"企业"}}VIP</sup></h2>
-                                    <br/>
-                                        <div class="col-xm-6">
+                                    <small><a class="c-gray" ui-sref="site.member.rating">信用等级: <rating ng-model="ctrl.user.rating" readonly="true"></rating></a></small>
+
+                                        <div class="col-xm-6 m-b-10">
                                             <div ng-show="ctrl.user.mobile"><span class="btn btn-warning waves-effect"><i class="zmdi zmdi-smartphone-android"></i> {{ctrl.user.mobile}}</span> </div>
                                         </div>
-                                    <br/>
+
                                         <div class="col-xm-6">
                                             <div ng-show="ctrl.user.email"> <span class="btn btn-warning waves-effect"><i class="zmdi zmdi-email"></i> {{ctrl.user.email}}</span> </div>
                                         </div>
@@ -47,7 +50,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="card">
-                                    <div class="card-header bgm-orange" style="padding: 15px">
+                                    <div class="card-header bgm-lightblue" style="padding: 15px">
                                         <h2>帐户余额 </h2>
                                     </div>
                                     <div class="card-body card-padding">
@@ -65,7 +68,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="card">
-                                    <div class="card-header bgm-orange" style="padding: 15px">
+                                    <div class="card-header bgm-lightblue" style="padding: 15px">
                                         <h2>冻结资金 </h2>
                                     </div>
                                     <div class="card-body card-padding">
@@ -84,7 +87,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card">
-                                    <div class="card-header bgm-amber" style="padding: 15px">
+                                    <div class="card-header bgm-lightblue" style="padding: 15px">
                                         <h2>最新动态 </h2>
                                     </div>
                                     <div class="card-body card-padding" style="padding: 5px">

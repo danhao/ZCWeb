@@ -1,0 +1,38 @@
+
+<div class="container">
+    <div class="card">
+        <header class="card-header">
+            <h2>信用等级说明</h2>
+        </header>
+        <div class="card-body card-padding">
+            <p>点点债注册用户作为催收员角色，每成功催收回一单，可以累计加1分。积分越多，等级越高。</p>
+            <p>上传无犯罪记录证明和信用等级报告，每一项可以额外增加 5 分。</p>
+            <p>催收员的信用等级分为以下5个级别：</p>
+            
+            <table class="table m-t-20">
+                <tbody>
+                    <tr>
+                        <td>0-9 分</td>
+                        <td ng-init="i=0"><rating ng-model="i" readonly="true"/></td>
+                    </tr>
+                    <tr>
+                        <td>10-19 分</td>
+                        <td ng-init="j=1"><rating ng-model="j" readonly="true"/></td>
+                    </tr>
+                    <tr>
+                        <td>20-39 分</td>
+                        <td ng-init="k=2"><rating ng-model="k" readonly="true"/></td>
+                    </tr>
+                    <tr>
+                        <td>40-79 分</td>
+                        <td ng-init="l=3"><rating ng-model="l" readonly="true"/></td>
+                    </tr>
+                    <tr>
+                        <td>80 分以上</td>
+                        <td ng-init="m=4"><rating ng-model="m" readonly="true"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -239,11 +239,6 @@ h4, .h4 {
     }
 }
 
-@media (min-width: @screen-sm-min) {
-    .btn-index {
-        width: 80px;
-    }
-}
 
 // end index
 // ==================================================
@@ -276,6 +271,20 @@ h4, .h4 {
     }
     img {
         height: 80px;
+    }
+}
+
+
+@media (min-width: @screen-lg) {
+    body.sw-toggled #content.content-index {
+        padding-left: 0;
+    }
+}
+
+
+@media (min-width: @screen-sm-min) {
+    .btn-index {
+        width: 80px;
     }
 }
 
