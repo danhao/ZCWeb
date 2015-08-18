@@ -1,11 +1,8 @@
 class DebtController
-	constructor: (@$log,@$scope,@$state, @$stateParams,@$window,@ajaxService, @actionCode,@w5cValidator,@$timeout,@growlService) ->
+	constructor: (@$log,@$scope,@$state, @$stateParams,@$window,@ajaxService, @actionCode, @const, @w5cValidator,@$timeout,@growlService) ->
 		@debt =
 			city: [ '广东', '深圳市', '南山区' ]
-			contacts: [
-				{id: '1', phone: '8705479', name: '张三', type: 1, memo: '无'},
-				{id: '2', phone: '8705481', name: '张四', type: 2, memo: '同事'}
-				]
+			contacts: []
 
 		$scope.step1 = true
 		$scope.step2 = false
@@ -13,6 +10,11 @@ class DebtController
 		$scope.validateOptions =
 			blurTrig: true
 
+		@contactTypes = @const.contactType
+			# "手机": 1
+			# "家庭": 2
+			# "工作单位": 3
+			# "其他": 4
 
 		@goto = () =>
 			if @validate1()
@@ -25,7 +27,25 @@ class DebtController
 			unless rate
 				@growlService.growl "代理费率不允许小于10%"
 			rate
-		
+
+		@removeRow = (phone) =>
+			# @$log.log phone
+			@debt.contacts = _.reject(@debt.contacts, (c) -> c.phone is phone)
+			
+		@addContact = (contact) =>
+			@$log.log contact
+			unless contact and contact.name and contact.type and contact.phone # 必填
+				@growlService.growl '姓名,类型,电话均为必填','danger'
+				return
+			reg = /((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/
+			unless reg.test contact.phone
+				@growlService.growl '电话格式不正确,需重新修改','danger'
+				return
+			if _.any(@debt.contacts, (c) -> c.phone is contact.phone)
+				@growlService.growl '输入的电话已存在,请重新输入','danger'
+				return
+			@debt.contacts.push angular.copy(contact)
+			@$scope.contact = {}
 
 		@checkprice =(money,price)->
 			if money!=undefined  and price!=undefined and parseInt(price)>=parseInt(money)
@@ -152,5 +172,5 @@ angular.module("app")
 #										required: "债务成因不能为空"
 #								)
 #						 ]
-	.controller 'debtController', ['$log','$scope','$state','$stateParams','$window','ajaxService', 'actionCode','w5cValidator','$timeout','growlService', DebtController]
+	.controller 'debtController', ['$log','$scope','$state','$stateParams','$window','ajaxService', 'actionCode', 'const', 'w5cValidator','$timeout','growlService', DebtController]
 

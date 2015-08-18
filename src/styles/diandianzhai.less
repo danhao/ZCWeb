@@ -229,6 +229,38 @@ body.sw-toggled #footer {
 }
 
 
+@media screen and (max-width: @screen-sm) {
+    .table.compact {
+        td {
+            padding-left: 0px;
+            padding-right: 5px;
+            
+            &:first-child {
+                padding-left: 0px;
+                padding-right: 5px;
+            }
+            &:last-child {
+                padding-left: 0px;
+                padding-right: 0px;
+            }
+        }
+    }
+}
+
+
+.clear-m .form-group {
+        margin-left: 0px;
+        margin-right: 0px;
+}
+.table .clear-m td {
+    border-top: none;
+    
+    &:first-child {
+        padding-left: 0px;
+    }
+}
+
+
 // debt list
 // ==================================================
 #list-help-ico {
@@ -244,6 +276,7 @@ body.sw-toggled #footer {
     margin: 15px 0 0;
     padding: 0;
 }
+
 
 
 // themes
