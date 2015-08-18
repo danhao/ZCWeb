@@ -2,6 +2,10 @@ class DebtController
 	constructor: (@$log,@$scope,@$state, @$stateParams,@$window,@ajaxService, @actionCode,@w5cValidator,@$timeout,@growlService) ->
 		@debt =
 			city: [ '广东', '深圳市', '南山区' ]
+			contacts: [
+				{id: '1', phone: '8705479', name: '张三', type: 1, memo: '无'},
+				{id: '2', phone: '8705481', name: '张四', type: 2, memo: '同事'}
+				]
 
 		$scope.step1 = true
 		$scope.step2 = false
@@ -10,10 +14,18 @@ class DebtController
 			blurTrig: true
 
 
-		$scope.goto = ()->
-			$scope.step1 = !$scope.step1
-			$scope.step2 = !$scope.step2
-			$window.scrollTo 0,0
+		@goto = () =>
+			if @validate1()
+				@$scope.step1 = !$scope.step1
+				@$scope.step2 = !$scope.step2
+				$window.scrollTo 0,0
+
+		@validate1 = () =>
+			rate = @debt.rate >= 10
+			unless rate
+				@growlService.growl "代理费率不允许小于10%"
+			rate
+		
 
 		@checkprice =(money,price)->
 			if money!=undefined  and price!=undefined and parseInt(price)>=parseInt(money)

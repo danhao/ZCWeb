@@ -51,11 +51,17 @@
         </li>
          -->
         <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('widgets') }">
-            <a href="" toggle-submenu><i class="zmdi zmdi-book"></i> 我的债权</a>
+            <a href="" toggle-submenu><i class="zmdi zmdi-book"></i> 委托管理</a>
             <ul>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.createdebt" data-ng-click="mactrl.sidebarStat($event)">新建债务</a></li>
                 <li ng-show="mactrl.user.type ==1"><a data-ui-sref-active="active" data-ui-sref="site.member.uploaddebt" data-ng-click="mactrl.sidebarStat($event)">上传债权信息</a></li>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.issued" data-ng-click="mactrl.sidebarStat($event)">我的委托</a></li>
+                
+            </ul>
+        </li>
+        <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('widgets') }">
+            <a href="" toggle-submenu><i class="zmdi zmdi-directions-run"></i> 催收管理</a>
+            <ul>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.participant" data-ng-click="mactrl.sidebarStat($event)">我的竞标</a></li>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.wonbid" data-ng-click="mactrl.sidebarStat($event)">我的中标</a></li>
             </ul>

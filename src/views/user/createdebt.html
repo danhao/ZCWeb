@@ -4,7 +4,7 @@
             <header class="card-header">
                 <h2><span class="glyphicon glyphicon-pencil" ></span> 发布债权</h2>
             </header>
-            <div ng-controller="debtController as controller" class="card-body card-padding">
+            <div ng-controller="debtController as controller" class="card-body card-padding ">
                 <form class="form-horizontal w5c-form" role="form"
                       w5c-form-validate="validateOptions" novalidate name="validateForm">
                     <div class="row">
@@ -67,7 +67,7 @@
                                              </div>
                                             <div class="form-group" ng-show="controller.debt.type ==1">
                                                 <label class="col-sm-2 control-label">代理费率</label>
-                                                <div class="col-sm-1" style="padding-top: 5px" ng-init="controller.debt.rate=10">
+                                                <div class="col-sm-1" style="padding-top: 5px" ng-init="controller.debt.rate=0">
                                                     <span>{{controller.debt.rate}}%</span>
 
                                                 </div>
@@ -108,9 +108,28 @@
                                                  </div>
                                                  <label class="fg-label">债权人姓名<span class="inputflag">*</span></label>
                                              </div>
+
+                                             <div class="form-group">
+                                                 <label class="col-sm-2 control-label">联系方式</label>
+                                                 <div class="col-sm-10" >
+                                                     <table class="table">
+                                                         <tbody>
+                                                             <tr ng-repeat="contact in controller.debt.contacts">
+                                                                 <td>{{contact.name}} </td>
+                                                                 <td>{{contact.type}} </td>
+                                                                 <td>{{contact.phone}} </td>
+                                                                 <td>{{contact.memo}} </td>
+                                                                 <td><a style="color:inherit;" href="" ng-click="controller.removeRow()"><i class="zmdi zmdi-close"></i></a> </td>
+                                                             </tr>
+                                                         </tbody>
+                                                     </table>
+                                                 </div>
+                                             </div>
+
+                                             
                                              <div class="form-group">
                                                  <div class="col-sm-12">
-                                                     <button type="buttom" ng-click="goto()"  class="btn btn-primary btn-lg" ng-disabled="controller.debt.money==undefined || (controller.debt.type ==2 && (controller.debt.price==undefined || controller.debt.bidIncrease==undefined ) ) || controller.debt.creditorName==undefined || controller.debt.creditorIdFile==undefined" > 继续填写债务人信息 </button>
+                                                     <button type="buttom" ng-click="controller.goto()"  class="btn btn-primary btn-lg" ng-disabled="controller.debt.money==undefined || (controller.debt.type ==2 && (controller.debt.price==undefined || controller.debt.bidIncrease==undefined ) ) || controller.debt.creditorName==undefined || controller.debt.creditorIdFile==undefined" > 继续填写债务人信息 </button>
                                                      <span class="inputflag"> 注：带"*"号的选项必须全部填写才能激活按钮。</span>
 
                                                  </div>
@@ -134,6 +153,7 @@
                                         <label class="fg-label">债务人姓名<span class="inputflag">*</span></label>
                                     </div>
 
+                                    <!-- 
                                     <div class="form-group  fg-float">
                                         <div class="fg-line" >
                                             <input type="text" name="phone" maxlength="18" ng-model="controller.debt.debtorPhone" ng-pattern="/((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/"  class="form-control"
@@ -141,6 +161,7 @@
                                         </div>
                                         <label class="fg-label">债务人电话<span class="inputflag">*</span></label>
                                     </div>
+                                     -->
 
                                     <div class="form-group  fg-float">
                                         <div class="fg-line" >
@@ -149,19 +170,46 @@
                                         </div>
                                         <label class="fg-label">债务人身份证号码<span class="inputflag">*</span></label>
                                     </div>
+                                    
                                     <div class="form-group  fg-float">
                                         <div class="fg-line" >
                                             <city-select ng-model="controller.debt.city" name="city" required></city-select>
                                             <input type="hidden" name="city" ng-model="controller.debt.debtorLocation" value="">
                                         </div>
                                     </div>
+                                    
                                     <div class="form-group  fg-float">
                                         <div class="fg-line" >
                                             <input type="text" name="address" ng-model="controller.debt.debtorAddr"  class="form-control"
                                                    maxlength="50" required>
                                         </div>
-                                        <label class="fg-label">详细地址<span class="inputflag">*</span></label>
+                                        <label class="fg-label">居住地详细地址</label>
                                     </div>
+
+                                    <div class="form-group  fg-float">
+                                        <div class="fg-line" >
+                                            <input type="text" name="debtorCorpName" ng-model="controller.debt.debtorCorpName"  class="form-control"
+                                                   maxlength="50" >
+                                        </div>
+                                        <label class="fg-label">单位名称</label>
+                                    </div>
+
+                                    <div class="form-group  fg-float">
+                                        <div class="fg-line" >
+                                            <input type="text" name="debtorCorpAddr" ng-model="controller.debt.debtorCorpAddr"  class="form-control"
+                                                   maxlength="50" >
+                                        </div>
+                                        <label class="fg-label">单位地址</label>
+                                    </div>
+
+                                    <div class="form-group  fg-float">
+                                        <div class="fg-line" >
+                                            <input type="text" name="debtorHukouAddr" ng-model="controller.debt.debtorHukouAddr"  class="form-control"
+                                                   maxlength="50" >
+                                        </div>
+                                        <label class="fg-label">户籍地址</label>
+                                    </div>
+                                    
                                     <div class="form-group  fg-float">
                                         <div class="fg-line" >
                                             <input data-dt-picker type="text" name="judgementtime" id="judgementtime"  class="form-control"  ng-model="controller.debt.judgementTime"
@@ -185,6 +233,7 @@
                                         <label class="fg-label">抵押物</label>
                                     </div>
 
+                                   
                                     <div class="form-group  fg-float">
                                         <div class="fg-line" >
                                             <textarea  rows="3" name="reason" class="form-control"  maxlength="100"  ng-model="controller.debt.reason" required></textarea>
