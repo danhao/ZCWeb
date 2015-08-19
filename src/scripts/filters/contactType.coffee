@@ -1,7 +1,8 @@
 class Filter
-	constructor: (@$log, @const) ->
+	constructor: (@$log, @constant) ->
 		return (type) ->
-			_.find @const.contactType, (t) -> t.value == type
+			c = _.find constant.contactType, (t) -> t.value == type
+			if c then c.name else ''
 
 
-angular.module('app').filter 'contactType', ['$log', 'const']
+angular.module('app').filter 'contactType', ['$log', 'constant', Filter]

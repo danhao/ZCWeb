@@ -124,7 +124,7 @@
                                                          <tbody>
                                                              <tr ng-repeat="contact in controller.debt.contacts">
                                                                  <td>{{contact.name}} </td>
-                                                                 <td>{{contact.type}} </td>
+                                                                 <td>{{contact.type | contactType }} </td>
                                                                  <td>{{contact.phone}} </td>
                                                                  <td>{{contact.memo}} </td>
                                                                  <td><a style="color:inherit;" href="" ng-click="controller.removeRow(contact.phone)"><i class="zmdi zmdi-close"></i></a> </td>

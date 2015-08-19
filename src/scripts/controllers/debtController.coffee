@@ -1,5 +1,5 @@
 class DebtController
-	constructor: (@$log,@$scope,@$state, @$stateParams,@$window,@ajaxService, @actionCode, @const, @w5cValidator,@$timeout,@growlService) ->
+	constructor: (@$log,@$scope,@$state, @$stateParams,@$window,@ajaxService, @actionCode, @constant, @w5cValidator,@$timeout,@growlService) ->
 		@debt =
 			city: [ '广东', '深圳市', '南山区' ]
 			contacts: []
@@ -10,7 +10,7 @@ class DebtController
 		$scope.validateOptions =
 			blurTrig: true
 
-		@contactTypes = @const.contactType
+		@contactTypes = @constant.contactType
 			# "手机": 1
 			# "家庭": 2
 			# "工作单位": 3
@@ -33,7 +33,6 @@ class DebtController
 			@debt.contacts = _.reject(@debt.contacts, (c) -> c.phone is phone)
 			
 		@addContact = (contact) =>
-			@$log.log contact
 			unless contact and contact.name and contact.type and contact.phone # 必填
 				@growlService.growl '姓名,类型,电话均为必填','danger'
 				return
@@ -172,5 +171,5 @@ angular.module("app")
 #										required: "债务成因不能为空"
 #								)
 #						 ]
-	.controller 'debtController', ['$log','$scope','$state','$stateParams','$window','ajaxService', 'actionCode', 'const', 'w5cValidator','$timeout','growlService', DebtController]
+	.controller 'debtController', ['$log','$scope','$state','$stateParams','$window','ajaxService', 'actionCode', 'constant', 'w5cValidator','$timeout','growlService', DebtController]
 
