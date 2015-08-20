@@ -59,6 +59,7 @@ class DebtController
 				growlService.growl("加价幅度+起拍价格应小于债务总金额！", 'warning')
 
 		@saveEntity = (@debt)->
+			@$log.log @debt
 			if debt.creditorIdFile is undefined
 				growlService.growl("请上传债权人身份证图片！", 'danger')
 				return
@@ -77,6 +78,10 @@ class DebtController
 
 			if (Date.parse debt.judgementTime)>(Date.parse debt.debtExpireTime)
 				growlService.growl("应归还时间应大于法院判决日期，请重新选择应归还时间！", 'danger')
+				return
+
+			if (debt.contacts.length < 1)
+				growlService.growl '请至少提供一种联系方式', 'danger'
 				return
 
 			sheng = debt.city.cn[0]

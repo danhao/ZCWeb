@@ -118,11 +118,14 @@
                         <div class="pmbb-view">
                             <dl class="dl-horizontal"> <dt>姓名</dt> <dd>{{ctrl.debt.debtorName}}</dd> </dl>
                             <dl class="dl-horizontal"> <dt>身份证</dt> <dd>{{ctrl.debt.debtorId}}</dd> </dl>
-                            <dl class="dl-horizontal"> <dt>电话</dt> <dd>{{ctrl.debt.debtorPhone}}</dd> </dl>
-                            <dl class="dl-horizontal"> <dt>详细地址</dt> <dd>{{ctrl.debt.debtorAddr}}</dd> </dl>
+                            <dl class="dl-horizontal" ng-show="ctrl.debt.debtorAddr"> <dt>居住地详细地址</dt> <dd>{{ctrl.debt.debtorAddr}}</dd> </dl>
+                            <dl class="dl-horizontal" ng-show="ctrl.debt.debtorCorpName"> <dt>单位名称</dt> <dd>{{ctrl.debt.debtorCorpName}}</dd> </dl>
+                            <dl class="dl-horizontal" ng-show="ctrl.debt.debtorCorpAddr"> <dt>单位地址</dt> <dd>{{ctrl.debt.debtorCorpAddr}}</dd> </dl>
+                            <dl class="dl-horizontal" ng-show="ctrl.debt.debtorHukouAddr"> <dt>户籍地址</dt> <dd>{{ctrl.debt.debtorHukouAddr}}</dd> </dl>
                             <dl class="dl-horizontal"> <dt>判决时间</dt> <dd>{{ctrl.debt.judgementTime | idate}}</dd> </dl>
                             <dl class="dl-horizontal"> <dt>抵押物</dt> <dd>{{ctrl.debt.mortgage}}</dd> </dl>
                             <dl class="dl-horizontal"> <dt>债务成因</dt> <dd>{{ctrl.debt.reason}}</dd> </dl>
+                            <dl class="dl-horizontal"> <dt>联系方式</dt> <dd>联系方式列表. TODO.</dd> </dl>
                         </div>
                     </div>
                 </div>

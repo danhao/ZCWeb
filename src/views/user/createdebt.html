@@ -117,58 +117,6 @@
                                              </div>
                                               -->
 
-                                             <div class="form-group">
-                                                 <label class="col-sm-2 control-label">联系方式</label>
-                                                 <div class="col-sm-10 table-responsive" >
-                                                     <table class="table compact">
-                                                         <tbody>
-                                                             <tr ng-repeat="contact in controller.debt.contacts">
-                                                                 <td>{{contact.name}} </td>
-                                                                 <td>{{contact.type | contactType }} </td>
-                                                                 <td>{{contact.phone}} </td>
-                                                                 <td>{{contact.memo}} </td>
-                                                                 <td><a style="color:inherit;" href="" ng-click="controller.removeRow(contact.phone)"><i class="zmdi zmdi-close"></i></a> </td>
-                                                             </tr>
-                                                             <tr class="clear-m">
-                                                                 <td>
-                                                                     <div class="form-group">
-                                                                     <div class="fg-line">
-                                                                         <input type="text" name="contactName" class="form-control" ng-model="contact.name" placeholder="名称" maxlength="10" required/>
-                                                                     </div>
-                                                                     </div>
-                                                                 </td>
-                                                                 <td width="90px" class="clear-m">
-                                                                     <div class="form-group">
-                                                                     <div class="fg-line">
-                                                                         <!-- <div class="select"> -->
-                                                                         <!-- </div> -->
-                                                                             <select class="form-control" name="contactType" ng-model="contact.type" ng-options="contact.value as contact.name for contact in controller.contactTypes" required /> 
-                                                                     </div>
-                                                                     </div>
-                                                                 </td>
-                                                                 <td>
-                                                                     <div class="form-group">
-                                                                     <div class="fg-line">
-                                                                         <input type="text" name="contactPhone" class="form-control" ng-model="contact.phone" placeholder="电话" required maxlength="18"  /> <!-- ng-pattern="/((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/" -->
-                                                                     </div>
-                                                                     </div>
-                                                                 </td>
-                                                                 <td>
-                                                                     <div class="form-group">
-                                                                     <div class="fg-line">
-                                                                         <input type="text" name="contactMemo" class="form-control" ng-model="contact.memo" placeholder="备注"/>
-                                                                     </div>
-                                                                     </div>
-                                                                 </td>
-                                                                 <td style="line-height:35px;">
-                                                                     <a href="" ng-click="controller.addContact(contact)"><i class="zmdi zmdi-plus-circle zmd-lg"></i></a>
-                                                                 </td>
-                                                             </tr>
-                                                         </tbody>
-                                                     </table>
-                                                 </div>
-                                             </div>
-
                                              
                                              <div class="form-group">
                                                  <div class="col-sm-12">
@@ -289,13 +237,67 @@
                                         </div>
                                         <label class="fg-label">其他</label>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">联系方式<span class="inputflag">*</span></label>
+                                        <div class="col-sm-10 table-responsive" >
+                                            <table class="table compact">
+                                                <tbody>
+                                                    <tr ng-repeat="contact in controller.debt.contacts">
+                                                        <td>{{contact.name}} </td>
+                                                        <td>{{contact.type | contactType }} </td>
+                                                        <td>{{contact.phone}} </td>
+                                                        <td>{{contact.memo}} </td>
+                                                        <td><a style="color:inherit;" href="" ng-click="controller.removeRow(contact.phone)"><i class="zmdi zmdi-close"></i></a> </td>
+                                                    </tr>
+                                                    <tr class="clear-m">
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <div class="fg-line">
+                                                                    <input type="text" name="contactName" class="form-control" ng-model="contact.name" placeholder="名称" maxlength="10" />
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td width="90px" class="clear-m">
+                                                            <div class="form-group">
+                                                                <div class="fg-line">
+                                                                    <!-- <div class="select"> -->
+                                                                    <!-- </div> -->
+                                                                    <select class="form-control" name="contactType" ng-model="contact.type" ng-options="contact.value as contact.name for contact in controller.contactTypes"  /> 
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <div class="fg-line">
+                                                                    <input type="text" name="contactPhone" class="form-control" ng-model="contact.phone" placeholder="电话"  maxlength="18"  /> 
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <div class="fg-line">
+                                                                    <input type="text" name="contactMemo" class="form-control" ng-model="contact.memo" placeholder="备注"/>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td style="line-height:35px;">
+                                                            <a href="" ng-click="controller.addContact(contact)"><i class="zmdi zmdi-plus-circle zmd-lg"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+
                                     <div class="form-group">
                                         <div ng-uploader data-form-field="files" data-model-field="controller.debt.files" dat-form-title="债务相关附件"></div>
                                         <input type="hidden" id="files"  />
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-3">
-                                            <button ype="buttom" ng-click="goto()"  class="btn btn-primary btn-lg" > 返回上一步修改 </button>
+                                            <button ype="buttom" ng-click="controller.goto()"  class="btn btn-primary btn-lg" > 返回上一步修改 </button>
                                         </div>
                                         <div class="col-sm-9">
                                             <button type="buttom" w5c-form-submit="controller.saveEntity(controller.debt)"  class="btn btn-primary btn-lg" > 确认发布信息 </button>
@@ -311,4 +313,35 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

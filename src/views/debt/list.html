@@ -27,128 +27,185 @@
 
         </header>
         <div class="card-body card-padding">
-            <div class="row" style="padding: 5px">
-                <div class="col-sm-12">
-                    发布时间:&nbsp;&nbsp;
-                    <div class="btn-group">
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.fbdate" btn-radio="'0'">全部</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.fbdate" btn-radio="'1'">今天</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.fbdate" btn-radio="'7'">最近7天</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.fbdate" btn-radio="'30'">最近1月</label>-->
-                        <!--<label class="btn btn-default" ng-model="ctrl.q.fbdate" btn-radio="'365'">最近1年</label>-->
-                        <div class="btn-group" ng-init="ctrl.q.fbdate='0'" data-toggle="buttons">
-                            <label class="btn btn-default active" ng-click="ctrl.q.fbdate='0'">
-                                <input type="radio" name="fbdate" ng-model="ctrl.q.fbdate" autocomplete="off" value="'0'" checked/>
-                                <i class="fa fa-user"></i> 全部
-                            </label>
-                            <label class="btn btn-default" ng-click="ctrl.q.fbdate='1'">
-                                <input type="radio" name="fbdate" ng-model="ctrl.q.fbdate" autocomplete="off" value="'1'" checked/>
-                                <i class="fa fa-user"></i> 今天
-                            </label>
-                            <label class="btn btn-default" ng-click="ctrl.q.fbdate='7'">
-                                <input type="radio" name="fbdate" ng-model="ctrl.q.fbdate" autocomplete="off" value="'7'" checked/>
-                                <i class="fa fa-user"></i> 最近7天
-                            </label>
-                            <label class="btn btn-default" ng-click="ctrl.q.fbdate='30'">
-                                <input type="radio" name="fbdate" ng-model="ctrl.q.fbdate" autocomplete="off" value="'30'" checked/>
-                                <i class="fa fa-user"></i> 最近1月
-                            </label>
-                            <label class="btn btn-default" ng-click="ctrl.q.fbdate='365'">
-                                <input type="radio" name="fbdate" ng-model="ctrl.q.fbdate" autocomplete="off" value="'365'" checked/>
-                                <i class="fa fa-user"></i> 最近1年
-                            </label>
+            <form name="queryForm" ng-submit="ctrl.query()">
+            
+            <div class="row">
+                <div class="col-sm-9">
+                    
+                    <div class="row" style="padding: 5px">
+                        <div class="col-sm-12">
+                            发布时间:&nbsp;&nbsp;
+                            <div class="btn-group">
+                                <div class="btn-group" ng-init="ctrl.q.fbdate='0'" data-toggle="buttons">
+                                    <label class="btn btn-default active" ng-click="ctrl.q.fbdate='0'">
+                                        <input type="radio" name="fbdate" ng-model="ctrl.q.fbdate" autocomplete="off" value="'0'" checked/>
+                                        <i class="fa fa-user"></i> 全部
+                                    </label>
+                                    <label class="btn btn-default" ng-click="ctrl.q.fbdate='1'">
+                                        <input type="radio" name="fbdate" ng-model="ctrl.q.fbdate" autocomplete="off" value="'1'" checked/>
+                                        <i class="fa fa-user"></i> 今天
+                                    </label>
+                                    <label class="btn btn-default" ng-click="ctrl.q.fbdate='7'">
+                                        <input type="radio" name="fbdate" ng-model="ctrl.q.fbdate" autocomplete="off" value="'7'" checked/>
+                                        <i class="fa fa-user"></i> 最近7天
+                                    </label>
+                                    <label class="btn btn-default" ng-click="ctrl.q.fbdate='30'">
+                                        <input type="radio" name="fbdate" ng-model="ctrl.q.fbdate" autocomplete="off" value="'30'" checked/>
+                                        <i class="fa fa-user"></i> 最近1月
+                                    </label>
+                                    <label class="btn btn-default" ng-click="ctrl.q.fbdate='365'">
+                                        <input type="radio" name="fbdate" ng-model="ctrl.q.fbdate" autocomplete="off" value="'365'" checked/>
+                                        <i class="fa fa-user"></i> 最近1年
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="padding: 5px">
-                <div class="col-sm-12">
-                    资产金额:&nbsp;&nbsp;
-                    <!--<div class="btn-group">-->
-                    <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'0'">全部</label>-->
-                    <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'1'">1万以下</label>-->
-                    <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'2'">1-10万</label>-->
-                    <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'3'">10-50万</label>-->
-                    <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'4'">50-100万</label>-->
-                    <!--<label class="btn btn-default" ng-model="ctrl.q.money" btn-radio="'5'">100万以上</label>-->
-                    <!--</div>-->
-                    <div class="btn-group" ng-init="ctrl.q.money='0'" data-toggle="buttons">
-                        <label class="btn btn-default active" ng-click="ctrl.q.money='0'">
-                            <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'0'" checked/>
-                            <i class="fa fa-user"></i> 全部
-                        </label>
-                        <label class="btn btn-default" ng-click="ctrl.q.money='1'">
-                            <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'1'" checked/>
-                            <i class="fa fa-user"></i> 1万以下
-                        </label>
-                        <label class="btn btn-default" ng-click="ctrl.q.money='2'">
-                            <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'2'" checked/>
-                            <i class="fa fa-user"></i> 1-10万
-                        </label>
-                        <label class="btn btn-default" ng-click="ctrl.q.money='3'">
-                            <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'3'" checked/>
-                            <i class="fa fa-user"></i> 10-50万
-                        </label>
-                        <label class="btn btn-default" ng-click="ctrl.q.money='4'">
-                            <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'4'" checked/>
-                            <i class="fa fa-user"></i> 50-100万
-                        </label>
-                        <label class="btn btn-default" ng-click="ctrl.q.money='5'">
-                            <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'5'" checked/>
-                            <i class="fa fa-user"></i> 100万以上
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="padding: 5px">
-                <div class="col-sm-8">
-                    所属地区:&nbsp;&nbsp;
-                    <div class="btn-group" ng-init="ctrl.q.city=''" data-toggle="buttons">
-                        <label class="btn btn-default active" ng-click="ctrl.q.city=''">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="" checked/>
-                            <i class="fa fa-user"></i> 全部
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='北京'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="北京" checked/>
-                            <i class="fa fa-user"></i> 北京
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='上海'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="上海" checked/>
-                            <i class="fa fa-user"></i> 上海
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='广州'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="广州" checked/>
-                            <i class="fa fa-user"></i> 广州
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='深圳'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="深圳" checked/>
-                            <i class="fa fa-user"></i> 深圳
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='重庆'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="重庆" checked/>
-                            <i class="fa fa-user"></i> 重庆
-                        </label>
-                        <label class="btn btn-default " ng-click="ctrl.q.city='天津'">
-                            <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="天津" checked/>
-                            <i class="fa fa-user"></i> 天津
-                        </label>
-                    </div>
-                    <!--其它城市：-->
-                    <!--<input type="text" maxlength="10"  class="form-control" ng-model="ctrl.q.city"/>-->
-                </div>
-                <div class="col-sm-2">
+                    </div> <!--/ END ROW 发布时间  -->
+                    
+                    <div class="row" style="padding: 5px">
+                        <div class="col-sm-12">
+                            资产金额:&nbsp;&nbsp;
+                            <div class="btn-group" ng-init="ctrl.q.money='0'" data-toggle="buttons">
+                                <label class="btn btn-default active" ng-click="ctrl.q.money='0'">
+                                    <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'0'" checked/>
+                                    <i class="fa fa-user"></i> 全部
+                                </label>
+                                <label class="btn btn-default" ng-click="ctrl.q.money='1'">
+                                    <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'1'" checked/>
+                                    <i class="fa fa-user"></i> 1万以下
+                                </label>
+                                <label class="btn btn-default" ng-click="ctrl.q.money='2'">
+                                    <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'2'" checked/>
+                                    <i class="fa fa-user"></i> 1-10万
+                                </label>
+                                <label class="btn btn-default" ng-click="ctrl.q.money='3'">
+                                    <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'3'" checked/>
+                                    <i class="fa fa-user"></i> 10-50万
+                                </label>
+                                <label class="btn btn-default" ng-click="ctrl.q.money='4'">
+                                    <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'4'" checked/>
+                                    <i class="fa fa-user"></i> 50-100万
+                                </label>
+                                <label class="btn btn-default" ng-click="ctrl.q.money='5'">
+                                    <input type="radio" name="money" ng-model="ctrl.q.money" autocomplete="off" value="'5'" checked/>
+                                    <i class="fa fa-user"></i> 100万以上
+                                </label>
+                            </div>
+                        </div>
+                    </div> <!-- / END ROW 资产金额 -->
 
-                    <div class="fg-line" >
-                        <input type="text"   class="form-control" ng-model="ctrl.q.city" name="city" maxlength="20"
-                               placeholder="其它城市"  value=""/>
-                    </div>
+                    <div class="row" style="padding: 5px">
+                        <div class="col-sm-12">
+                            逾期时间:&nbsp;&nbsp;
+                            <div class="btn-group" ng-init="ctrl.q.hand=''" data-toggle="buttons">
+                                <label class="btn btn-default active" ng-click="ctrl.q.hand=''">
+                                    <input type="radio" name="hand" ng-model="ctrl.q.hand" autocomplete="off" value="" checked/> 全部
+                                </label>
+                                <label class="btn btn-default" ng-click="ctrl.q.hand=''">
+                                    <input type="radio" name="hand" ng-model="ctrl.q.hand" autocomplete="off" value="" checked/> M0
+                                </label>
+                                <label class="btn btn-default" ng-click="ctrl.q.hand=''">
+                                    <input type="radio" name="hand" ng-model="ctrl.q.hand" autocomplete="off" value="" checked/> M1
+                                </label>
+                                <label class="btn btn-default" ng-click="ctrl.q.hand=''">
+                                    <input type="radio" name="hand" ng-model="ctrl.q.hand" autocomplete="off" value="" checked/> M2
+                                </label>
+                                <label class="btn btn-default" ng-click="ctrl.q.hand=''">
+                                    <input type="radio" name="hand" ng-model="ctrl.q.hand" autocomplete="off" value="" checked/> M3
+                                </label>
+                                <label class="btn btn-default" ng-click="ctrl.q.hand=''">
+                                    <input type="radio" name="hand" ng-model="ctrl.q.hand" autocomplete="off" value="" checked/> 一手
+                                </label>
+                                <label class="btn btn-default" ng-click="ctrl.q.hand=''">
+                                    <input type="radio" name="hand" ng-model="ctrl.q.hand" autocomplete="off" value="" checked/> 二手
+                                </label>
+                                <label class="btn btn-default" ng-click="ctrl.q.hand=''">
+                                    <input type="radio" name="hand" ng-model="ctrl.q.hand" autocomplete="off" value="" checked/> 三手
+                                </label>
+                                <label class="btn btn-default" ng-click="ctrl.q.hand=''">
+                                    <input type="radio" name="hand" ng-model="ctrl.q.hand" autocomplete="off" value="" checked/> 四手
+                                </label>
+                            </div>
+                        </div>
+                    </div> <!--/ END ROW 逾期时间 -->      
+                    
+                    
+                    <div class="row" style="padding: 5px">
+                        <div class="col-sm-12">
+                            所属地区:&nbsp;&nbsp;
+                            <div class="btn-group" ng-init="ctrl.q.city=''" data-toggle="buttons">
+                                <label class="btn btn-default active" ng-click="ctrl.q.city=''">
+                                    <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="" checked/>
+                                    <i class="fa fa-user"></i> 全部
+                                </label>
+                                <label class="btn btn-default " ng-click="ctrl.q.city='北京'">
+                                    <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="北京" checked/>
+                                    <i class="fa fa-user"></i> 北京
+                                </label>
+                                <label class="btn btn-default " ng-click="ctrl.q.city='上海'">
+                                    <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="上海" checked/>
+                                    <i class="fa fa-user"></i> 上海
+                                </label>
+                                <label class="btn btn-default " ng-click="ctrl.q.city='广州'">
+                                    <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="广州" checked/>
+                                    <i class="fa fa-user"></i> 广州
+                                </label>
+                                <label class="btn btn-default " ng-click="ctrl.q.city='深圳'">
+                                    <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="深圳" checked/>
+                                    <i class="fa fa-user"></i> 深圳
+                                </label>
+                                <label class="btn btn-default " ng-click="ctrl.q.city='重庆'">
+                                    <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="重庆" checked/>
+                                    <i class="fa fa-user"></i> 重庆
+                                </label>
+                                <label class="btn btn-default " ng-click="ctrl.q.city='天津'">
+                                    <input type="radio" name="city" ng-model="ctrl.q.city" autocomplete="off" value="天津" checked/>
+                                    <i class="fa fa-user"></i> 天津
+                                </label>
 
-                </div>
-            </div>
+                            </div>
+                            <div class="custom-city">
+                                <div class="fg-line" >
+                                    <input type="text" class="form-control" ng-model="ctrl.q.city" name="city" maxlength="20" placeholder="其它城市"  value=""/>
+                                </div>
+                            </div>
 
+                        </div>
+
+                    </div> <!--/ END ROW 所属地区 -->
+
+                    <div class="row" style="padding: 5px"> <!-- 搜索 -->
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-search m-b-10 m-l-20"></i>
+                                </span>
+                                <div class="fg-line" >
+                                    <input class="search-field form-control" type="text" placeholder="输入关键字搜索" ng-model="ctrl.q.keyword"/>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div><!--/ END ROW 搜索 -->
+                    
+                </div> <!--/ END COLUMN -->
+                
+                <div class="col-sm-3 hidden-xs">
+                    <p>颜色说明:</p>
+                    <span class="bgm-brown indicator">&nbsp;</span> 您发布的委托<br>
+                    <span class="bgm-green indicator">&nbsp;</span> 您参与竞标委托<br>
+                    <span class="bgm-bluegray indicator">&nbsp;</span> 其他的委托<br>
+                </div> <!--/ END COLUMN -->
+                
+            </div> <!--/ END ROW -->
+
+            <div class="hidden"> <input type="submit"/> </div> <!-- HIDDEN SUBMIT BUTTON -->
+        </form><!--/ END FORM -->
+           
         </div>
 
         <div class="pm-body clearfix">
+            <!-- 
             <a id="list-help-ico" href="javascript:;" class="c-gray" data-toggle="popover" data-trigger="hover" data-placement="left" data-html="true"
                data-content='
                 <span class="bgm-brown indicator">&nbsp;</span> 您发布的委托<br>
@@ -157,7 +214,8 @@
                 '>
                 <i  class="zmdi zmdi-help zmd-lg"></i>
             </a>
-
+            -->
+            
             <ul class="tab-nav " role="tablist" ng-init="ctrl.tab=1">
                 <li class="btn-wave active" role="presentation"><a href="#agentlist" aria-controls="alldebt" role="tab" data-toggle="tab" ng-click="ctrl.tab=1">债权代理</a></li>
                 <li class="btn-wave" role="presentation"><a href="#transferlist" aria-controls="alldebt" role="tab" data-toggle="tab" ng-click="ctrl.tab=2">债权转让</a></li>
@@ -191,7 +249,7 @@
                                             
                                         </div>
                                         <div class="card-body card-padding">
-                                            <p > 代理费率：{{debt.rate}}% </p>
+                                            <p>代理费率：{{debt.rate}}% </p>
                                             <p>代理期限：{{debt.duration}}天</p>
                                             <p>所在地区：{{debt.debtorLocation}}</p>
                                         </div>

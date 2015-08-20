@@ -228,6 +228,9 @@ class DebtListController
 		# return arbitary value instead of the default return value of dom element
 		# which will cause angular $parse:isecdom error
 		true
+
+	query: ->
+		@$log.log @q.keyword
 		
 		
 
