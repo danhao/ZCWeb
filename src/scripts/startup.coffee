@@ -1,6 +1,19 @@
 
 class Startup
 	constructor: (@$log, @$rootScope, @ajaxService, @actionCode, @eventConst, @userSession, @growlService) ->
+
+		# 移动端调用
+		@mobilePush = () ->
+			try
+				apiready = () ->
+					api.execScript({
+						name: 'root',
+						script: 'initPush("' + name + '", "' + id + '");'
+						})
+			catch err
+				@$log.log err
+				
+		
 		# register login event handler
 		@$rootScope.$on @eventConst.LOGIN, (ret) =>
 			# @$log.log "login .."
@@ -13,6 +26,9 @@ class Startup
 					@$rootScope.ossInfo = result
 				.error (error) ->
 					@$log.log error
+
+			@mobilePush()
+			
 
 		# F5
 		if @userSession.pid()

@@ -372,6 +372,19 @@
                             <span class="help-block" ng-show="ctrl.debtMsgForm.debtMsgType.$error.required && ctrl.debtMsgForm.debtMsgType.$dirty">需要必填</span>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="debtMsgContacts" class="col-sm-2 control-label">电话:</label>
+                        <div class="col-sm-10 input-group">
+                            <div class="fg-line select" ng-init="contact = ''">
+                                <select name="debtContacts" id="debtMsgContacts" class="form-control" ng-model="debtMsgContact"
+                                        ng-options="contact.phone+'('+contact.name+')' as contact.phone for contact in ctrl.debt.contacts"
+                                        ng-change="ctrl.debtMsg.msg = ctrl.debtMsg.msg + (debtMsgContact==null?'':' '+debtMsgContact)">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <span class="input-group-addon last"><a href="" data-target="#contactModal" data-toggle="modal" ><i class="zmdi zmdi-plus-circle zmd-2x"></i></a></span>
+                        </div>
+                    </div>
                     <div class="form-group" show-errors>
                         <label for="calendar" class="col-sm-2 control-label">时间:</label>
                         <div class="col-sm-10">
@@ -401,6 +414,68 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" type="submit" ng-disabled="ctrl.debtMsgForm.$invalid">保存</button>
+                    <button class="btn btn-warning" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+
+
+    <!-- add contact modal -->
+    <div id="contactModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <form method="post" name="ctrl.contactForm" ng-submit="ctrl.newContact(contact)" class="form-horizontal" novalidate>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">添加联系人</h3>
+                </div>
+                <div class="modal-body">
+                    
+                    <div class="form-group" show-errors>
+                        <label for="contactType" class="col-sm-2 control-label">类型:</label>
+                        <div class="col-sm-10">
+                            <div class="fg-line">
+                                <div class="select">
+                                    <select name="contactType" id="contactType" class="form-control" ng-model="contact.type" ng-options="contact.value as contact.name for contact in ctrl.contactTypes" required>
+                                    </select>
+                                </div>
+                            </div>
+                            <span class="help-block" ng-show="ctrl.contactForm.contactType.$error.required && ctrl.contactForm.contactType.$dirty">需要必填</span>
+                        </div>
+                    </div>
+                    <div class="form-group" show-errors>
+                        <label for="contactPhone" class="col-sm-2 control-label">电话:</label>
+                        <div class="col-sm-10">
+                            <div class="fg-line">
+                                <input type="text" name="contactPhone" class="form-control" ng-model="contact.phone" placeholder="电话"  maxlength="18" 
+                                       ng-pattern="/((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/" required />
+                            </div>
+                            <span class="help-block" ng-show="ctrl.contactForm.contactPhone.$error.required && ctrl.contactForm.contactPhone.$dirty">需要必填</span>
+                            <span class="help-block" ng-show="ctrl.contactForm.contactPhone.$error.pattern && ctrl.contactForm.contactPhone.$dirty">请输入合法的电话号码</span>
+                        </div>
+                    </div>
+                    <div class="form-group" show-errors>
+                        <label for="contactName" class="col-sm-2 control-label">姓名:</label>
+                        <div class="col-sm-10">
+                            <div class="fg-line">
+                                <input type="text" name="contactName" class="form-control" ng-model="contact.name" placeholder="姓名"  maxlength="10" required />
+                            </div>
+                            <span class="help-block" ng-show="ctrl.contactForm.contactName.$error.required && ctrl.contactForm.contactName.$dirty">需要必填</span>
+                        </div>
+                    </div>
+                    <div class="form-group" show-errors>
+                        <label for="contactMemo" class="col-sm-2 control-label">备注:</label>
+                        <div class="col-sm-10">
+                            <div class="fg-line">
+                                <input type="text" name="contactMemo" class="form-control" ng-model="contact.memo" placeholder="备注"  maxlength="100" />
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit" ng-disabled="ctrl.contactForm.$invalid">保存</button>
                     <button class="btn btn-warning" data-dismiss="modal">关闭</button>
                 </div>
             </div>

@@ -16,7 +16,7 @@ class Service
 	getTypeByDay: (day) ->
 		ret = _.find types, (t) ->
 			if t.from isnt -1 and t.to isnt -1
-				t.from < day <= t.to
+				t.from <= day <= t.to
 			else if t.from is -1
 				day < t.to
 			else if t.to is -1

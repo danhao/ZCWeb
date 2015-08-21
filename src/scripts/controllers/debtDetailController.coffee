@@ -16,7 +16,7 @@ class DebtDetailController
 		ASSIGN: 2
 		
 	
-	constructor: (@$log, @$state, @$stateParams, @$scope, @$rootScope, @$timeout, @ajaxService, @actionCode, @userSession, @growlService) ->
+	constructor: (@$log, @$state, @$stateParams, @$scope, @$rootScope, @$timeout, @ajaxService, @actionCode, @constant, @userSession, @growlService) ->
 		@getDebtDetail()
 		@pid = @userSession.pid()
 		@ajaxService.post @actionCode.GET_USER, {id: @pid}
@@ -34,7 +34,8 @@ class DebtDetailController
 			{value: 9, name: '债务人承诺还款'},
 			{value: 5, name: '其他'}
 		]
-
+		@contactTypes = @constant.contactType
+		
 		@init_calendar()
 		
 
@@ -245,6 +246,23 @@ class DebtDetailController
 				.error (error) =>
 					@$scope.newDebtError = error.desc
 
+
+	# 新建一个联系人
+	newContact: (contact) ->
+		unless @contactForm.$invalid
+			contact.id = @debt.id
+			@$log.log contact
+			@ajaxService.post @actionCode.ACTION_ADD_CONTACT, contact
+				.success (ret) =>
+					@debt.contacts.push contact
+					@$scope.contact = {}
+					@contactForm.$setPristine()
+					@$scope.$broadcast 'show-errors-reset'
+					angular.element("#contactModal").modal "hide"
+					
+				.error (err) =>
+					@growlService.growl err.desc
+
 	back: ->
 		@$state.go @$rootScope.fromState.name, @$rootScope.toParams
 
@@ -355,5 +373,5 @@ class DebtModelInstanceController
 # 	.controller 'debtModelInstanceController', ['$log', '$scope', '$modalInstance', 'actionCode', 'ajaxService', 'debt', DebtModelInstanceController]
 
 angular.module("app")
-	.controller 'debtDetailController', ['$log', '$state', '$stateParams', '$scope', '$rootScope', '$timeout', 'ajaxService', 'actionCode', 'userSession', 'growlService', DebtDetailController]
+	.controller 'debtDetailController', ['$log', '$state', '$stateParams', '$scope', '$rootScope', '$timeout', 'ajaxService', 'actionCode', 'constant', 'userSession', 'growlService', DebtDetailController]
 	# .controller 'debtModelInstanceController', ['$log', '$scope', '$modalInstance', 'actionCode', 'ajaxService', 'debt', DebtModelInstanceController]
