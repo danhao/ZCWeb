@@ -156,6 +156,16 @@ body.sw-toggled #footer {
     position: absolute;
 }
 
+.contact-type, .contact-phone, .contact-name {
+    display: inline-block;
+}
+.contact-type {
+    min-width: 55px;
+}
+.contact-phone {
+    min-width: 90px;
+}
+
 // timeline
 
 @media (min-width: @screen-sm) {
@@ -229,6 +239,38 @@ body.sw-toggled #footer {
 }
 
 
+@media screen and (max-width: @screen-sm) {
+    .table.compact {
+        td {
+            padding-left: 0px;
+            padding-right: 5px;
+            
+            &:first-child {
+                padding-left: 0px;
+                padding-right: 5px;
+            }
+            &:last-child {
+                padding-left: 0px;
+                padding-right: 0px;
+            }
+        }
+    }
+}
+
+
+.clear-m .form-group {
+        margin-left: 0px;
+        margin-right: 0px;
+}
+.table .clear-m td {
+    border-top: none;
+    
+    &:first-child {
+        padding-left: 0px;
+    }
+}
+
+
 // debt list
 // ==================================================
 #list-help-ico {
@@ -243,6 +285,24 @@ body.sw-toggled #footer {
     width: 30px;
     margin: 15px 0 0;
     padding: 0;
+}
+
+@media screen and (min-width: @screen-sm) { // >768px
+    .custom-city {
+        display: inline-block;
+        width: 80px;
+        margin-left: 15px;
+
+        .form-control {
+            height:30px;
+            margin-bottom:-3px;
+        }
+    }
+}
+@media screen and (max-width: @screen-sm) {
+    .custom-city {
+        margin-top: 10px;
+    }
 }
 
 

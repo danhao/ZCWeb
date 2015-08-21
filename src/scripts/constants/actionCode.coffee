@@ -33,12 +33,15 @@ ActionCode = # do () ->
 	ACTION_BID					: 104 	# 投标(debt.BidReq---->null)
 	ACTION_BID_WIN				: 105	# 中标(debt.BidWinReq---->debt.DebtMsg)
 	ACTION_ADD_MESSAGE			: 106	# 增加动态(debt.MessageMsg---->null)
-	ACTION_LIST_SELF_DEBTS		: 107 #我相关的债务
-	ACTION_CREATE_ORDER			: 200		# 创建订单(pay.CreateOrderReq---->pay.CreateOrderRsp)
-	ACTION_DRAW_CASH			: 201 		# 提现申请(pay.PlayerCashMsg---->null)
-	ACTION_BATCH_BID			: 108 		# 批量投标(debt.BatchBidReq---->null)
-	ACTION_RETURN_DEBT			: 109 		# 退单(common.SingleMsg---->null)
-	ACTION_APPLY_END_DEBT		: 110		# 申请结单(common.SingleMsg---->null)
+	ACTION_LIST_SELF_DEBTS		: 107	#我相关的债务
+	ACTION_CREATE_ORDER			: 200	# 创建订单(pay.CreateOrderReq---->pay.CreateOrderRsp)
+	ACTION_DRAW_CASH			: 201 	# 提现申请(pay.PlayerCashMsg---->null)
+	ACTION_BATCH_BID			: 108 	# 批量投标(debt.BatchBidReq---->null)
+	ACTION_RETURN_DEBT			: 109 	# 退单(common.SingleMsg---->null)
+	ACTION_APPLY_END_DEBT		: 110	# 申请结单(common.SingleMsg---->null)
+	ACTION_ADD_CONTACT			: 111 	# 增加联系人(common.ContactMsg---->null)
+	ACTION_STAT					: 112	# 统计(debt.StatReq---->debt.StatRsp)
+	
 
 
 
