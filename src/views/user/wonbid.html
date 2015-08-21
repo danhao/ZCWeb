@@ -6,9 +6,9 @@
             </header>
             <div class="panel-body" ng-controller="wonbidController as ctrl">
 
-                <div class="row qc-area">
+                <div class="row m-b-10">
                     <div class="col-xs-12">
-                        状态:
+                        状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:&nbsp;&nbsp;
                         <div class="btn-group" ng-init="ctrl.q.state=3" data-toggle="buttons">
                             <label class="btn btn-default active" ng-click="ctrl.q.state=3">
                                 <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="3" checked/>
@@ -21,6 +21,42 @@
                          </div>
                     </div>
                 </div>
+                
+                <div class="row m-b-10">
+                    <div class="col-sm-12">
+                        逾期时间:&nbsp;&nbsp;
+                        <div class="btn-group" data-toggle="buttons" ng-init="ctrl.q.hand=-1">
+                            <label class="btn btn-default active" ng-click="ctrl.q.hand=-1">
+                                <input type="radio" name="hand" autocomplete="off" value="-1" /> 全部
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.hand=0">
+                                <input type="radio" name="hand" autocomplete="off" value="0"/> M0
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.hand=1">
+                                <input type="radio" name="hand" autocomplete="off" value="1"/> M1
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.hand=2">
+                                <input type="radio" name="hand" autocomplete="off" value="2"/> M2
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.hand=3">
+                                <input type="radio" name="hand" autocomplete="off" value="3"/> M3
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.hand=4">
+                                <input type="radio" name="hand" autocomplete="off" value="4"/> 一手
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.hand=5">
+                                <input type="radio" name="hand" autocomplete="off" value="5"/> 二手
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.hand=6">
+                                <input type="radio" name="hand" autocomplete="off" value="6"/> 三手
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.hand=7">
+                                <input type="radio" name="hand" autocomplete="off" value="7"/> 四手
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class="row">&nbsp;</div>
                 <div class="row">

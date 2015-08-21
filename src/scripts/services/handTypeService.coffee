@@ -25,4 +25,8 @@ class Service
 				null
 		ret
 
+	getTypeByValue: (val) ->
+		_.find types, (t) ->
+			t.value is val
+
 angular.module('app').service 'handTypeService', ['$log', Service]

@@ -1,11 +1,13 @@
 
 class DebtListController
-	constructor: (@$log,@$scope,@$rootScope,@$state, @$stateParams, @ajaxService, @actionCode, @messageService, @eventConst, @growlService, @userSession) ->
+	constructor: (@$log,@$scope,@$rootScope,@$state, @$stateParams, @ajaxService, @actionCode, @messageService, @eventConst, @growlService, @handTypeService, @userSession) ->
 		@q =
 			fbdate:'0'
 			money:'0'
 			rate:'0'
 			city:''
+			hand:-1
+			keyword: ''
 
 		@z =
 			fbdate:'0'
@@ -39,16 +41,33 @@ class DebtListController
 			.error (error) ->
 				@$log.log error
 
+		
+		gethand=(value)->
+			$log.log value
+			if value is -1
+				return ret = ""
+			else
+				hand = handTypeService.getTypeByValue value
+				s = []
+				if hand.from isnt -1
+					s.push('handFrom:'+hand.from)
+				if hand.to isnt -1
+					s.push('handTo:'+hand.to)
+				return ret = if s.length is 0 then "" else ("," + s.join(","))
+
+
 		@agentlist = () =>
+			@$log.log @q
 			data='{type:1,state:1'
 			data += getdate(@q.fbdate) if @q.fbdate isnt '0'
 			data += getmoney(@q.money) if @q.money isnt '0'
+			data += gethand(@q.hand)
+			data += (",keyword:'"+@q.keyword+"'") if @q.keyword isnt ''
 			data +=  ",location:'"+@q.city+"'" if @q.city isnt ''
-#			data += ",location:'"+para[2]+"'" if para[2]!=undefined
 			data += ",page:"+@page_a
 			data +='}'
-			# $log.log data
 			datajson=angular.toJson data
+			@$log.log datajson
 			ajaxService.post actionCode.LIST_DEBTS, data
 			.success (results) =>
 				if results.debt?
@@ -65,8 +84,9 @@ class DebtListController
 			data='{type:2,state:1'
 			data += getdate(@q.fbdate) if @q.fbdate isnt '0'
 			data += getmoney(@q.money) if @q.money isnt '0'
+			data += gethand(@q.hand)
+			data += (",keyword:'"+@q.keyword+"'") if @q.keyword isnt ''
 			data +=  ",location:'"+@q.city+"'" if @q.city isnt ''
-			#			data += ",location:'"+para[2]+"'" if para[2]!=undefined
 			data += ",page:"+@page_t
 			data +='}'
 			ajaxService.post actionCode.LIST_DEBTS, data
@@ -93,6 +113,9 @@ class DebtListController
 				when '365' then datestr=",createTimeFrom:"+(timestramp-365*86400000)/1000+",createTimeTo:"+currentdate+""
 				else datastr=''
 
+		
+		
+
 		getmoney=(value)->
 			moneystr=''
 			switch value
@@ -103,7 +126,7 @@ class DebtListController
 				when '5' then moneystr=",moneyLow:100000000,moneyUp:0"
 				else moneystr=''
 
-
+		
 		@reset_var = () =>
 			@$scope.agentlist = []
 			@$scope.transferlist = []
@@ -121,6 +144,7 @@ class DebtListController
 				@agentlist()
 				@transferlist()
 		, true
+		
 
 		# init modal
 		@initDialog()
@@ -131,7 +155,6 @@ class DebtListController
 			
 		@$rootScope.infiniteScroll = true
 		@$scope.$on '$destroy', ()=>
-			# @$log.log 'destroy'
 			@$rootScope.infiniteScroll = false
 		
 
@@ -230,9 +253,10 @@ class DebtListController
 		true
 
 	query: ->
-		@$log.log @q2.keyword
+		# @$log.log @q2.keyword
+		@q.keyword = @q2.keyword
 		
 		
 
-angular.module("app").controller 'debtListController',['$log','$scope','$rootScope','$state','$stateParams','ajaxService', 'actionCode', 'messageService', 'eventConst', 'growlService', 'userSession', DebtListController]
+angular.module("app").controller 'debtListController',['$log','$scope','$rootScope','$state','$stateParams','ajaxService', 'actionCode', 'messageService', 'eventConst', 'growlService', 'handTypeService', 'userSession', DebtListController]
 
