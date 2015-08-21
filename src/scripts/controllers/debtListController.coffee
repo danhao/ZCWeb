@@ -230,7 +230,7 @@ class DebtListController
 		true
 
 	query: ->
-		@$log.log @q.keyword
+		@$log.log @q2.keyword
 		
 		
 

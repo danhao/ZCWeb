@@ -59,7 +59,6 @@ class DebtController
 				growlService.growl("加价幅度+起拍价格应小于债务总金额！", 'warning')
 
 		@saveEntity = (@debt)->
-			@$log.log @debt
 			if debt.creditorIdFile is undefined
 				growlService.growl("请上传债权人身份证图片！", 'danger')
 				return

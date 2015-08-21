@@ -85,7 +85,7 @@
             <ul>
                 <li> <i class="zmdi zmdi-label"></i>{{ctrl.debt.id}} </li>
                 <li> <i class="zmdi zmdi-time"></i>{{ctrl.debt.state==0? "创建于": "发布于" }}{{ctrl.debt.state==0? ctrl.debt.createTime: ctrl.debt.publishTime | idate }} </li>
-                <li> <i class="zmdi zmdi-time-countdown"></i>期限{{ctrl.debt.duration}}天  逾期{{ctrl.debt.debtExpireTime | upToNow}}</li>
+                <li> <i class="zmdi zmdi-time-countdown"></i>期限{{ctrl.debt.duration}}天  逾期{{ctrl.debt.debtExpireTime | upToNow}}天 ({{ctrl.debt.debtExpireTime | handType}})</li>
                 <li> <i class="zmdi zmdi-file-text"></i>{{ctrl.debt.type | debtType}} {{ctrl.debt.property | debtProperty}}</li>
                 <li ng-show="showCreditor"> <i class="zmdi zmdi-account-box"></i>债权人 {{ctrl.debt.creditorName}}</li>
 
@@ -125,7 +125,15 @@
                             <dl class="dl-horizontal"> <dt>判决时间</dt> <dd>{{ctrl.debt.judgementTime | idate}}</dd> </dl>
                             <dl class="dl-horizontal"> <dt>抵押物</dt> <dd>{{ctrl.debt.mortgage}}</dd> </dl>
                             <dl class="dl-horizontal"> <dt>债务成因</dt> <dd>{{ctrl.debt.reason}}</dd> </dl>
-                            <dl class="dl-horizontal"> <dt>联系方式</dt> <dd>联系方式列表. TODO.</dd> </dl>
+                            <dl class="dl-horizontal" ng-show="ctrl.debt.contacts">
+                                <dt>联系方式</dt>
+                                <dd ng-repeat="c in ctrl.debt.contacts">
+                                    <span class="contact-type">{{c.type | contactType}}</span>
+                                    <span class="contact-phone">{{c.phone}}</span>
+                                    <span class="contact-name">{{c.name}}</span>
+                                    <span ng-show="c.memo">,{{c.memo}}</span>
+                                </dd>
+                            </dl>
                         </div>
                     </div>
                 </div>
