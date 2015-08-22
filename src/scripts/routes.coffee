@@ -303,10 +303,14 @@ class Config
 			.state 'site.member.typography',
 				url: 'typography',
 				templateUrl: 'views/typography.html'
+				data:
+					displayName: '关于我们'
 
 			.state 'site.member.recruit',
 				url: 'recruit',
 				templateUrl: 'views/recruit.html'
+				data:
+					displayName: '人才招聘'
 
 			.state 'site.member.rating',
 				url: 'rating',

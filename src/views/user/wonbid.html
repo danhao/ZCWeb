@@ -5,23 +5,8 @@
                 <h2><span class="glyphicon glyphicon-list" ></span> 我的中标</h2>
             </header>
             <div class="panel-body" ng-controller="wonbidController as ctrl">
-
-                <div class="row m-b-10">
-                    <div class="col-xs-12">
-                        状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:&nbsp;&nbsp;
-                        <div class="btn-group" ng-init="ctrl.q.state=3" data-toggle="buttons">
-                            <label class="btn btn-default active" ng-click="ctrl.q.state=3">
-                                <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="3" checked/>
-                                <i class="fa fa-user"></i> 进行中
-                            </label>
-                            <label class="btn btn-default" ng-click="ctrl.q.state=4">
-                                <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="4" checked/>
-                                <i class="fa fa-user"></i> 已完成
-                            </label>
-                         </div>
-                    </div>
-                </div>
                 
+                <form name="queryForm" ng-submit="ctrl.query()">
                 <div class="row m-b-10">
                     <div class="col-sm-12">
                         逾期时间:&nbsp;&nbsp;
@@ -57,6 +42,86 @@
                     </div>
                 </div>
 
+
+                <div class="row m-b-10">
+                    <div class="col-sm-12">
+                        债权性质:&nbsp;&nbsp;
+                        <div class="btn-group" ng-init="ctrl.q.property=-1" data-toggle="buttons">
+                            <label class="btn btn-default active" ng-click="ctrl.q.property=-1">
+                                <input type="radio" name="type" ng-model="ctrl.q.property" value="-1" checked/>全部
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.property=1">
+                                <input type="radio" name="type" ng-model="ctrl.q.property" value="1"/>消费贷
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.property=2">
+                                <input type="radio" name="type" ng-model="ctrl.q.property" value="2"/>信用卡
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.property=3">
+                                <input type="radio" name="type" ng-model="ctrl.q.property" value="3"/>房 贷
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.property=4">
+                                <input type="radio" name="type" ng-model="ctrl.q.property" value="4"/>民间借贷
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.property=10">
+                                <input type="radio" name="type" ng-model="ctrl.q.property" value="10"/>其他
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    <div class="col-sm-6">
+                        状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:&nbsp;&nbsp;
+                        <div class="btn-group" ng-init="ctrl.q.state=3" data-toggle="buttons">
+                            <label class="btn btn-default active" ng-click="ctrl.q.state=3">
+                                <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="3" checked/>
+                                进行中
+                            </label>
+                            <label class="btn btn-default" ng-click="ctrl.q.state=4">
+                                <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="4" />
+                                已完成
+                            </label>
+                         </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                催收状态:
+                            </span>
+                            <div class="fg-line select">
+                                <select name="statusType" class="form-control" ng-model="ctrl.q.newestMessage" ng-options="ct.value as ct.name for ct in ctrl.statusTypes">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                债务人姓名:
+                            </span>
+                            <div class="fg-line">
+                                <input class="form-control" type="text" placeholder="" name="debtorName" maxlength="20" ng-model="ctrl.q2.debtorName" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                债务人身份证:
+                            </span>
+                            <div class="fg-line">
+                                <input class="form-control" type="text" placeholder="" name="debtorId" maxlength="20" ng-model="ctrl.q2.debtorId" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hidden"> <input type="submit"/> </div> <!-- HIDDEN SUBMIT BUTTON -->
+                </form>
 
                 <div class="row">&nbsp;</div>
                 <div class="row">

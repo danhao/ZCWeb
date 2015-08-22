@@ -26,14 +26,7 @@ class DebtDetailController
 				@$log.log error
 				
 		@rating=3
-		@collectionTypes = [
-			{value: 1, name: '电催'},
-			{value: 2, name: '外访'},
-			{value: 3, name: '信函'},
-			{value: 4, name: '搜索'},
-			{value: 9, name: '债务人承诺还款'},
-			{value: 5, name: '其他'}
-		]
+		@collectionTypes = @constant.debtStatusType
 		@contactTypes = @constant.contactType
 		
 		@init_calendar()

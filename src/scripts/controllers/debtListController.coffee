@@ -43,7 +43,6 @@ class DebtListController
 
 		
 		gethand=(value)->
-			$log.log value
 			if value is -1
 				return ret = ""
 			else
@@ -57,7 +56,7 @@ class DebtListController
 
 
 		@agentlist = () =>
-			@$log.log @q
+			# @$log.log @q
 			data='{type:1,state:1'
 			data += getdate(@q.fbdate) if @q.fbdate isnt '0'
 			data += getmoney(@q.money) if @q.money isnt '0'
@@ -67,7 +66,7 @@ class DebtListController
 			data += ",page:"+@page_a
 			data +='}'
 			datajson=angular.toJson data
-			@$log.log datajson
+			# @$log.log datajson
 			ajaxService.post actionCode.LIST_DEBTS, data
 			.success (results) =>
 				if results.debt?
@@ -253,8 +252,7 @@ class DebtListController
 		true
 
 	query: ->
-		# @$log.log @q2.keyword
-		@q.keyword = @q2.keyword
+		@q.keyword = @q2.keyword if @q2?
 		
 		
 
