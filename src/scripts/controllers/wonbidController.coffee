@@ -36,7 +36,7 @@ class WonbidController
 
 	list: =>
 		# data = angular.copy @q
-		data = _.pick @q, (value, key, object) -> value and value isnt -1;
+		data = _.pick @q, (value, key, object) -> value and value isnt -1
 		data.queryType = 3
 		data.page = @page
 		data = _.extend data, @getHand()
