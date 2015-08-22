@@ -23,10 +23,13 @@ class DebtController
 				$window.scrollTo 0,0
 
 		@validate1 = () =>
-			rate = @debt.rate >= 10
-			unless rate
-				@growlService.growl "代理费率不允许小于10%"
-			rate
+			if @debt.type is 1
+				rate = @debt.rate >= 10
+				unless rate
+					@growlService.growl "代理费率不允许小于10%"
+				rate
+			else
+				true
 
 		@removeRow = (phone) =>
 			# @$log.log phone
