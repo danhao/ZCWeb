@@ -40,63 +40,49 @@
                 <table class="table table-hover" ng-show="fundrecordList.length>0">
                     <thead>
                     <tr>
-                        <th width="120px">
-                            流水号
-                        </th>
-                        <th width="100px">
-                            类别
-                        </th>
-                        <th width="120px">
-                            委托单号
-                        </th>
-                        <th width="120px">
-                            操作金额（元）
-                        </th>
-                        <th width="120px">
-                            余额（元）
-                        </th>
-                        <th width="150px">
-                            操作时间
-                        </th>
-                        <th width="100px">
-                            状态
-                        </th>
-                        <th >
-                            备注
-                        </th>
+                        <th width="120px"> 流水号 </th>
+                        <th width="100px"> 类别 </th>
+                        <th width="120px"> 委托单号 </th>
+                        <th width="120px"> 操作金额（元） </th>
+                        <th width="120px"> 余额（元） </th>
+                        <th width="150px"> 操作时间 </th>
+                        <th width="100px"> 状态 </th>
+                        <th > 备注 </th>
                     </tr></thead>
                     <tbody >
                     <tr ng-repeat="fund in fundrecordList">
-                        <td >
-                            {{fund.id}}
-                        </td>
-                        <td>
-                            {{fund.type | moneyHistoryType}}
-                        </td>
-                        <td>
-                            <a ui-sref="site.debt.detail({debtId:'{{ fund.debtId }}'})">{{ fund.debtId }}</a>
-                        </td>
-                        <td>
-                            {{ fund.money | ccurrency}}
-                        </td>
-                        <td>
-                            {{ fund.balance | ccurrency}}
-                        </td>
-                        <td >
-                            {{fund.time | iwholedate }}
-                        </td>
-                        <td>
-                            {{fund.state | moneyHistoryState}}
-                        </td>
-                        <td>
-                            {{fund.descript}}
-                        </td>
+                        <td > {{fund.id}} </td>
+                        <td> {{fund.type | moneyHistoryType}} </td>
+                        <td> <a ui-sref="site.debt.detail({debtId:'{{ fund.debtId }}'})">{{ fund.debtId }}</a> </td>
+                        <td> {{ fund.money | ccurrency}} </td>
+                        <td> {{ fund.balance | ccurrency}} </td>
+                        <td> {{fund.time | iwholedate }} </td>
+                        <td> {{fund.state | moneyHistoryState}} </td>
+                        <td> {{fund.descript}} </td>
                     </tr>
                     </tbody>
                 </table>
-                    <ul class="list-group">
-                        <li class="list-group-item text-center" ng-hide="fundrecordList.length">暂无记录</li>
-                    </ul>
+                <ul class="list-group">
+                    <li class="list-group-item text-center" ng-hide="fundrecordList.length">暂无记录</li>
+                </ul>
+
+                <ul class="pagination">
+                    <li class="first disabled" aria-disabled="true">
+                        <a href="#first" class="button">«</a>
+                    </li>
+                    <li class="prev disabled" aria-disabled="true">
+                        <a href="#prev" class="button">&lt;</a>
+                    </li>
+                    <li class="page-1 active" aria-disabled="false" aria-selected="true">
+                        <a href="#1" class="button">1</a>
+                    </li>
+                    <li class="page-2" aria-disabled="false" aria-selected="false">
+                        <a href="#2" class="button">2</a>
+                    </li>
+                    <li class="next" aria-disabled="false"><a href="#next" class="button">&gt;</a>
+                    </li>
+                    <li class="last" aria-disabled="false"><a href="#last" class="button">»</a></li>
+                </ul>
                 </div>
             </div>
         </div>

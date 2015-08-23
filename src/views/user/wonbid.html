@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="row m-b-10">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:&nbsp;&nbsp;
                         <div class="btn-group" ng-init="ctrl.q.state=3" data-toggle="buttons">
                             <label class="btn btn-default active" ng-click="ctrl.q.state=3">
@@ -83,7 +83,7 @@
                             </label>
                          </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <div class="input-group">
                             <span class="input-group-addon">
                                 催收状态:
@@ -97,6 +97,7 @@
                     </div>
                 </div>
 
+                <!-- 
                 <div class="row m-b-10">
                     <div class="col-sm-6">
                         <div class="input-group">
@@ -119,6 +120,21 @@
                         </div>
                     </div>
                 </div>
+                -->
+                
+                <div class="row m-b-10" > <!-- 搜索 -->
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-search m-b-10 m-l-20"></i>
+                            </span>
+                            <div class="fg-line" >
+                                <input class="search-field form-control" type="text" placeholder="债务人姓名,债务人身份证" ng-model="ctrl.q2.keyword"/>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div><!--/ END ROW 搜索 -->
 
                 <div class="hidden"> <input type="submit"/> </div> <!-- HIDDEN SUBMIT BUTTON -->
                 </form>
