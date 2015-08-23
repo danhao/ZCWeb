@@ -10,7 +10,7 @@
                     <div class="col-xs-12" >
                         类型:&nbsp;&nbsp;
                         <div class="btn-group">
-                            <div class="btn-group" ng-init="ctrl.q.type='1'" data-toggle="buttons">
+                            <div class="btn-group" ng-init="ctrl.q.type='0'" data-toggle="buttons">
                                 <label class="btn btn-default active" ng-click="ctrl.q.type='0'">
                                     <input type="radio" name="type" ng-model="ctrl.q.type" autocomplete="off" value="'0'" checked/>
                                     <i class="fa fa-user"></i> 全部
@@ -68,7 +68,7 @@
                                     <h2>{{debt.money | ccurrency}} 
                                     <small>
                                         发布于: {{debt.createTime | idate }}
-                                        <span class="m-l-5" ng-show="debt.bidCount>0">已投: {{debt.bidCount}}</span>
+                                        <span class="m-l-5" ng-show="debt.state==1 && debt.bidCount>0">已投: {{debt.bidCount}}</span>
                                     </small>
                                     </h2>
                                     <a class="btn bgm-orange btn-float waves-effect waves-effect" href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})">

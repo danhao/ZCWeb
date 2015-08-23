@@ -374,6 +374,7 @@ module.exports = (grunt) ->
 					'!libs/lightGallery.min.js'
 					'!libs/jquery.nouislider.all.min.js'
 					'!libs/owl.carousel.min.js'
+					'!libs/fileinput.js'
 				]
 				order: [
 					'libs/angular.min.js'
@@ -424,6 +425,7 @@ module.exports = (grunt) ->
 					'!libs/lightGallery.min.js'
 					'!libs/jquery.nouislider.all.min.js'
 					'!libs/owl.carousel.min.js'
+					'!libs/fileinput.js'
 				]
 				order: [
 					'libs/angular.min.js'
@@ -491,6 +493,7 @@ module.exports = (grunt) ->
 						'.temp/scripts/libs/lightGallery.min.js'
 						'.temp/scripts/libs/jquery.nouislider.all.min.js'
 						'.temp/scripts/libs/owl.carousel.min.js'
+						'.temp/scripts/libs/fileinput.js'
 					]
 
 		# Configration for enviroment

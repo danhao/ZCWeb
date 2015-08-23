@@ -1,6 +1,6 @@
 
 class IndexController3
-	constructor: (@$log, @$window, @ajaxService, @actionCode) ->
+	constructor: (@$log, @$window, @$scope, @$interval, @ajaxService, @actionCode) ->
 		# wow
 		# new WOW().init()
 
@@ -25,6 +25,37 @@ class IndexController3
 				@debtList = result.debt
 			.error (error) ->
 				@$log.log error
+
+		# stat data
+		@stat_t =
+			dealSum: 600953
+			team: 805
+			coop: 223
+		@stat =
+			dealSum: 0
+			team: 0
+			coop: 0
+
+		t = @$interval ()=>
+			if @stat.dealSum < @stat_t.dealSum
+				@stat.dealSum += 981
+			else
+				@stat.dealSum = @stat_t.dealSum
+				
+			if @stat.team < @stat_t.team
+				@stat.team += 1
+				
+			if @stat.coop < @stat_t.coop
+				@stat.coop += 1
+				
+			if @stat.dealSum >= @stat_t.dealSum and @stat.team >= @stat_t.team and @stat.coop >= @stat_t.coop
+				@$interval.cancel t
+		, 10
+
+		@$scope.$on '$destroy', () =>
+			if t
+				@$interval.cancel t
+
 		
 		# sample users
 		angular.element('#media-owl').owlCarousel({
@@ -51,4 +82,4 @@ class IndexController3
 		
 		
 
-angular.module('app').controller 'indexController3', ['$log', '$window', 'ajaxService', 'actionCode', IndexController3]
+angular.module('app').controller 'indexController3', ['$log', '$window', '$scope', '$interval', 'ajaxService', 'actionCode', IndexController3]

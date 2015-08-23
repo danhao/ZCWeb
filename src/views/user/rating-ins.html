@@ -13,23 +13,27 @@
                 <tbody>
                     <tr>
                         <td>0-9 分</td>
-                        <td ng-init="i=0"><rating ng-model="i" readonly="true"/></td>
+                        <td><rating value="0" readonly="true"/></td>
                     </tr>
                     <tr>
                         <td>10-19 分</td>
-                        <td ng-init="j=1"><rating ng-model="j" readonly="true"/></td>
+                        <td><rating value="1" readonly="true"/></td>
                     </tr>
                     <tr>
                         <td>20-39 分</td>
-                        <td ng-init="k=2"><rating ng-model="k" readonly="true"/></td>
+                        <td><rating value="2" readonly="true"/></td>
                     </tr>
                     <tr>
                         <td>40-79 分</td>
-                        <td ng-init="l=3"><rating ng-model="l" readonly="true"/></td>
+                        <td><rating value="3" readonly="true"/></td>
                     </tr>
                     <tr>
-                        <td>80 分以上</td>
-                        <td ng-init="m=4"><rating ng-model="m" readonly="true"/></td>
+                        <td>80-139 分</td>
+                        <td><rating value="4" readonly="true"/></td>
+                    </tr>
+                    <tr>
+                        <td>140 分以上</td>
+                        <td><rating value="5" readonly="true"/></td>
                     </tr>
                 </tbody>
             </table>

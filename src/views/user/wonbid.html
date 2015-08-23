@@ -131,7 +131,7 @@
                                 <div class="card-header bgm-lightblue m-b-20">
                                     <h2>{{debt.money | ccurrency}}
                                     <small>发布于: {{debt.publishTime | idate }}
-                                    <span class="m-l-5" ng-show="debt.bidCount>0">已投: {{debt.bidCount}}</span>
+                                    <span class="m-l-5" ng-show="debt.state==1 && debt.bidCount>0">已投: {{debt.bidCount}}</span>
                                     </small>
                                     </h2>
                                     <a class="btn bgm-orange btn-float waves-effect waves-effect" href="javascript:;" ui-sref="site.debt.detail({debtId: '{{debt.id}}'})">

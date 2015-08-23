@@ -25,7 +25,6 @@ class DebtDetailController
 			.error (error) ->
 				@$log.log error
 				
-		@rating=3
 		@collectionTypes = @constant.debtStatusType
 		@contactTypes = @constant.contactType
 		

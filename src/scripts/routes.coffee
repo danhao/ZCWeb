@@ -84,12 +84,12 @@ class Config
 					displayName: "个人中心"
 
 			.state 'site.profile',
-				url: ''
+				url: 'profile/'
 				abstract: true
 				templateUrl: 'views/member.base.html'
 
 			.state 'site.profile.profile',
-				url: 'profile/:Id'
+				url: ':Id'
 				templateUrl: 'views/user/profile.html'
 				data:
 					displayName: "个人详细信息"

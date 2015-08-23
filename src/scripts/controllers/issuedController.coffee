@@ -2,7 +2,7 @@
 class IssuedController
 	constructor: (@$log,@$scope, @ajaxService, @actionCode,@userSession) ->
 		@q =
-			type: '1'
+			type: '0'
 			state: '-1'
 		@pid = @userSession.pid()
 		

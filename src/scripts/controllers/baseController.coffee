@@ -1,6 +1,6 @@
 
 class BaseController
-	constructor: (@$log, @$scope, @$state, @growlService, @$rootScope, @$window, @userSession, @eventConst, @ajaxService, @actionCode) ->
+	constructor: (@$log, @$scope, @$state, @growlService, @$rootScope, @$window, @userSession, @eventConst, @ajaxService, @actionCode, @utilService) ->
 		ismobile = false
 		
 		# Detact Mobile Browser
@@ -18,6 +18,8 @@ class BaseController
 
 		@sid = @userSession.sid()
 		@initUser()
+
+		# @rating = @utilService.rating
 
 		# Login event
 		@$rootScope.$on @eventConst.LOGIN, (name, params) =>
@@ -48,5 +50,5 @@ class BaseController
 
 	
 
-angular.module("app") .controller 'baseController', ['$log', '$scope', '$state', 'growlService', '$rootScope', '$window', 'userSession', 'eventConst', 'ajaxService', 'actionCode', BaseController]
+angular.module("app") .controller 'baseController', ['$log', '$scope', '$state', 'growlService', '$rootScope', '$window', 'userSession', 'eventConst', 'ajaxService', 'actionCode', 'utilService', BaseController]
 	

@@ -64,6 +64,21 @@ class Service
 			when 109 then msg = "权限不足！"
 			else msg=error.desc
 
+	# transform the score to rating
+	rating: (score) ->
+		if 0 <= score < 10
+			0
+		else if 10 <= score < 20
+			1
+		else if 20 <= score < 40
+			2
+		else if 40 <= score < 80
+			3
+		else if 80 <= score < 140
+			4
+		else
+			5
+
 	###
 	# 显示 alert 提示消息
 	# type: 类型. 默认是 danger

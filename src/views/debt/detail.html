@@ -177,7 +177,7 @@
                                 </div>
                                 <div class="media-body">
                                     <div class="lv-title">{{ bidder.name }} <span class="m-l-10 c-gray"><i class="zmdi zmdi-time"></i>&nbsp; {{bidder.createTime | idate}}</span> </div>
-                                    <small class="lv-small"><rating ng-model="ctrl.rating" readonly="true"></rating></small>
+                                    <small class="lv-small"><rating value="{{bidder.rating | rating}}" readonly="true"></rating></small>
                                     <div class="lv-actions actions dropdown">
                                         <span class="badge" ng-if="ctrl.debt.state >= 3 && bidder.id == ctrl.debt.winnerId">中标</span>
                                         竞标价: <b class="f-18">{{ ctrl.debt.type == 1 ? (bidder.rate + '%') : (bidder.money | ccurrency) }}</b>
@@ -223,7 +223,7 @@
                 <div class="pmb-block debtcollection" ng-hide="ctrl.debt.messages.length">
                     <div class="pmbb-body text-center">暂无记录</div>
                 </div>
-                <a class="btn btn-float btn-danger btn-corner waves-effect waves-effect" title="添加催收动态" alert="添加催收动态" ng-show="ctrl.pid == ctrl.debt.winnerId"
+                <a class="btn btn-float btn-danger btn-corner waves-effect waves-effect" title="添加催收动态" alert="添加催收动态" ng-show="ctrl.debt.state==3 && ctrl.pid == ctrl.debt.winnerId"
                    data-target="#updatedMsgModal" data-toggle="modal" type="button">
                     <i class="zmdi zmdi-plus"></i>
                 </a>
