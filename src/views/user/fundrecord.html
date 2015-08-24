@@ -65,23 +65,28 @@
                 <ul class="list-group">
                     <li class="list-group-item text-center" ng-hide="fundrecordList.length">暂无记录</li>
                 </ul>
-
                 <ul class="pagination">
+                    <!-- 
                     <li class="first disabled" aria-disabled="true">
                         <a href="#first" class="button">«</a>
                     </li>
-                    <li class="prev disabled" aria-disabled="true">
-                        <a href="#prev" class="button">&lt;</a>
+                     -->
+                    <li class="prev" ng-class="{'disabled': ctrl.q.page == 1}" aria-disabled="true" ng-click="ctrl.prev()">
+                        <a href="javascript:;" class="button">&lt;</a>
                     </li>
+                    <!-- 
                     <li class="page-1 active" aria-disabled="false" aria-selected="true">
                         <a href="#1" class="button">1</a>
                     </li>
                     <li class="page-2" aria-disabled="false" aria-selected="false">
                         <a href="#2" class="button">2</a>
                     </li>
-                    <li class="next" aria-disabled="false"><a href="#next" class="button">&gt;</a>
+                     -->
+                    <li class="next" ng-class="{'disabled': !ctrl.hasMore}" aria-disabled="false" ng-click="ctrl.next()"><a href="javascript:;" class="button">&gt;</a>
                     </li>
+                    <!-- 
                     <li class="last" aria-disabled="false"><a href="#last" class="button">»</a></li>
+                     -->
                 </ul>
                 </div>
             </div>

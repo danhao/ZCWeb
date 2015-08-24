@@ -80,7 +80,6 @@ class Service
 			5
 
 	# 计算给定时间(秒数)到现在为止,过去的天数.
-	# 
 	# @param time long 秒数,给定的时间
 	# @return int 从那个点到目前为止过去的天数.
 	upToNow: (time) ->
