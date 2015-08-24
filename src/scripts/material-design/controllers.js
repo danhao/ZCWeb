@@ -38,7 +38,7 @@ angular.module('app')
     // =========================================================================
     // Header
     // =========================================================================
-    .controller('headerCtrl', ['$timeout', 'msgService', function($timeout, messageService){
+    .controller('headerCtrl', ['$timeout', 'msgService', '$state', function($timeout, messageService, $state){
     
          // Top Search
         this.openSearch = function(){
@@ -49,6 +49,14 @@ angular.module('app')
         this.closeSearch = function(){
             angular.element('#header').removeClass('search-toggled');
         }
+
+        this.search = function(keyword) {
+            if(keyword) {
+                $state.go('site.debt.list', {q: keyword});
+            }
+            return false;
+        }
+
         
         // Get messages and notification for header
         this.img = messageService.img;

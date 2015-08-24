@@ -267,7 +267,7 @@
                             <div ng-repeat="debt in transferlist">
                                 <div class="col-sm-3">
                                     <div class="card">
-                                        <div class="card-header bgm-lightblue m-b-20">
+                                        <div class="card-header m-b-20 {{ debt.hasBid==1? 'bgm-green': (debt.ownerId==ctrl.pid? 'bgm-brown': 'bgm-bluegray') }}">
                                             <h2>{{debt.money | ccurrency}} 
                                             <small>发布于: {{debt.createTime | idate }} <span class="m-l-5" ng-show="debt.bidCount>0">已投: {{debt.bidCount}}</span></small>
                                             </h2>
@@ -308,11 +308,11 @@
                                 <div class="fg-line">
                                     <input type="number" class="form-control" id="price" name="price" ng-model="price" placeholder="请输入费率" required ui-validate="{agent:'agentLegalCheck($value)'}"/>
                                 </div>
-                                <span class="input-group-addon last fg-lineheight">% &nbsp;&nbsp; (代理费率应大于10%)</span>
+                                <span class="input-group-addon last fg-lineheight">% &nbsp;&nbsp; (代理费率应在{{rate_min}}-{{rate_max}}之间)</span>
                             </div>
                             <span class="help-block" ng-show="bidForm.price.$error.required && bidForm.price.$dirty">需要必填</span>
                             <span class="help-block" ng-show="bidForm.price.$error.number && bidForm.price.$dirty">请输入合法的数字</span>
-                            <span class="help-block" ng-show="bidForm.price.$error.agent && bidForm.price.$dirty"> 代理费率必须为10-100之间 </span>
+                            <span class="help-block" ng-show="bidForm.price.$error.agent && bidForm.price.$dirty"> 代理费率必须为{{rate_min}}-{{rate_max}}之间 </span>
                             <span class="help-block error" ng-show="error" >{{error}}</span>
                         </div>
                         <div class="row">

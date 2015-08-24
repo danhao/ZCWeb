@@ -1,13 +1,13 @@
 
 class Filter
 
-	constructor: (@$log) ->
+	constructor: (@$log, @utilService) ->
 		# time:
-		return (time) ->
+		###
+		return (time) =>
 			diff = Math.abs(Date.now() - (time * 1000))
 			diff_day = diff / (24 * 60 * 60 * 1000)
 			r = diff_day
-			###
 			ret = ""
 			y = Math.floor(r/365)
 			if y > 0
@@ -20,7 +20,9 @@ class Filter
 			ret += (Math.floor(r) + '天') if r > 0
 			ret
 			###
-			Math.floor(r)
+		
+		return @utilService.upToNow
+
 			
 
-angular.module('app').filter 'upToNow', ['$log', Filter]
+angular.module('app').filter 'upToNow', ['$log', 'utilService', Filter]

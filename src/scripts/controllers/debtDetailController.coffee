@@ -16,7 +16,7 @@ class DebtDetailController
 		ASSIGN: 2
 		
 	
-	constructor: (@$log, @$state, @$stateParams, @$scope, @$rootScope, @$timeout, @ajaxService, @actionCode, @constant, @userSession, @growlService) ->
+	constructor: (@$log, @$state, @$stateParams, @$scope, @$rootScope, @$timeout, @ajaxService, @actionCode, @constant, @userSession, @growlService, @utilService) ->
 		@getDebtDetail()
 		@pid = @userSession.pid()
 		@ajaxService.post @actionCode.GET_USER, {id: @pid}
@@ -45,10 +45,14 @@ class DebtDetailController
 		@$scope.debtType = @debt.type
 		@$scope.price = 10
 
+		handType = @utilService.getHandTypeByTime @debt.debtExpireTime
+		@$scope.rate_min = handType.rate
+
 		# 代理, 费率
 		@$scope.agentLegalCheck = (price) =>
 			if @debt.type == 1	# 费率
-				10 <= price <= 100
+				# 10 <= price <= 100
+				@$scope.rate_min*100 <= price <= @debt.rate
 			else
 				true
 
@@ -365,5 +369,5 @@ class DebtModelInstanceController
 # 	.controller 'debtModelInstanceController', ['$log', '$scope', '$modalInstance', 'actionCode', 'ajaxService', 'debt', DebtModelInstanceController]
 
 angular.module("app")
-	.controller 'debtDetailController', ['$log', '$state', '$stateParams', '$scope', '$rootScope', '$timeout', 'ajaxService', 'actionCode', 'constant', 'userSession', 'growlService', DebtDetailController]
+	.controller 'debtDetailController', ['$log', '$state', '$stateParams', '$scope', '$rootScope', '$timeout', 'ajaxService', 'actionCode', 'constant', 'userSession', 'growlService', 'utilService', DebtDetailController]
 	# .controller 'debtModelInstanceController', ['$log', '$scope', '$modalInstance', 'actionCode', 'ajaxService', 'debt', DebtModelInstanceController]

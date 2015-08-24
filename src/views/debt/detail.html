@@ -301,18 +301,21 @@
                              </div>
                         -->
 
-                        <div class="form-group fg-line" show-errors >
+                        <div class="form-group fg-line" show-errors>
                             <label for="price" class="control-label">{{ debtType == 1? "代理费率": "我要出价" }}</label>
                             <div class="input-group">
                                 <span class="input-group-addon" ng-show="debtType == 2" style="line-height:36px;">￥</span>
                                 <div class="fg-line">
                                     <input type="number" class="form-control" id="price" name="price" ng-model="price" placeholder="" required ui-validate="{agent:'agentLegalCheck($value)', assign:'assignLegalCheck($value)'}"/>
                                 </div>
-                                <span class="input-group-addon last fg-lineheight">{{ debtType == 1? "% &nbsp;&nbsp; (代理费率应大于10%)": "元" }}</span>
+                                <span class="input-group-addon last fg-lineheight">
+                                    <span ng-if="debtType == 1">代理费率必须在{{rate_min*100}}-{{ctrl.debt.rate}}之间</span>
+                                    <span ng-if="debtType != 1">元</span>
+                                </span>
                             </div>
                             <span class="help-block" ng-show="bidForm.price.$error.required && bidForm.price.$dirty">需要必填</span>
                             <span class="help-block" ng-show="bidForm.price.$error.number && bidForm.price.$dirty">请输入合法的数字</span>
-                            <span class="help-block" ng-show="bidForm.price.$error.agent && bidForm.price.$dirty"> 代理费率必须为10-100之间 </span>
+                            <span class="help-block" ng-show="bidForm.price.$error.agent && bidForm.price.$dirty"> 代理费率必须在{{rate_min*100}}-{{ctrl.debt.rate}}之间 </span>
                             <span class="help-block" ng-show="bidForm.price.$error.assign && bidForm.price.$dirty">价格必须高出最高价或起拍价加上加价幅度 </span>
                             <span class="help-block error" ng-show="error" >{{error}}</span>
                         </div>

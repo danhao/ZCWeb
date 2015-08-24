@@ -1,6 +1,7 @@
 
 class DebtListController
-	constructor: (@$log,@$scope,@$rootScope,@$state, @$stateParams, @ajaxService, @actionCode, @messageService, @eventConst, @growlService, @handTypeService, @userSession) ->
+	constructor: (@$log,@$scope,@$rootScope,@$state, @$stateParams, @ajaxService, @actionCode, @messageService, @eventConst, @growlService, @handTypeService, @utilService, @userSession) ->
+
 		@q =
 			fbdate:'0'
 			money:'0'
@@ -14,6 +15,12 @@ class DebtListController
 			money:'0'
 			rate:'0'
 			city:''
+
+		@q2 = {}
+
+		if @$stateParams.q
+			@q.keyword = @$stateParams.q
+			@q2.keyword = @$stateParams.q
 
 		@pid = @userSession.pid()
 
@@ -160,7 +167,7 @@ class DebtListController
 	initDialog: () ->
 		# 表单检测
 		@$scope.agentLegalCheck = (price) =>
-			10 <= price <= 100
+			@$scope.rate_min <= price <= @$scope.rate_max
 
 		# 提交函数
 		@$scope.bidPrice = () =>
@@ -231,6 +238,11 @@ class DebtListController
 				(memo, num) -> memo + num
 				,
 				0
+				
+			debtExpireTime_min = (_.min checkedList, (debt) -> debt.debtExpireTime).debtExpireTime
+			@$scope.rate_max = (_.min checkedList, (debt) -> debt.rate).rate # 最小的费率值,是允许竞标的最大值
+			@$scope.rate_min = (@utilService.getHandTypeByTime debtExpireTime_min).rate * 100
+			
 			# @$log.log @$scope.selectedCount + " -- " + @$scope.deposit
 			# @$log.log @user.money + "--" + @$scope.deposit
 			if @user.money < @$scope.deposit # 金额不足
@@ -253,8 +265,9 @@ class DebtListController
 
 	query: ->
 		@q.keyword = @q2.keyword if @q2?
+		false
 		
 		
 
-angular.module("app").controller 'debtListController',['$log','$scope','$rootScope','$state','$stateParams','ajaxService', 'actionCode', 'messageService', 'eventConst', 'growlService', 'handTypeService', 'userSession', DebtListController]
+angular.module("app").controller 'debtListController',['$log','$scope','$rootScope','$state','$stateParams','ajaxService', 'actionCode', 'messageService', 'eventConst', 'growlService', 'handTypeService', 'utilService', 'userSession', DebtListController]
 

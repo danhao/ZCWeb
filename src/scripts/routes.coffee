@@ -289,7 +289,7 @@ class Config
 					breadcrumbProxy: 'site.debt.list'
 
 			.state 'site.debt.list',
-				url: ''
+				url: '?q'
 				templateUrl: 'views/debt/list.html'
 				data:
 					displayName: '债务列表'

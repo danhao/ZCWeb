@@ -1,7 +1,7 @@
 
 class Service
 
-	constructor: (@$log, @messageService) ->
+	constructor: (@$log, @messageService, @handTypeService) ->
 
 	isPhone: (value) ->
 		# 校验手机号. 规则: 11位数字，以1开头
@@ -79,6 +79,19 @@ class Service
 		else
 			5
 
+	# 计算给定时间(秒数)到现在为止,过去的天数.
+	# 
+	# @param time long 秒数,给定的时间
+	# @return int 从那个点到目前为止过去的天数.
+	upToNow: (time) ->
+		diff = Math.abs(Date.now() - (time*1000))
+		d = diff / (24*60*60*1000)
+		Math.floor d
+
+	# 根据给定的时间计算逾期时间的手别
+	getHandTypeByTime: (time) ->
+		@handTypeService.getTypeByDay @upToNow time
+
 	###
 	# 显示 alert 提示消息
 	# type: 类型. 默认是 danger
@@ -91,4 +104,4 @@ class Service
 			timeout: timeout
 
 
-angular.module('app').service 'utilService', ['$log', 'messageService', Service]
+angular.module('app').service 'utilService', ['$log', 'messageService', 'handTypeService', Service]

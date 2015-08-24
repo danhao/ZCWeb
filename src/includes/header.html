@@ -186,6 +186,8 @@
 
 <!-- Top Search Content -->
 <div id="top-search-wrap">
-    <input type="text">
+    <form method="searchForm" ng-submit="hctrl.search(hctrl.keyword)">
+    <input type="text" ng-model="hctrl.keyword">
     <i id="top-search-close" data-ng-click="hctrl.closeSearch()">&times;</i>
+    </form>
 </div>

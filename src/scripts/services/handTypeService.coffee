@@ -8,7 +8,7 @@ class Service
 		{ name: 'Q1', value: 4, text: '一手', from: 90, to: 179, rate: 0.05 },
 		{ name: 'Q2', value: 5, text: '二手', from: 180, to: 269, rate: 0.05 },
 		{ name: 'Q3', value: 6, text: '三手', from: 270, to: 359, rate: 0.05 },
-		{ name: 'Q4', value: 7, text: '四手', from: 360, to: -1, rate: 0.05e }
+		{ name: 'Q4', value: 7, text: '四手', from: 360, to: -1, rate: 0.05 }
 	]
 	
 	constructor: (@$log) ->
