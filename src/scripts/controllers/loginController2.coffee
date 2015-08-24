@@ -2,6 +2,11 @@ class LoginController2
 	constructor: (@$log, @$window, @$state, @$stateParams, @$rootScope, @$scope, @$q, @ajaxService, @actionCode, @eventConst, @userSession, @md5, @growlService, @utilService) ->
 		angular.element(".login-content").height angular.element(@$window).height()
 		type = @$stateParams.type
+		# @$log.log 'role:'+@$stateParams.role
+		if @$stateParams.role
+			@user = @user or {}
+			@user.role = @$stateParams.role
+		
 		@showLogin = if (not type or type is '1') then 1 else 0
 		@showRegister = if type is '2' then 1 else 0
 		@showForgot = 0

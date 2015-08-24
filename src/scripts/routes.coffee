@@ -41,7 +41,7 @@ class Config
 				templateUrl: 'views/selectrole.html'
 
 			.state 'site.login',
-				url: 'login/:type'
+				url: 'login/:type?role'
 				templateUrl: 'views/login.html'
 						
 			.state 'site.register',

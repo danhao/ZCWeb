@@ -75,8 +75,8 @@ class Service
 				fn ret, response.status, response.headers, response.config, response.data
 			promise
 
-		promise.error = (fn) ->
-			promise.then null, (response) ->
+		promise.error = (fn) =>
+			promise.then null, (response) =>
 				# interceptor
 				unless @error_interceptor(response.data.error)
 					return false

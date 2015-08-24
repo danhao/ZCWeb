@@ -1,14 +1,14 @@
 
 <header id="header" data-ng-include src="'includes/header-nologin.html'"></header>
 
-<div class="container m-t-30" ng-controller="registerSuccessController as ctrl">
+<div class="container m-t-30" >
     <div class="block-header">
         <h2>选择身份</h2>
     </div>
 
     <div class="row m-t-20">
         <div class="col-sm-4 col-sm-offset-1">
-            <div class="card hand" ui-sref="site.login({type:2})" ng-mouseenter="bg1='bgm-orange'" ng-mouseleave="bg1=''">
+            <div class="card hand" ui-sref="site.login({type:2, role:1})" ng-mouseenter="bg1='bgm-orange'" ng-mouseleave="bg1=''">
                 <div class="card-header {{bg1}}">
                     <h2>
                         委托方
@@ -28,10 +28,10 @@
             </div>
         </div>
         <div class="col-sm-4 col-sm-offset-2">
-            <div class="card hand" ui-sref="site.login({type:2})" ng-mouseenter="bg2='bgm-teal'" ng-mouseleave="bg2=''">
+            <div class="card hand" ui-sref="site.login({type:2, role:2})" ng-mouseenter="bg2='bgm-teal'" ng-mouseleave="bg2=''">
                 <div class="card-header {{bg2}}">
                     <h2>
-                        代理方
+                        催收方
                         <small>海量催收业务，轻松代理业务</small>
                     </h2>
                 </div>
