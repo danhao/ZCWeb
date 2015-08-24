@@ -65,6 +65,13 @@
 		<!-- <ng:include src="'/views/site.html'"></ng:include> -->
 
 
+        <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+            <div id="ie-warning" data-ng-include src="'views/ie-warning.html'"></div>
+        <![endif]-->        
+
+        
+
 		<% if (config.environment && config.environment === 'prod') { %>
 			<script src="/scripts/vendors.min.js"></script>
 			<script src="<%= config.getHashedFile('./.temp/scripts/scripts.min.js', {trim: './.temp'}) %>"></script>

@@ -36,6 +36,10 @@ class Config
 				url: 'jobs'
 				templateUrl: 'views/recruit.html'
 
+			.state 'site.selectrole',
+				url: 'selectrole'
+				templateUrl: 'views/selectrole.html'
+
 			.state 'site.login',
 				url: 'login/:type'
 				templateUrl: 'views/login.html'

@@ -1,0 +1,55 @@
+
+<header id="header" data-ng-include src="'includes/header-nologin.html'"></header>
+
+<div class="container m-t-30" ng-controller="registerSuccessController as ctrl">
+    <div class="block-header">
+        <h2>选择身份</h2>
+    </div>
+
+    <div class="row m-t-20">
+        <div class="col-sm-4 col-sm-offset-1">
+            <div class="card hand" ui-sref="site.login({type:2})" ng-mouseenter="bg1='bgm-orange'" ng-mouseleave="bg1=''">
+                <div class="card-header {{bg1}}">
+                    <h2>
+                        委托方
+                        <small>轻松发布债务，实时监控催收进度</small>
+                    </h2>
+                </div>
+                <div class="card-body card-padding">
+                    <h4>适合于以下客户</h4>
+                    <ul>
+                        <li>P2P公司</li>
+                        <li>小贷公司</li>
+                        <li>银行</li>
+                        <li>个人借款</li>
+                        <li>其他类金融公司</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-sm-offset-2">
+            <div class="card hand" ui-sref="site.login({type:2})" ng-mouseenter="bg2='bgm-teal'" ng-mouseleave="bg2=''">
+                <div class="card-header {{bg2}}">
+                    <h2>
+                        代理方
+                        <small>海量催收业务，轻松代理业务</small>
+                    </h2>
+                </div>
+                <div class="card-body card-padding">
+                    <h4>适合于以下客户</h4>
+                    <ul>
+                        <li>律师事务所</li>
+                        <li>专业催收公司</li>
+                        <li>个人催收专员</li>
+                        <li>其他催收机构</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+</div>
+
+<!-- footer -->
+<footer id="footer" data-ng-include src="'includes/footer.html'"></footer>
