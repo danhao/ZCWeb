@@ -1,9 +1,83 @@
 
-<div class="container">
+<div class="container" ng-controller="contactController as ctrl">
+    <div class="block-header">
+        <h2>联系我们</h2>
+    </div>
+    <div class="card">
+        <!-- 
+        <div class="card-header">
+        </div> -->
+        <div class="card-body card-padding">
+            <div id="map" class="map"></div>
+        </div>
+    </div>
     <div class="row">
-        <div class="col-sm-12">
-            <h1>联系我们</h1>
-            
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-header ch-alt">
+                    <h2>联系方式</h2>
+                    <small>您可通过下面的联系方式找到我们.</small>
+                </div>
+                <div class="card-body card-padding">
+                    <ul class="notdot">
+                        <li>
+                            <i class="zmdi zmdi-pin m-r-10 m-b-10"></i> 深圳市南山区虚拟大学园409
+                        </li>
+                        <li>
+                            <i class="zmdi zmdi-label m-r-10 m-b-10"></i> 518057
+                        </li>
+                        <li>
+                            <i class="zmdi zmdi-phone m-r-10 m-b-10"></i> 0755-6669 2783
+                        </li>
+                        <li>
+                            <i class="zmdi zmdi-email m-r-10 m-b-10"></i> hr@ddzhai.cn
+                        </li>                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-header ch-alt">
+                    <h2>与我们联系</h2>
+                    <small>你也可以提交您的问题，我们会安排专人尽快与您联系</small>
+                </div>
+                <div class="card-body card-padding">
+                    <form name="contactForm">
+                        <div class="form-group fg-float">
+                            <div class="fg-line">
+                                <input type="email" class="form-control" />
+                            </div>
+                            <label class="fg-label">姓名</label>
+                        </div>
+
+                        <div class="form-group fg-float">
+                            <div class="fg-line">
+                                <input type="email" class="form-control"/>
+                            </div>
+                            <label class="fg-label">电子邮件地址</label>
+                        </div>
+
+                        <div class="form-group fg-float">
+                            <div class="fg-line">
+                                <input type="email" class="form-control"/>
+                            </div>
+                            <label class="fg-label">联系电话</label>
+                        </div>
+
+                        <div class="form-group fg-float">
+                            <div class="fg-line">
+                                <textarea class="form-control auto-size"></textarea>
+                            </div>
+                            <label class="fg-label">留言</label>
+                        </div>
+
+                        <button class="btn btn-info waves-effect">提交</button>
+                        <button class="btn btn-link waves-effect">取消</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
