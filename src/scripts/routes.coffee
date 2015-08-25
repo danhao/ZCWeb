@@ -26,7 +26,7 @@ class Config
 
 			.state 'site.index.contact',
 				url: 'contact'
-				templateUrl: 'views/contact.html'
+				templateUrl: 'views/index/contact.html'
 
 			.state 'site.index.news',
 				url: 'news'

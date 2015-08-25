@@ -43,7 +43,7 @@ class DebtDetailController
 		# 保证金: 10%, 500封顶
 		@$scope.deposit = Math.min(Math.round(@debt.money * 0.1), 500*100)
 		@$scope.debtType = @debt.type
-		@$scope.price = 10
+		# @$scope.price = 10
 
 		handType = @utilService.getHandTypeByTime @debt.debtExpireTime
 		@$scope.rate_min = handType.rate
