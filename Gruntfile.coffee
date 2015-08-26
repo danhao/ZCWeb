@@ -136,7 +136,7 @@ module.exports = (grunt) ->
 					cwd: '<%= settings.tempDirectory %>'
 					src: [
 						'**/*.{eot,svg,ttf,woff}'
-						'**/*.{gif,jpeg,jpg,png,svg,webp}'
+						'**/*.{gif,jpeg,jpg,png,svg,webp,ico}'
 						'index.html'
 						'views/**/*.html'
 						'includes/**/*.html'

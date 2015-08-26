@@ -29,33 +29,12 @@ class Controller
 			title:"点点债互联网金融服务有限公司"
 			imageOffset:
 				width:0
-				height:3
+				height:3-25		# 3
 			position:
 				lat:22.541219
 				lng:113.951369
 		]
-		###
-		for(var index = 0; index < markers.length; index++ ){
-			var point = new BMap.Point(markers[index].position.lng,markers[index].position.lat);
-			var marker = new BMap.Marker(point,
-				{icon: new BMap.Icon("http://api.map.baidu.com/lbsapi/createmap/images/icon.png",
-					new BMap.Size(20,25),{
-						imageOffset: new BMap.Size(markers[index].imageOffset.width,
-						markers[index].imageOffset.height)
-						})
-				});
-			var label = new BMap.Label(markers[index].title,{offset: new BMap.Size(25,5)});
-			var opts = {
-				width: 200,
-				title: markers[index].title,
-				enableMessage: false
-			};
-			var infoWindow = new BMap.InfoWindow(markers[index].content,opts);
-			marker.setLabel(label);
-			addClickHandler(marker,infoWindow);
-			map.addOverlay(marker);
-		}
-		###
+
 		createMarker = (c) =>
 			point = new BMap.Point c.position.lng, c.position.lat
 			marker = new BMap.Marker point,
@@ -63,10 +42,13 @@ class Controller
 					new BMap.Size(20, 25),
 					imageOffset: new BMap.Size c.imageOffset.width, c.imageOffset.height
 			label = new BMap.Label c.title,
-				offset: new BMap.Size 25,5
+				offset: new BMap.Size 0,25
+			label.setStyle
+				color: 'red'
+				fontSize: '15px'
 			opts =
 				width: 200
-				title: c.title
+				title: "<b>#{c.title}</b>"
 				enableMessage: false
 			infoWindow = new BMap.InfoWindow c.content, opts
 			marker.setLabel label
