@@ -57,12 +57,12 @@
                                     </div>
                                     <div class="card-body card-padding">
                                         <div class="row">
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-12">
                                                 <span class="money">{{ctrl.user.money | ccurrency }}</span>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <a ui-sref="site.member.pay" class="btn btn-default">充值</a> &nbsp;
-                                                <a ui-sref="site.member.cash"  class="btn btn-default">提现</a>
+                                                <div class="pull-right">
+                                                    <a ui-sref="site.member.pay" class="btn btn-default">充值</a> &nbsp;
+                                                    <a ui-sref="site.member.cash"  class="btn btn-default">提现</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -75,11 +75,9 @@
                                     </div>
                                     <div class="card-body card-padding">
                                         <div class="row">
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-12">
                                                 <span class="money">{{ctrl.user.frozen | ccurrency }}</span>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <a ui-sref="site.member.fundrecord" class="btn btn-default">资金明细</a>
+                                                <a ui-sref="site.member.fundrecord" class="btn btn-default pull-right">资金明细</a>
                                             </div>
                                         </div>
                                     </div>

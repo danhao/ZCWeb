@@ -124,6 +124,7 @@ class DebtDetailController
 				( @pid is @debt.ownerId and @debt.messages? and @debt.messages.length > 0 ) # 退单处理
 			)
 
+
 	getDebtDetail: ->
 		@ajaxService.post @actionCode.VIEW_DEBT, {param: @$stateParams.debtId}
 			.success (result) =>
