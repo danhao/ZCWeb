@@ -98,7 +98,7 @@ module.exports = (grunt) ->
 			app:
 				options:
 					base: '<%= settings.distDirectory %>'
-					hostname: 'localhost'
+					hostname: '0.0.0.0'
 					livereload: true
 					middleware: (connect, options, middlewares) ->
 						express = require 'express'
@@ -110,7 +110,7 @@ module.exports = (grunt) ->
 						middlewares.unshift app
 						middlewares
 					open: false
-					port: 3001
+					port: 3000
 
 		# Copies directories and files from one location to another
 		copy:
