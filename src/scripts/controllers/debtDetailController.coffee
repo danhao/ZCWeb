@@ -2,13 +2,13 @@
 class DebtDetailController
 
 	# 状态
-	DEBT_STATE =
-		ALL				: -1
-		TO_CHECK		: 0
-		CHECKED_PASS	: 1
-		CHECKED_FAILED	: 2
-		DEAL			: 3
-		COMPLETED		: 4
+	# DEBT_STATE =
+	# 	ALL				: -1
+	# 	TO_CHECK		: 0
+	# 	CHECKED_PASS	: 1
+	# 	CHECKED_FAILED	: 2
+	# 	DEAL			: 3
+	# 	COMPLETED		: 4
 
 	# 类型
 	DEBT_TYPE =
@@ -27,6 +27,7 @@ class DebtDetailController
 				
 		@collectionTypes = @constant.debtStatusType
 		@contactTypes = @constant.contactType
+		@DEBT_STATE = @constant.debtState
 		
 		@init_calendar()
 		
@@ -100,27 +101,27 @@ class DebtDetailController
 		# else
 		# 	@$scope.countdown_time = @debt.publishTime*1000 + @debt.duration*24*60*60*1000
 
-		@$scope.countdown_time = @debt.publishTime*1000 + (if @debt.state < 3 then @debt.expireDays else @debt.duration)*24*60*60*1000
+		@$scope.countdown_time = @debt.publishTime*1000 + (if @debt.state < @DEBT_STATE.DEAL then @debt.expireDays else @debt.duration)*24*60*60*1000
 			
 		@bidderIds = _.map @debt.bidders, (bidder)-> bidder.id
 		isBidded = @debt.type is DEBT_TYPE.AGENT and @pid in @bidderIds # 是否已投票
 		
-		@$scope.showBidButton = (@debt.state is 1) and (@pid isnt @debt.ownerId) and (@pid isnt @debt.winnerId) and not isBidded
-		@$scope.showCreditor = (@debt.state >= 3) and (@pid is @debt.winnerId)
-		@$scope.showCountdown = (@debt.state is 1) or (@debt.state == 3 and (@pid is @debt.ownerId or @pid is @debt.winnerId))
+		@$scope.showBidButton = (@debt.state is @DEBT_STATE.CHECKED_PASS) and (@pid isnt @debt.ownerId) and (@pid isnt @debt.winnerId) and not isBidded
+		@$scope.showCreditor = (@debt.state >= @DEBT_STATE.DEAL) and (@pid is @debt.winnerId)
+		@$scope.showCountdown = (@debt.state is @DEBT_STATE.CHECKED_PASS) or (@debt.state == @DEBT_STATE.DEAL and (@pid is @debt.ownerId or @pid is @debt.winnerId))
 		@$scope.showReturnButton = @debt.canReturn is 1 and @pid is @debt.winnerId
-		@$scope.showEndButton = (@debt.state is 3) and @debt.canEnd is 1 and @pid is @debt.winnerId
+		@$scope.showEndButton = (@debt.state is @DEBT_STATE.DEAL) and @debt.canEnd is 1 and @pid is @debt.winnerId
 		
 		# 投标状态
 		@$scope.bidStatus = switch
-			when @debt.state < 3 and isBidded then '你已投过标'
-			when @debt.state is 3 and (isBidded and @pid isnt @debt.winnerId) then '已结束'
-			when @debt.state > 3 then '已结束'
+			when @debt.state < @DEBT_STATE.DEAL and isBidded then '你已投过标'
+			when @debt.state is @DEBT_STATE.DEAL and (isBidded and @pid isnt @debt.winnerId) then '已结束'
+			when @debt.state > @DEBT_STATE.DEAL then '已结束'
 			else ''
 
 		@$scope.showDebtCollection =
 			@debt.type == 1 and	 ( # 债权代理
-				( @debt.state >= 3 and  (@pid is @debt.ownerId or @pid is @debt.winnerId) ) or # 已成交,且,为发布人或中标人
+				( @debt.state >= @DEBT_STATE.DEAL and  (@pid is @debt.ownerId or @pid is @debt.winnerId) ) or # 已成交,且,为发布人或中标人
 				( @pid is @debt.ownerId and @debt.messages? and @debt.messages.length > 0 ) # 退单处理
 			)
 
@@ -140,7 +141,7 @@ class DebtDetailController
 
 	# 我要竞标
 	bid: ->
-		if @debt.state >= DEBT_STATE.DEAL # 只有未成交的单允许竞标
+		if @debt.state >= @DEBT_STATE.DEAL # 只有未成交的单允许竞标
 			return
 		if @user.money < @$scope.deposit
 			@openRechargeModal()
@@ -152,7 +153,7 @@ class DebtDetailController
 
 	# 退单
 	returnDebt: ->
-		if @debt.state >= DEBT_STATE.DEAL and @debt.canReturn # 已成交并允许退单
+		if @debt.state >= @DEBT_STATE.DEAL and @debt.canReturn # 已成交并允许退单
 			swal {
 				title: '确定退单',
 				showCancelButton: true,
@@ -177,7 +178,7 @@ class DebtDetailController
 	
 	# 结单
 	endDebt: ->
-		if @debt.state >= DEBT_STATE.DEAL and @debt.canEnd # 已成交并且允许结单
+		if @debt.state >= @DEBT_STATE.DEAL and @debt.canEnd # 已成交并且允许结单
 			swal {
 				title: '确定要申请结单',
 				showCancelButton: true,
@@ -201,7 +202,7 @@ class DebtDetailController
 
 	# 中标
 	winbid: (playerId)->
-		if @debt.state >= DEBT_STATE.DEAL or @pid != @debt.ownerId # 检测
+		if @debt.state >= @DEBT_STATE.DEAL or @pid != @debt.ownerId # 检测
 			return
 		@ajaxService.post @actionCode.ACTION_BID_WIN, {
 			debtId: @debt.id
