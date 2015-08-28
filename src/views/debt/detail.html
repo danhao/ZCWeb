@@ -58,6 +58,12 @@
             <!-- <div class="debt-price" ng-class="{'0':'bgm-orange','1':'bgm-orange','2':'bgm-gray','3':'bgm-orange','4':'bgm-gray'}[ctrl.debt.state]"> -->
             <div class="debt-price" ng-class="{'bgm-orange': bidStatus!='已结束','bgm-gray': bidStatus=='已结束'}">
                 <h1>{{ctrl.debt.money | ccurrency}} </h1>
+                
+                <div class="dropdown pmop-message" ng-show="showEditButton">
+                    <button class="btn bgm-white btn-float z-depth-1 waves-effect" ng-click="ctrl.edit()" aria-expanded="false">
+                        <i class="zmdi zmdi-edit"></i>
+                    </button>
+                </div>
                 <div class="dropdown pmop-message" ng-show="showBidButton">
                     <button class="btn bgm-white btn-float z-depth-1 waves-effect" ng-click="ctrl.bid()" aria-expanded="false">
                         <i class="zmdi zmdi-mail-send"></i>

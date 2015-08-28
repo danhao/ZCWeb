@@ -11,10 +11,11 @@ class DebtController
 			blurTrig: true
 
 		@contactTypes = @constant.contactType
-			# "手机": 1
-			# "家庭": 2
-			# "工作单位": 3
-			# "其他": 4
+
+		# edit
+		if @$stateParams.id
+			@$log.log "edit: #{@$stateParams.id}"
+			
 
 		@goto = () =>
 			if @validate1()
@@ -144,6 +145,15 @@ class DebtController
 						name : filearray[0]
 					dataarray.push data
 			dataarray
+
+	
+	getDebtDetail: ->
+		@ajaxService.post @actionCode.VIEW_DEBT, {param: @$stateParams.id}
+			.success (result) =>
+				@debt = result
+			.error (error) ->
+				@$log.log error
+
 
 angular.module("app")
 #  .config ["w5cValidatorProvider",

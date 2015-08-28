@@ -143,7 +143,7 @@ class Config
 						msg: "没有上传相关债权文档！"
 
 			.state 'site.member.createdebt',
-				url: 'createdebt'
+				url: 'createdebt/:id'
 				templateUrl: 'views/user/createdebt.html'
 				data:
 					precondition:

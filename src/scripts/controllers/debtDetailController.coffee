@@ -105,7 +105,8 @@ class DebtDetailController
 			
 		@bidderIds = _.map @debt.bidders, (bidder)-> bidder.id
 		isBidded = @debt.type is DEBT_TYPE.AGENT and @pid in @bidderIds # 是否已投票
-		
+
+		@$scope.showEditButton = @debt.state is @DEBT_STATE.TO_CHECK and @pid is @debt.ownerId
 		@$scope.showBidButton = (@debt.state is @DEBT_STATE.CHECKED_PASS) and (@pid isnt @debt.ownerId) and (@pid isnt @debt.winnerId) and not isBidded
 		@$scope.showCreditor = (@debt.state >= @DEBT_STATE.DEAL) and (@pid is @debt.winnerId)
 		@$scope.showCountdown = (@debt.state is @DEBT_STATE.CHECKED_PASS) or (@debt.state == @DEBT_STATE.DEAL and (@pid is @debt.ownerId or @pid is @debt.winnerId))
@@ -139,6 +140,10 @@ class DebtDetailController
 				alert error.desc
 
 
+	edit: ->
+		@$state.go 'site.member.createdebt', {id: @$stateParams.debtId}
+
+
 	# 我要竞标
 	bid: ->
 		if @debt.state >= @DEBT_STATE.DEAL # 只有未成交的单允许竞标
@@ -150,6 +155,7 @@ class DebtDetailController
 			@$log.log '你已投过标. 不允许重复投标'
 			return
 		@openBidModal()
+
 
 	# 退单
 	returnDebt: ->
