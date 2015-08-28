@@ -320,7 +320,7 @@
                             <span class="help-block" ng-show="bidForm.price.$error.assign && bidForm.price.$dirty">价格必须高出最高价或起拍价加上加价幅度 </span>
                             <span class="help-block error" ng-show="error" >{{error}}</span>
                         </div>
-                        <div class="row" ng-if="debtType == 1">
+                        <div class="row" ng-if="showDeposit">
                             <div class="col-sm-12">
                                 <div class="m-t-10">您需要交保证金 <b>{{ deposit | ccurrency }}</b></div>
                             </div>

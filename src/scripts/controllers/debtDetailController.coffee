@@ -42,9 +42,9 @@ class DebtDetailController
 
 	init_dialog: ->
 		# 保证金: 10%, 500封顶
-		@$scope.deposit = Math.min(Math.round(@debt.money * 0.1), 500*100)
+		@$scope.deposit = if @debt.type is DEBT_TYPE.AGENT then Math.min(Math.round(@debt.money * 0.1), 500*100) else Math.round(@debt.money * 0.1)
 		@$scope.debtType = @debt.type
-		# @$scope.price = 10
+		@$scope.showDeposit = @debt.type is DEBT_TYPE.AGENT or (@debt.type is DEBT_TYPE.ASSIGN and @pid not in @bidderIds)
 
 		handType = @utilService.getHandTypeByTime @debt.debtExpireTime
 		@$scope.rate_min = handType.rate
