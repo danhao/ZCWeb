@@ -1,4 +1,9 @@
 class DebtController
+	
+	MODE =
+		INSERT: 0
+		EDIT: 1
+	
 	constructor: (@$log,@$scope,@$state, @$stateParams,@$window,@ajaxService, @actionCode, @constant, @w5cValidator,@$timeout,@growlService) ->
 		@debt =
 			city: [ '广东', '深圳市', '南山区' ]
@@ -14,6 +19,7 @@ class DebtController
 
 		# edit
 		if @$stateParams.id
+			@mode = MODE.EDIT
 			@$log.log "edit: #{@$stateParams.id}"
 			@getDebtDetail()
 			
@@ -64,6 +70,7 @@ class DebtController
 				growlService.growl("加价幅度+起拍价格应小于债务总金额！", 'warning')
 
 		@saveEntity = (@debt)->
+			# @$log.log 'save....xs'
 			if debt.creditorIdFile is undefined
 				growlService.growl("请上传债权人身份证图片！", 'danger')
 				return
@@ -88,10 +95,12 @@ class DebtController
 				growlService.growl '请至少提供一种联系方式', 'danger'
 				return
 
-			sheng = debt.city.cn[0]
-			city= debt.city.cn[1]
-			area= debt.city.cn[2]
-			debt.debtorLocation = sheng+'/'+city+'/'+area
+			if debt.city
+				sheng = debt.city.cn[0]
+				city= debt.city.cn[1]
+				area= debt.city.cn[2]
+				debt.debtorLocation = sheng+'/'+city+'/'+area
+				
 			debt.type = parseInt debt.type
 			debt.money *=100
 
@@ -107,7 +116,11 @@ class DebtController
 			if debt.files isnt undefined && (typeof debt.files)=='string'
 				debt.files = splitfiles(debt.files)
 
-#			$log.log debt
+			if @mode is MODE.EDIT
+				debt.updateId = debt.id
+				# debt = _.omit(debt, "creditorIdFile", "files", "id")
+			
+			# $log.log debt
 #			return
 			@ajaxService.post actionCode.CREATE_DEBT, debt
 			.success (results) ->
@@ -166,9 +179,12 @@ class DebtController
 
 	initEdit: (debt) ->
 		debt.money = debt.money / 100
+		if debt.price
+			debt.price = debt.price / 100
+		if debt.bidIncrease
+			debt.bidIncrease = debt.bidIncrease / 100
 		debt.judgementTime = @_time2display(debt.judgementTime)
 		debt.debtExpireTime = @_time2display(debt.debtExpireTime)
-		
 		debt
 
 	_time2display: (t) ->
