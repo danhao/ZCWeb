@@ -390,6 +390,7 @@ module.exports = (grunt) ->
 						'angularUtils.directives.uiBreadcrumbs': 'libs/uiBreadcrumbs.js'
 						'w5c.validator':'libs/w5cValidator.min.js'
 						'ui.bootstrap.showErrors': 'libs/showErrors.min.js'
+						'flow': 'libs/ng-flow-standalone.min.js'
 						'angular-md5': 'libs/angular-md5.min.js'
 				]
 				require: 'NGBOOTSTRAP'
@@ -440,6 +441,7 @@ module.exports = (grunt) ->
 						'angularUtils.directives.uiBreadcrumbs': 'libs/uiBreadcrumbs.js'
 						'w5c.validator':'libs/w5cValidator.min.js'
 						'ui.bootstrap.showErrors': 'libs/showErrors.min.js'
+						'flow': 'libs/ng-flow-standalone.min.js'
 						'angular-md5': 'libs/angular-md5.min.js'
 				]
 				require: '<%= shimmer.dev.require %>'

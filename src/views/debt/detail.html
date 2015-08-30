@@ -186,7 +186,7 @@
                                     <div class="lv-title">{{ bidder.name }} <span class="m-l-10 c-gray"><i class="zmdi zmdi-time"></i>&nbsp; {{bidder.createTime | idate}}</span> </div>
                                     <small class="lv-small"><rating value="{{bidder.rating | rating}}" readonly="true"></rating></small>
                                     <div class="lv-actions actions dropdown">
-                                        <span class="badge" ng-if="ctrl.debt.state >= ctrl.DEBT_STATE.DEAL  && bidder.id == ctrl.debt.winnerId">中标</span>
+                                        <span class="badge" ng-if="ctrl.debt.state >= ctrl.DEBT_STATE.DEAL && bidder.id == ctrl.debt.winnerId && (ctrl.debt.type == 1 || ctrl.debt.type == 2 && ctrl.debt.bidMoney == bidder.money)">中标</span>
                                         竞标价: <b class="f-18">{{ ctrl.debt.type == 1 ? (bidder.rate + '%') : (bidder.money | ccurrency) }}</b>
                                         <a aria-expanded="false" data-toggle="dropdown" href="" ng-show="ctrl.debt.state < ctrl.DEBT_STATE.DEAL && ctrl.pid == ctrl.debt.ownerId && ctrl.debt.type == 1">
                                         <i class="zmdi zmdi-more-vert"></i> </a>

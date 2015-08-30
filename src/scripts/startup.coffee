@@ -29,7 +29,7 @@ class Startup
 					@$log.log error
 
 			@mobilePush(ret.name, ret.id)
-			
+
 
 		# F5
 		if @userSession.pid()

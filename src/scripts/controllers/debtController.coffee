@@ -15,6 +15,7 @@ class DebtController
 		# edit
 		if @$stateParams.id
 			@$log.log "edit: #{@$stateParams.id}"
+			@getDebtDetail()
 			
 
 		@goto = () =>
@@ -150,9 +151,28 @@ class DebtController
 	getDebtDetail: ->
 		@ajaxService.post @actionCode.VIEW_DEBT, {param: @$stateParams.id}
 			.success (result) =>
-				@debt = result
+				@debt = @initEdit(result)
+				re = /(\w+)\.debt\.(.+)/
+				$(".fg-line :input").each (index, el) ->
+					$el = $(el)
+					model = $el.attr("ng-model")
+					if re.test model
+						field = model.replace re, '$2'
+						if result[field]
+							$el.parent().addClass("fg-toggled")
+						
 			.error (error) ->
 				@$log.log error
+
+	initEdit: (debt) ->
+		debt.money = debt.money / 100
+		debt.judgementTime = @_time2display(debt.judgementTime)
+		debt.debtExpireTime = @_time2display(debt.debtExpireTime)
+		
+		debt
+
+	_time2display: (t) ->
+		if t is 0 then '' else moment(t*1000).format("YYYY/MM/DD")
 
 
 angular.module("app")

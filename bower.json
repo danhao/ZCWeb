@@ -15,6 +15,7 @@
     "angular-bootstrap-show-errors": "~2.3.0",
     "angular-w5c-validator": "2.3.9",
     "angular-md5": "~0.1.7",
+    "ng-flow": "~2",
     "bootstrap": "3.3.5",
     "remarkable-bootstrap-notify": "~3.1.3",
     "bootstrap-select": "~1.7.3",
@@ -80,6 +81,9 @@
     },
     "angular-md5": {
       "scripts/libs": "angular-md5.min.js{,.map}"
+    },
+    "ng-flow": {
+      "scripts/libs": "dist/ng-flow-standalone.min.js"
     },
     "jquery": {
       "scripts/libs": "dist/jquery.min.{js,map}"
