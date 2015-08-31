@@ -48,3 +48,6 @@ startup = ($log, $rootScope, ajaxService, actionCode, eventConst, userSession, g
 
 
 angular.module("app").run ['$log', '$rootScope', 'ajaxService', 'actionCode', 'eventConst', 'userSession', 'growlService', startup]
+
+
+

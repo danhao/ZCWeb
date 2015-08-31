@@ -1,5 +1,5 @@
 class Config
-	constructor: ($stateProvider, $urlRouterProvider, $injector) ->
+	constructor: ($stateProvider, $urlRouterProvider, $injector, $locationProvider) ->
 		$stateProvider
 			.state 'site',
 				url: '/'
@@ -330,5 +330,12 @@ class Config
 
 		$urlRouterProvider.otherwise '/'
 
+		# hashbang
+		$locationProvider.html5Mode true
+			.hashPrefix '!'
 
-angular.module('app').config ['$stateProvider', '$urlRouterProvider', '$injector', Config]
+
+
+angular.module('app').config ['$stateProvider', '$urlRouterProvider', '$injector', '$locationProvider', Config]
+
+
