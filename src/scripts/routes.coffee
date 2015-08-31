@@ -331,8 +331,7 @@ class Config
 		$urlRouterProvider.otherwise '/'
 
 		# hashbang
-		$locationProvider.html5Mode true
-			.hashPrefix '!'
+		$locationProvider.hashPrefix '!'
 
 
 

@@ -94,6 +94,7 @@ module.exports = (grunt) ->
 						level: 'ignore'
 
 		# Sets up a web server
+		###
 		connect:
 			app:
 				options:
@@ -111,6 +112,29 @@ module.exports = (grunt) ->
 						middlewares
 					open: false
 					port: 3000
+		###
+		connect:
+			app:
+				options:
+					base: '<%= settings.distDirectory %>'
+					hostname: '0.0.0.0' # localhost
+					livereload: true
+					middleware: (connect, options) ->
+						unless Array.isArray options.base
+							options.base = [options.base]
+						middlewares = [require('grunt-connect-proxy/lib/utils').proxyRequest]
+						middlewares.push connect.static item for item in options.base
+						directory = options.directory or options.base[options.base.length - 1]
+						middlewares.push connect.directory directory
+						middlewares
+					open: false
+					port: 3000
+
+				proxies: [
+					context: '/upload'
+					host: 'http://zichan.oss-cn-shenzhen.aliyuncs.com'
+					port: 80
+				]
 
 		# Copies directories and files from one location to another
 		copy:
@@ -698,6 +722,7 @@ module.exports = (grunt) ->
 	grunt.registerTask 'default', [
 		'replace:dev'
 		'build'
+		'configureProxies:app'
 		'connect'
 		'watch'
 	]
@@ -746,6 +771,7 @@ module.exports = (grunt) ->
 	# Enter the following command at the command line to execute this build task:
 	# grunt server
 	grunt.registerTask 'server', [
+		'configureProxies:app'
 		'connect'
 		'watch:none'
 	]

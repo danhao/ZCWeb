@@ -9,7 +9,9 @@ class TestController
 			OSSAccessKeyId: ossInfo.ossId
 			policy: ossInfo.policy
 			signature: ossInfo.signature
-			key: "#{pid}/abc1235.png"
+			key: "#{pid}/aaa.jpg"
+		@$log.log url
+		@$log.log data
 		@flow = new Flow
 			target: url
 			query: data
