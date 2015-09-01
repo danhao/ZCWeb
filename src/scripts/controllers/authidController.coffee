@@ -103,7 +103,7 @@ class AuthidController
 		validate = (auth) ->
 			$log.log auth.idFile
 			result = true
-			if auth.idFile == '' or auth.idFile == undefined
+			if (not $scope.isverifypass) and (auth.idFile == '' or auth.idFile == undefined)
 				growlService.growl("请上传身份证照片，参考拍照攻略！", 'danger')
 				result = false
 

@@ -25,13 +25,13 @@ var uploader=angular.module('app')
                 //     }
                 // },
 	            link: function($scope, element, attrs) {
-	                $scope.fileList=[];	
+	                $scope.fileList= [];	
 	                $scope.concurrency=(typeof attrs.concurrency=="undefined")?2:attrs.concurrency;
                     $scope.concurrency=parseInt($scope.concurrency);
 	                $scope.parameter=(typeof attrs.name=="undefined")?"file":attrs.name;
                     $scope.title = attrs.datFormTitle;
                     $scope.require = attrs.datFormRequire;
-                    $scope.transport=(typeof attrs.transport=="undefined")?"iframe":attrs.transport; //iframe, xhr
+                    $scope.transport=(typeof attrs.transport=="undefined")?"xhr":attrs.transport; //iframe, xhr
 	                $scope.activeUploads=0;	
 	                $scope.getSize=function(bytes) {
                         var sizes = [ 'n/a', 'bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EiB', 'ZiB', 'YiB' ];
@@ -176,6 +176,10 @@ var uploader=angular.module('app')
                         // Triggered when upload is completed:
                         xhr.onload = function(event) {
                             console.log('Upload completed: ' + upload.filename);
+
+                            // 回传文件名
+                            $scope.updateCallbackValue();
+                            
 				            $scope.onCompleted(upload);
                             
                         };
@@ -193,6 +197,10 @@ var uploader=angular.module('app')
                                     formData.append(prop, data[prop]);
                                 }
                             }
+                        }
+                        // aliyun
+                        if(upload.hasOwnProperty("key")) {
+                            formData.append("key", upload.key);
                         }
 
                         // Append file data:
@@ -288,11 +296,16 @@ var uploader=angular.module('app')
 
                         angular.forEach(data, function(value, key) {
                             var element = angular.element('<input type="hidden" name="' + key + '" />');
-                            if(key=='key')
-                                value=$scope.aliyunfile;
+                            // if(key=='key')
+                            //     value=$scope.aliyunfile;
                             element.val(value);
                             form.append(element);
                         });
+                        // aliyun
+                        if(upload.hasOwnProperty("key")) {
+                            form.append(angular.element('<input type="hidden" name="key" value="'+ upload.key +'" />'));
+                        }
+                        
                         form.prop({
                             action: $scope.url,
                             method: 'POST',
@@ -385,8 +398,8 @@ var uploader=angular.module('app')
                           data: {
                               OSSAccessKeyId: ossInfo.ossId, 
                               policy: ossInfo.policy,
-                              signature: ossInfo.signature,
-                              key: 'test.png'
+                              signature: ossInfo.signature
+                              // key: 'test.png'
                           },
                           url: ossInfo.url, 
                           pid: pid

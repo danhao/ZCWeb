@@ -551,6 +551,20 @@ module.exports = (grunt) ->
 					dest: 'src/scripts/constants/'
 				]
 
+		snapshot:
+			prod:
+				options:
+					snapshotPath: 'snapshots/'
+					sitePath: 'http://127.0.0.1:3000/'
+					msWaitForPages: 1000,
+					urls: [
+						'/'
+						'/about'
+						'/contact'
+						'/news'
+						'/jobs'
+					]
+
 		# Run tasks when monitored files change
 		watch:
 			basic:
@@ -801,4 +815,8 @@ module.exports = (grunt) ->
 		'prompt:jslove'
 		'coffee:jslove'
 		'clean:jslove'
+	]
+
+	grunt.registerTask 'snapshot', [
+		'snapshot:prod'
 	]

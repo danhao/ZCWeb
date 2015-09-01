@@ -39,6 +39,7 @@
     "time-grunt": "^1.0.0"
   },
   "devDependencies": {
-    "grunt-connect-proxy": "^0.2.0"
+    "grunt-connect-proxy": "^0.2.0",
+    "grunt-html-snapshot": "^0.6.1"
   }
 }
