@@ -25,7 +25,7 @@ var uploader=angular.module('app')
                 //     }
                 // },
 	            link: function($scope, element, attrs) {
-	                $scope.fileList= [];	
+	                $scope.fileList= [];
 	                $scope.concurrency=(typeof attrs.concurrency=="undefined")?2:attrs.concurrency;
                     $scope.concurrency=parseInt($scope.concurrency);
 	                $scope.parameter=(typeof attrs.name=="undefined")?"file":attrs.name;
@@ -41,8 +41,31 @@ var uploader=angular.module('app')
                     $scope.url=(attrs.ngUploader=="")?uploaderFactory.url:attrs.ngUploader;
                     $scope.filesizeLimit = $scope.filesizeLimit || 5*1024*1024;
 
+                    var initFlag = true;
                     var pid = uploaderFactory.pid;
                     var input = element.find("input");
+
+                    // init for edit
+                    /*
+                    if($scope.modelField) {
+                        var model = $scope.modelField;
+                        if(angular.isObject(model)) {
+                            $scope.fileList.push({
+                                filename: model.name,
+                                url: model.url
+                            });
+                        }
+                        else if(angular.isArray(model)) {
+                            angular.forEach(model, function(m) {
+                                $scope.fileList.push({
+                                    filename: m.name,
+                                    url: m.url
+                                });
+                            });
+                        }
+                    }
+                    */
+
                     
 	                element.bind("change", function(e) {
                         var target = e.target;
@@ -84,8 +107,31 @@ var uploader=angular.module('app')
 
                     // reset
                     $scope.$watch("modelField", function(newVal, oldVal) {
+                        
+                        // console.log( 'modelField: --------------------' );
+                        // console.log(newVal);
+
                         if(!newVal) {
                             $scope.fileList = [];
+                        }
+                        else if(newVal !== oldVal && initFlag) { // init fileList
+                            initFlag = false;
+                            // console.log( 'init' );
+
+                            if(angular.isArray(newVal)) {
+                                angular.forEach(newVal, function(m) {
+                                    $scope.fileList.push({
+                                        filename: m.name,
+                                        url: m.url
+                                    });
+                                });
+                            }
+                            else if(angular.isObject(newVal)) {
+                                $scope.fileList.push({
+                                    filename: newVal.name,
+                                    url: newVal.url
+                                });
+                            }
                         }
                     });
                     $scope.$watch("formField", function(newVal, oldVal) {
@@ -101,7 +147,7 @@ var uploader=angular.module('app')
 	                };
 	                $scope.onProgress=function(upload, loaded){
 		                $log.info("progress="+loaded);
-		                upload.value=(loaded/upload.file.size)*100;
+		                upload.value=(loaded/upload.size)*100; //upload.file.size
 		                upload.size=$scope.getSize(loaded);
 		                $scope.$apply();
 	                };	
@@ -267,11 +313,18 @@ var uploader=angular.module('app')
                     };
 
                     $scope.updateCallbackValue = function() {
+                        initFlag = false;
                         var fileList = $scope.fileList;
                         var fieldId = $scope.formField;
                         var names = [];
+                        $scope.modelField = [];
                         angular.forEach(fileList, function(v, k) {
                             names.push(v.filename+";"+v.key);
+                            $scope.modelField.push({
+                                name: v.filename,
+                                id: v.key,
+                                url: v.url
+                            });
                         });
                         if(fieldId) {
                             var formField = angular.element(document.getElementById(fieldId));
@@ -280,8 +333,7 @@ var uploader=angular.module('app')
                             }
                         }
 
-                        $scope.modelField = names.join("|");
-                        // $scope.$apply();
+                        // $scope.modelField = names.join("|");
                     };
 
                     $scope.xhrTransport = $scope.ajaxUpload;

@@ -74,9 +74,9 @@ class DebtController
 			if debt.creditorIdFile is undefined
 				growlService.growl("请上传债权人身份证图片！", 'danger')
 				return
-			else
-				if (typeof debt.creditorIdFile)=='string'
-					debt.creditorIdFile = splitfiles(debt.creditorIdFile)[0]
+			# else
+			# 	if (typeof debt.creditorIdFile)=='string'
+			# 		debt.creditorIdFile = splitfiles(debt.creditorIdFile)[0]
 			if debt.money*100>2147483648
 				growlService.growl("金额超出范围，不能大于21474836.48,请返回上一步修改！", 'danger')
 				return
@@ -113,8 +113,8 @@ class DebtController
 			debt.debtExpireTime = (Date.parse debt.debtExpireTime) / 1000
 			debt.judgementTime  = (Date.parse debt.judgementTime)  / 1000
 
-			if debt.files isnt undefined && (typeof debt.files)=='string'
-				debt.files = splitfiles(debt.files)
+			# if debt.files isnt undefined && (typeof debt.files)=='string'
+			# 	debt.files = splitfiles(debt.files)
 
 			if @mode is MODE.EDIT
 				debt.updateId = debt.id

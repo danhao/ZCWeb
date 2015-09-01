@@ -551,18 +551,18 @@ module.exports = (grunt) ->
 					dest: 'src/scripts/constants/'
 				]
 
-		snapshot:
+		htmlSnapshot:
 			prod:
 				options:
 					snapshotPath: 'snapshots/'
 					sitePath: 'http://127.0.0.1:3000/'
 					msWaitForPages: 1000,
 					urls: [
-						'/'
-						'/about'
-						'/contact'
-						'/news'
-						'/jobs'
+						# '#!/'
+						# '#!/about'
+						# '/contact'
+						# '/news'
+						# '/jobs'
 					]
 
 		# Run tasks when monitored files change
@@ -736,7 +736,7 @@ module.exports = (grunt) ->
 	grunt.registerTask 'default', [
 		'replace:dev'
 		'build'
-		'configureProxies:app'
+		# 'configureProxies:app'
 		'connect'
 		'watch'
 	]
@@ -785,7 +785,7 @@ module.exports = (grunt) ->
 	# Enter the following command at the command line to execute this build task:
 	# grunt server
 	grunt.registerTask 'server', [
-		'configureProxies:app'
+		# 'configureProxies:app'
 		'connect'
 		'watch:none'
 	]
@@ -817,6 +817,6 @@ module.exports = (grunt) ->
 		'clean:jslove'
 	]
 
-	grunt.registerTask 'snapshot', [
-		'snapshot:prod'
-	]
+	# grunt.registerTask 'snapshot', [
+	# 	'snapshot:prod'
+	# ]
