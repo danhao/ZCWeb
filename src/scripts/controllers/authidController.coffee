@@ -22,51 +22,57 @@ class AuthidController
 				growlService.growl(error, 'danger')
 		initperson()
 
-		@verify = (@authid)->
+		@verify = (authid)->
 			return if validate(authid)==false
-#			$log.log authid
-			if checkfiletype(authid.idFile)==false
+
+			_f = (o) ->
+				if angular.isArray(o) and o.length > 0
+					o[0]
+				else
+					o
+
+			idFile = _f(authid.idFile)
+			creditFile = _f(authid.creditFile)
+			noneCrimeFile = _f(authid.noneCrimeFile)
+			
+			if checkfiletype(idFile)==false
 				growlService.growl("身份证文件文件格式有误，仅支持支持jpg, jpeg, png, gif, bmp格式的图片文件！", 'warning')
 				return
-			else
-				if (typeof authid.idFile)=='string'
-					authid.idFile = splitfiles(authid.idFile)
+			# else
+			# 	if (typeof authid.idFile)=='string'
+			# 		authid.idFile = splitfiles(authid.idFile)
 
-			if authid.noneCrimeFile isnt undefined
-				if checkfiletype(authid.noneCrimeFile)==false
-					growlService.growl("无犯罪记录证明文件文件格式有误，仅支持支持jpg, jpeg, png, gif, bmp格式的图片文件！", 'warning')
-					return
-				else
-					if (typeof authid.noneCrimeFile)=='string'
-						authid.noneCrimeFile= splitfiles(authid.noneCrimeFile)
 
-			if authid.creditFile isnt undefined
-				if (typeof authid.creditFile)=='string'
-					authid.creditFile= splitfiles(authid.creditFile)
+			if checkfiletype(noneCrimeFile)==false
+				growlService.growl("无犯罪记录证明文件文件格式有误，仅支持支持jpg, jpeg, png, gif, bmp格式的图片文件！", 'warning')
+				return
+			# else
+			# 	if (typeof authid.noneCrimeFile)=='string'
+			# 		authid.noneCrimeFile= splitfiles(authid.noneCrimeFile)
 
-#			$log.log authid.idValidating
+			# if authid.creditFile isnt undefined
+			# 	if (typeof authid.creditFile)=='string'
+			# 		authid.creditFile= splitfiles(authid.creditFile)
 
 			if (authid.status&4) is 4
 				data =
 					idValidating:1
-					creditFile:authid.creditFile if authid.creditFile.id isnt undefined
-					noneCrimeFile:authid.noneCrimeFile if authid.noneCrimeFile.id isnt undefined
+					creditFile: creditFile
+					noneCrimeFile: noneCrimeFile
 			else if authid.idValidating is 0
 				data =
 					idValidating:1
 					userId :authid.userId
-					idFile :authid.idFile
-					creditFile:authid.creditFile if authid.creditFile isnt undefined
-					noneCrimeFile:authid.noneCrimeFile if authid.noneCrimeFile isnt undefined
+					idFile :idFile
+					creditFile:creditFile
+					noneCrimeFile:noneCrimeFile
 			else
-#				$log.log authid.idFile.id
 				data =
 					idValidating:1
 					userId :authid.userId
-					idFile :authid.idFile if authid.idFile.id isnt undefined
-					creditFile:authid.creditFile if authid.creditFile isnt undefined and authid.creditFile.id isnt undefined
-					noneCrimeFile:authid.noneCrimeFile if authid.noneCrimeFile isnt undefined and authid.noneCrimeFile.id isnt undefined
-
+					idFile :idFile
+					creditFile:creditFile
+					noneCrimeFile:noneCrimeFile
 
 			@ajaxService.post actionCode.ACTION_UPDATE_USER, data
 			.success (results) ->
@@ -76,11 +82,11 @@ class AuthidController
 			.error (error) ->
 				growlService.growl(error.desc, 'danger')
 
-		checkfiletype =(file)->
-			if  (typeof file)!='string'
-				return
+		checkfiletype = (file) ->
+			if (typeof file) is 'object'
+				file = file.id
 			isimg=true
-			if file != "" and file !=undefined
+			if file != "" and file != undefined
 				idimg=if file=='' then '' else file.split(';')[1]
 				imgstring =".jpg.jpeg.png.bmp.gif"
 				if idimg !=''and idimg !=undefined

@@ -29,8 +29,8 @@ var uploader=angular.module('app')
 	                $scope.concurrency=(typeof attrs.concurrency=="undefined")?2:attrs.concurrency;
                     $scope.concurrency=parseInt($scope.concurrency);
 	                $scope.parameter=(typeof attrs.name=="undefined")?"file":attrs.name;
-                    $scope.title = attrs.datFormTitle;
-                    $scope.require = attrs.datFormRequire;
+                    $scope.title = attrs.formTitle;
+                    $scope.require = attrs.formRequire;
                     $scope.transport=(typeof attrs.transport=="undefined")?"xhr":attrs.transport; //iframe, xhr
 	                $scope.activeUploads=0;	
 	                $scope.getSize=function(bytes) {

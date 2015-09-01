@@ -2,7 +2,7 @@
 class WonbidController
 	constructor: (@$log, @$scope, @$rootScope, @actionCode, @ajaxService, @eventConst, @constant, @messageService, @handTypeService) ->
 		@q =
-			state: 3
+			state: 4
 			hand: -1
 		@statusTypes = @constant.debtStatusType
 		@resetVar()

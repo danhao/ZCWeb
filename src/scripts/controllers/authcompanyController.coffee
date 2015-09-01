@@ -9,11 +9,11 @@ class AuthcompanyController
 			.success (result) =>
 				$scope.issubmit = (result.status&8) is 8 or result.coValidating is 1
 				$scope.isverifypass = (result.status&8) is 8
-				$scope.isshowidFile =isshowpic(result.idFile.name)
-				$scope.isshowaccountPermitFile =isshowpic(result.accountPermitFile.name)
-				$scope.isshoworganizationCodeFile =isshowpic(result.organizationCodeFile.name)
-				$scope.isshowbusinessLicenceFile =isshowpic(result.businessLicenceFile.name)
-				$scope.isshowtaxNumberFile =isshowpic(result.taxNumberFile.name)
+				$scope.isshowidFile = if result.idFile then isshowpic(result.idFile.name) else false
+				$scope.isshowaccountPermitFile = if result.accountPermitFile then isshowpic(result.accountPermitFile.name) else false
+				$scope.isshoworganizationCodeFile = if result.organizationCodeFile then isshowpic(result.organizationCodeFile.name) else false
+				$scope.isshowbusinessLicenceFile = if result.businessLicenceFile then isshowpic(result.businessLicenceFile.name) else false
+				$scope.isshowtaxNumberFile = if result.taxNumberFile then isshowpic(result.taxNumberFile.name) else false
 				@user = result
 			.error (error) =>
 				growlService.growl(error, 'danger')
@@ -24,20 +24,22 @@ class AuthcompanyController
 
 			authcompany.reqisteredType = parseInt authcompany.reqisteredType
 			authcompany.foundTime= (Date.parse authcompany.foundTime) / 1000
-			if (typeof authcompany.idFile)=='string'
-				authcompany.idFile = splitfiles(authcompany.idFile)
+			
+			# if (typeof authcompany.idFile)=='string'
+			# 	authcompany.idFile = splitfiles(authcompany.idFile)
 
-			if (typeof authcompany.accountPermitFile)=='string'
-				authcompany.accountPermitFile= splitfiles(authcompany.accountPermitFile)
+			# if (typeof authcompany.accountPermitFile)=='string'
+			# 	authcompany.accountPermitFile= splitfiles(authcompany.accountPermitFile)
 
-			if authcompany.organizationCodeFile isnt undefined and (typeof authcompany.organizationCodeFile)=='string'
-				authcompany.organizationCodeFile= splitfiles(authcompany.organizationCodeFile)
+			# if authcompany.organizationCodeFile isnt undefined and (typeof authcompany.organizationCodeFile)=='string'
+			# 	authcompany.organizationCodeFile= splitfiles(authcompany.organizationCodeFile)
 
-			if (typeof authcompany.businessLicenceFile)=='string'
-				authcompany.businessLicenceFile = splitfiles(authcompany.businessLicenceFile)
+			# if (typeof authcompany.businessLicenceFile)=='string'
+			# 	authcompany.businessLicenceFile = splitfiles(authcompany.businessLicenceFile)
 
-			if authcompany.taxNumberFile isnt undefined and (typeof authcompany.taxNumberFile)=='string'
-				authcompany.taxNumberFile= splitfiles(authcompany.taxNumberFile)
+			# if authcompany.taxNumberFile isnt undefined and (typeof authcompany.taxNumberFile)=='string'
+			# 	authcompany.taxNumberFile= splitfiles(authcompany.taxNumberFile)
+				
 			authcompany.coValidating=1
 			authcompany.fiveInOne =parseInt authcompany.fiveInOne
 #			$log.log authcompany

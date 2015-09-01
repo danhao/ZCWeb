@@ -227,17 +227,18 @@ class DebtDetailController
 		if not @debtMsgForm.$invalid
 			t = Date.parse debtMsg.date.replace(/-/g,   "/")+" 00:00:00" # to milesecond
 
-			if debtMsg.fileSelected
-				files = _.map debtMsg.fileSelected.split("|"), (item) ->
-					tmp = item.split(";")
-					{id: tmp[1], name: tmp[0]}
+			# if debtMsg.fileSelected
+			# 	files = _.map debtMsg.fileSelected.split("|"), (item) ->
+			# 		tmp = item.split(";")
+			# 		{id: tmp[1], name: tmp[0]}
 				
 			@ajaxService.post @actionCode.ACTION_ADD_MESSAGE, {
 				id: @debt.id
 				time: t / 1000
 				type: debtMsg.type.value
 				memo: debtMsg.msg
-				files: files || []
+				# files: files || []
+				files: debtMsg.fileSelected
 				}
 				.success (ret) =>
 					@getDebtDetail()
