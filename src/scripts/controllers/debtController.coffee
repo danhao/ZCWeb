@@ -83,6 +83,13 @@ class DebtController
 			date = new Date()
 			currentdate = (Date.parse  date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate())
 
+			# $log.log debt
+			# 转换时间为毫秒,如果是字符串
+			if angular.isString debt.judgementTime
+				debt.judgementTime = debt.judgementTime.valueOf()
+			if angular.isString debt.debtExpireTime
+				debt.debtExpireTime = debt.debtExpireTime.valueOf()
+
 			if (Date.parse debt.judgementTime)>currentdate
 				growlService.growl("法院判决时间应小于当前时间，请重新选择判决时间！", 'danger')
 				return
@@ -102,7 +109,7 @@ class DebtController
 				debt.debtorLocation = sheng+'/'+city+'/'+area
 				
 			debt.type = parseInt debt.type
-			debt.money *=100
+			debt.money *= 100
 
 			debt.price = if debt.type==1 then 0 else debt.price*100
 			debt.bidIncrease = if debt.type==1 then 0 else debt.bidIncrease*100
@@ -118,7 +125,7 @@ class DebtController
 
 			if @mode is MODE.EDIT
 				debt.updateId = debt.id
-				debt = _.omit(debt, "creditorIdFile", "files", "id")
+				debt = _.omit(debt, "creditorIdFile", "files", "id", "ownerId", "ownerName", "createTime")
 			
 			# $log.log debt
 #			return

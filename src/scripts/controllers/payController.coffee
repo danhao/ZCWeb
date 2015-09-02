@@ -9,7 +9,7 @@ class PayController
 			language : "1"
 			inputCharset : "1"
 			# pickupUrl: "http://203.195.133.243/#/member/"
-			pickupUrl: "http://ddzhai.cn/#/member/"
+			pickupUrl: "http://ddzhai.cn/#!/member/"
 			payType :  "0"
 			signType : "1"
 			orderAmount:"0"
