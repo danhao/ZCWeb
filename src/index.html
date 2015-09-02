@@ -75,12 +75,24 @@
         <![endif]-->        
 
         
-        <!-- baidu -->
-        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=52438aa2fe94b189acefcf4dd7a117b5"></script>
+        
         
 		<% if (config.environment && config.environment === 'prod') { %>
 			<script src="/scripts/vendors.min.js"></script>
 			<script src="<%= config.getHashedFile('./.temp/scripts/scripts.min.js', {trim: './.temp'}) %>"></script>
+            
+            <!-- baidu -->
+            <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=52438aa2fe94b189acefcf4dd7a117b5"></script>
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?423f111ca59ad6d74e3c736e44979f8b";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script>
+            
 		<% } else { %>
 			<script src="/scripts/vendors.min.js"></script>
 			<script data-main="/scripts/main.js" src="/scripts/libs/require.js"></script>
