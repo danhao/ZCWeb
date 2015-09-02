@@ -22,7 +22,7 @@ class Config
 
 			.state 'site.index.about',
 				url: 'about'
-				templateUrl: 'views/typography.html'
+				templateUrl: 'views/index/about.html'
 
 			.state 'site.index.contact',
 				url: 'contact'
