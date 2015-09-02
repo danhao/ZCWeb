@@ -122,14 +122,16 @@ var uploader=angular.module('app')
                                 angular.forEach(newVal, function(m) {
                                     $scope.fileList.push({
                                         filename: m.name,
-                                        url: m.url
+                                        url: m.url,
+                                        key: m.id
                                     });
                                 });
                             }
                             else if(angular.isObject(newVal)) {
                                 $scope.fileList.push({
                                     filename: newVal.name,
-                                    url: newVal.url
+                                    url: newVal.url,
+                                    key: newVal.id
                                 });
                             }
                         }

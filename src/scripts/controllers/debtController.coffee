@@ -125,7 +125,7 @@ class DebtController
 
 			if @mode is MODE.EDIT
 				debt.updateId = debt.id
-				debt = _.omit(debt, "creditorIdFile", "files", "id", "ownerId", "ownerName", "createTime")
+				debt = _.omit(debt, "id", "ownerId", "ownerName", "createTime", "winnerId")
 			
 			# $log.log debt
 #			return
