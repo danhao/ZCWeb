@@ -167,7 +167,7 @@
                                     
                                     <div class="form-group  fg-float">
                                         <div class="fg-line" >
-                                            <city-select ng-model="controller.debt.city" name="city" required></city-select>
+                                            <city-select ng-model="controller.debt.city" name="city"></city-select>
                                             <input type="hidden" name="city" ng-model="controller.debt.debtorLocation" value="">
                                         </div>
                                     </div>
@@ -303,8 +303,7 @@
                                             <button ype="buttom" ng-click="controller.goto()"  class="btn btn-primary btn-lg" > 返回上一步修改 </button>
                                         </div>
                                         <div class="col-sm-9">
-                                            <button type="buttom"  ng-click="controller.saveEntity(controller.debt)" class="btn btn-primary btn-lg" > 确认发布信息 </button>
-                                            <!-- w5c-form-submit="controller.saveEntity(controller.debt)" -->
+                                            <button type="buttom" w5c-form-submit="controller.saveEntity(controller.debt)" class="btn btn-primary btn-lg" > 确认发布信息 </button>
                                         </div>
                                     </div>
                                 </div>
