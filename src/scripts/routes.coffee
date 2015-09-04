@@ -36,6 +36,10 @@ class Config
 				url: 'jobs'
 				templateUrl: 'views/recruit.html'
 
+			.state 'site.index.disclaimer',
+				url: 'disclaimer'
+				templateUrl: 'views/index/disclaimer.html'
+
 			.state 'site.selectrole',
 				url: 'selectrole'
 				templateUrl: 'views/selectrole.html'
@@ -309,6 +313,18 @@ class Config
 				templateUrl: 'views/typography.html'
 				data:
 					displayName: '关于我们'
+
+			.state 'site.member.contact',
+				url: 'contact'
+				templateUrl: 'views/index/contact.html'
+				data:
+					displayName: '联系我们'
+
+			.state 'site.member.disclaimer',
+				url: 'disclaimer'
+				templateUrl: 'views/index/disclaimer.html'
+				data:
+					displayName: '免责声明'
 
 			.state 'site.member.recruit',
 				url: 'recruit',

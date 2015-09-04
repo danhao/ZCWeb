@@ -42,10 +42,12 @@ class Controller
 					new BMap.Size(20, 25),
 					imageOffset: new BMap.Size c.imageOffset.width, c.imageOffset.height
 			label = new BMap.Label c.title,
-				offset: new BMap.Size 0,25
+				offset: new BMap.Size -130,-35
 			label.setStyle
-				color: 'red'
-				fontSize: '15px'
+				color: 'blue'
+				fontSize: '20px'
+				borderWidth: '0px'
+				background: 'rgba(0,0,0,0)'
 			opts =
 				width: 200
 				title: "<b>#{c.title}</b>"
