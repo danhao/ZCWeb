@@ -3,7 +3,7 @@ class ParticipantController
 	constructor: (@$log,@$scope, @$rootScope, @ajaxService, @actionCode,@userSession, @messageService, @eventConst) ->
 		@q =
 			type: 1
-			state: 1
+			state: 2
 		@page = 1
 		@loadMoreFlag = true
 		@debtList = []

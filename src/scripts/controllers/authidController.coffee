@@ -11,6 +11,7 @@ class AuthidController
 				$scope.isverifypass = (result.status&4) is 4
 				@userinfo = result
 				@authid=result
+				# @$log.log @authid
 				@userinfo.isshowcreditFile=true
 				if @userinfo.creditFile==undefined
 					@userinfo.isshowcreditFile=false
@@ -107,7 +108,7 @@ class AuthidController
 					name : filearray[0]
 
 		validate = (auth) ->
-			$log.log auth.idFile
+			# $log.log auth.idFile
 			result = true
 			if (not $scope.isverifypass) and (auth.idFile == '' or auth.idFile == undefined)
 				growlService.growl("请上传身份证照片，参考拍照攻略！", 'danger')
