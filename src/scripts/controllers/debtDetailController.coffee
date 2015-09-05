@@ -93,6 +93,7 @@ class DebtDetailController
 
 
 	init_page_var: ->
+		# @$log.log @debt
 		# @$scope.expireDay = @debt.publishTime*1000 + @debt.expireDays*24*60*60*1000
 		# countdown time
 
@@ -202,6 +203,7 @@ class DebtDetailController
 			}
 			.success (result) =>
 				@growlService.growl '申请结单成功'
+				@back()
 			.error (error) =>
 				@$log.log error
 				@growlService.growl error.desc
