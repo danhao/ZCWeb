@@ -109,7 +109,7 @@ class DebtDetailController
 		@$scope.showEditButton = @debt.state is @DEBT_STATE.TO_CHECK and @pid is @debt.ownerId
 		@$scope.showBidButton = (@debt.state is @DEBT_STATE.CHECKED_PASS) and (@pid isnt @debt.ownerId) and (@pid isnt @debt.winnerId) and not isBidded
 		@$scope.showCreditor = (@debt.state >= @DEBT_STATE.DEAL) and (@pid is @debt.winnerId)
-		@$scope.showCountdown = (@debt.state is @DEBT_STATE.CHECKED_PASS) or (@debt.state == @DEBT_STATE.DEAL and (@pid is @debt.ownerId or @pid is @debt.winnerId))
+		@$scope.showCountdown = (@debt.state is @DEBT_STATE.CHECKED_PASS) or (@debt.type is DEBT_TYPE.AGENT and @debt.state is @DEBT_STATE.DEAL and (@pid is @debt.ownerId or @pid is @debt.winnerId))
 		@$scope.showReturnButton = @debt.canReturn is 1 and @pid is @debt.winnerId
 		@$scope.showEndButton = (@debt.state is @DEBT_STATE.DEAL) and @debt.canEnd is 1 and @pid is @debt.winnerId
 		
