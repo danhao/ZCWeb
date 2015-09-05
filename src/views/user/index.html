@@ -48,7 +48,9 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-sm-8">
+                        
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="card">
@@ -83,7 +85,75 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>  <!--/ END OF ROW -->
+
+                        <div class="row" ng-init="options = {trackColor: 'rgba(255,255,255,0.2)',scaleColor: 'rgba(255,255,255,0.5)',barColor: 'rgba(255,255,255,0.7)',lineWidth: 7,lineCap: 'butt',size: 148}">
+                            <div class="col-sm-6" >
+                                <div class="epc-item bgm-pink" ng-init="percent1=35">
+                                    <div class="easy-pie main-pie" >
+                                        <div class="percent">{{percent1}}</div>
+                                        <div class="pie-title">最近一个月的完成率</div>
+                                        <div easypiechart options="options" percent="percent1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="epc-item bgm-orange" ng-init="percent2=87">
+                                    <div class="easy-pie main-pie" >
+                                        <div class="percent">{{percent2}}</div>
+                                        <div class="pie-title">最近一个月的回款率</div>
+                                        <div easypiechart options="options" percent="percent2"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+                        <!-- 
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="mini-charts-item bgm-cyan">
+                                    <div class="clearfix">
+                                        <div class="chart stats-bar">我的委托</div>
+                                        <div class="count">
+                                            <small>Website Traffics</small>
+                                            <h2>987,459</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="mini-charts-item bgm-lightgreen">
+                                    <div class="clearfix">
+                                        <div class="chart stats-bar">我的竞标</div>
+                                        <div class="count">
+                                            <small>Website Traffics</small>
+                                            <h2>987,459</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="mini-charts-item bgm-orange">
+                                    <div class="clearfix">
+                                        <div class="chart stats-bar">我的中标</div>
+                                        <div class="count">
+                                            <small>Website Traffics</small>
+                                            <h2>987,459</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+
+                        <!-- 
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <a ui-sref="site.member.stat">统计</a>
+                            </div>
+                        </div>
+                         -->
+                        
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card">
@@ -107,6 +177,9 @@
                                                     <div ng-show="situation.type==4">
                                                         <a ui-sref="site.debt.detail({debtId: '{{situation.data[0]}}'})" href="javascript:;" >委托单{{situation.data[0]}}已关闭 </a>
                                                     </div>
+                                                    <div ng-show="situation.type==5">
+                                                        <a ui-sref="site.debt.detail({debtId: '{{situation.data[0]}}'})" href="javascript:;" >修改委托单{{situation.data[0]}} </a>
+                                                    </div>
                                                 </li>
                                             </div>
                                         </ul>
@@ -116,10 +189,61 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>  <!--/ END OF ROW -->
 
                     </div>
                 </div>
+
+                
+                <div class="row">
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-header bgm-lightblue">
+                                        <h2> 我的委托 </h2>
+                                    </div>
+                                    <div class="card-body ">
+                                        <div class="list-group">
+                                            <a href="#" class="list-group-item"><span class="badge">2</span> 待审核</a>
+                                            <a href="#" class="list-group-item"><span class="badge">0</span> 审核中</a>
+                                            <a href="#" class="list-group-item"><span class="badge">0</span> 已通过</a>
+                                            <a href="#" class="list-group-item"><span class="badge">0</span> 未通过</a>
+                                            <a href="#" class="list-group-item"><span class="badge">0</span> 已成交</a>
+                                            <a href="#" class="list-group-item"><span class="badge">0</span> 已结束</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-header bgm-lightblue">
+                                        <h2> 我的竞标 </h2>
+                                    </div>
+                                    <div class="card-body ">
+                                        <div class="list-group">
+                                            <a href="#" class="list-group-item"><span class="badge">5</span> 进行中</a>
+                                            <a href="#" class="list-group-item"><span class="badge">2</span> 已成交</a>
+                                            <a href="#" class="list-group-item"><span class="badge">0</span> 已结束</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-header bgm-lightblue">
+                                        <h2> 我的中标 </h2>
+                                    </div>
+                                    <div class="card-body ">
+                                        <div class="list-group">
+                                            <a href="#" class="list-group-item"><span class="badge">2</span> 进行中</a>
+                                            <a href="#" class="list-group-item"><span class="badge">1</span> 已完成</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  <!--/ END OF ROW -->
+
+
+                
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="card">
@@ -160,6 +284,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col-sm-6">
                             <div class="card">
                                 <div class="card-header bgm-lightblue" style="padding: 15px">

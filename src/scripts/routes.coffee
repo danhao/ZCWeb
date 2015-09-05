@@ -284,6 +284,12 @@ class Config
 				data:
 					displayName: "购买VIP会员服务"
 
+			.state 'site.member.stat',
+				url: 'stat'
+				templateUrl: 'views/user/stat.html'
+				data:
+					displayName: "统计"
+
 			# ########## debt
 			.state 'site.debt',
 				url: 'debt/'

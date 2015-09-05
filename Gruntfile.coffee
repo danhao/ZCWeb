@@ -399,6 +399,7 @@ module.exports = (grunt) ->
 					'!libs/jquery.nouislider.all.min.js'
 					'!libs/owl.carousel.min.js'
 					'!libs/fileinput.js'
+					'!libs/jquery.flot.js'
 				]
 				order: [
 					'libs/angular.min.js'
@@ -416,6 +417,7 @@ module.exports = (grunt) ->
 						'ui.bootstrap.showErrors': 'libs/showErrors.min.js'
 						'flow': 'libs/ng-flow-standalone.min.js'
 						'angular-md5': 'libs/angular-md5.min.js'
+						'easypiechart': 'libs/angular.easypiechart.js'
 				]
 				require: 'NGBOOTSTRAP'
 			prod:
@@ -451,6 +453,7 @@ module.exports = (grunt) ->
 					'!libs/jquery.nouislider.all.min.js'
 					'!libs/owl.carousel.min.js'
 					'!libs/fileinput.js'
+					'!libs/jquery.flot.js'
 				]
 				order: [
 					'libs/angular.min.js'
@@ -467,6 +470,7 @@ module.exports = (grunt) ->
 						'ui.bootstrap.showErrors': 'libs/showErrors.min.js'
 						'flow': 'libs/ng-flow-standalone.min.js'
 						'angular-md5': 'libs/angular-md5.min.js'
+						'easypiechart': 'libs/angular.easypiechart.js'
 				]
 				require: '<%= shimmer.dev.require %>'
 
@@ -520,6 +524,7 @@ module.exports = (grunt) ->
 						'.temp/scripts/libs/jquery.nouislider.all.min.js'
 						'.temp/scripts/libs/owl.carousel.min.js'
 						'.temp/scripts/libs/fileinput.js'
+						'.temp/scripts/libs/jquery.flot.js'
 					]
 
 		# Configration for enviroment
