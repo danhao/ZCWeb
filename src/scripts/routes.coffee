@@ -36,6 +36,10 @@ class Config
 				url: 'jobs'
 				templateUrl: 'views/recruit.html'
 
+			.state 'site.index.faq',
+				url: 'faq'
+				templateUrl: 'views/faq.html'
+
 			.state 'site.index.disclaimer',
 				url: 'disclaimer'
 				templateUrl: 'views/index/disclaimer.html'
@@ -277,6 +281,12 @@ class Config
 				templateUrl: 'views/user/fundrecord.html'
 				data:
 					displayName: "资金记录"
+
+			.state 'site.member.repayment',
+				url: 'repayment'
+				templateUrl: 'views/user/repaymentlist.html'
+				data:
+					displayName: "还款记录查询"
 
 			.state 'site.member.vip',
 				url: 'vip'
