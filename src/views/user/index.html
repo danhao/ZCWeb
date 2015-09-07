@@ -134,7 +134,7 @@
                             </div>
                         </div>
 
-                        <div class="dash-widget-item bgm-cyan item-relative" > <!--ng-show="ctrl.user.role == 2"-->
+                        <div class="dash-widget-item bgm-cyan item-relative" ng-show="ctrl.user.role == 2"> 
                             <div class="dash-widget-header">
                                 <div class="dash-widget-title">我参与的竞标</div>
                             </div>
@@ -151,22 +151,22 @@
                         </div>
                          
 
-                        <div class="row" ng-init="options = {trackColor: 'rgba(255,255,255,0.2)',scaleColor: 'rgba(255,255,255,0.5)',barColor: 'rgba(255,255,255,0.7)',lineWidth: 7,lineCap: 'butt',size: 148}">
+                        <div class="row">
                             <div class="col-sm-6" >
                                 <div class="epc-item bgm-lightgreen" ng-init="percent1=35">
                                     <div class="easy-pie main-pie" >
-                                        <div class="percent">{{percent1}}</div>
+                                        <div class="percent">{{rateOfComplete}}</div>
                                         <div class="pie-title">最近一个月的完成率</div>
-                                        <div easypiechart options="options" percent="percent1"></div>
+                                        <div easypiechart options="options" percent="rateOfComplete"></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="epc-item bgm-orange" ng-init="percent2=87">
                                     <div class="easy-pie main-pie" >
-                                        <div class="percent">{{percent2}}</div>
+                                        <div class="percent">{{rateOfReturnMoney}}</div>
                                         <div class="pie-title">最近一个月的回款率</div>
-                                        <div easypiechart options="options" percent="percent2"></div>
+                                        <div easypiechart options="options" percent="rateOfReturnMoney"></div>
                                     </div>
                                 </div>
                             </div>
