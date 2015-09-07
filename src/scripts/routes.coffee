@@ -104,21 +104,21 @@ class Config
 
 			# 我的发布
 			.state 'site.member.issued',
-				url: 'issued'
+				url: 'issued?state'
 				templateUrl: 'views/user/issued.html'
 				data:
 					displayName: "我的委托"
 
 			# 我的竞标, 我参与的
 			.state 'site.member.participant',
-				url: 'participant'
+				url: 'participant?state'
 				templateUrl: 'views/user/participant.html'
 				data:
 					displayName: "我的竞标"
 	
 			# 我的中标
 			.state 'site.member.wonbid',
-				url: 'wonbid'
+				url: 'wonbid?state'
 				templateUrl: 'views/user/wonbid.html'
 				data:
 					displayName: "我的中标"

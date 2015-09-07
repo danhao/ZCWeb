@@ -72,12 +72,12 @@
                 <div class="row m-b-10">
                     <div class="col-sm-4">
                         状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:&nbsp;&nbsp;
-                        <div class="btn-group" ng-init="ctrl.q.state=4" data-toggle="buttons">
-                            <label class="btn btn-default active" ng-click="ctrl.q.state=4">
-                                <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="4" checked/>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default" ng-click="ctrl.q.state=4" ng-class="{active:ctrl.q.state==4}">
+                                <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="4"/>
                                 进行中
                             </label>
-                            <label class="btn btn-default" ng-click="ctrl.q.state=5">
+                            <label class="btn btn-default" ng-click="ctrl.q.state=5" ng-class="{active:ctrl.q.state==5}">
                                 <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="5" />
                                 已完成
                             </label>

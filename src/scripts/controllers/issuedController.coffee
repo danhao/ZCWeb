@@ -1,9 +1,10 @@
 
 class IssuedController
-	constructor: (@$log,@$scope, @ajaxService, @actionCode,@userSession) ->
+	constructor: (@$log,@$scope,@$stateParams,@ajaxService, @actionCode,@userSession) ->
 		@q =
 			type: '0'
-			state: '-1'
+			state: (@$stateParams.state || -1) + ""
+
 		@pid = @userSession.pid()
 		
 		@$scope.$watch () => @q
@@ -27,5 +28,5 @@ class IssuedController
 				alert error.desc
 
 
-angular.module("app").controller 'issuedController',['$log','$scope','ajaxService', 'actionCode','userSession', IssuedController]
+angular.module("app").controller 'issuedController',['$log','$scope','$stateParams','ajaxService', 'actionCode','userSession', IssuedController]
 

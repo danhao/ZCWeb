@@ -375,6 +375,19 @@ body.sw-toggled #footer {
     
 }
 
+
+.dash-widget-item.item-relative {
+    min-height: initial;
+    
+    .dash-widget-header {
+        position: relative;
+        background-color: rgba(0, 0, 0, 0.13);
+    }
+    .dash-widget-title {
+        position: relative;
+    }
+}
+
 #account-balance {
     min-height: initial;
     color: rgba(255, 255, 255, 0.9);
@@ -411,8 +424,8 @@ body.sw-toggled #footer {
         border: 1px solid rgba(255, 255, 255, 0.39);
 
         &:hover {
-            color: #0269C2;
-            .z-depth-bottom(2);
+            color: #ff9800;
+            border-color: #ff9800;
         }
     }
 }
@@ -448,6 +461,13 @@ body.sw-toggled #footer {
         cursor: pointer;
     }
 
+    a {
+        color: rgba(255,255,255,0.8);
+        &:hover {
+            color: #fff;
+        }
+    }
+    
     // a {
     //     color: #4b4b4b;
     // }

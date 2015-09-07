@@ -114,9 +114,41 @@
                                 </div>
                             </div>
                         </div>
-                         -->
+                        -->
 
-                         
+
+                        <div class="dash-widget-item bgm-cyan item-relative" ng-show="ctrl.user.role == 1">
+                            <div class="dash-widget-header">
+                                <div class="dash-widget-title">我发布的委托</div>
+                            </div>
+
+                            <div class="mypublished">
+                                <ul class="list-group-h split-6 p-20">
+                                    <li><a ui-sref="site.member.issued({state:0})" >待审核 <span>(2)</span></a></li>
+                                    <li><a ui-sref="site.member.issued({state:1})" >审核中 </a></li>
+                                    <li><a ui-sref="site.member.issued({state:2})" >已通过 </a></li>
+                                    <li><a ui-sref="site.member.issued({state:3})" >未通过 </a></li>
+                                    <li><a ui-sref="site.member.issued({state:4})" >已成交 </a></li>
+                                    <li><a ui-sref="site.member.issued({state:5})" >已结束 </a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="dash-widget-item bgm-cyan item-relative" > <!--ng-show="ctrl.user.role == 2"-->
+                            <div class="dash-widget-header">
+                                <div class="dash-widget-title">我参与的竞标</div>
+                            </div>
+
+                            <div class="mypublished">
+                                <ul class="list-group-h split-5 p-20">
+                                    <li><a ui-sref="site.member.participant" >竞标中 <span>(2)</span></a></li>
+                                    <li><a ui-sref="site.member.wonbid" >已中标 </a></li>
+                                    <li><a ui-sref="site.member.participant({state:4})" >未中标 </a></li>
+                                    <li><a ui-sref="site.member.wonbid({state:5})" >已完成 </a></li>
+                                    <li><a ui-sref="site.member.participant({state:5})" >已结束 </a></li>                                     
+                                </ul>
+                            </div>
+                        </div>
                          
 
                         <div class="row" ng-init="options = {trackColor: 'rgba(255,255,255,0.2)',scaleColor: 'rgba(255,255,255,0.5)',barColor: 'rgba(255,255,255,0.7)',lineWidth: 7,lineCap: 'butt',size: 148}">
@@ -140,6 +172,7 @@
                             </div>
                         </div>
 
+                        <!-- 
                         <div class="card mypublished">
                              <div class="card-header bgm-indigo">
                                  <h2>我发布的委托</h2>
@@ -169,7 +202,8 @@
                                     <li><a href="#" class="list-group-item2">已结束 <span class="badge2">0</span></a></li>                                     
                                  </ul>
                              </div>
-                         </div>
+                        </div>
+                        -->
 
                         <!-- 
                         <div class="row">
