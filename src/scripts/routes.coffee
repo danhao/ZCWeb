@@ -354,6 +354,13 @@ class Config
 				data:
 					displayName: '信用等级'
 
+			.state 'site.member.faq',
+				url: 'faq'
+				templateUrl: 'views/faq.html'
+				data:
+					displayName: 'FAQ'
+
+
 			# demo
 			.state 'site.test',
 				url: 'test',
