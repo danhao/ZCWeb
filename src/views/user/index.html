@@ -124,12 +124,24 @@
 
                             <div class="mypublished">
                                 <ul class="list-group-h split-6 p-20">
-                                    <li><a ui-sref="site.member.issued({state:0})" >待审核 <span>(2)</span></a></li>
-                                    <li><a ui-sref="site.member.issued({state:1})" >审核中 </a></li>
-                                    <li><a ui-sref="site.member.issued({state:2})" >已通过 </a></li>
-                                    <li><a ui-sref="site.member.issued({state:3})" >未通过 </a></li>
-                                    <li><a ui-sref="site.member.issued({state:4})" >已成交 </a></li>
-                                    <li><a ui-sref="site.member.issued({state:5})" >已结束 </a></li>
+                                    <li><a ui-sref="site.member.issued({state:0})" >
+                                        待审核 <span ng-show="ctrl.user.creditorStats[0] > 0">({{ctrl.user.creditorStats[0]}})</span>
+                                    </a></li>
+                                    <li><a ui-sref="site.member.issued({state:1})" >
+                                        审核中 <span ng-show="ctrl.user.creditorStats[1] > 0">({{ctrl.user.creditorStats[1]}})</span>
+                                    </a></li>
+                                    <li><a ui-sref="site.member.issued({state:2})" >
+                                        已通过 <span ng-show="ctrl.user.creditorStats[2] > 0">({{ctrl.user.creditorStats[2]}})</span>
+                                    </a></li>
+                                    <li><a ui-sref="site.member.issued({state:3})" >
+                                        未通过 <span ng-show="ctrl.user.creditorStats[3] > 0">({{ctrl.user.creditorStats[3]}})</span>
+                                    </a></li>
+                                    <li><a ui-sref="site.member.issued({state:4})" >
+                                        已成交 <span ng-show="ctrl.user.creditorStats[4] > 0">({{ctrl.user.creditorStats[4]}})</span>
+                                    </a></li>
+                                    <li><a ui-sref="site.member.issued({state:5})" >
+                                        已结束 <span ng-show="ctrl.user.creditorStats[5] > 0">({{ctrl.user.creditorStats[5]}})</span>
+                                    </a></li>
                                 </ul>
                             </div>
                         </div>
@@ -141,11 +153,21 @@
 
                             <div class="mypublished">
                                 <ul class="list-group-h split-5 p-20">
-                                    <li><a ui-sref="site.member.participant" >竞标中 <span>(2)</span></a></li>
-                                    <li><a ui-sref="site.member.wonbid" >已中标 </a></li>
-                                    <li><a ui-sref="site.member.participant({state:4})" >未中标 </a></li>
-                                    <li><a ui-sref="site.member.wonbid({state:5})" >已完成 </a></li>
-                                    <li><a ui-sref="site.member.participant({state:5})" >已结束 </a></li>                                     
+                                    <li><a ui-sref="site.member.participant" >
+                                        竞标中 <span ng-show="ctrl.user.deputyStats[0] > 0">({{ctrl.user.deputyStats[0]}})</span>
+                                    </a></li>
+                                    <li><a ui-sref="site.member.wonbid" >
+                                        已中标 <span ng-show="ctrl.user.deputyStats[1] > 0">({{ctrl.user.deputyStats[1]}})</span>
+                                    </a></li>
+                                    <li><a ui-sref="site.member.participant({state:4})" >
+                                        未中标 <span ng-show="ctrl.user.deputyStats[2] > 0">({{ctrl.user.deputyStats[2]}})</span>
+                                    </a></li>
+                                    <li><a ui-sref="site.member.wonbid({state:5})" >
+                                        已完成 <span ng-show="ctrl.user.deputyStats[3] > 0">({{ctrl.user.deputyStats[3]}})</span>
+                                    </a></li>
+                                    <li><a ui-sref="site.member.participant({state:5})" >
+                                        已结束 <span ng-show="ctrl.user.deputyStats[4] > 0">({{ctrl.user.deputyStats[4]}})</span>
+                                    </a></li>
                                 </ul>
                             </div>
                         </div>
