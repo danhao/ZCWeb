@@ -41,8 +41,8 @@ ActionCode = # do () ->
 	ACTION_APPLY_END_DEBT		: 110	# 申请结单(common.SingleMsg---->null)
 	ACTION_ADD_CONTACT			: 111 	# 增加联系人(common.ContactMsg---->null)
 	ACTION_STAT					: 112	# 统计(debt.StatReq---->debt.StatRsp)
+	ACTION_LIST_REPAY			: 113 	# 还款记录(debt.ListRepayReq---->debt.ListRepayRsp)
 	
-
 
 
 angular.module('app').constant 'actionCode', ActionCode
