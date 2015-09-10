@@ -1,4 +1,9 @@
 class DebtController
+	
+	MODE =
+		INSERT: 0
+		EDIT: 1
+	
 	constructor: (@$log,@$scope,@$state, @$stateParams,@$window,@ajaxService, @actionCode, @constant, @w5cValidator,@$timeout,@growlService) ->
 		@debt =
 			city: [ '广东', '深圳市', '南山区' ]
@@ -11,10 +16,13 @@ class DebtController
 			blurTrig: true
 
 		@contactTypes = @constant.contactType
-			# "手机": 1
-			# "家庭": 2
-			# "工作单位": 3
-			# "其他": 4
+
+		# edit
+		if @$stateParams.id
+			@mode = MODE.EDIT
+			@$log.log "edit: #{@$stateParams.id}"
+			@getDebtDetail()
+			
 
 		@goto = () =>
 			if @validate1()
@@ -62,17 +70,25 @@ class DebtController
 				growlService.growl("加价幅度+起拍价格应小于债务总金额！", 'warning')
 
 		@saveEntity = (@debt)->
+			# @$log.log 'save....xs'
 			if debt.creditorIdFile is undefined
 				growlService.growl("请上传债权人身份证图片！", 'danger')
 				return
-			else
-				if (typeof debt.creditorIdFile)=='string'
-					debt.creditorIdFile = splitfiles(debt.creditorIdFile)[0]
+			# else
+			# 	if (typeof debt.creditorIdFile)=='string'
+			# 		debt.creditorIdFile = splitfiles(debt.creditorIdFile)[0]
 			if debt.money*100>2147483648
 				growlService.growl("金额超出范围，不能大于21474836.48,请返回上一步修改！", 'danger')
 				return
 			date = new Date()
 			currentdate = (Date.parse  date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate())
+
+			# $log.log debt
+			# 转换时间为毫秒,如果是字符串
+			if angular.isString debt.judgementTime
+				debt.judgementTime = debt.judgementTime.valueOf()
+			if angular.isString debt.debtExpireTime
+				debt.debtExpireTime = debt.debtExpireTime.valueOf()
 
 			if (Date.parse debt.judgementTime)>currentdate
 				growlService.growl("法院判决时间应小于当前时间，请重新选择判决时间！", 'danger')
@@ -86,12 +102,14 @@ class DebtController
 				growlService.growl '请至少提供一种联系方式', 'danger'
 				return
 
-			sheng = debt.city.cn[0]
-			city= debt.city.cn[1]
-			area= debt.city.cn[2]
-			debt.debtorLocation = sheng+'/'+city+'/'+area
+			if debt.city
+				sheng = debt.city.cn[0]
+				city= debt.city.cn[1]
+				area= debt.city.cn[2]
+				debt.debtorLocation = sheng+'/'+city+'/'+area
+				
 			debt.type = parseInt debt.type
-			debt.money *=100
+			debt.money *= 100
 
 			debt.price = if debt.type==1 then 0 else debt.price*100
 			debt.bidIncrease = if debt.type==1 then 0 else debt.bidIncrease*100
@@ -102,10 +120,14 @@ class DebtController
 			debt.debtExpireTime = (Date.parse debt.debtExpireTime) / 1000
 			debt.judgementTime  = (Date.parse debt.judgementTime)  / 1000
 
-			if debt.files isnt undefined && (typeof debt.files)=='string'
-				debt.files = splitfiles(debt.files)
+			# if debt.files isnt undefined && (typeof debt.files)=='string'
+			# 	debt.files = splitfiles(debt.files)
 
-#			$log.log debt
+			if @mode is MODE.EDIT
+				debt.updateId = debt.id
+				debt = _.omit(debt, "id", "ownerId", "ownerName", "createTime", "winnerId")
+			
+			# $log.log debt
 #			return
 			@ajaxService.post actionCode.CREATE_DEBT, debt
 			.success (results) ->
@@ -144,6 +166,37 @@ class DebtController
 						name : filearray[0]
 					dataarray.push data
 			dataarray
+
+	
+	getDebtDetail: ->
+		@ajaxService.post @actionCode.VIEW_DEBT, {param: @$stateParams.id}
+			.success (result) =>
+				@debt = @initEdit(result)
+				re = /(\w+)\.debt\.(.+)/
+				$(".fg-line :input").each (index, el) ->
+					$el = $(el)
+					model = $el.attr("ng-model")
+					if re.test model
+						field = model.replace re, '$2'
+						if result[field]
+							$el.parent().addClass("fg-toggled")
+						
+			.error (error) ->
+				@$log.log error
+
+	initEdit: (debt) ->
+		debt.money = debt.money / 100
+		if debt.price
+			debt.price = debt.price / 100
+		if debt.bidIncrease
+			debt.bidIncrease = debt.bidIncrease / 100
+		debt.judgementTime = @_time2display(debt.judgementTime)
+		debt.debtExpireTime = @_time2display(debt.debtExpireTime)
+		debt
+
+	_time2display: (t) ->
+		if t is 0 then '' else moment(t*1000).format("YYYY/MM/DD")
+
 
 angular.module("app")
 #  .config ["w5cValidatorProvider",

@@ -5,14 +5,18 @@
 <!--[if gt IE 8]><!--> <html class="no-js" xmlns:ng="http://angularjs.org" xmlns:app="ignored" ng-controller="baseController as mactrl"> <!--<![endif]-->
 
 	<head>
+        <base href="/" />
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<title>点点债</title>
-		<meta name="description" content="AngularJS Reference Architecture" />
+        <meta name="fragment" content="!"/>
+		<meta name="description" content="点点债(ddzhai.cn),国内首家专注个人不良资产清收P2P及O2O平台.点点债致力于搭建跨地域的互联网不良资产处置平台,构建健康的金融生态圈,通过共享全国不良资产处置资源提高不良资产处置效率和成功率,最终形成个人以及企业信用大数据的一个源头,让不良资产处置更加便捷,高效." />
+        <meta name="keywords" content="点点债,不良资产,不良资产处置,不良资产处置平台,催收,债权转让,债权代理,欠款,讨债,P2P债务" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
+        <link rel="shortcut icon" href="/images/favicon.ico"/>
+        
 		<!--[if lte IE 8]> <script src="/scripts/ie.min.js"></script> <![endif]-->
-
+        
 		<% if (config.environment && config.environment === 'prod') { %>
 			<link rel="stylesheet" href="<%= config.getHashedFile('./.temp/styles/styles.min.css', {trim: './.temp'}) %>" />
 		<% } else { %>
@@ -71,12 +75,22 @@
         <![endif]-->        
 
         
-        <!-- baidu -->
-        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=52438aa2fe94b189acefcf4dd7a117b5"></script>
-        
 		<% if (config.environment && config.environment === 'prod') { %>
 			<script src="/scripts/vendors.min.js"></script>
 			<script src="<%= config.getHashedFile('./.temp/scripts/scripts.min.js', {trim: './.temp'}) %>"></script>
+            
+            <!-- baidu -->
+            <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=52438aa2fe94b189acefcf4dd7a117b5"></script>
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?423f111ca59ad6d74e3c736e44979f8b";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script>
+            
 		<% } else { %>
 			<script src="/scripts/vendors.min.js"></script>
 			<script data-main="/scripts/main.js" src="/scripts/libs/require.js"></script>

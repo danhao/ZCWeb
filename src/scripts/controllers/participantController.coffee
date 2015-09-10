@@ -1,9 +1,9 @@
 
 class ParticipantController
-	constructor: (@$log,@$scope, @$rootScope, @ajaxService, @actionCode,@userSession, @messageService, @eventConst) ->
+	constructor: (@$log,@$scope, @$rootScope, @$stateParams, @ajaxService, @actionCode,@userSession, @messageService, @eventConst) ->
 		@q =
 			type: 1
-			state: 1
+			state: @$stateParams.state || 2
 		@page = 1
 		@loadMoreFlag = true
 		@debtList = []
@@ -54,5 +54,5 @@ class ParticipantController
 	# 	debt.type is @q.type and p_state
 		
 
-angular.module("app").controller 'participantController',['$log','$scope', '$rootScope','ajaxService', 'actionCode','userSession', 'messageService', 'eventConst', ParticipantController]
+angular.module("app").controller 'participantController',['$log','$scope', '$rootScope', '$stateParams','ajaxService', 'actionCode','userSession', 'messageService', 'eventConst', ParticipantController]
 

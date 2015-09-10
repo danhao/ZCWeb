@@ -8,6 +8,44 @@
 }
 
 
+// Section header
+// ====================
+.section-header2 {
+    text-align: center;
+    padding-bottom: 38px;
+
+    h4 {
+        margin-top: 0;
+    }
+}
+
+.subject {
+    .size(153px, 66px);
+    background: url(../images/index/subject-icon.png) no-repeat 0 0;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+
+    h1 {
+        margin: 0;
+        color: inherit;
+        font-weight: bold;
+        font-size: 44px;
+    }
+    h7 {
+        font-size: 10px;
+    }
+}
+
+.header-subject {
+    text-align: center;
+    margin: 66px 0 10px;
+}
+
+// END Section header
+
+
 .index {
 
 margin-top: -(65px + 30px);     // header hight(65px) + padding (#content 30px)
@@ -61,39 +99,10 @@ h4, .h4 {
     position: relative;
     // z-index: -1;
 }
-
-.section-header2 {
-    text-align: center;
-    padding-bottom: 38px;
-
-    h4 {
-        margin-top: 0;
-    }
+.works {
+    min-height: initial;
 }
 
-.subject {
-    .size(153px, 66px);
-    background: url(../images/index/subject-icon.png) no-repeat 0 0;
-    text-transform: uppercase;
-    position: relative;
-    display: inline-block;
-    line-height: 0;
-
-    h1 {
-        margin: 0;
-        color: inherit;
-        font-weight: bold;
-        font-size: 44px;
-    }
-    h7 {
-        font-size: 10px;
-    }
-}
-
-.header-subject {
-    text-align: center;
-    margin: 66px 0 10px;
-}
 
 .stat {
     h1 {
@@ -257,11 +266,17 @@ h4, .h4 {
     color: #888;
 }
 
+
+.f-contact p {
+    margin: 0;
+}
+
+
 .qrcode {
     .thumbnail {
         background-color: inherit;
         border: none;
-        margin-bottom: 0;
+        margin: 0 10px;
         display: inline-block;
         
         .caption {
@@ -288,4 +303,40 @@ h4, .h4 {
     }
 }
 
+#jobs-banner {
+    background: url(../images/backgrounds/bg3.jpg) no-repeat 0 0;
 
+    .jumbotron {
+        background: rgba(0, 0, 0, .4);
+        height: 450px;
+
+        h1 {
+            margin-top: 50px;
+        }
+    }
+}
+
+
+// about us page
+
+.features .feature {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px;
+
+    h4 {
+        margin-top: 25px;
+    }
+}
+
+.feature-icon {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+@media (max-width: 1024px) {
+    .feature-icon {
+        width: 100%;
+    }
+}

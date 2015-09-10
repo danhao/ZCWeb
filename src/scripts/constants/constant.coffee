@@ -33,5 +33,13 @@ Constant =
 		{value: 99, name: '其他'}
 		]
 
+	debtState:
+		TO_CHECK		: 0
+		CHECKING		: 1
+		CHECKED_PASS	: 2
+		CHECKED_FAILED	: 3
+		DEAL			: 4
+		COMPLETED		: 5
+
 
 angular.module('app').constant 'constant', Constant

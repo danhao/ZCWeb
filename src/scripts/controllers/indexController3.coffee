@@ -28,9 +28,9 @@ class IndexController3
 
 		# stat data
 		@stat_t =
-			dealSum: 600953
-			team: 805
-			coop: 223
+			dealSum: 30953
+			team: 216
+			coop: 48
 		@stat =
 			dealSum: 0
 			team: 0
@@ -38,7 +38,7 @@ class IndexController3
 
 		t = @$interval ()=>
 			if @stat.dealSum < @stat_t.dealSum
-				@stat.dealSum += 981
+				@stat.dealSum += 281
 			else
 				@stat.dealSum = @stat_t.dealSum
 				

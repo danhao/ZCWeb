@@ -1,0 +1,32 @@
+
+<div class="container" ng-controller="statController as ctrl">
+    <div class="card">
+        <header class="card-header">
+            <h2><span class="glyphicon glyphicon-list" ></span> 统计</h2>
+        </header>
+        <div class="card-body card-padding">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="epc-item bgm-pink">
+                        <div class="easy-pie main-pie" >
+                            <div class="percent">{{percent1}}</div>
+                            <div class="pie-title">Total Emails Sent</div>
+                            <div easypiechart options="options" percent="percent1"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="epc-item bgm-orange">
+                        <div class="easy-pie main-pie" >
+                            <div class="percent">{{percent2}}</div>
+                            <div class="pie-title">Total Emails Sent</div>
+                            <div easypiechart options="options" percent="percent2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,73 @@
+
+<div class="container">
+    <div class="card" ng-controller="repaymentController as ctrl">
+        <header class="card-header">
+            <h2><span class="glyphicon glyphicon-list" ></span> 还款明细查询</h2>
+        </header>
+        <div class="card-body card-padding">
+            
+            <form name="queryForm" ng-submit="ctrl.query()">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-search m-b-10 m-l-20"></i>
+                        </span>
+                        <div class="fg-line" >
+                            <input class="search-field form-control" type="text" placeholder="委托单号/债务人" ng-model="ctrl.q2.keyword"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-xs-6">
+                    <input data-dt-picker type="text" name="timeFrom" class="form-control"  ng-model="ctrl.q.timeFrom"
+                                          data-format="YYYY/MM/DD" close-text="Close" placeholder="开始时间" />
+                </div>
+                <div class="col-sm-3 col-xs-6">
+                    <input data-dt-picker type="text" name="timeTo" class="form-control"  ng-model="ctrl.q.timeTo"
+                                           data-format="YYYY/MM/DD" close-text="Close" placeholder="结束时间" />
+                </div>
+            </div><!--/ END ROW -->
+            <div class="hidden"> <input type="submit"/> </div> <!-- HIDDEN SUBMIT BUTTON -->
+            </form><!--/ END FORM -->
+            
+            <!-- table -->
+            <div class="table-responsive m-t-20">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td>编号</td>
+                            <td>状态</td>
+                            <td>应标日期</td>
+                            <td>债务人</td>
+                            <td>债务总额</td>
+                            <td>还款日期</td>
+                            <td>还款金额</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center">
+            <ul class="pagination">
+                <li class="prev" ng-class="{'disabled': ctrl.q.page == 1}" aria-disabled="true" ng-click="ctrl.prev()">
+                    <a href="javascript:;" class="button">&lt;</a>
+                </li>
+                <li class="next" ng-class="{'disabled': !ctrl.hasMore}" aria-disabled="false" ng-click="ctrl.next()">
+                    <a href="javascript:;" class="button">&gt;</a>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </div>
+</div>

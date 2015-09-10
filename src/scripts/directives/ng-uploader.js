@@ -25,13 +25,13 @@ var uploader=angular.module('app')
                 //     }
                 // },
 	            link: function($scope, element, attrs) {
-	                $scope.fileList=[];	
+	                $scope.fileList= [];
 	                $scope.concurrency=(typeof attrs.concurrency=="undefined")?2:attrs.concurrency;
                     $scope.concurrency=parseInt($scope.concurrency);
 	                $scope.parameter=(typeof attrs.name=="undefined")?"file":attrs.name;
-                    $scope.title = attrs.datFormTitle;
-                    $scope.require = attrs.datFormRequire;
-                    $scope.transport=(typeof attrs.transport=="undefined")?"iframe":attrs.transport; //iframe, xhr
+                    $scope.title = attrs.formTitle;
+                    $scope.require = attrs.formRequire;
+                    $scope.transport=(typeof attrs.transport=="undefined")?"xhr":attrs.transport; //iframe, xhr
 	                $scope.activeUploads=0;	
 	                $scope.getSize=function(bytes) {
                         var sizes = [ 'n/a', 'bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EiB', 'ZiB', 'YiB' ];
@@ -41,8 +41,31 @@ var uploader=angular.module('app')
                     $scope.url=(attrs.ngUploader=="")?uploaderFactory.url:attrs.ngUploader;
                     $scope.filesizeLimit = $scope.filesizeLimit || 5*1024*1024;
 
+                    var initFlag = true;
                     var pid = uploaderFactory.pid;
                     var input = element.find("input");
+
+                    // init for edit
+                    /*
+                    if($scope.modelField) {
+                        var model = $scope.modelField;
+                        if(angular.isObject(model)) {
+                            $scope.fileList.push({
+                                filename: model.name,
+                                url: model.url
+                            });
+                        }
+                        else if(angular.isArray(model)) {
+                            angular.forEach(model, function(m) {
+                                $scope.fileList.push({
+                                    filename: m.name,
+                                    url: m.url
+                                });
+                            });
+                        }
+                    }
+                    */
+
                     
 	                element.bind("change", function(e) {
                         var target = e.target;
@@ -84,8 +107,33 @@ var uploader=angular.module('app')
 
                     // reset
                     $scope.$watch("modelField", function(newVal, oldVal) {
+                        
+                        // console.log( 'modelField: --------------------' );
+                        // console.log(newVal);
+
                         if(!newVal) {
                             $scope.fileList = [];
+                        }
+                        else if(newVal !== oldVal && initFlag) { // init fileList
+                            initFlag = false;
+                            // console.log( 'init' );
+
+                            if(angular.isArray(newVal)) {
+                                angular.forEach(newVal, function(m) {
+                                    $scope.fileList.push({
+                                        filename: m.name,
+                                        url: m.url,
+                                        key: m.id
+                                    });
+                                });
+                            }
+                            else if(angular.isObject(newVal)) {
+                                $scope.fileList.push({
+                                    filename: newVal.name,
+                                    url: newVal.url,
+                                    key: newVal.id
+                                });
+                            }
                         }
                     });
                     $scope.$watch("formField", function(newVal, oldVal) {
@@ -101,7 +149,7 @@ var uploader=angular.module('app')
 	                };
 	                $scope.onProgress=function(upload, loaded){
 		                $log.info("progress="+loaded);
-		                upload.value=(loaded/upload.file.size)*100;
+		                upload.value=(loaded/upload.size)*100; //upload.file.size
 		                upload.size=$scope.getSize(loaded);
 		                $scope.$apply();
 	                };	
@@ -176,6 +224,10 @@ var uploader=angular.module('app')
                         // Triggered when upload is completed:
                         xhr.onload = function(event) {
                             console.log('Upload completed: ' + upload.filename);
+
+                            // 回传文件名
+                            $scope.updateCallbackValue();
+                            
 				            $scope.onCompleted(upload);
                             
                         };
@@ -193,6 +245,10 @@ var uploader=angular.module('app')
                                     formData.append(prop, data[prop]);
                                 }
                             }
+                        }
+                        // aliyun
+                        if(upload.hasOwnProperty("key")) {
+                            formData.append("key", upload.key);
                         }
 
                         // Append file data:
@@ -259,11 +315,18 @@ var uploader=angular.module('app')
                     };
 
                     $scope.updateCallbackValue = function() {
+                        initFlag = false;
                         var fileList = $scope.fileList;
                         var fieldId = $scope.formField;
                         var names = [];
+                        $scope.modelField = [];
                         angular.forEach(fileList, function(v, k) {
                             names.push(v.filename+";"+v.key);
+                            $scope.modelField.push({
+                                name: v.filename,
+                                id: v.key,
+                                url: v.url
+                            });
                         });
                         if(fieldId) {
                             var formField = angular.element(document.getElementById(fieldId));
@@ -272,8 +335,7 @@ var uploader=angular.module('app')
                             }
                         }
 
-                        $scope.modelField = names.join("|");
-                        // $scope.$apply();
+                        // $scope.modelField = names.join("|");
                     };
 
                     $scope.xhrTransport = $scope.ajaxUpload;
@@ -288,11 +350,16 @@ var uploader=angular.module('app')
 
                         angular.forEach(data, function(value, key) {
                             var element = angular.element('<input type="hidden" name="' + key + '" />');
-                            if(key=='key')
-                                value=$scope.aliyunfile;
+                            // if(key=='key')
+                            //     value=$scope.aliyunfile;
                             element.val(value);
                             form.append(element);
                         });
+                        // aliyun
+                        if(upload.hasOwnProperty("key")) {
+                            form.append(angular.element('<input type="hidden" name="key" value="'+ upload.key +'" />'));
+                        }
+                        
                         form.prop({
                             action: $scope.url,
                             method: 'POST',
@@ -385,8 +452,8 @@ var uploader=angular.module('app')
                           data: {
                               OSSAccessKeyId: ossInfo.ossId, 
                               policy: ossInfo.policy,
-                              signature: ossInfo.signature,
-                              key: 'test.png'
+                              signature: ossInfo.signature
+                              // key: 'test.png'
                           },
                           url: ossInfo.url, 
                           pid: pid

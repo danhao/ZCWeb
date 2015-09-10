@@ -94,11 +94,12 @@ module.exports = (grunt) ->
 						level: 'ignore'
 
 		# Sets up a web server
+		###
 		connect:
 			app:
 				options:
 					base: '<%= settings.distDirectory %>'
-					hostname: 'localhost'
+					hostname: '0.0.0.0'
 					livereload: true
 					middleware: (connect, options, middlewares) ->
 						express = require 'express'
@@ -110,7 +111,30 @@ module.exports = (grunt) ->
 						middlewares.unshift app
 						middlewares
 					open: false
-					port: 3001
+					port: 3000
+		###
+		connect:
+			app:
+				options:
+					base: '<%= settings.distDirectory %>'
+					hostname: '0.0.0.0' # localhost
+					livereload: true
+					middleware: (connect, options) ->
+						unless Array.isArray options.base
+							options.base = [options.base]
+						middlewares = [require('grunt-connect-proxy/lib/utils').proxyRequest]
+						middlewares.push connect.static item for item in options.base
+						directory = options.directory or options.base[options.base.length - 1]
+						middlewares.push connect.directory directory
+						middlewares
+					open: false
+					port: 3000
+
+				proxies: [
+					context: '/upload'
+					host: 'http://zichan.oss-cn-shenzhen.aliyuncs.com'
+					port: 80
+				]
 
 		# Copies directories and files from one location to another
 		copy:
@@ -136,7 +160,7 @@ module.exports = (grunt) ->
 					cwd: '<%= settings.tempDirectory %>'
 					src: [
 						'**/*.{eot,svg,ttf,woff}'
-						'**/*.{gif,jpeg,jpg,png,svg,webp}'
+						'**/*.{gif,jpeg,jpg,png,svg,webp,ico}'
 						'index.html'
 						'views/**/*.html'
 						'includes/**/*.html'
@@ -375,6 +399,7 @@ module.exports = (grunt) ->
 					'!libs/jquery.nouislider.all.min.js'
 					'!libs/owl.carousel.min.js'
 					'!libs/fileinput.js'
+					'!libs/jquery.flot.js'
 				]
 				order: [
 					'libs/angular.min.js'
@@ -390,7 +415,9 @@ module.exports = (grunt) ->
 						'angularUtils.directives.uiBreadcrumbs': 'libs/uiBreadcrumbs.js'
 						'w5c.validator':'libs/w5cValidator.min.js'
 						'ui.bootstrap.showErrors': 'libs/showErrors.min.js'
+						'flow': 'libs/ng-flow-standalone.min.js'
 						'angular-md5': 'libs/angular-md5.min.js'
+						'easypiechart': 'libs/angular.easypiechart.js'
 				]
 				require: 'NGBOOTSTRAP'
 			prod:
@@ -426,6 +453,7 @@ module.exports = (grunt) ->
 					'!libs/jquery.nouislider.all.min.js'
 					'!libs/owl.carousel.min.js'
 					'!libs/fileinput.js'
+					'!libs/jquery.flot.js'
 				]
 				order: [
 					'libs/angular.min.js'
@@ -440,7 +468,9 @@ module.exports = (grunt) ->
 						'angularUtils.directives.uiBreadcrumbs': 'libs/uiBreadcrumbs.js'
 						'w5c.validator':'libs/w5cValidator.min.js'
 						'ui.bootstrap.showErrors': 'libs/showErrors.min.js'
+						'flow': 'libs/ng-flow-standalone.min.js'
 						'angular-md5': 'libs/angular-md5.min.js'
+						'easypiechart': 'libs/angular.easypiechart.js'
 				]
 				require: '<%= shimmer.dev.require %>'
 
@@ -494,6 +524,7 @@ module.exports = (grunt) ->
 						'.temp/scripts/libs/jquery.nouislider.all.min.js'
 						'.temp/scripts/libs/owl.carousel.min.js'
 						'.temp/scripts/libs/fileinput.js'
+						'.temp/scripts/libs/jquery.flot.js'
 					]
 
 		# Configration for enviroment
@@ -524,6 +555,20 @@ module.exports = (grunt) ->
 					]
 					dest: 'src/scripts/constants/'
 				]
+
+		htmlSnapshot:
+			prod:
+				options:
+					snapshotPath: 'snapshots/'
+					sitePath: 'http://127.0.0.1:3000/'
+					msWaitForPages: 1000,
+					urls: [
+						# '#!/'
+						# '#!/about'
+						# '/contact'
+						# '/news'
+						# '/jobs'
+					]
 
 		# Run tasks when monitored files change
 		watch:
@@ -696,6 +741,7 @@ module.exports = (grunt) ->
 	grunt.registerTask 'default', [
 		'replace:dev'
 		'build'
+		# 'configureProxies:app'
 		'connect'
 		'watch'
 	]
@@ -744,6 +790,7 @@ module.exports = (grunt) ->
 	# Enter the following command at the command line to execute this build task:
 	# grunt server
 	grunt.registerTask 'server', [
+		# 'configureProxies:app'
 		'connect'
 		'watch:none'
 	]
@@ -774,3 +821,7 @@ module.exports = (grunt) ->
 		'coffee:jslove'
 		'clean:jslove'
 	]
+
+	# grunt.registerTask 'snapshot', [
+	# 	'snapshot:prod'
+	# ]

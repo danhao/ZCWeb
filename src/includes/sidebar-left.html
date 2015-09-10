@@ -53,7 +53,7 @@
         <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('widgets') }">
             <a href="" toggle-submenu><i class="zmdi zmdi-book"></i> 委托管理</a>
             <ul>
-                <li><a data-ui-sref-active="active" data-ui-sref="site.member.createdebt" data-ng-click="mactrl.sidebarStat($event)">新建债务</a></li>
+                <li><a data-ui-sref-active="active" data-ui-sref="site.member.createdebt" data-ng-click="mactrl.sidebarStat($event)">新建委托</a></li>
                 <li ng-show="mactrl.user.type ==1"><a data-ui-sref-active="active" data-ui-sref="site.member.uploaddebt" data-ng-click="mactrl.sidebarStat($event)">上传债权信息</a></li>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.issued" data-ng-click="mactrl.sidebarStat($event)">我的委托</a></li>
                 
@@ -72,17 +72,16 @@
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.pay" data-ng-click="mactrl.sidebarStat($event)">我要充值</a></li>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.cash" data-ng-click="mactrl.sidebarStat($event)">我要提现</a></li>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.fundrecord" data-ng-click="mactrl.sidebarStat($event)">资金记录</a></li>
+                <!-- <li><a data-ui-sref-active="active" data-ui-sref="site.member.repayment" data-ng-click="mactrl.sidebarStat($event)">还款明细</a></li> -->
                 <li>
                     <a data-ui-sref="site.member.vip" data-ng-click="mactrl.sidebarStat($event)">会员服务</a>
                 </li>
             </ul>
         </li>
         <li data-ui-sref-active="active">
-            <a data-ui-sref="site.member.recruit" data-ng-click="mactrl.sidebarStat($event)"><i class="zmdi zmdi-format-subject"></i>人员招聘</a>
+            <a data-ui-sref="site.member.rating" data-ng-click="mactrl.sidebarStat($event)"><i class="zmdi zmdi-star"></i> 信用等级说明</a>
         </li>
-        <li data-ui-sref-active="active">
-            <a data-ui-sref="site.member.typography" data-ng-click="mactrl.sidebarStat($event)"><i class="zmdi zmdi-format-underlined"></i>关于我们</a>
-        </li>
+        
         <!-- 
         <li>
             <a href="javascript:;" ng-click="mactrl.logout();mactrl.sidebarStat($event);"><i class="zmdi zmdi-time-restore"></i> 退出登陆</a>

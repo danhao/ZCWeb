@@ -1,8 +1,8 @@
 
 class WonbidController
-	constructor: (@$log, @$scope, @$rootScope, @actionCode, @ajaxService, @eventConst, @constant, @messageService, @handTypeService) ->
+	constructor: (@$log, @$scope, @$rootScope, @$stateParams, @actionCode, @ajaxService, @eventConst, @constant, @messageService, @handTypeService) ->
 		@q =
-			state: 3
+			state: @$stateParams.state || 4
 			hand: -1
 		@statusTypes = @constant.debtStatusType
 		@resetVar()
@@ -81,4 +81,4 @@ class WonbidController
 	###
 
 
-angular.module('app').controller 'wonbidController', ['$log', '$scope', '$rootScope', 'actionCode', 'ajaxService', 'eventConst', 'constant', 'messageService', 'handTypeService', WonbidController]
+angular.module('app').controller 'wonbidController', ['$log', '$scope', '$rootScope', '$stateParams', 'actionCode', 'ajaxService', 'eventConst', 'constant', 'messageService', 'handTypeService', WonbidController]

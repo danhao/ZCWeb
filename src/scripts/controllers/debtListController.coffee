@@ -64,7 +64,7 @@ class DebtListController
 
 		@agentlist = () =>
 			# @$log.log @q
-			data='{type:1,state:1'
+			data='{type:1,state:2'
 			data += getdate(@q.fbdate) if @q.fbdate isnt '0'
 			data += getmoney(@q.money) if @q.money isnt '0'
 			data += gethand(@q.hand)
@@ -87,7 +87,7 @@ class DebtListController
 
 
 		@transferlist = (para) =>
-			data='{type:2,state:1'
+			data='{type:2,state:2'
 			data += getdate(@q.fbdate) if @q.fbdate isnt '0'
 			data += getmoney(@q.money) if @q.money isnt '0'
 			data += gethand(@q.hand)

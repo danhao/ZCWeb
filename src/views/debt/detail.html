@@ -43,11 +43,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 col-sm-4 col-xs-6" ng-show="ctrl.debt.state < 3">
+        <div class="col-md-4 col-sm-4 col-xs-6" ng-show="ctrl.debt.state < ctrl.DEBT_STATE.DEAL">
             <div class="bid-btn-wrapper" style="overflow:hidden;" ng-show="ctrl.pid != ctrl.debt.ownerId && ctrl.pid != ctrl.debt.winnerId" >
                 <button class="btn btn-primary btn-lg pull-right" ng-click="ctrl.bid()" ng-hide="isBidded">我要竞标</button>
                 <h3 class="pull-right" ng-show="isBidded">您已投过标</h3>
-            </div>
+            </Div>
             <div countdown="expireDay" class="pull-right"></div>
         </div>
     </div>
@@ -58,6 +58,12 @@
             <!-- <div class="debt-price" ng-class="{'0':'bgm-orange','1':'bgm-orange','2':'bgm-gray','3':'bgm-orange','4':'bgm-gray'}[ctrl.debt.state]"> -->
             <div class="debt-price" ng-class="{'bgm-orange': bidStatus!='已结束','bgm-gray': bidStatus=='已结束'}">
                 <h1>{{ctrl.debt.money | ccurrency}} </h1>
+                
+                <div class="dropdown pmop-message" ng-show="showEditButton">
+                    <button class="btn bgm-white btn-float z-depth-1 waves-effect" ng-click="ctrl.edit()" aria-expanded="false">
+                        <i class="zmdi zmdi-edit"></i>
+                    </button>
+                </div>
                 <div class="dropdown pmop-message" ng-show="showBidButton">
                     <button class="btn bgm-white btn-float z-depth-1 waves-effect" ng-click="ctrl.bid()" aria-expanded="false">
                         <i class="zmdi zmdi-mail-send"></i>
@@ -76,7 +82,7 @@
             </div>
             <div class="debt-countdown bgm-white" ng-show="showCountdown || bidStatus">
                 <div class="text-center countdown" ng-show="showCountdown">
-                    <i class="zmdi zmdi-time-countdown"></i> {{ ctrl.debt.state < 3 ? "距结束" : "距催收结束" }}&nbsp;&nbsp; <span countdown="countdown_time" ></span>
+                    <i class="zmdi zmdi-time-countdown"></i> {{ ctrl.debt.state < ctrl.DEBT_STATE.DEAL ? "距结束" : "距催收结束" }}&nbsp;&nbsp; <span countdown="countdown_time" ></span>
                 </div>
                 <div ng-show="bidStatus">{{bidStatus}}</div>
             </div>
@@ -84,13 +90,14 @@
         <div class="pmo-block pmo-contact bgm-white">
             <ul>
                 <li> <i class="zmdi zmdi-label"></i>{{ctrl.debt.id}} </li>
-                <li> <i class="zmdi zmdi-time"></i>{{ctrl.debt.state==0? "创建于": "发布于" }}{{ctrl.debt.state==0? ctrl.debt.createTime: ctrl.debt.publishTime | idate }} </li>
+                <li> <i class="zmdi zmdi-time"></i>{{ctrl.debt.state < ctrl.DEBT_STATE.CHECKED_PASS ? "创建于": "发布于" }}{{ctrl.debt.state < ctrl.DEBT_STATE.CHECKED_PASS? ctrl.debt.createTime: ctrl.debt.publishTime | idate }} </li>
                 <li> <i class="zmdi zmdi-time-countdown"></i>期限{{ctrl.debt.duration}}天  逾期{{ctrl.debt.debtExpireTime | upToNow}}天 ({{ctrl.debt.debtExpireTime | handType}})</li>
                 <li> <i class="zmdi zmdi-file-text"></i>{{ctrl.debt.type | debtType}} {{ctrl.debt.property | debtProperty}}</li>
                 <li ng-show="showCreditor"> <i class="zmdi zmdi-account-box"></i>债权人 {{ctrl.debt.creditorName}}</li>
 
                 <li ng-show="ctrl.debt.type==2"> <i class="zmdi zmdi-card" ></i>{{ctrl.debt.price | ccurrency}}起拍 每次加价{{ctrl.debt.bidIncrease | ccurrency}}</li>
                 <li ng-show="ctrl.debt.type==1"> <i class="zmdi zmdi-card" ></i>代理费率 {{ctrl.debt.rate}}%</li>
+
             </ul>
         </div>
     </div>
@@ -179,9 +186,9 @@
                                     <div class="lv-title">{{ bidder.name }} <span class="m-l-10 c-gray"><i class="zmdi zmdi-time"></i>&nbsp; {{bidder.createTime | idate}}</span> </div>
                                     <small class="lv-small"><rating value="{{bidder.rating | rating}}" readonly="true"></rating></small>
                                     <div class="lv-actions actions dropdown">
-                                        <span class="badge" ng-if="ctrl.debt.state >= 3 && bidder.id == ctrl.debt.winnerId">中标</span>
+                                        <span class="badge" ng-if="ctrl.debt.state >= ctrl.DEBT_STATE.DEAL && bidder.id == ctrl.debt.winnerId && (ctrl.debt.type == 1 || ctrl.debt.type == 2 && ctrl.debt.bidMoney == bidder.money)">中标</span>
                                         竞标价: <b class="f-18">{{ ctrl.debt.type == 1 ? (bidder.rate + '%') : (bidder.money | ccurrency) }}</b>
-                                        <a aria-expanded="false" data-toggle="dropdown" href="" ng-show="ctrl.debt.state < 3 && ctrl.pid == ctrl.debt.ownerId && ctrl.debt.type == 1">
+                                        <a aria-expanded="false" data-toggle="dropdown" href="" ng-show="ctrl.debt.state < ctrl.DEBT_STATE.DEAL && ctrl.pid == ctrl.debt.ownerId && ctrl.debt.type == 1">
                                         <i class="zmdi zmdi-more-vert"></i> </a>
                                         <ul class="dropdown-menu dropdown-menu-right">
                                             <li>
@@ -224,7 +231,7 @@
                 <div class="pmb-block debtcollection" ng-hide="ctrl.debt.messages.length">
                     <div class="pmbb-body text-center">暂无记录</div>
                 </div>
-                <a class="btn btn-float btn-danger btn-corner waves-effect waves-effect" title="添加催收动态" alert="添加催收动态" ng-show="ctrl.debt.state==3 && ctrl.pid == ctrl.debt.winnerId"
+                <a class="btn btn-float btn-danger btn-corner waves-effect waves-effect" title="添加催收动态" alert="添加催收动态" ng-show="ctrl.debt.state==ctrl.DEBT_STATE.DEAL && ctrl.pid == ctrl.debt.winnerId"
                    data-target="#updatedMsgModal" data-toggle="modal" type="button">
                     <i class="zmdi zmdi-plus"></i>
                 </a>
@@ -319,7 +326,7 @@
                             <span class="help-block" ng-show="bidForm.price.$error.assign && bidForm.price.$dirty">价格必须高出最高价或起拍价加上加价幅度 </span>
                             <span class="help-block error" ng-show="error" >{{error}}</span>
                         </div>
-                        <div class="row">
+                        <div class="row" ng-if="showDeposit">
                             <div class="col-sm-12">
                                 <div class="m-t-10">您需要交保证金 <b>{{ deposit | ccurrency }}</b></div>
                             </div>

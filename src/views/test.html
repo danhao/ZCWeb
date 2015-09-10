@@ -1,57 +1,37 @@
 
-<div class="container">
+<div class="container" ng-controller="testController as ctrl">
     <div class="block-header">
         <h2>Form Components</h2>
 
         <ul class="actions">
             <li>
-                <a href="">
-                    <i class="zmdi zmdi-trending-up"></i>
-                </a>
+                <a href=""> <i class="zmdi zmdi-trending-up"></i> </a>
             </li>
             <li>
-                <a href="">
-                    <i class="zmdi zmdi-check-all"></i>
-                </a>
+                <a href=""> <i class="zmdi zmdi-check-all"></i> </a>
             </li>
             <li class="dropdown">
-                <a href="" data-toggle="dropdown">
-                    <i class="zmdi zmdi-more-vert"></i>
-                </a>
-
+                <a href="" data-toggle="dropdown"> <i class="zmdi zmdi-more-vert"></i> </a>
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li>
-                        <a href="">Refresh</a>
-                    </li>
-                    <li>
-                        <a href="">Manage Widgets</a>
-                    </li>
-                    <li>
-                        <a href="">Widgets Settings</a>
-                    </li>
+                    <li> <a href="">Refresh</a> </li>
+                    <li> <a href="">Manage Widgets</a> </li>
+                    <li> <a href="">Widgets Settings</a> </li>
                 </ul>
             </li>
         </ul>
-
     </div>
-
 
     <div class="card">
         <div class="card-header">
             <h2>Input Slider <small>noUiSlider is a range slider without bloat. It offers a ton off features, and it is as small, lightweight and minimal as possible, which is great for mobile use on the many supported devices.</small></h2>
         </div>
-
         <div class="card-body card-padding">
-            
             <p class="f-500 c-black m-b-20">Slide Example</p>
-            
             <div slider class="input-slider m-b-25" ng-model="test.single" start=1 end=10></div>
             <p>
                 Data: <input type="number" ng-init="test.single=1" ng-model="test.single"/>
             </p>
-            
             <br />
-
             <p ng-init="test.from=5; test.to=40" class="input-slider-range">Range example</p>
             <div slider class="input-slider-range m-b-25" ng-from="test.from" ng-to="test.to" start=0 end=100 step=5 data-is-color="red"></div>
             <p>
@@ -60,7 +40,55 @@
             <p>
                 to: <input type="number" ng-model="test.to" />
             </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h2>File upload</h2>
+        </div>
+        <div class="card-body card-padding">
+
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                <div>
+                    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                </div>
+            </div>
             
+        </div>                  <!--/ END CARD BODY -->
+    </div>                      <!--/ END CARD -->
+
+    <div class="card">
+        <div class="card-header">
+            <h2>FLow file upload</h2>
+        </div>
+        <div class="card-body card-padding" >
+
+            <div flow-init flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message" flow-object="ctrl.flow">
+                <input type="file" flow-btn />
+                Input OR Other element as upload button
+                <span class="btn" flow-btn>Upload File</span>
+
+                <table>
+                    <tr ng-repeat="file in $flow.files">
+                        <td>{{$index+1}}</td>
+                        <td>{{file.name}}</td>
+                        <td>{{file.msg}}</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h2>Others</h2>
+        </div>
+        <div class="card-body card-padding">
+            <input type="text" name="s"  placeholder="输入 回车搜索" speech="speech" x-webkit-speech="x-webkit-speech" x-webkit-grammar="builtin:translate">
         </div>
     </div>
     

@@ -3,7 +3,8 @@ class Startup
 	constructor: (@$log, @$rootScope, @ajaxService, @actionCode, @eventConst, @userSession, @growlService) ->
 
 		# 移动端调用
-		@mobilePush = () ->
+		@mobilePush = (name, id) ->
+			# console.log 'mobile push '+id+';'+name
 			try
 				apiready = () ->
 					api.execScript({
@@ -15,7 +16,7 @@ class Startup
 				
 		
 		# register login event handler
-		@$rootScope.$on @eventConst.LOGIN, (ret) =>
+		@$rootScope.$on @eventConst.LOGIN, (event, ret) =>
 			# @$log.log "login .."
 			@$rootScope.user =
 				pid: @userSession.pid()
@@ -27,16 +28,15 @@ class Startup
 				.error (error) ->
 					@$log.log error
 
-			@mobilePush()
-			
+			@mobilePush(ret.name, ret.id)
+
 
 		# F5
 		if @userSession.pid()
-			@$rootScope.$broadcast @eventConst.LOGIN, {}
-
 			# welcome message
 			@ajaxService.post @actionCode.GET_USER, {id: @userSession.pid()}
 				.success (result) =>
+					@$rootScope.$broadcast @eventConst.LOGIN, result
 					@growlService.growl('欢迎回来 '+result.name+'!', 'inverse')
 				.error (error) =>
 					@$log.log error
@@ -48,3 +48,6 @@ startup = ($log, $rootScope, ajaxService, actionCode, eventConst, userSession, g
 
 
 angular.module("app").run ['$log', '$rootScope', 'ajaxService', 'actionCode', 'eventConst', 'userSession', 'growlService', startup]
+
+
+

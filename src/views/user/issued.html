@@ -1,4 +1,4 @@
-<section  class="page-view ng-scope" data-ui-view="">
+
     <div class="container ng-scope">
         <div class="card">
             <header class="card-header">
@@ -28,29 +28,33 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         状态:&nbsp;&nbsp;
                         <div class="btn-group">
-                            <div class="btn-group" ng-init="ctrl.q.state='-1'" data-toggle="buttons">
-                                <label class="btn btn-default active" ng-click="ctrl.q.state='-1'">
-                                    <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'-1'" checked/>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-default" ng-click="ctrl.q.state='-1'" ng-class="{active:ctrl.q.state=='-1'}">
+                                    <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'-1'"/>
                                     <i class="fa fa-user"></i> 全部
                                 </label>
-                                <label class="btn btn-default" ng-click="ctrl.q.state='0'">
-                                    <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'0'" checked/>
+                                <label class="btn btn-default" ng-click="ctrl.q.state='0'" ng-class="{active:ctrl.q.state=='0'}">
+                                    <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'0'"/>
+                                    <i class="fa fa-user"></i> 待审核
+                                </label>
+                                <label class="btn btn-default" ng-click="ctrl.q.state='1'" ng-class="{active:ctrl.q.state=='1'}">
+                                    <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'1'"/>
                                     <i class="fa fa-user"></i> 审核中
                                 </label>
-                                <label class="btn btn-default " ng-click="ctrl.q.state='1'">
-                                    <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'1'" checked/>
+                                <label class="btn btn-default " ng-click="ctrl.q.state='2'" ng-class="{active:ctrl.q.state=='2'}">
+                                    <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'2'"/>
                                     <i class="fa fa-user"></i> 已通过
                                 </label>
-                                <label class="btn btn-default" ng-click="ctrl.q.state='2'">
-                                    <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'2'" checked/>
+                                <label class="btn btn-default" ng-click="ctrl.q.state='3'" ng-class="{active:ctrl.q.state=='3'}">
+                                    <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'3'"/>
                                     <i class="fa fa-user"></i> 未通过
                                 </label>
-                                <label class="btn btn-default " ng-click="ctrl.q.state='3'">
-                                    <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'3'" checked/>
+                                <label class="btn btn-default " ng-click="ctrl.q.state='4'" ng-class="{active:ctrl.q.state=='4'}">
+                                    <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'4'"/>
                                     <i class="fa fa-user"></i> 已成交
                                 </label>
-                                <label class="btn btn-default" ng-click="ctrl.q.state='4'">
-                                    <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'4'" checked/>
+                                <label class="btn btn-default" ng-click="ctrl.q.state='5'" ng-class="{active:ctrl.q.state=='5'}">
+                                    <input type="radio" name="type" ng-model="ctrl.q.state" autocomplete="off" value="'5'"/>
                                     <i class="fa fa-user"></i> 已结束
                                 </label>
                             </div>
@@ -93,4 +97,4 @@
             </div>
         </div>
     </div>
-</section>
+

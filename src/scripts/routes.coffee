@@ -1,5 +1,5 @@
 class Config
-	constructor: ($stateProvider, $urlRouterProvider, $injector) ->
+	constructor: ($stateProvider, $urlRouterProvider, $injector, $locationProvider) ->
 		$stateProvider
 			.state 'site',
 				url: '/'
@@ -22,7 +22,7 @@ class Config
 
 			.state 'site.index.about',
 				url: 'about'
-				templateUrl: 'views/typography.html'
+				templateUrl: 'views/index/about.html'
 
 			.state 'site.index.contact',
 				url: 'contact'
@@ -35,6 +35,14 @@ class Config
 			.state 'site.index.jobs',
 				url: 'jobs'
 				templateUrl: 'views/recruit.html'
+
+			.state 'site.index.faq',
+				url: 'faq'
+				templateUrl: 'views/faq.html'
+
+			.state 'site.index.disclaimer',
+				url: 'disclaimer'
+				templateUrl: 'views/index/disclaimer.html'
 
 			.state 'site.selectrole',
 				url: 'selectrole'
@@ -100,21 +108,21 @@ class Config
 
 			# 我的发布
 			.state 'site.member.issued',
-				url: 'issued'
+				url: 'issued?state'
 				templateUrl: 'views/user/issued.html'
 				data:
 					displayName: "我的委托"
 
 			# 我的竞标, 我参与的
 			.state 'site.member.participant',
-				url: 'participant'
+				url: 'participant?state'
 				templateUrl: 'views/user/participant.html'
 				data:
 					displayName: "我的竞标"
 	
 			# 我的中标
 			.state 'site.member.wonbid',
-				url: 'wonbid'
+				url: 'wonbid?state'
 				templateUrl: 'views/user/wonbid.html'
 				data:
 					displayName: "我的中标"
@@ -143,7 +151,7 @@ class Config
 						msg: "没有上传相关债权文档！"
 
 			.state 'site.member.createdebt',
-				url: 'createdebt'
+				url: 'createdebt/:id'
 				templateUrl: 'views/user/createdebt.html'
 				data:
 					precondition:
@@ -274,11 +282,23 @@ class Config
 				data:
 					displayName: "资金记录"
 
+			.state 'site.member.repayment',
+				url: 'repayment'
+				templateUrl: 'views/user/repaymentlist.html'
+				data:
+					displayName: "还款记录查询"
+
 			.state 'site.member.vip',
 				url: 'vip'
 				templateUrl: 'views/user/vip.html'
 				data:
 					displayName: "购买VIP会员服务"
+
+			.state 'site.member.stat',
+				url: 'stat'
+				templateUrl: 'views/user/stat.html'
+				data:
+					displayName: "统计"
 
 			# ########## debt
 			.state 'site.debt',
@@ -310,6 +330,18 @@ class Config
 				data:
 					displayName: '关于我们'
 
+			.state 'site.member.contact',
+				url: 'contact'
+				templateUrl: 'views/index/contact.html'
+				data:
+					displayName: '联系我们'
+
+			.state 'site.member.disclaimer',
+				url: 'disclaimer'
+				templateUrl: 'views/index/disclaimer.html'
+				data:
+					displayName: '免责声明'
+
 			.state 'site.member.recruit',
 				url: 'recruit',
 				templateUrl: 'views/recruit.html'
@@ -322,6 +354,13 @@ class Config
 				data:
 					displayName: '信用等级'
 
+			.state 'site.member.faq',
+				url: 'faq'
+				templateUrl: 'views/faq.html'
+				data:
+					displayName: 'FAQ'
+
+
 			# demo
 			.state 'site.test',
 				url: 'test',
@@ -330,5 +369,11 @@ class Config
 
 		$urlRouterProvider.otherwise '/'
 
+		# hashbang
+		$locationProvider.hashPrefix '!'
 
-angular.module('app').config ['$stateProvider', '$urlRouterProvider', '$injector', Config]
+
+
+angular.module('app').config ['$stateProvider', '$urlRouterProvider', '$injector', '$locationProvider', Config]
+
+

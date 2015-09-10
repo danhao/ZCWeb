@@ -6,9 +6,10 @@
             <div class="card-body card-padding">
                 <div class="row">
                     <div class="col-sm-4">
-                        <div class="card animation-demo">
+                        
+                        <div class="card ">
                             <div class="card profile-view">
-                                <a href="#/profile/{{ctrl.user.id}}">
+                                <a href="#!/profile/{{ctrl.user.id}}">
                                     <div class="pv-header">
                                         <img ng-src="{{ctrl.user.head?ctrl.user.head:'../images/profile-pics/1.jpg'}}"    class="pv-main" alt=""/>
                                     </div>
@@ -46,9 +47,38 @@
                                     </ul>
                                 </div>
                             </div>
+                        </div>  <!--/ END PROFILE -->
+
+                        
+                        <div id="account-balance" class="dash-widget-item bgm-teal">
+                            
+
+                            <div class="p-20">
+                                <small>帐户余额</small>
+                                <h3 class="m-0 f-400 ">{{ctrl.user.money | ccurrency }}</h3>
+
+                                <br/>
+
+                                <small>冻结金额</small>
+                                <h3 class="m-0 f-400 ">{{ctrl.user.frozen | ccurrency }}</h3>
+                            </div>
+                            
+                            <div class="dash-widget-footer">
+                                <div class="split-btn-3">
+                                    <a ui-sref="site.member.pay" class="btn1">充值</a>
+                                    <a ui-sref="site.member.cash" class="btn1"> 提现</a>
+                                    <a ui-sref="site.member.fundrecord" class="btn1">资金明细</a>
+                                </div>
+                            </div>
                         </div>
+                        
+                        
                     </div>
+
+                    
                     <div class="col-sm-8">
+
+                        <!-- 
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="card">
@@ -57,12 +87,12 @@
                                     </div>
                                     <div class="card-body card-padding">
                                         <div class="row">
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-12">
                                                 <span class="money">{{ctrl.user.money | ccurrency }}</span>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <a ui-sref="site.member.pay" class="btn btn-default">充值</a> &nbsp;
-                                                <a ui-sref="site.member.cash"  class="btn btn-default">提现</a>
+                                                <div class="pull-right">
+                                                    <a ui-sref="site.member.pay" class="btn btn-default">充值</a> &nbsp;
+                                                    <a ui-sref="site.member.cash"  class="btn btn-default">提现</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -75,17 +105,167 @@
                                     </div>
                                     <div class="card-body card-padding">
                                         <div class="row">
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-12">
                                                 <span class="money">{{ctrl.user.frozen | ccurrency }}</span>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <a ui-sref="site.member.fundrecord" class="btn btn-default">资金明细</a>
+                                                <a ui-sref="site.member.fundrecord" class="btn btn-default pull-right">资金明细</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        -->
+
+
+                        <div class="dash-widget-item bgm-cyan item-relative" ng-show="ctrl.user.role == 1">
+                            <div class="dash-widget-header">
+                                <div class="dash-widget-title">我发布的委托</div>
+                            </div>
+
+                            <div class="mypublished">
+                                <ul class="list-group-h split-6 p-20">
+                                    <li><a ui-sref="site.member.issued({state:0})" >
+                                        待审核 <span ng-show="ctrl.user.creditorStats[0] > 0">({{ctrl.user.creditorStats[0]}})</span>
+                                    </a></li>
+                                    <li><a ui-sref="site.member.issued({state:1})" >
+                                        审核中 <span ng-show="ctrl.user.creditorStats[1] > 0">({{ctrl.user.creditorStats[1]}})</span>
+                                    </a></li>
+                                    <li><a ui-sref="site.member.issued({state:2})" >
+                                        已通过 <span ng-show="ctrl.user.creditorStats[2] > 0">({{ctrl.user.creditorStats[2]}})</span>
+                                    </a></li>
+                                    <li><a ui-sref="site.member.issued({state:3})" >
+                                        未通过 <span ng-show="ctrl.user.creditorStats[3] > 0">({{ctrl.user.creditorStats[3]}})</span>
+                                    </a></li>
+                                    <li><a ui-sref="site.member.issued({state:4})" >
+                                        已成交 <span ng-show="ctrl.user.creditorStats[4] > 0">({{ctrl.user.creditorStats[4]}})</span>
+                                    </a></li>
+                                    <li><a ui-sref="site.member.issued({state:5})" >
+                                        已结束 <span ng-show="ctrl.user.creditorStats[5] > 0">({{ctrl.user.creditorStats[5]}})</span>
+                                    </a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="dash-widget-item bgm-cyan item-relative" ng-show="ctrl.user.role == 2"> 
+                            <div class="dash-widget-header">
+                                <div class="dash-widget-title">我参与的竞标</div>
+                            </div>
+
+                            <div class="mypublished">
+                                <ul class="list-group-h split-5 p-20">
+                                    <li><a ui-sref="site.member.participant" >
+                                        竞标中 <span ng-show="ctrl.user.deputyStats[0] > 0">({{ctrl.user.deputyStats[0]}})</span>
+                                    </a></li>
+                                    <li><a ui-sref="site.member.wonbid" >
+                                        已中标 <span ng-show="ctrl.user.deputyStats[1] > 0">({{ctrl.user.deputyStats[1]}})</span>
+                                    </a></li>
+                                    <li><a ui-sref="site.member.participant({state:4})" >
+                                        未中标 <span ng-show="ctrl.user.deputyStats[2] > 0">({{ctrl.user.deputyStats[2]}})</span>
+                                    </a></li>
+                                    <li><a ui-sref="site.member.wonbid({state:5})" >
+                                        已完成 <span ng-show="ctrl.user.deputyStats[3] > 0">({{ctrl.user.deputyStats[3]}})</span>
+                                    </a></li>
+                                    <li><a ui-sref="site.member.participant({state:5})" >
+                                        已结束 <span ng-show="ctrl.user.deputyStats[4] > 0">({{ctrl.user.deputyStats[4]}})</span>
+                                    </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                         
+
+                        <div class="row">
+                            <div class="col-sm-6" >
+                                <div class="epc-item bgm-lightgreen" ng-init="percent1=35">
+                                    <div class="easy-pie main-pie" >
+                                        <div class="percent">{{rateOfComplete}}</div>
+                                        <div class="pie-title">最近一个月的完成率</div>
+                                        <div easypiechart options="options" percent="rateOfComplete"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="epc-item bgm-orange" ng-init="percent2=87">
+                                    <div class="easy-pie main-pie" >
+                                        <div class="percent">{{rateOfReturnMoney}}</div>
+                                        <div class="pie-title">最近一个月的回款率</div>
+                                        <div easypiechart options="options" percent="rateOfReturnMoney"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 
+                        <div class="card mypublished">
+                             <div class="card-header bgm-indigo">
+                                 <h2>我发布的委托</h2>
+                             </div>
+                             <div class="card-body">
+                                 <ul class="list-group-h split-6 p-20">
+                                    <li><a href="#" class="list-group-item2">待审核 <span class="badge2">2</span></a></li>
+                                    <li><a href="#" class="list-group-item2">审核中 <span class="badge2">0</span></a></li>
+                                    <li><a href="#" class="list-group-item2">已通过 <span class="badge2">0</span></a></li>
+                                    <li><a href="#" class="list-group-item2">未通过 <span class="badge2">0</span></a></li>
+                                    <li><a href="#" class="list-group-item2">已成交 <span class="badge2">0</span></a></li>
+                                    <li><a href="#" class="list-group-item2">已结束 <span class="badge2">0</span></a></li>                                     
+                                 </ul>
+                             </div>
+                        </div>
+
+                        <div class="card">
+                             <div class="card-header bgm-indigo">
+                                 <h2>我参与的竞标</h2>
+                             </div>
+                             <div class="card-body">
+                                 <ul class="list-group-h split-5 p-20">
+                                    <li><a href="#" class="list-group-item2">竞标中 <span class="badge2">2</span></a></li>
+                                    <li><a href="#" class="list-group-item2">已中标 <span class="badge2">0</span></a></li>
+                                    <li><a href="#" class="list-group-item2">未中标 <span class="badge2">0</span></a></li>
+                                    <li><a href="#" class="list-group-item2">已成交 <span class="badge2">0</span></a></li>
+                                    <li><a href="#" class="list-group-item2">已结束 <span class="badge2">0</span></a></li>                                     
+                                 </ul>
+                             </div>
+                        </div>
+                        -->
+
+                        <!-- 
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="mini-charts-item bgm-cyan">
+                                    <div class="clearfix">
+                                        <div class="chart stats-bar">我的委托</div>
+                                        <div class="count">
+                                            <small>Website Traffics</small>
+                                            <h2>987,459</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="mini-charts-item bgm-lightgreen">
+                                    <div class="clearfix">
+                                        <div class="chart stats-bar">我的竞标</div>
+                                        <div class="count">
+                                            <small>Website Traffics</small>
+                                            <h2>987,459</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="mini-charts-item bgm-orange">
+                                    <div class="clearfix">
+                                        <div class="chart stats-bar">我的中标</div>
+                                        <div class="count">
+                                            <small>Website Traffics</small>
+                                            <h2>987,459</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+
+                        
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card">
@@ -109,6 +289,9 @@
                                                     <div ng-show="situation.type==4">
                                                         <a ui-sref="site.debt.detail({debtId: '{{situation.data[0]}}'})" href="javascript:;" >委托单{{situation.data[0]}}已关闭 </a>
                                                     </div>
+                                                    <div ng-show="situation.type==5">
+                                                        <a ui-sref="site.debt.detail({debtId: '{{situation.data[1]}}'})" href="javascript:;" >修改委托单{{situation.data[1]}} </a>
+                                                    </div>
                                                 </li>
                                             </div>
                                         </ul>
@@ -118,10 +301,64 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>  <!--/ END OF ROW -->
 
                     </div>
                 </div>
+
+                <!-- 
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-header bgm-lightblue">
+                                <h2> 我的委托 </h2>
+                            </div>
+                            <div class="card-body ">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item"><span class="badge">2</span> 待审核</a>
+                                    <a href="#" class="list-group-item"><span class="badge">0</span> 审核中</a>
+                                    <a href="#" class="list-group-item"><span class="badge">0</span> 已通过</a>
+                                    <a href="#" class="list-group-item"><span class="badge">0</span> 未通过</a>
+                                    <a href="#" class="list-group-item"><span class="badge">0</span> 已成交</a>
+                                    <a href="#" class="list-group-item"><span class="badge">0</span> 已结束</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-header bgm-lightblue">
+                                <h2> 我的竞标 </h2>
+                            </div>
+                            <div class="card-body ">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item"><span class="badge">5</span> 进行中</a>
+                                    <a href="#" class="list-group-item"><span class="badge">2</span> 已成交</a>
+                                    <a href="#" class="list-group-item"><span class="badge">0</span> 已结束</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-header bgm-lightblue">
+                                <h2> 我的中标 </h2>
+                            </div>
+                            <div class="card-body ">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item"><span class="badge">2</span> 进行中</a>
+                                    <a href="#" class="list-group-item"><span class="badge">1</span> 已完成</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                 -->
+                
+
+
+                    <!-- 流程 -->
+                    <!-- 
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="card">
@@ -162,6 +399,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col-sm-6">
                             <div class="card">
                                 <div class="card-header bgm-lightblue" style="padding: 15px">
@@ -201,10 +439,14 @@
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
+                    -->
             </div>
         </div>
     </div>
+
+    
     <a class="btn btn-float btn-danger btn-corner waves-effect" ui-sref="site.member.createdebt" alt="发布债权" title="发布债权">
         <i class="zmdi zmdi-plus"></i>
     </a>

@@ -13,11 +13,12 @@ class UploadDebtController
 				growlService.growl("请上传债务文件，仅支持 xls ,xlsx 格式的EXCEL文件！", 'danger')
 				return
 
-			if checkfiletype(debtfile) is false
+			debtfile = debtfile[0]
+			if checkfiletype(debtfile.id) is false
 				growlService.growl("上传债务文件格式有误，仅支持 xls ,xlsx 格式的EXCEL文件！", 'danger')
 				return
 
-			debtfile=splitfiles(debtfile)
+			# debtfile=splitfiles(debtfile)
 			@ajaxService.post @actionCode.ACTION_UPLOAD, debtfile
 			.success (result) =>
 				growlService.growl('上传债务文件成功，等待后台处理！', 'success')
