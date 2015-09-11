@@ -45,14 +45,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
+                        <tr ng-repeat="debt in debtList">
+                            <td>{{debt.debtId}} </td>
+                            <td>{{debt.state | debtState}} </td>
+                            <td>{{debt.receiveTime | idate}} </td>
+                            <td>{{debt.debtorName}} </td>
+                            <td>{{debt.money | ccurrency}} </td>
+                            <td>{{debt.time | idate}} </td>
+                            <td>{{debt.repayMoney | ccurrency}} </td>
+                        </tr>
+                        <tr ng-hide="debtList.length" class="text-center">
+                            <td colspan="7">暂无记录</td>
                         </tr>
                     </tbody>
                 </table>

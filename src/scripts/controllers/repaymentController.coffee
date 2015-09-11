@@ -2,6 +2,10 @@
 class RepaymentController
 	constructor: (@$log, @$scope, @ajaxService, @userSession, @actionCode, @growlService) ->
 		@$log.log 'repayment controller'
+		@q =
+			timeFrom: moment().startOf("month").format("YYYY/MM/DD")
+			timeTo: moment().format("YYYY/MM/DD")
+			page: 1
 		@pid = @userSession.pid()
 		@hasMore = true
 		@$scope.$watch () => @q
@@ -10,20 +14,25 @@ class RepaymentController
 			if newValue isnt oldValue
 				@list()
 		, true
-		
+		@list()
 
 	query: () ->
-		@$log.log 'query'
+		unless @q2
+			return
+		@q.debtId = @q2.keyword
 
 	list: () ->
 		param =
-			timeFrom: @q.timeFrom
-			timeTo: @q.timeTo
+			timeFrom: moment(new Date(@q.timeFrom)).unix()
+			timeTo: moment(new Date(@q.timeTo)).unix()
 			page: @q.page
 			ownerId: @pid
 			deputyId: @pid
+		param.debtId = @q.debtId if @q.debtId
+		@$log.log param
 		@ajaxService.post @actionCode.ACTION_LIST_REPAY, param
 			.success (ret) =>
+				@$log.log ret
 				if ret.debt?
 					@debtList = ret.debt
 					@hasMore = @debtList? and @debtList.length > 0
