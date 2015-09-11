@@ -1,7 +1,6 @@
 
 class RepaymentController
 	constructor: (@$log, @$scope, @ajaxService, @userSession, @actionCode, @growlService) ->
-		@$log.log 'repayment controller'
 		@q =
 			timeFrom: moment().startOf("month").format("YYYY/MM/DD")
 			timeTo: moment().format("YYYY/MM/DD")
@@ -24,18 +23,18 @@ class RepaymentController
 	list: () ->
 		param =
 			timeFrom: moment(new Date(@q.timeFrom)).unix()
-			timeTo: moment(new Date(@q.timeTo)).unix()
+			timeTo: moment(new Date(@q.timeTo)).add(1, "d").unix()
 			page: @q.page
 			ownerId: @pid
 			deputyId: @pid
 		param.debtId = @q.debtId if @q.debtId
-		@$log.log param
+		# @$log.log param
 		@ajaxService.post @actionCode.ACTION_LIST_REPAY, param
 			.success (ret) =>
-				@$log.log ret
-				if ret.debt?
-					@debtList = ret.debt
-					@hasMore = @debtList? and @debtList.length > 0
+				# @$log.log ret
+				@debtList = ret.repay || []
+				@hasMore = @debtList? and @debtList.length > 0
+
 			.error (error) =>
 				@growlService.growl error.desc, 'danger'
 
