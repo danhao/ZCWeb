@@ -1,0 +1,32 @@
+
+<div class="upload">
+    <!-- 
+    <div>{{title}}<span style='color:red' ng-show="require">*</span></div>
+    <br>
+    <input class="btn btn-default btn-block" type="file" name="{{parameter}}" />
+    <ul class="list-group upload-list" >
+        <li ng-repeat="file in fileList" class="list-group-item">
+            {{file.filename}}
+            <span class="pull-right">
+                <i class="fa fa-check-circle text-success"></i>
+                <a href="javascript:;" class="text-muted" ng-click="erase(this)"><i class="zmdi zmdi-close"></i></a>
+            </span>
+        </li>
+    </ul>
+    <div>
+    <small ng-show="amount" class="c-grey">最多允许上传 {{amount}} 个文件</small>
+    <small ng-show="filesizeLimit && filesizeLimit != -1" class="c-grey m-l-10">最大只允许上传 {{getSize(filesizeLimit)}} 的文件</small>
+    </div>
+    <small class="c-red">{{error}}</small>
+    -->
+
+    <div class="fileinput fileinput-new" data-provides="fileinput">
+        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+        </div>
+        <div>
+            <span class="btn btn-default btn-file"><span class="fileinput-new">选择图片</span><span class="fileinput-exists">修改</span><input type="file" name="..."></span>
+            <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">删除</a>
+        </div>
+    </div>
+    <!-- {{modelField}} -->
+</div>
