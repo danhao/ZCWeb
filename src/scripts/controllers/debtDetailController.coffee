@@ -113,6 +113,7 @@ class DebtDetailController
 		@$scope.showCountdown = (@debt.state is @DEBT_STATE.CHECKED_PASS) or (@debt.type is DEBT_TYPE.AGENT and @debt.state is @DEBT_STATE.DEAL and (@pid is @debt.ownerId or @pid is @debt.winnerId))
 		@$scope.showReturnButton = @debt.canReturn is 1 and @pid is @debt.winnerId
 		@$scope.showEndButton = (@debt.state is @DEBT_STATE.DEAL) and @debt.canEnd is 1 and @pid is @debt.winnerId
+		@$scope.showProxyLetter = @debt.type is DEBT_TYPE.AGENT and @debt.state >= @DEBT_STATE.DEAL and @pid is @debt.winnerId
 		
 		# 投标状态
 		@$scope.bidStatus = switch

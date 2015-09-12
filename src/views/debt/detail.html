@@ -92,12 +92,12 @@
                 <li> <i class="zmdi zmdi-label"></i>{{ctrl.debt.id}} </li>
                 <li> <i class="zmdi zmdi-time"></i>{{ctrl.debt.state < ctrl.DEBT_STATE.CHECKED_PASS ? "创建于": "发布于" }}{{ctrl.debt.state < ctrl.DEBT_STATE.CHECKED_PASS? ctrl.debt.createTime: ctrl.debt.publishTime | idate }} </li>
                 <li> <i class="zmdi zmdi-time-countdown"></i>期限{{ctrl.debt.duration}}天  逾期{{ctrl.debt.debtExpireTime | upToNow}}天 ({{ctrl.debt.debtExpireTime | handType}})</li>
-                <li> <i class="zmdi zmdi-file-text"></i>{{ctrl.debt.type | debtType}} {{ctrl.debt.property | debtProperty}}</li>
+                <li> <i class="zmdi zmdi-case"></i>{{ctrl.debt.type | debtType}} {{ctrl.debt.property | debtProperty}}</li>
                 <li ng-show="showCreditor"> <i class="zmdi zmdi-account-box"></i>债权人 {{ctrl.debt.creditorName}}</li>
 
                 <li ng-show="ctrl.debt.type==2"> <i class="zmdi zmdi-card" ></i>{{ctrl.debt.price | ccurrency}}起拍 每次加价{{ctrl.debt.bidIncrease | ccurrency}}</li>
                 <li ng-show="ctrl.debt.type==1"> <i class="zmdi zmdi-card" ></i>代理费率 {{ctrl.debt.rate}}%</li>
-
+                <li ng-show="showProxyLetter"> <i class="zmdi zmdi-file-text"></i><a target="_blank" href="/contract/{{ctrl.debt.id}}.pdf">查看下载委托书</a> </li>
             </ul>
         </div>
     </div>
