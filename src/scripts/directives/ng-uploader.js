@@ -16,9 +16,16 @@ var uploader=angular.module('app')
                     modelField: '=',
                     formField: '@formField',
                     amount: '=',
-                    filesizeLimit: '='
+                    filesizeLimit: '=',
+                    singleImage: '='
                 }, 
-	            templateUrl:'/views/directives/ngUploader.html',
+	            templateUrl: function(element, attrs) {
+                    if(attrs.singleImage) {
+                        return '/views/directives/ngUploader-image.html';
+                    } else {
+                        return '/views/directives/ngUploader.html';
+                    }
+                },
                 // compile: function(element, attrs) {
                 //     if (!attrs.filesizeLimit) {
                 //         attrs.filesizeLimit = 5*1024*1024;
@@ -45,65 +52,73 @@ var uploader=angular.module('app')
                     var pid = uploaderFactory.pid;
                     var input = element.find("input");
 
-                    // init for edit
-                    /*
-                    if($scope.modelField) {
-                        var model = $scope.modelField;
-                        if(angular.isObject(model)) {
+                    if($scope.singleImage) {
+
+                        $('.fileinput', element).on("change.bs.fileinput", function(e, file) {
+                            if($scope.fileList.length > 0) {
+                                $scope.reset();
+                            }
                             $scope.fileList.push({
-                                filename: model.name,
-                                url: model.url
-                            });
-                        }
-                        else if(angular.isArray(model)) {
-                            angular.forEach(model, function(m) {
-                                $scope.fileList.push({
-                                    filename: m.name,
-                                    url: m.url
-                                });
-                            });
-                        }
-                    }
-                    */
-
-                    
-	                element.bind("change", function(e) {
-                        var target = e.target;
-                        if(target.tagName == "INPUT" && target.type == "file") {
-                            $scope.error = ''; // reset error
-                            
-		                    var files=e.target.files;
-		                    for ( var i = 0; i < files.length; i++) {
-                                // $log.log(files[i].size);
-                                if($scope.filesizeLimit && $scope.filesizeLimit != -1 && files[i].size > $scope.filesizeLimit) {
-                                    $scope.error = '上传文件大小超过限制';
-                                    $scope.$apply();
-                                    return;
-                                }
-                                
-                                $scope.aliyunfile =pid+"/"+createguidfilename(files[i].name);
-			                    $scope.fileList.push({
-				                    parameter:$scope.parameter,
-				                    active:false,
-				                    filename:files[i].name,
-				                    file:files[i],
-				                    value:(0/files[i].size)*100,
-				                    size:0,
-                                    key:$scope.aliyunfile ,
-				                    total:$scope.getSize(files[i].size)
-			                    });
-		                    }
-                            
-		                    $scope.$apply();
+				                parameter:$scope.parameter,
+				                active:false,
+				                filename:file.name,
+				                file:file,
+				                value:(0/file.size)*100,
+				                size:0,
+                                key:pid+"/"+createguidfilename(file.name),
+				                total:$scope.getSize(file.size)
+			                });
+                            $scope.$apply();
 			                $scope.startUpload();
-                        }
-	                });
+                        })
+                            .on("clear.bs.fileinput", function(e) {
+                                $scope.erase(0);
+                                $scope.$apply();
+                            })
+                            .on("reset.bs.fileinput", function() {
+                                $scope.erase(0);
+                                $scope.$apply();
+                            });
+                        
+                    } else {
+	                    element.bind("change", function(e) {
+                            var target = e.target;
+                            if(target.tagName == "INPUT" && target.type == "file") {
+                                $scope.error = ''; // reset error
+                                
+		                        var files=e.target.files;
+		                        for ( var i = 0; i < files.length; i++) {
+                                    // $log.log(files[i].size);
+                                    if($scope.filesizeLimit && $scope.filesizeLimit != -1 && files[i].size > $scope.filesizeLimit) {
+                                        $scope.error = '上传文件大小超过限制';
+                                        $scope.$apply();
+                                        return;
+                                    }
+                                    
+                                    $scope.aliyunfile =pid+"/"+createguidfilename(files[i].name);
+			                        $scope.fileList.push({
+				                        parameter:$scope.parameter,
+				                        active:false,
+				                        filename:files[i].name,
+				                        file:files[i],
+				                        value:(0/files[i].size)*100,
+				                        size:0,
+                                        key:$scope.aliyunfile ,
+				                        total:$scope.getSize(files[i].size)
+			                        });
+		                        }
+                                
+		                        $scope.$apply();
+			                    $scope.startUpload();
+                            }
+	                    });
 
-                    element.bind("click", function(e) {
-                        if($scope.amount && $scope.amount != -1 && $scope.fileList.length >= $scope.amount) {
-                            e.preventDefault();
-                        }
-                    });
+                        element.bind("click", function(e) {
+                            if($scope.amount && $scope.amount != -1 && $scope.fileList.length >= $scope.amount) {
+                                e.preventDefault();
+                            }
+                        });
+                    }
 
                     // reset
                     $scope.$watch("modelField", function(newVal, oldVal) {
@@ -116,7 +131,6 @@ var uploader=angular.module('app')
                         }
                         else if(newVal !== oldVal && initFlag) { // init fileList
                             initFlag = false;
-                            // console.log( 'init' );
 
                             if(angular.isArray(newVal)) {
                                 angular.forEach(newVal, function(m) {
@@ -134,6 +148,20 @@ var uploader=angular.module('app')
                                     key: newVal.id
                                 });
                             }
+
+                            // single image
+                            if($scope.singleImage) {
+                                var url;
+                                if ($scope.fileList.length > 0) {
+                                    url = $scope.fileList[0].url;
+                                } else if(angular.isString(newVal)) {
+                                    url = newVal;
+                                }
+                                if(url) {
+                                    $('.fileinput-preview', element).html($('<img>').attr("src", url));
+                                    $('.fileinput', element).addClass('fileinput-exists').removeClass('fileinput-new');
+                                }
+                            }
                         }
                     });
                     $scope.$watch("formField", function(newVal, oldVal) {
@@ -141,11 +169,22 @@ var uploader=angular.module('app')
                             $scope.fileList = [];
                         }
                     });
+
+                    $scope.reset = function() {
+                        $scope.fileList = [];
+                        if($scope.modelField) {
+                            $scope.modelField = [];
+                        }
+                        if($scope.formField) {
+                            angular.element(document.getElementById($scope.formField)).val('');
+                        }
+                    };
                     
 	                $scope.erase=function(ele){
 		                // $log.info("file erased=");
-		                $scope.fileList.splice( $scope.fileList.indexOf(ele), 1 );
+		                $scope.fileList.splice( angular.isNumber(ele)? ele: $scope.fileList.indexOf(ele), 1 );
                         $scope.updateCallbackValue();
+                        
 	                };
 	                $scope.onProgress=function(upload, loaded){
 		                $log.info("progress="+loaded);
@@ -330,9 +369,7 @@ var uploader=angular.module('app')
                         });
                         if(fieldId) {
                             var formField = angular.element(document.getElementById(fieldId));
-                            if(names.length > 0) {
-                                formField.val(names.join("|"));
-                            }
+                            formField.val(names.length > 0 ? names.join("|") : "");
                         }
 
                         // $scope.modelField = names.join("|");
@@ -458,6 +495,7 @@ var uploader=angular.module('app')
                           url: ossInfo.url, 
                           pid: pid
                       };
+
                   }]);
 
 })();

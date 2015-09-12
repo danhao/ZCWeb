@@ -19,7 +19,7 @@ class UserController
 			blurTrig: true
 
 		@saveEntity = (user)=>
-			console.log user
+			# console.log user
 			user.gender= if user.gender==undefined then 0 else parseInt user.gender
 			# headimg=if user.head=='' then '' else user.head.split(';')[1]
 			headimg=if user.head.length > 0 then user.head[0].id else ''

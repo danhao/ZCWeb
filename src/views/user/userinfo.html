@@ -8,9 +8,9 @@
                w5c-form-validate="validateOptions" novalidate name="validateForm" >
             <div class="form-group"  >
                 <label  class="col-sm-3 control-label">个人头像</label>
+                <!-- 
                 <div class="col-sm-{{isshowpic?3:6}}">
                     <div class="thumbnail" ng-show="isshowpic">
-                        <!-- <img ng-src="{{ctrl.user.head=='' ? '../images/profile-pics/1.jpg': ctrl.user.head}}" alt=""> -->
                         <img src="{{avatar}}" alt="" />
                         <div class="caption">
                             <div class="m-b-5">
@@ -19,10 +19,16 @@
                         </div>
                     </div>
                     <div ng-hide="isshowpic">
-                        <div ng-uploader data-form-field="head" data-model-field="ctrl.user.head" data-amount="1" data-filesize-limit="-1" ></div>
+                        <div ng-uploader data-form-field="head" data-model-field="ctrl.user.head" data-amount="1" data-filesize-limit="-1" data-single-image="true"></div>
                         <input type="hidden" id="head"  />
                         <span style="color: red">注: 支持jpg, jpeg, png, gif, bmp格式的图片文件，每张大小不要超过2M</span>
                     </div>
+                </div>
+                -->
+                <div class="col-sm-6">
+                    <div ng-uploader data-form-field="head" data-model-field="ctrl.user.head" data-amount="1" data-filesize-limit="-1" data-single-image="true"></div>
+                    <input type="hidden" id="head"  />
+                    <span style="color: red">注: 支持jpg, jpeg, png, gif, bmp格式的图片文件，每张大小不要超过2M</span>
                 </div>
             </div>
             <div class="form-group"  >
