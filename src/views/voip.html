@@ -1,0 +1,97 @@
+
+<script type="text/javascript" src="http://www.cloopen.com/js/voip/swfobject.js"></script>
+<script type="text/javascript" src="http://www.cloopen.com/js/voip/Cloopen_sandbox.js"> </script>
+
+<div class="container" ng-controller="voipController as ctrl">
+    <div class="card">
+        <div class="card-header" id="entrust">
+            <h2>云电话</h2>
+        </div>
+        <div class="card-body card-padding voip">
+            
+            <div class="wrap">
+                <div class="container">
+                    <div class="content"> <span class="bg_t"><img src="images/voip/bg_t.png" /></span>
+                    <div class="bg_m">
+                        <div class="titDiv"> <img src="images/voip/logo.png" class="logo"/><span>通话能力DEMO</span></div>
+                        <div class="left">
+                            <h2>欢迎云通讯能力</h2>
+                            <p>如果您想通过本电脑接听电话，请将您的VoIP帐号告诉您的伙伴</p>
+                            <div class="voipDiv"> <em>子账号</em><span id="voipuser" >{{ctrl.voipId}}</span> </div>
+                            <div class="step1" style="display:block;" >
+                                <div class="c1">
+                                    <div class="c1_l pd60"> <img src="images/voip/img_voip.png" /> <span>VoIP 网络语音电话</span> </div>
+                                    <div class="c1_r">
+
+                                        <!-- 
+                                        <div class="box_select">
+                                            <div class="select"> <a href="javascript:void(0);" class="cdrselectvalue">请选择被叫用户子账号</a>
+                                            <ul class="cdrboxoptions">  
+                                                <li class="cdrboxitem" id="token1"><a href="javascript:void(0);">voip1</a></li>
+                                                <li class="cdrboxitem" id="token2"><a href="javascript:void(0);">voip2</a></li>
+					                            <li class="cdrboxitem" id="token2"><a href="javascript:void(0);">voip3</a></li>
+					                            <li class="cdrboxitem" id="token2"><a href="javascript:void(0);">voip4</a></li>
+					                            <li class="cdrboxitem" id="token2"><a href="javascript:void(0);">voip5</a></li>
+                                            </ul>
+                                            </div>
+                                        </div>
+                                        -->
+
+                                        <select name="voipIds" class="select" ng-model="ctrl.voipId" ng-options="key as key for (key, value) in ctrl.voipObj" />
+
+                                        <input id="voipcall" type="button" class="btn1" value="VoIP 呼叫" disabled="true"/>
+                                    </div>
+                                    <br style="clear:both;" />
+                                </div>
+                                <div class="c1 height">
+                                    <div class="c1_l pd60"> <img src="images/voip/img_tel.png" /> <span>落地电话</span> </div>
+                                    <div class="c1_r">
+                                        <input type="text" class="txt" placeHolder="请输入被叫号码（固号加区号）" />
+                                        <input id="landcall" type="button" class="btn1" value="落地 呼叫" disabled="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="step2">
+          	                    <div class="imgDiv">
+            	                    <img src="images/voip/ico_1.gif" />
+                                    <img src="images/voip/img_voip.png" />
+                                    <img src="images/voip/ico_2.gif" />
+                                </div>
+                                <p>有VoIP来电</p>
+                                <div class="btns"><input id="accept" type="button" class="btn2" value="接听"/><input id="reject" type="button" class="btn3" value="拒绝"/></div>
+                            </div>
+                            <div class="step3">
+          	                    <div class="imgDiv pd27">
+            	                    <img src="images/voip/img_voip.png" />
+                                    <span><em>连接中.....</em><img src="images/voip/ico_3.gif" /></span>
+                                    <img src="images/voip/img_phone.gif" />
+                                </div>
+                                <input id="bye" type="button" class="btn3" value="挂机"/>
+                            </div>
+                            <div class="step4" >
+          	                    <img src="images/voip/img_voip.png" />
+                                <p>通话中</p>
+                                <p><span id="time">00:00</span></p>
+                                <input id="bye2" type="button" class="btn3" value="挂机"/>
+                            </div>
+                            
+                        </div>
+                        <div class="right">
+                            <h2>DEMO日志：</h2>
+                            <div class="divBox" ng-bind-html="ctrl.log | renderHtml">
+                            </div>
+                        </div>
+                    </div>
+                    <span class="bg_b"><img src="images/voip/bg_b.png"/></span> </div>
+                </div>
+            </div>
+            <div id="videobg">
+                <div id="idvideophone" style="display:block">
+                    <a href="http://www.adobe.com/go/getflashplayer" alt="Get Adobe Flash player">Get Adobe Flash player</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+

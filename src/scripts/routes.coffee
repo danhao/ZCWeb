@@ -359,7 +359,12 @@ class Config
 				templateUrl: 'views/faq.html'
 				data:
 					displayName: 'FAQ'
-
+					
+			.state 'site.member.voip',
+				url: 'voip?id'
+				templateUrl: 'views/voip.html'
+				data:
+					displayName: '云电话'
 
 			# demo
 			.state 'site.test',
