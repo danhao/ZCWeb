@@ -400,6 +400,10 @@ module.exports = (grunt) ->
 					'!libs/owl.carousel.min.js'
 					'!libs/fileinput.js'
 					'!libs/jquery.flot.js'
+
+					# other: voip
+					'!libs/swfobject.js'
+					'!libs/Cloopen_sandbox.js'
 				]
 				order: [
 					'libs/angular.min.js'
@@ -454,6 +458,10 @@ module.exports = (grunt) ->
 					'!libs/owl.carousel.min.js'
 					'!libs/fileinput.js'
 					'!libs/jquery.flot.js'
+
+					# other: voip
+					'!libs/swfobject.js'
+					'!libs/Cloopen_sandbox.js'
 				]
 				order: [
 					'libs/angular.min.js'
@@ -525,6 +533,10 @@ module.exports = (grunt) ->
 						'.temp/scripts/libs/owl.carousel.min.js'
 						'.temp/scripts/libs/fileinput.js'
 						'.temp/scripts/libs/jquery.flot.js'
+
+						# other: voip
+						'.temp/scripts/libs/swfobject.js'
+						'.temp/scripts/libs/Cloopen_sandbox.js'
 					]
 
 		# Configration for enviroment
