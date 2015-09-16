@@ -15,7 +15,7 @@ class VOIPController
 		@step = 'step1'
 		
 		@updateLog "您的voip子账号为："+@voipObj[@voipId]
-		@coolpen()
+		@coolpen_init()
 		
 
 	configuration: ->
@@ -56,7 +56,7 @@ class VOIPController
 		@c = 0
 		@timeStr = "00:00"
 
-	coolpen: ()->
+	coolpen_init: ()=>
 		# @$log.log 'Cloopen'
 		# @$log.log @$window.Cloopen
 		@Cloopen.debug()
@@ -93,7 +93,7 @@ class VOIPController
 			@timeCount()
 			@step = 'step4'
 
-	notifyCallback: (doFun, msg)->
+	notifyCallback: (doFun, msg)=>
 		switch doFun
 			when "invited" then @updateLog "发起呼叫成功事件"
 			when "invitefailed" then @updateLog "发起呼叫失败事件"
@@ -111,7 +111,7 @@ class VOIPController
 			else @updateLog msg	# 其他未知事件
 
 
-	initCallback: () ->
+	initCallback: () =>
 		@$log.log 'init callback'
 		@cloopenInited = true
 
