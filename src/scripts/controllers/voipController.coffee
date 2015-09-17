@@ -18,7 +18,7 @@ class VOIPController
 		@coolpen_init()
 		
 
-	configuration: ->
+	configuration: =>
 		# 配置voip账号和密码
 		# 配置voip子账号，部署到web服务器后，通过URL/index.html?id=voip1的方式来登录第一个voip子账号，登录其他子账号以此类推
 		@voipObj =
@@ -26,7 +26,7 @@ class VOIPController
 			'voip2':'8000664700000002'
 			'voip3':'8000664700000003'
 			'voip4':'8000664700000004'
-			'voip5':'8000664700000005'
+			'voip5':'8000855400000001'
 		#可根据需要继续添加子账号
 
 		# 配置voip子账号的密码，子账号要与voipObj中的一致。
@@ -35,13 +35,13 @@ class VOIPController
 			'8000664700000002':'m0zgflrd'
 			'8000664700000003':'lg5wdsjz'
 			'8000664700000004':'47n1giht'
-			'8000664700000005':'vgyedt9k'
+			'8000855400000001':'l5smzpvl'
 		# 可根据需要继续添加
 
-	updateLog: (msg)->
+	updateLog: (msg)=>
 		@log += "<p>#{msg}</p>"
 
-	timeCount: () ->
+	timeCount: () =>
 		@timer = @$timeout ()=>
 			@c = @c + 1
 			minute = parseInt(c/60%60)
@@ -51,7 +51,7 @@ class VOIPController
 			@timeStr = "#{mstr}:#{sstr}"
 		, 1000
 
-	stopCount: ->
+	stopCount: =>
 		@$timeout.cancel @timer
 		@c = 0
 		@timeStr = "00:00"
@@ -68,7 +68,7 @@ class VOIPController
 		# 	@voipId, 			# voip子账号
 		# 	@passwdObj[@voipObj[@voipId]] # voip子账号密码
 		# )
-		@Cloopen.initByUser 'idvideophone',@initCallback,@notifyCallback,@voipId,@passwdObj[@voipObj[@voipId]]
+		@Cloopen.initByUser('idvideophone',@initCallback,@notifyCallback,@voipId,@passwdObj[@voipObj[@voipId]])
 			
 		# 未连接状态
 		@Cloopen.when_idle ()=> @updateLog "未连接..."
@@ -116,7 +116,7 @@ class VOIPController
 		@cloopenInited = true
 
 	# 发起 voip 呼叫
-	voipcall: () ->
+	voipcall: () =>
 		@$log.log 'voip call'
 		unless @cloopenInited
 			return
@@ -124,15 +124,16 @@ class VOIPController
 		@Cloopen.invitetel @voipId
 
 	# 发起落地呼叫
-	landcall: () ->
-		@$log.log 'normal call'
+	landcall: () =>
+		@$log.log 'land call'
 		unless @cloopenInited
 			return
+		phone = @phone
 		@updateLog "落地呼出：#{@phone}"
-		@Cloopen.invitetel @phone
+		@Cloopen.invitetel.bind(@Cloopen) phone
 
 	# 挂断
-	stopcall: () ->
+	stopcall: () =>
 		@$log.log 'stop call'
 		unless @cloopenInited
 			return
@@ -141,13 +142,13 @@ class VOIPController
 		@step = 'step1'
 
 	# 接听
-	accept: ->
+	accept: =>
 		unless @cloopenInited
 			return
 		@Cloopen.accept()
 		@step = 'step4'
 
-	reject: ->
+	reject: =>
 		unless @cloopenInited
 			return
 		@Cloopen.reject()
