@@ -572,15 +572,25 @@ module.exports = (grunt) ->
 			prod:
 				options:
 					snapshotPath: 'snapshots/'
-					sitePath: 'http://127.0.0.1:3000/'
-					msWaitForPages: 1000,
+					sitePath: 'http://localhost/'
+					msWaitForPages: 3000
 					urls: [
-						# '#!/'
-						# '#!/about'
-						# '/contact'
-						# '/news'
-						# '/jobs'
+						'#!/'
+						'#!/about'
+						'#!/jobs'
+						'#!/contact'
+						'#!/faq'
 					]
+					removeScripts: true
+					removeLinkTags: true
+					replaceStrings: [
+						{'images/': 'dist/images/'}
+					]
+					sanitize: (requestUri) ->
+						if /\/$/.test requestUri
+							'index'
+						else
+							requestUri.replace /#!\//g, '-'
 
 		# Run tasks when monitored files change
 		watch:
