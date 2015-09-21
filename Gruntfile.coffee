@@ -590,7 +590,17 @@ module.exports = (grunt) ->
 						if /\/$/.test requestUri
 							'index'
 						else
-							requestUri.replace /#!\//g, '-'
+							requestUri.replace /#!\//g, ''
+
+		xml_sitemap:
+			prod:
+				options:
+					dest: '<%= settings.distDirectory %>'
+					siteRoot: 'http://www.ddzhai.cn'
+				files:
+					src: [
+						''
+					]
 
 		# Run tasks when monitored files change
 		watch:

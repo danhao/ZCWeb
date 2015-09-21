@@ -39,8 +39,8 @@
     "time-grunt": "^1.0.0"
   },
   "devDependencies": {
-    "es5-shim": "^4.1.13",
     "grunt-connect-proxy": "^0.2.0",
-    "grunt-html-snapshot": "^0.6.1"
+    "grunt-html-snapshot": "^0.6.1",
+    "grunt-xml-sitemap": "^0.2.0"
   }
 }
