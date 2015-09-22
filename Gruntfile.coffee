@@ -571,7 +571,7 @@ module.exports = (grunt) ->
 		htmlSnapshot:
 			prod:
 				options:
-					snapshotPath: 'snapshots/'
+					snapshotPath: '<%= settings.distDirectory %>/snapshots/'
 					sitePath: 'http://localhost/'
 					msWaitForPages: 3000
 					urls: [
@@ -583,9 +583,9 @@ module.exports = (grunt) ->
 					]
 					removeScripts: true
 					removeLinkTags: true
-					replaceStrings: [
-						{'images/': 'dist/images/'}
-					]
+					# replaceStrings: [
+					# 	{'images/': 'dist/images/'}
+					# ]
 					sanitize: (requestUri) ->
 						if /\/$/.test requestUri
 							'index'
