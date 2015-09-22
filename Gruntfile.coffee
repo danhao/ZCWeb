@@ -587,10 +587,10 @@ module.exports = (grunt) ->
 					# 	{'images/': 'dist/images/'}
 					# ]
 					sanitize: (requestUri) ->
-						if /\/$/.test requestUri
-							'index'
-						else
-							requestUri.replace /#!\//g, ''
+						# if /\/$/.test requestUri
+						# 	'index'
+						# else
+						requestUri.replace /#!\//g, ''
 
 		xml_sitemap:
 			prod:
