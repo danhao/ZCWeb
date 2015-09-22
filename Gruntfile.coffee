@@ -596,11 +596,20 @@ module.exports = (grunt) ->
 			prod:
 				options:
 					dest: '<%= settings.distDirectory %>'
-					siteRoot: 'http://www.ddzhai.cn'
-				files:
+					siteRoot: 'http://www.ddzhai.cn/'
+					stripIndex: false
+				files: [
+					nonull: true
+					nocomment: true
 					src: [
-						''
+						'#!/'
+						'#!/about'
+						'#!/jobs'
+						'#!/contact'
+						'#!/faq'
 					]
+				]
+
 
 		# Run tasks when monitored files change
 		watch:
