@@ -363,10 +363,6 @@ class Config
 			.state 'site.member.voip',
 				url: 'voip?id'
 				templateUrl: 'views/voip.html'
-				# resolve:
-				# 	Cloopen: ['$http', ($http) ->
-				# 		$http {method: 'GET', url: 'scripts/libs/Cloopen_sandbox.js'}
-				# 	]
 				data:
 					displayName: '云电话'
 

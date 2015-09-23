@@ -5,24 +5,81 @@
             <h2><span class="glyphicon glyphicon-list" ></span> 统计</h2>
         </header>
         <div class="card-body card-padding">
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="epc-item bgm-pink">
-                        <div class="easy-pie main-pie" >
-                            <div class="percent">{{percent1}}</div>
-                            <div class="pie-title">Total Emails Sent</div>
-                            <div easypiechart options="options" percent="percent1"></div>
-                        </div>
+
+            <div class="row m-b-10">
+                <div class="col-sm-4">
+                    状态:&nbsp;&nbsp;
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-default " ng-click="ctrl.q.state=3" ng-class="{active:ctrl.q.state==3}">
+                            <input type="radio" name="state" ng-model="ctrl.q.state" autocomplete="off" value="3"/>
+                            <i class="fa fa-user"></i> 已成交
+                        </label>
+                        <label class="btn btn-default" ng-click="ctrl.q.state=4" ng-class="{active:ctrl.q.state==4}">
+                            <input type="radio" name="state" ng-model="ctrl.q.state" autocomplete="off" value="4"/>
+                            <i class="fa fa-user"></i> 已完成
+                        </label>
                     </div>
                 </div>
-                <div class="col-sm-3">
-                    <div class="epc-item bgm-orange">
+                <div class="col-sm-4">
+                    <input data-dt-picker type="text" name="timeFrom" class="form-control"  ng-model="ctrl.q.timeFrom"
+                                          data-format="YYYY/MM/DD" close-text="Close" placeholder="开始时间" />
+                </div>
+                <div class="col-sm-4">
+                    <input data-dt-picker type="text" name="timeTo" class="form-control"  ng-model="ctrl.q.timeTo"
+                                           data-format="YYYY/MM/DD" close-text="Close" placeholder="结束时间" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6" >
+                    <div class="epc-item bgm-lightgreen" >
                         <div class="easy-pie main-pie" >
-                            <div class="percent">{{percent2}}</div>
-                            <div class="pie-title">Total Emails Sent</div>
-                            <div easypiechart options="options" percent="percent2"></div>
+                            <div class="percent">{{ctrl.statRet.rateOfComplete}}</div>
+                            <div class="pie-title"><a ui-sref="site.member.stat" class="c-white">最近一个月的完成率</a></div>
+                            <div easypiechart options="options" percent="rateOfComplete"></div>
                         </div>
                     </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>总数</th>
+                                <th>完成数量</th>
+                                <th>完成率</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ctrl.statRet.total}} </td>
+                                <td>{{ctrl.statRet.done}} </td>
+                                <td>{{ctrl.statRet.rateOfComplete}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-6">
+                    <div class="epc-item bgm-orange" >
+                        <div class="easy-pie main-pie" >
+                            <div class="percent">{{ctrl.statRet.rateOfReturnMoney}}</div>
+                            <div class="pie-title"><a ui-sref="site.member.stat" class="c-white">最近一个月的回款率</a></div>
+                            <div easypiechart options="options" percent="rateOfReturnMoney"></div>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>总金额</th>
+                                <th>还款金额</th>
+                                <th>还款率</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ctrl.statRet.money}} </td>
+                                <td>{{ctrl.statRet.repayment}} </td>
+                                <td>{{ctrl.statRet.rateOfReturnMoney}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             
