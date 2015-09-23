@@ -17,7 +17,9 @@
                         <div class="left">
                             <h2>欢迎云通讯能力</h2>
                             <p>如果您想通过本电脑接听电话，请将您的VoIP帐号告诉您的伙伴</p>
-                            <div class="voipDiv"> <em>子账号</em><span id="voipuser" >{{ctrl.voipId}}</span> </div>
+                            <div class="voipDiv"> <em>子账号</em><span id="voipuser" >{{ctrl.voipId}}</span>
+                            <!-- <select name="tmp" ng-options="step for step in ctrl.steps" ng-model="ctrl.step" /> -->
+                            </div>
                             <div class="step1" ng-show="ctrl.step == 'step1'" >
                                 <div class="c1">
                                     <div class="c1_l pd60"> <img src="images/voip/img_voip.png" /> <span>VoIP 网络语音电话</span> </div>

@@ -1,6 +1,6 @@
 
 class VOIPController
-	constructor: (@$log, @$stateParams, @$window, @$timeout) ->
+	constructor: (@$log, @$stateParams, @$scope, @$window, @$timeout) ->
 		# @$log.log 'voip'
 		@configuration()
 
@@ -13,29 +13,37 @@ class VOIPController
 		@timer = null
 		@timeStr = "00:00"
 		@step = 'step1'
+
+		@steps = ['step1', 'step2', 'step3', 'step4']
 		
-		@updateLog "您的voip子账号为："+@voipObj[@voipId]
+		# @updateLog "您的voip子账号为："+@voipObj[@voipId]
+		@updateLog "你的token为:"+@tokenObj[@voipId]
+		@updateLog "你的应用ID为:"+@appid
 		@coolpen_init()
 		
 
 	configuration: =>
+		@appid = '8a48b5514fba2f87014fc0a3b47710a3'
+		@tokenObj =
+			'token1':'641899824160968705'
+		
 		# 配置voip账号和密码
 		# 配置voip子账号，部署到web服务器后，通过URL/index.html?id=voip1的方式来登录第一个voip子账号，登录其他子账号以此类推
-		@voipObj =
-			'voip1':'8000664700000001'
-			'voip2':'8000664700000002'
-			'voip3':'8000664700000003'
-			'voip4':'8000664700000004'
-			'voip5':'8000855400000001'
+		# @voipObj =
+		# 	'voip1':'8000664700000001'
+		# 	'voip2':'8000664700000002'
+		# 	'voip3':'8000664700000003'
+		# 	'voip4':'8000664700000004'
+		# 	'voip5':'8000855400000001'
 		#可根据需要继续添加子账号
 
 		# 配置voip子账号的密码，子账号要与voipObj中的一致。
-		@passwdObj =
-			'8000664700000001':'8zjuo64i'
-			'8000664700000002':'m0zgflrd'
-			'8000664700000003':'lg5wdsjz'
-			'8000664700000004':'47n1giht'
-			'8000855400000001':'l5smzpvl'
+		# @passwdObj =
+		# 	'8000664700000001':'8zjuo64i'
+		# 	'8000664700000002':'m0zgflrd'
+		# 	'8000664700000003':'lg5wdsjz'
+		# 	'8000664700000004':'47n1giht'
+		# 	'8000855400000001':'l5smzpvl'
 		# 可根据需要继续添加
 
 	updateLog: (msg)=>
@@ -44,8 +52,8 @@ class VOIPController
 	timeCount: () =>
 		@timer = @$timeout ()=>
 			@c = @c + 1
-			minute = parseInt(c/60%60)
-			second = parseInt(c%60)
+			minute = parseInt(@c/60%60)
+			second = parseInt(@c%60)
 			mstr = if minute < 10 then "0#{minute}" else minute
 			sstr = if second < 10 then "0#{second}" else second
 			@timeStr = "#{mstr}:#{sstr}"
@@ -68,7 +76,8 @@ class VOIPController
 		# 	@voipId, 			# voip子账号
 		# 	@passwdObj[@voipObj[@voipId]] # voip子账号密码
 		# )
-		@Cloopen.initByUser('idvideophone',@initCallback,@notifyCallback,@voipId,@passwdObj[@voipObj[@voipId]])
+		# @Cloopen.initByUser('idvideophone',@initCallback,@notifyCallback,@voipId,@passwdObj[@voipObj[@voipId]])
+		@Cloopen.init('idvideophone', @initCallback, @notifyCallback, @appid+'#'+@tokenObj[@voipId])
 			
 		# 未连接状态
 		@Cloopen.when_idle ()=> @updateLog "未连接..."
@@ -76,22 +85,26 @@ class VOIPController
 		@Cloopen.when_connecting ()=> @updateLog "正在连接服务器注册..."
 		# 已经注册登录
 		@Cloopen.when_connected ()=>
-			@step = 'step1'
 			@cloopenInited = true
+			@$scope.$apply ()=>
+				@step = 'step1'
 		# 正在呼出
 		@Cloopen.when_outbound ()=>
 			@updateLog "正在呼出..."
-			@step = 'step3'
+			@$scope.$apply ()=>
+				@step = 'step3'
 		# 有呼入
 		@Cloopen.when_inbound ()=>
 			@updateLog "有电话呼入..."
-			@step = 'step2'
+			@$scope.$apply ()=>
+				@step = 'step2'
 		# 通话中
 		@Cloopen.when_active ()=>
 			@updateLog "通话中..."
 			@stopCount()
 			@timeCount()
-			@step = 'step4'
+			@$scope.$apply ()=>
+				@step = 'step4'
 
 	notifyCallback: (doFun, msg)=>
 		switch doFun
@@ -131,7 +144,7 @@ class VOIPController
 		phone = @phone
 		@updateLog "落地呼出：#{@phone}"
 		@Cloopen.invitetel.bind(@Cloopen) phone
-
+		
 	# 挂断
 	stopcall: () =>
 		@$log.log 'stop call'
@@ -153,8 +166,11 @@ class VOIPController
 			return
 		@Cloopen.reject()
 		@step = 'step1'
+
+	xxx: =>
+		@step = 'step4'
 	
 
-angular.module('app').controller 'voipController', ['$log', '$stateParams', '$window', '$timeout', VOIPController]
+angular.module('app').controller 'voipController', ['$log', '$stateParams', '$scope', '$window', '$timeout', VOIPController]
 
 		
