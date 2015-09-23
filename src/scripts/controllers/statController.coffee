@@ -8,20 +8,29 @@ class StatController
 			lineWidth: 7,
 			lineCap: 'butt',
 			size: 148
-			
-		@stat()
-		
-
-	stat: () ->
+		# init
 		now = moment()
-		oneMonthAgo = now.subtract 30, 'days'
+		@q =
+			timeTo: now.format "YYYY/MM/DD"
+			timeFrom: now.startOf("month").format "YYYY/MM/DD"
+			state: 3
+		@stat(@q)
+		
+		@$scope.$watch () => @q
+		,
+		(newVal, oldVal) =>
+			if newVal isnt oldVal
+				@stat(@q)
+		, true
+
+	stat: (q) ->
 		param =
-			state: 3			# 已成交
-			receiveTimeFrom: oneMonthAgo.unix()
-			receiveTimeTo: now.unix()
+			state: q.state			# 已成交
+			receiveTimeFrom: moment(new Date(q.timeFrom)).unix()
+			receiveTimeTo: moment(new Date(q.timeTo)).unix()
 		@ajaxService.post @actionCode.ACTION_STAT, param
 			.success (ret) =>
-				@$log.log ret
+				# @$log.log ret
 				@statRet = ret
 				@statRet.rateOfReturnMoney = if ret.money is 0 then 0 else Math.round(ret.repayment / ret.money * 100)
 				@statRet.rateOfComplete = if ret.total is 0 then 0 else Math.round(ret.done / ret.total * 100)
