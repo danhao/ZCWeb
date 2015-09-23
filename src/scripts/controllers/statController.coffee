@@ -1,6 +1,6 @@
 
 class StatController
-	constructor: (@$log, @$scope, @ajaxService, @actionCode) ->
+	constructor: (@$log, @$scope, @$stateParams, @ajaxService, @actionCode) ->
 		@$scope.options =
 			trackColor: 'rgba(255,255,255,0.2)',
 			scaleColor: 'rgba(255,255,255,0.5)',
@@ -9,6 +9,7 @@ class StatController
 			lineCap: 'butt',
 			size: 148
 		# init
+		@type = if @$stateParams.role is '1' then 1 else 0
 		now = moment()
 		@q =
 			timeTo: now.format "YYYY/MM/DD"
@@ -23,11 +24,13 @@ class StatController
 				@stat(@q)
 		, true
 
-	stat: (q) ->
+	stat: (q) =>
 		param =
 			state: q.state			# 已成交
 			receiveTimeFrom: moment(new Date(q.timeFrom)).unix()
 			receiveTimeTo: moment(new Date(q.timeTo)).unix()
+			type: @type
+			
 		@ajaxService.post @actionCode.ACTION_STAT, param
 			.success (ret) =>
 				# @$log.log ret
@@ -38,4 +41,4 @@ class StatController
 				@$log.log err
 
 
-angular.module('app').controller 'statController', ['$log', '$scope', 'ajaxService', 'actionCode', StatController]
+angular.module('app').controller 'statController', ['$log', '$scope', '$stateParams', 'ajaxService', 'actionCode', StatController]

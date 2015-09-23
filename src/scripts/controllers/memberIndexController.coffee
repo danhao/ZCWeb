@@ -13,7 +13,8 @@ class Controller
 						$scope.isverifyinfo = (result.status&8)==8
 					@user = result
 					# @$log.log @user
-					
+					# 统计
+					@stat()
 				.error (error) =>
 					growlService.growl(error.desc, 'danger')
 		initindex()
@@ -35,16 +36,16 @@ class Controller
 			lineCap: 'butt'
 			size: 148
 
-		# 统计
-		@stat()
+		
 
-	stat: () ->
+	stat: () =>
 		now = moment()
 		oneMonthAgo = now.subtract 30, 'days'
 		param =
 			state: 3			# 已成交
 			receiveTimeFrom: oneMonthAgo.unix()
 			receiveTimeTo: now.unix()
+			type: if @user.role is 1 then 1 else 0
 		@ajaxService.post @actionCode.ACTION_STAT, param
 			.success (ret) =>
 				# @$log.log ret

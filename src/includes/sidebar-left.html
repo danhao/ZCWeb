@@ -56,7 +56,7 @@
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.createdebt" data-ng-click="mactrl.sidebarStat($event)">新建委托</a></li>
                 <li ng-show="mactrl.user.type ==1"><a data-ui-sref-active="active" data-ui-sref="site.member.uploaddebt" data-ng-click="mactrl.sidebarStat($event)">上传债权信息</a></li>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.issued" data-ng-click="mactrl.sidebarStat($event)">我的委托</a></li>
-                
+                <li><a data-ui-sref-active="active" data-ui-sref="site.member.stat({role:1})" data-ng-click="mactrl.sidebarStat($event)">统计</a></li>
             </ul>
         </li>
         <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('widgets') }">
@@ -64,6 +64,7 @@
             <ul>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.participant" data-ng-click="mactrl.sidebarStat($event)">我的竞标</a></li>
                 <li><a data-ui-sref-active="active" data-ui-sref="site.member.wonbid" data-ng-click="mactrl.sidebarStat($event)">我的中标</a></li>
+                <li><a data-ui-sref-active="active" data-ui-sref="site.member.stat({role:2})" data-ng-click="mactrl.sidebarStat($event)">统计</a></li>
             </ul>
         </li>
         <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('tables') }">

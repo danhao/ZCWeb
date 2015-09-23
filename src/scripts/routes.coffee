@@ -295,7 +295,7 @@ class Config
 					displayName: "购买VIP会员服务"
 
 			.state 'site.member.stat',
-				url: 'stat'
+				url: 'stat/:role'
 				templateUrl: 'views/user/stat.html'
 				data:
 					displayName: "统计"
