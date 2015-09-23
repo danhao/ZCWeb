@@ -1,6 +1,6 @@
 
 class VOIPController
-	constructor: (@$log, @$stateParams, @$scope, @$window, @$timeout) ->
+	constructor: (@$log, @$stateParams, @$scope, @$window, @$interval) ->
 		# @$log.log 'voip'
 		@configuration()
 
@@ -50,7 +50,7 @@ class VOIPController
 		@log += "<p>#{msg}</p>"
 
 	timeCount: () =>
-		@timer = @$timeout ()=>
+		@timer = @$interval ()=>
 			@c = @c + 1
 			minute = parseInt(@c/60%60)
 			second = parseInt(@c%60)
@@ -60,7 +60,7 @@ class VOIPController
 		, 1000
 
 	stopCount: =>
-		@$timeout.cancel @timer
+		@$interval.cancel @timer
 		@c = 0
 		@timeStr = "00:00"
 
@@ -171,6 +171,6 @@ class VOIPController
 		@step = 'step4'
 	
 
-angular.module('app').controller 'voipController', ['$log', '$stateParams', '$scope', '$window', '$timeout', VOIPController]
+angular.module('app').controller 'voipController', ['$log', '$stateParams', '$scope', '$window', '$interval', VOIPController]
 
 		
