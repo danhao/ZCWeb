@@ -318,7 +318,9 @@ class DebtDetailController
 			
 	isImgUrl: (url) ->
 		(@getFileExt url) in ["jpg", "jpeg", "ico", "png", "bmp"]
-	
+
+	phone: (num) ->
+		@$log.log "call #{num}"
 
 
 	# openBidModal: ->

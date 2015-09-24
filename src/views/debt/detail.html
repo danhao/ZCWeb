@@ -135,6 +135,7 @@
                             <dl class="dl-horizontal" ng-show="ctrl.debt.contacts">
                                 <dt>联系方式</dt>
                                 <dd ng-repeat="c in ctrl.debt.contacts">
+                                    <a href="javascript:;" ng-click="ctrl.phone(c.phone)"><i class="zmdi zmdi-phone"></i>&nbsp;&nbsp;</a>
                                     <span class="contact-type">{{c.type | contactType}}</span>
                                     <span class="contact-phone">{{c.phone}}</span>
                                     <span class="contact-name">{{c.name}}</span>
