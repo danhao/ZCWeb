@@ -321,6 +321,9 @@ class DebtDetailController
 
 	phone: (num) ->
 		@$log.log "call #{num}"
+		angular.element "#phoneModal"
+			.modal()
+		true
 
 
 	# openBidModal: ->
