@@ -3,14 +3,14 @@ class PayController
 		$scope.validateOptions =
 			blurTrig: true
 
-		returnUrl = "#{@$window.location.protocol}//#{@$window.location.host}/#!/member"
+		# returnUrl = "#{@$window.location.protocol}//#{@$window.location.host}/#!/member"
 
 		payinfo =
 			version: '2.1'
 			tranCode: '8888'
 			tranAmt: ''
 			feeAmt: ''
-			frontMerUrl: returnUrl
+			# frontMerUrl: returnUrl
 			tranDateTime: ''
 
 		@pay=(money)->
