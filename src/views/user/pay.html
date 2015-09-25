@@ -36,6 +36,10 @@
                     </div>
                 </form>
                 <div >
+                    <!--
+                        正式:https://gateway.gopay.com.cn/Trans/WebClientAction.do
+                        测试:https://gatewaymer.gopay.com.cn/Trans/WebClientAction.do
+                    -->
                 <form name="payform" id="payform" action="https://gateway.gopay.com.cn/Trans/WebClientAction.do" method="post">
                     <input type="hidden" name="version" ng-value="pay.version"/>
                     <input type="hidden" name="charset" ng-value="pay.charset"/>

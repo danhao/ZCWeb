@@ -17,7 +17,7 @@ class PayController
 			if money>10000000
 				growlService.growl("充值金额不能大于1000万元！", 'danger')
 				return
-			payinfo.tranAmt = (money*100).toString()
+			payinfo.tranAmt = money.toString()
 			payinfo.tranDateTime = moment().format("YYYYMMDDHHmmss")
 			@ajaxService.post @actionCode.ACTION_CREATE_ORDER, payinfo
 			.success (result) =>
@@ -41,7 +41,7 @@ class PayController
 				frontMerUrl: payinfo.frontMerUrl
 				backgroundMerUrl: payrsp.backgroundMerUrl
 				tranDateTime: payinfo.tranDateTime
-				virCardNoIn: '0000000002000000257'
+				virCardNoIn: '0000000002000003896'
 				tranIP: '127.0.0.1'
 				# isRepeatSubmit: ''
 				# goodsName: ''
