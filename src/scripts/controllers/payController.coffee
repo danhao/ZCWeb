@@ -42,7 +42,7 @@ class PayController
 				backgroundMerUrl: payrsp.backgroundMerUrl
 				tranDateTime: payinfo.tranDateTime
 				virCardNoIn: '0000000002000003896'
-				tranIP: '127.0.0.1'
+				tranIP: payrsp.transIp
 				# isRepeatSubmit: ''
 				# goodsName: ''
 				# goodsDetail: ''
