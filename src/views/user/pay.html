@@ -14,7 +14,7 @@
                                 <label class="m-r-20">
                                     <input type="radio" name="paytype" ng-model="paytype" value="1"  ng-init="paytype='1'">
                                     <i class="input-helper"></i>
-                                    通联支付
+                                    国付宝支付
                                 </label>
                             </div>
                         </div>
@@ -36,36 +36,26 @@
                     </div>
                 </form>
                 <div >
-                <form name="payform" id="payform" action="http://ceshi.allinpay.com/gateway/index.do" method="post">
-                    <input type="hidden" name="inputCharset"  ng-value="pay.inputCharset"/>
-                    <input type="hidden" name="pickupUrl" ng-value="pay.pickupUrl"/>
-                    <input type="hidden" name="receiveUrl" ng-value="pay.receiveUrl" />
-                    <input type="hidden" name="version" ng-value="pay.version" />
+                <form name="payform" id="payform" action="https://gateway.gopay.com.cn/Trans/WebClientAction.do" method="post">
+                    <input type="hidden" name="version" ng-value="pay.version"/>
+                    <input type="hidden" name="charset" ng-value="pay.charset"/>
                     <input type="hidden" name="language" ng-value="pay.language" />
-                    <input type="hidden" name="signType" ng-value="pay.signType" />
-                    <input type="hidden" name="merchantId" ng-value="pay.merchantId" />
-                    <input type="hidden" name="payerName" ng-value="pay.payerName" />
-                    <input type="hidden" name="payerEmail" ng-value="pay.payerEmail" />
-                    <input type="hidden" name="payerTelephone" ng-value="pay.payerTelephone" />
-                    <input type="hidden" name="payerIDCard" ng-value="pay.payerIDCard" />
-                    <input type="hidden" name="pid" ng-value="pay.pid" />
-                    <input type="hidden" name="orderNo" ng-value="pay.orderNo" />
-                    <input type="hidden" name="orderAmount" ng-value="pay.orderAmount" />
-                    <input type="hidden" name="orderCurrency" ng-value="pay.orderCurrency" />
-                    <input type="hidden" name="orderDatetime" ng-value="pay.orderDatetime" />
-                    <input type="hidden" name="orderExpireDatetime" ng-value="pay.orderExpireDatetime" />
-                    <input type="hidden" name="productName" ng-value="pay.productName"/>
-                    <input type="hidden" name="productPrice" ng-value="pay.productPrice"/>
-                    <input type="hidden" name="productNum" ng-value="pay.productNum" />
-                    <input type="hidden" name="productId" ng-value="pay.productId"/>
-                    <input type="hidden" name="productDesc" ng-value="pay.productDesc"/>
-                    <input type="hidden" name="ext1" ng-value="pay.ext1"/>
-                    <input type="hidden" name="ext2" ng-value="pay.ext2" />
-                    <input type="hidden" name="payType" ng-value="pay.payType" />
-                    <input type="hidden" name="issuerId" ng-value="pay.issuerId" />
-                    <input type="hidden" name="pan" ng-value="pay.pan" />
-                    <input type="hidden" name="tradeNature" ng-value="pay.tradeNature"/>
-                    <input type="hidden" name="signMsg" ng-value="pay.signMsg" />
+                    <input type="hidden" name="signType" ng-value="pay.signType"/>
+                    <input type="hidden" name="tranCode" ng-value="pay.tranCode" />
+                    <input type="hidden" name="merchantID" ng-value="pay.merchantID" id="merchantID"/>
+                    <input type="hidden" name="merOrderNum" ng-value="pay.merOrderNum" />
+                    <input type="hidden" name="tranAmt" ng-value="pay.tranAmt"/>
+                    <input type="hidden" name="feeAmt" ng-value="pay.feeAmt" />
+                    <input type="hidden" name="currencyType" ng-value="pay.currencyType"/>
+                    <input type="hidden" name="frontMerUrl" ng-value="pay.frontMerUrl" />
+                    <input type="hidden" name="backgroundMerUrl" ng-value="pay.backgroundMerUrl"/>
+                    <input type="hidden" name="tranDateTime" ng-value="pay.tranDateTime" />
+                    <input type="hidden" name="virCardNoIn" ng-value="pay.virCardNoIn"/>
+                    <input type="hidden" name="tranIP" ng-value="pay.tranIP" />
+                    <input type="hidden" name="merRemark1" ng-value="pay.merRemark1"/>
+                    <input type="hidden" name="merRemark2" ng-value="pay.merRemark2" />
+                    <input type="hidden" name="gopayServerTime" ng-value="pay.gopayServerTime"/>
+                    <input type="hidden" name="signValue" ng-value="pay.signValue" />
                 </form>
                 </div>
             </div>

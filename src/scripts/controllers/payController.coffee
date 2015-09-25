@@ -1,42 +1,24 @@
 class PayController
-	constructor: (@$log,@$scope,@$state, @$stateParams,@ajaxService, @actionCode,@w5cValidator,@userSession,@$timeout,@utilService,@growlService) ->
+	constructor: (@$log,@$scope,@$state, @$stateParams,@ajaxService, @actionCode,@w5cValidator,@userSession,@$timeout,@utilService,@growlService, @$window, @$http) ->
 		$scope.validateOptions =
 			blurTrig: true
 
+		returnUrl = "#{@$window.location.protocol}//#{@$window.location.host}/#!/member"
 
 		payinfo =
-			version:"v1.0"
-			language : "1"
-			inputCharset : "1"
-			# pickupUrl: "http://203.195.133.243/#/member/"
-			pickupUrl: "http://ddzhai.cn/#!/member/"
-			payType :  "0"
-			signType : "1"
-			orderAmount:"0"
-			orderCurrency :  "0"
-			orderExpireDatetime :  "60"
-			payerTelephone :  ""
-			payerEmail :  ""
-			payerName :  ""
-			payerIDCard :  ""
-			pid:  ""
-			productName:  ""
-			productId :  ""
-			productNum :  ""
-			productPrice :  ""
-			productDesc:  ""
-			ext2 :  ""
-			extTL :  ""
-			issuerId:  ""
-			pan:  ""
-			tradeNature:  ""
-
+			version: '2.1'
+			tranCode: '8888'
+			tranAmt: ''
+			feeAmt: ''
+			frontMerUrl: returnUrl
+			tranDateTime: ''
 
 		@pay=(money)->
 			if money>10000000
 				growlService.growl("充值金额不能大于1000万元！", 'danger')
 				return
-			payinfo.orderAmount = (money*100).toString()
+			payinfo.tranAmt = (money*100).toString()
+			payinfo.tranDateTime = moment().format("YYYYMMDDHHmmss")
 			@ajaxService.post @actionCode.ACTION_CREATE_ORDER, payinfo
 			.success (result) =>
 				$log.log result
@@ -46,43 +28,44 @@ class PayController
 
 		submit =(payrsp) ->
 			$scope.pay =
-				orderAmount:payinfo.orderAmount
-				inputCharset:payinfo.inputCharset
-				pickupUrl:payinfo.pickupUrl
-				receiveUrl:payrsp.receiveUrl
-				language : payinfo.language
-				signType : payinfo.signType
-				version : payinfo.version
-				merchantId:payrsp.merchantId
-				payerName:payinfo.payerName
-				payerEmail:payinfo.payerEmail
-				payerTelephone:payinfo.payerTelephone
-				payerIDCard:payinfo.payerIDCard
-				pid:payinfo.pid
-				orderNo:payrsp.orderNo
-				orderCurrency:payinfo.orderCurrency
-				orderDatetime:payrsp.orderDatetime
-				orderExpireDatetime:payinfo.orderExpireDatetime
-				productName:payinfo.productName
-				productPrice:payinfo.productPrice
-				productNum:payinfo.productNum
-				productId:payinfo.productId
-				productDesc:payinfo.productDesc
-				ext1:payrsp.ext1
-				ext2:payinfo.ext2
-				payType:payinfo.payType
-				issuerId:payinfo.issuerId
-				pan:payinfo.pan
-				tradeNature:payinfo.tradeNature
-				signMsg:payrsp.signMsg
-#			document.getElementById("payform").submit()
-			form= angular.element(document.querySelector("#payform"))
-			$scope.$apply()
-			form[0].submit()
+				version: payinfo.version
+				charset: '2'
+				language: '1'
+				signType: '1'
+				tranCode: payinfo.tranCode
+				merchantID: payrsp.merchantId
+				merOrderNum: payrsp.merOrderNum
+				tranAmt: payinfo.tranAmt
+				feeAmt: payinfo.feeAmt
+				currencyType: '156'
+				frontMerUrl: payinfo.frontMerUrl
+				backgroundMerUrl: payrsp.backgroundMerUrl
+				tranDateTime: payinfo.tranDateTime
+				virCardNoIn: '0000000002000000257'
+				tranIP: '127.0.0.1'
+				# isRepeatSubmit: ''
+				# goodsName: ''
+				# goodsDetail: ''
+				# buyerName: ''
+				# buyerContact: ''
+				merRemark1: payrsp.merRemark1
+				merRemark2: ''
+				# bankCode: ''
+				# userType: ''
+				# VerficationCode: ''
+				gopayServerTime: payrsp.serverTime
+				signValue: payrsp.signValue
+			
+			# document.getElementById("payform").submit()
+			# $scope.$apply()
+			# form= angular.element(document.querySelector("#payform"))
+			# form[0].submit()
+			
+			# $log.log $("#merchantID").val()
+			$timeout ()->
+				# $log.log $("#merchantID").val()
+				form= angular.element(document.querySelector("#payform"))
+				form[0].submit()
 
 
-
-
-
-
-angular.module("app") .controller 'payController', ['$log','$scope','$state','$stateParams','ajaxService', 'actionCode','w5cValidator','userSession','$timeout','utilService','growlService', PayController]
+angular.module("app") .controller 'payController', ['$log','$scope','$state','$stateParams','ajaxService', 'actionCode','w5cValidator','userSession','$timeout','utilService','growlService', '$window', '$http', PayController]
