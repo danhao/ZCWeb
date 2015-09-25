@@ -38,7 +38,7 @@ class PayController
 				tranAmt: payinfo.tranAmt
 				feeAmt: payinfo.feeAmt
 				currencyType: '156'
-				frontMerUrl: payinfo.frontMerUrl
+				# frontMerUrl: payinfo.frontMerUrl
 				backgroundMerUrl: payrsp.backgroundMerUrl
 				tranDateTime: payinfo.tranDateTime
 				virCardNoIn: '0000000002000000257' # test:'0000000002000000257'  prod:'0000000002000003896'
