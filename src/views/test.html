@@ -26,7 +26,8 @@
             <h2>voip</h2>
         </div>
         <div class="card-body card-padding">
-            <voip></voip>
+            <voip phone="phone" disabled="true" ></voip>
+            <input type="text" ng-model="phone"/>
         </div>
     </div>
 
@@ -97,8 +98,10 @@
             <h2>NG-FILE UPLOAD</h2>
         </div>
         <div class="card-body card-padding">
+            <!-- 
             <div ng-uploader data-form-field="head" data-model-field="ctrl.user.head" data-amount="1" data-filesize-limit="-1" data-single-image="true"></div>
             <input type="hidden" id="head"  />
+             -->
         </div>
     </div>
     

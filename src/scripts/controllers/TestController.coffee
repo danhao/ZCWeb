@@ -1,6 +1,6 @@
 
 class TestController
-	constructor: (@$log, @$rootScope, @userSession) ->
+	constructor: (@$log, @$scope, @$rootScope, @userSession) ->
 		@$log.log 'test controller'
 		pid = @userSession.pid()
 		# ossInfo = @$rootScope.ossInfo
@@ -30,6 +30,9 @@ class TestController
 		# 	@user = u
 		# , 100
 
+		@$scope.phone = '18138438111'
+		
 
-angular.module('app').controller 'testController', ['$log', '$rootScope', 'userSession', TestController]
+
+angular.module('app').controller 'testController', ['$log', '$scope', '$rootScope', 'userSession', TestController]
 

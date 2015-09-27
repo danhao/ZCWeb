@@ -1,15 +1,15 @@
 
 <div class="voip">
-    <div class="step1" ng-show="ctrl.step == 'step1'" >
+    <div class="step1" ng-show="voip.step == 'step1'" >
         <div class="c1 height">
             <div class="c1_l pd60"> <img src="images/voip/img_tel.png" /> <span>落地电话</span> </div>
             <div class="c1_r">
-                <input type="text" class="txt" placeHolder="请输入被叫号码（固号加区号）" ng-model="ctrl.phone"/>
-                <input id="landcall" type="button" class="btn1" value="落地 呼叫" ng-disabled="!ctrl.cloopenInited" ng-click="ctrl.landcall()" />
+                <input type="text" class="txt" placeHolder="请输入被叫号码（固号加区号）" ng-model="phone" ng-disabled="disabled"/>
+                <input id="landcall" type="button" class="btn1" value="落地 呼叫" ng-disabled="!voip.cloopenInited" ng-click="voip.landcall()" />
             </div>
         </div>
     </div>
-    <div class="step2" ng-show="ctrl.step == 'step2'">
+    <div class="step2" ng-show="voip.step == 'step2'">
         <div class="imgDiv">
             <img src="images/voip/ico_1.gif" />
             <img src="images/voip/img_voip.png" />
@@ -17,23 +17,28 @@
         </div>
         <p>有VoIP来电</p>
         <div class="btns">
-            <input id="accept" type="button" class="btn2" value="接听" ng-click="ctrl.accept()"/>
-            <input id="reject" type="button" class="btn3" value="拒绝" ng-click="ctrl.reject()"/>
+            <input id="accept" type="button" class="btn2" value="接听" ng-click="voip.accept()"/>
+            <input id="reject" type="button" class="btn3" value="拒绝" ng-click="voip.reject()"/>
         </div>
     </div>
-    <div class="step3" ng-show="ctrl.step == 'step3'">
+    <div class="step3" ng-show="voip.step == 'step3'">
         <div class="imgDiv pd27">
             <img src="images/voip/img_voip.png" />
             <span><em>连接中.....</em><img src="images/voip/ico_3.gif" /></span>
             <img src="images/voip/img_phone.gif" />
         </div>
-        <input id="bye" type="button" class="btn3" value="挂机" ng-click="ctrl.stopcall()"/>
+        <input id="bye" type="button" class="btn3" value="挂机" ng-click="voip.stopcall()"/>
     </div>
-    <div class="step4" ng-show="ctrl.step == 'step4'">
+    <div class="step4" ng-show="voip.step == 'step4'">
         <img src="images/voip/img_voip.png" />
         <p>通话中</p>
-        <p><span id="time" ng-bind="ctrl.timeStr"></span></p>
-        <input id="bye2" type="button" class="btn3" value="挂机" ng-click="ctrl.stopcall()"/>
+        <p><span id="time" ng-bind="voip.timeStr"></span></p>
+        <input id="bye2" type="button" class="btn3" value="挂机" ng-click="voip.stopcall()"/>
     </div>
 </div> 
 
+<div id="videobg">
+    <div id="idvideophone" style="display:block">
+        <a href="http://www.adobe.com/go/getflashplayer" alt="Get Adobe Flash player">Get Adobe Flash player</a>
+    </div>
+</div>
