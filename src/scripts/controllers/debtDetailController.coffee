@@ -321,6 +321,7 @@ class DebtDetailController
 
 	phone: (num) ->
 		@$log.log "call #{num}"
+		@$scope.phone = num
 		angular.element "#phoneModal"
 			.modal()
 		true

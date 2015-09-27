@@ -175,7 +175,7 @@ class VOIP
 class Directive
 	constructor: ($log, $window, $interval) ->
 		link = (scope, elem, attrs)->
-			$log.log 'voip directive'
+			$log.log "voip directive."
 			scope.voip = new VOIP $window.Cloopen, 'token1', $log, scope, $interval
 		
 		return {
@@ -184,6 +184,7 @@ class Directive
 			scope:
 				phone: '='
 				disabled: '@'
+				includeFlash: '@'
 			templateUrl: '/views/directives/voip.html'
 			link: link
 		}
