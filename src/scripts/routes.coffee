@@ -19,6 +19,15 @@ class Config
 			.state 'site.index.home',
 				url: ''
 				templateUrl: 'views/welcome3.html'
+				controller: ['$log', '$location', '$state', '$stateParams', '$window', ($log, $location, $state, $stateParams, $window) ->
+					url = $location.absUrl()
+
+					# hack for gopay return
+					if url.indexOf('backgroundMerUrl') isnt -1
+						$window.location.href = '/#!/?payback'
+					if $location.search("payback")
+						$state.go 'site.member.index'
+				]
 
 			.state 'site.index.about',
 				url: 'about'
@@ -370,12 +379,14 @@ class Config
 			.state 'site.test',
 				url: 'test',
 				templateUrl: 'views/test.html'
-			
+
 
 		$urlRouterProvider.otherwise '/'
 
 		# hashbang
 		$locationProvider.hashPrefix '!'
+
+		
 
 
 
