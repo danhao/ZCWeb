@@ -403,7 +403,7 @@ module.exports = (grunt) ->
 
 					# other: voip
 					'!libs/swfobject.js'
-					'!libs/Cloopen_sandbox.js'
+					'!libs/Cloopen.js'
 				]
 				order: [
 					'libs/angular.min.js'
@@ -461,7 +461,7 @@ module.exports = (grunt) ->
 
 					# other: voip
 					'!libs/swfobject.js'
-					'!libs/Cloopen_sandbox.js'
+					'!libs/Cloopen.js'
 				]
 				order: [
 					'libs/angular.min.js'
@@ -536,7 +536,7 @@ module.exports = (grunt) ->
 
 						# other: voip
 						'.temp/scripts/libs/swfobject.js'
-						'.temp/scripts/libs/Cloopen_sandbox.js'
+						'.temp/scripts/libs/Cloopen.js'
 					]
 
 		# Configration for enviroment
