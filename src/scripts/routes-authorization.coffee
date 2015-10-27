@@ -100,7 +100,7 @@ class Authorization
 
 		@requireLoginRedirect = () =>
 			@growlService.growl "您尚未登陆, 无权限查看此页面!", 'warning'
-			"site.index"
+			"site.index.home"
 
 		@permissionDeniedRedirect = () ->
 			"site.permission-denied"

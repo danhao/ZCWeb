@@ -92,7 +92,7 @@ h4, .h4 {
 .cooper {
     text-align: center;
 }
-.media {
+.media, .news {
     margin-bottom: 30px;
 }
 .banner {
@@ -338,5 +338,32 @@ h4, .h4 {
 @media (max-width: 1024px) {
     .feature-icon {
         width: 100%;
+    }
+}
+
+// news
+.news {
+    .owl-item {
+        img {
+            width: 252px;
+            height: 100px;
+        }
+
+        .caption {
+            padding-bottom: 10px;
+            
+            h4 {
+                height: 18px;
+                line-height: 18px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            
+            p {
+                height: 110px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
     }
 }

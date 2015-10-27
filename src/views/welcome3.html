@@ -294,6 +294,62 @@
 
 
 
+<!-- =========================
+   NEWS 
+============================== -->
+
+<section id="news" class="news">
+<div class="container">
+	
+	<div class="section-header2">
+        <div class="header-subject">
+            <div class="subject">
+                <h1> N </h1>
+                <h7>news</h7>
+            </div>
+        </div>
+        <h4>最新资讯</h4>
+	</div>
+
+
+    <div class="row">
+        <div class="col-sm-12 col-lg-12">
+
+            <!--
+            <div id="news-owl" class="owl-carousel owl-theme-my">
+                
+                <div class="myitem">
+                    <div class="thumbnail">
+                        <img src="../images/index/media/p1.jpg"/>
+                        <div class="caption">
+                            <h4>移动端Cell栏表单设计问题汇总</h4>
+                            <p>总表单是用户用来获取服务的重要输入工具，也是收集UGC的重要入口，更是用户与移动端交互的重要途径。</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+             -->
+
+            <owl-carousel owl-options="ctrl.newsOption" class="owl-carousel owl-theme-my">
+                <div owl-carousel-item class="myitem" ng-repeat="item in ctrl.news">
+                    <a class="thumbnail" href="{{item.url}}" target="_blank">
+                        <img ng-src="{{item.pic}}" />
+                        <div class="caption">
+                            <h4>{{item.title}}</h4>
+                            <p>{{item.detail}}</p>
+                        </div>
+                    </a>
+                </div>
+            </owl-carousel>
+            
+        </div>
+    </div>
+    
+</div>
+</section> 
+
+
 
 
 <!-- =========================

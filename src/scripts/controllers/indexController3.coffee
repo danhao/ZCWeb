@@ -1,6 +1,6 @@
 
 class IndexController3
-	constructor: (@$log, @$window, @$scope, @$interval, @ajaxService, @actionCode) ->
+	constructor: (@$log, @$window, @$scope, @$interval, @ajaxService, @actionCode, @$resource) ->
 		# wow
 		# new WOW().init()
 
@@ -56,9 +56,8 @@ class IndexController3
 			if t
 				@$interval.cancel t
 
-		
-		# sample users
-		angular.element('#media-owl').owlCarousel({
+		###
+		angular.element('#news-owl').owlCarousel({
 			items: 3,
 			nav: true,
 			dots: false,
@@ -69,7 +68,8 @@ class IndexController3
 				},
 			navText: ['','']
 			})
-
+		###
+			
 		angular.element('#banner').owlCarousel({
 			slideSpeed: 300,
 			paginationSpeed: 400,
@@ -79,7 +79,50 @@ class IndexController3
 			autoplay: true,
 			loop: true
 			})
+
+		@initNews()
+		
+
+	initNews: ()->
+		@newsOption =
+			items: 3,
+			nav: true,
+			dots: false,
+			margin: 60,
+			responsive: {
+				0: { items: 1 },
+				600: { items: 3 }
+				},
+			navText: ['','']
+
+		###
+		@news = [
+			title: '移动端Cell栏表单设计问题汇总'
+			detail: '总表单是用户用来获取服务的重要输入工具，也是收集UGC的重要入口，更是用户与移动端交互的重要途径。'
+			pic: '../images/index/media/p1.jpg'
+			url: 'http://iof.hexun.com/'
+		,
+			title: '移动端Cell栏表单设计问题汇总'
+			detail: '总表单是用户用来获取服务的重要输入工具，也是收集UGC的重要入口，更是用户与移动端交互的重要途径。'
+			pic: '../images/index/media/p1.jpg'
+			url: 'http://iof.hexun.com/'
+		,
+			title: '移动端Cell栏表单设计问题汇总'
+			detail: '总表单是用户用来获取服务的重要输入工具，也是收集UGC的重要入口，更是用户与移动端交互的重要途径。'
+			pic: '../images/index/media/p1.jpg'
+			url: 'http://iof.hexun.com/'
+		,
+			title: '移动端Cell栏表单设计问题汇总'
+			detail: '总表单是用户用来获取服务的重要输入工具，也是收集UGC的重要入口，更是用户与移动端交互的重要途径。'
+			pic: '../images/index/media/p1.jpg'
+			url: 'http://iof.hexun.com/'
+		]
+		###
+		@newsList = @$resource("data/news.json")
+		@news = @newsList.query()
+
+		@$log.log @$scope.news
 		
 		
 
-angular.module('app').controller 'indexController3', ['$log', '$window', '$scope', '$interval', 'ajaxService', 'actionCode', IndexController3]
+angular.module('app').controller 'indexController3', ['$log', '$window', '$scope', '$interval', 'ajaxService', 'actionCode', '$resource', IndexController3]
