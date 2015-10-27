@@ -168,6 +168,7 @@ module.exports = (grunt) ->
 						'scripts/scripts.min.*.js'
 						'scripts/vendors.min.js'
 						'styles/styles.min.*.css'
+						'data/*'
 					]
 					dest: '<%= settings.distDirectory %>'
 					expand: true
