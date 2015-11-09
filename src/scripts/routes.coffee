@@ -25,7 +25,7 @@ class Config
 					# hack for gopay return
 					if url.indexOf('backgroundMerUrl') isnt -1
 						$window.location.href = '/#!/?payback'
-					if $location.search("payback")
+					if $location.search()["payback"]
 						$state.go 'site.member.index'
 				]
 
