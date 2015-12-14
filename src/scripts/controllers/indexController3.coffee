@@ -28,9 +28,9 @@ class IndexController3
 
 		# stat data
 		@stat_t =
-			dealSum: 30953
-			team: 216
-			coop: 48
+			dealSum: 32951
+			team: 233
+			coop: 60
 		@stat =
 			dealSum: 0
 			team: 0
