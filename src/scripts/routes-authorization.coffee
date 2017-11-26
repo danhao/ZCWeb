@@ -46,7 +46,7 @@ class Authorization
 			if toState.$$finishAuthorize
 				return
 
-			# track the state the user wants to go to;
+			# track the state the user wants to go to
 			@$rootScope.toState = toState
 			@$rootScope.fromState = fromState
 			@$rootScope.toParams = toParams
@@ -128,7 +128,7 @@ class Authorization
 			@growlService.growl(msg, 'warning')
 			state
 
-		# 创建debt校验; 手机,邮箱 2者任何1个通过验证;
+		# 创建debt校验; 手机,邮箱 2者任何1个通过验证
 		@requireCreateDebt = () =>
 			@getUser (user) ->
 				status = user.status
